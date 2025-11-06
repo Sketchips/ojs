@@ -16,6 +16,9 @@ ojs/plugins/**/node_modules/
 *.sql
 *.zip
 
+# Git tools / temporary folders
+.git-mirror-temp/
+
 # Environment config
 .env
 
