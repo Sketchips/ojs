@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php $exp = 1762403410; $val = array (
+=======
+<?php $exp = 1758701730; $val = array (
+>>>>>>> 363c2f16f89f8cd847401d783e2bb8705a98e0ac
   'PKP\\observers\\events\\DecisionAdded' => 
   array (
     0 => 'PKP\\observers\\listeners\\AssignDOIs@handle',

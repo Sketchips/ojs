@@ -1,0 +1,22 @@
+<?php $exp = 1790153537; $val = PKP\i18n\translation\Translator::__set_state(array(
+   'domain' => '',
+   'dictionary' => 
+  array (
+    '' => 
+    array (
+      '' => 
+      array (
+        'default.groups.name.author' => '作者',
+        'default.groups.name.siteAdmin' => '站点管理',
+      ),
+    ),
+  ),
+   'plurals' => 
+  array (
+    '' => 
+    array (
+      'count' => 1,
+      'code' => 'return 0;',
+    ),
+  ),
+));

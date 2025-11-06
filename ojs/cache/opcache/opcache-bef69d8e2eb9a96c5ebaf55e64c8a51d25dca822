@@ -1,0 +1,17 @@
+<?php $exp = 1790153479; $val = array (
+  'domain' => NULL,
+  'plural-forms' => 'nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;',
+  'messages' => 
+  array (
+    '' => 
+    array (
+      'plugins.generic.acron.enabled' => 'Acron Dodatak je aktiviran.',
+      'plugins.generic.acron.disabled' => 'Acron Dodatak je deaktiviran.',
+      'plugins.generic.acron.reloadedCronTab' => 'Cron tab je uspešno ponovo učitan.',
+      'plugins.generic.acron.reload' => 'Ponovo učitaj zakazane zadatke',
+      'plugins.generic.acron.name' => 'Acron Dodatak',
+      'plugins.generic.acron.description' => 'Ovaj dodatak pokušava da smanji zavisnost aplikacije od alata za periodično planiranje kao što je \'cron.\'',
+      'plugins.generic.acron.tasksReloaded' => 'Zakazani zadaci su ponovo učitani.',
+    ),
+  ),
+);

@@ -1,0 +1,11 @@
+<?php $exp = 1790153552; $val = array (
+  'application' => 'ojs2',
+  'type' => 'core',
+  'release' => '3.4.0.9',
+  'tag' => '3_4_0-9',
+  'date' => '2025-05-23',
+  'info' => 'https://pkp.sfu.ca/ojs/',
+  'package' => 'https://pkp.sfu.ca/ojs/download/ojs-3.4.0-9.tar.gz',
+  'sitewide' => 0,
+  'lazy-load' => 0,
+);
