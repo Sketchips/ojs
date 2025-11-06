@@ -1,0 +1,1489 @@
+/**
+ * JOURNAL RIPTEK THEME CSS
+ * Custom styling for Journal Riptek - Jurnal Riset dan Inovasi Daerah Kota Semarang
+ * Created: October 27, 2025
+ * Updated: October 27, 2025 - v1.1
+ * 
+ * Design Specifications:
+ * - Header: 1440px x 71px
+ * - Homepage Hero: 1440px x 544px (positioned at top: 71px) - FULL WIDTH
+ * - Hero Title: 804px x 153px, Inria Serif 128px Bold, White
+ * - Logo Header: 222px x 47px, Poppins 32px Bold, Black
+ * - Sidebar Buttons: 320px x 62px
+ * - Footer: 1440px x 243px (positioned at top: 1438px)
+ * - Footer Background Image: 1440px x 359px (positioned at top: 1322px, opacity: 19%)
+ */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:wght@700&family=Poppins:wght@700&display=swap');
+
+/* =========================================
+   GLOBAL RESETS & BASE STYLES
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+.container-fluid {
+    max-width: 1440px;                    /* RESET: Back to fixed width untuk layout normal */
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* =========================================
+   HEADER STYLING
+   Width: 1440px, Height: 71px
+   Background: WHITE (not green)
+   ========================================= */
+#headerNavigationContainer {
+    background: #ffffff !important;
+    height: 71px;
+    margin-bottom: 0;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+/* Override navbar-default background */
+.navbar-default {
+    background-color: #ffffff !important;
+    background-image: none !important;
+}
+
+/* Header Top Navigation (User Menu) - Show in top right */
+#headerNavigationContainer > .container-fluid:first-child {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    background: transparent;
+    padding: 0;
+    height: auto;
+    z-index: 1001;
+}
+
+#headerNavigationContainer > .container-fluid:first-child .row {
+    margin: 0;
+}
+
+/* Main Header Container */
+#headerNavigationContainer > .container-fluid:last-child {
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 71px;
+    padding: 0 20px;
+    position: relative;
+}
+
+#headerNavigationContainer .navbar-header {
+    height: 71px;
+    display: flex;
+    align-items: center;
+    float: left;
+    width: auto;
+    margin: 0;
+    position: absolute;
+    left: 20px;
+    top: 0;
+}
+
+/* Logo Image - positioned at far left corner */
+#headerNavigationContainer .navbar-brand-logo {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+#headerNavigationContainer .navbar-brand-logo img {
+    height: 45px;
+    width: auto;
+    margin-right: 0;
+}
+
+/* Text "Jurnal Riptek" beside logo - Spesifikasi: Poppins 26px Bold, Black */
+#headerNavigationContainer .navbar-brand {
+    color: #000000 !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: 0%;
+    padding: 0;
+    padding-left: 15px;
+    height: 71px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    margin-left: 12px;
+    text-transform: none;
+    border-left: 2px solid #e0e0e0;
+}
+
+/* If logo image exists, text goes beside it */
+#headerNavigationContainer .site-name {
+    display: flex;
+    align-items: center;
+    height: 71px;
+    gap: 0;
+}
+
+#headerNavigationContainer .navbar-brand:hover {
+    color: #000000 !important;
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   NAVIGATION MENU POSITIONING
+   Untuk mengatur posisi menu navigasi di header
+   ========================================================================== */
+
+/* Navigation Menu Container - CENTERED in the middle of header */
+#nav-menu {
+    float: none !important;
+    height: 71px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center;
+    position: absolute;
+    left: 40%;                            /* EDIT HERE: 40% = more left, 44% = slightly left, 50% = perfect center */
+    top: 50%;                             /* Vertical center position */
+    transform: translate(-50%, -50%);     /* Perfect centering trick */
+    margin: 0;
+    z-index: 10;
+}
+
+/* Ensure collapse class doesn't hide navigation */
+#nav-menu.collapse {
+    display: flex !important;
+    height: auto;
+}
+
+/* ==========================================================================
+   NAVIGATION MENU STYLING
+   Untuk mengatur tampilan menu navigasi (Home, About, Issues, dll)
+   ========================================================================== */
+
+/* Navigation Links in Header - Default: BLACK/DARK, Hover: GREEN, Active: GREEN */
+#headerNavigationContainer .navbar-nav {
+    margin: 0;
+    display: flex !important;
+    align-items: center;
+    height: auto;
+    list-style: none;
+    padding: 0;
+}
+
+#headerNavigationContainer .navbar-nav > li {
+    display: flex;
+    align-items: center;
+    height: auto;
+    margin: 0;
+}
+
+/* NAVIGATION LINKS - Edit font, size, spacing di sini */
+#headerNavigationContainer .navbar-nav > li > a {
+    color: #333333 !important;
+    font-family: 'Poppins', sans-serif;  /* Font family */
+    font-weight: 600;                     /* SemiBold weight */
+    font-size: 13px;                      /* Font size - EDIT HERE to change size */
+    line-height: 100%;                    /* Line height */
+    letter-spacing: 0%;                   /* Letter spacing */
+    padding: 12px 15px;                   /* Spacing around text - EDIT to adjust gap between items */
+    height: auto;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    background-color: transparent;
+}
+
+/* Hover State - GREEN */
+#headerNavigationContainer .navbar-nav > li > a:hover,
+#headerNavigationContainer .navbar-nav > li > a:focus {
+    color: #2ecc71 !important;
+    background-color: rgba(46, 204, 113, 0.05);
+}
+
+/* Active/Current Page - GREEN */
+#headerNavigationContainer .navbar-nav > li.active > a,
+#headerNavigationContainer .navbar-nav > li.current > a {
+    color: #2ecc71 !important;
+    background-color: rgba(46, 204, 113, 0.1);
+}
+
+/* User Navigation (Login/Register) - Top Right */
+#navigationUser {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+}
+
+#navigationUser li {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#navigationUser li a {
+    color: #333333 !important;
+    font-size: 14px;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+#navigationUser li a:hover {
+    color: #2ecc71 !important;
+    text-decoration: none;
+}
+
+/* Add icon for login link */
+#navigationUser a[href*="login"]::before,
+#navigationUser a[href*="register"]::before {
+    content: "👤 ";
+    margin-right: 5px;
+}
+
+/* ==========================================================================
+   MOBILE NAVIGATION - SIDE PANEL FROM LEFT
+   Untuk membuat navigation slide dari kiri saat mobile
+   ========================================================================== */
+
+/* Hide hamburger icon on desktop */
+.navbar-toggle {
+    display: none;
+}
+
+/* Mobile styles - Show on smaller screens */
+@media (max-width: 991px) {
+    /* Show hamburger button on mobile */
+    .navbar-toggle {
+        display: block;
+        position: absolute;
+        left: -35px;                      /* FIXED: -35px seperti screenshot */
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: 2px solid #2ecc71;
+        padding: 8px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1002;
+    }
+    
+    .navbar-toggle .icon-bar {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background-color: #2ecc71;
+        margin: 4px 0;
+        transition: all 0.3s ease;
+    }
+    
+    /* MOBILE: Shift logo and brand text to the right to avoid covering hamburger */
+    #headerNavigationContainer .navbar-header {
+        left: 140px !important;           /* MAXIMUM: 140px untuk TIDAK NEMPEL ke hamburger */
+    }
+    
+    /* Navigation panel - slide from left */
+    #nav-menu {
+        position: fixed !important;
+        left: -300px !important;          /* Hidden off-screen */
+        top: 0 !important;
+        transform: none !important;
+        width: 280px !important;
+        height: 100vh !important;
+        background: #ffffff;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+        transition: left 0.3s ease;
+        z-index: 1001;
+        padding-top: 80px;                /* Space for close button */
+    }
+    
+    /* Show panel when opened */
+    #nav-menu.in,
+    #nav-menu.show {
+        left: 0 !important;               /* Slide in */
+    }
+    
+    /* Navigation items vertical on mobile */
+    #headerNavigationContainer .navbar-nav {
+        flex-direction: column;
+        width: 75%;                       /* FIXED: 75% to prevent garis keluar (was 100%) */
+        padding: 0;
+        margin: 0;
+    }
+    
+    #headerNavigationContainer .navbar-nav > li {
+        width: 100%;
+        border-bottom: 1px solid #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+    
+    #headerNavigationContainer .navbar-nav > li > a {
+        width: 100%;
+        padding: 15px 15px 15px 0;        /* FIXED: NO left padding - items menempel ke left edge panel */
+        justify-content: flex-start;
+        text-align: left;
+        margin: 0;
+        padding-left: 20px;               /* Add back small padding for readability */
+    }
+    
+    /* Overlay background when menu open */
+    #nav-menu::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+    }
+    
+    #nav-menu.in::before,
+    #nav-menu.show::before {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Hide search form */
+.pull-md-right,
+div[class*="search"] {
+    display: none !important;
+}
+
+/* Compensate for fixed header */
+body {
+    padding-top: 71px;
+}
+
+/* Ensure body and html don't constrain hero section */
+body, html {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* Allow hero section to break out */
+body > section.homepage-hero {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+    max-width: 100vw;
+}
+
+/* Force hero section to break out of any Bootstrap container */
+.homepage-hero {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+}
+
+/* ==========================================================================
+   HERO SECTION - HOMEPAGE BANNER
+   Untuk mengatur tampilan hero section (bagian hijau-biru dengan title)
+   ONLY SHOW ON HOMEPAGE - HIDDEN ON OTHER PAGES
+   ========================================================================== */
+
+/* Hide hero on all pages except homepage AND about page */
+.pkp_page_login .homepage-hero,
+.pkp_page_user .homepage-hero,
+.pkp_page_issue .homepage-hero,
+.pkp_page_article .homepage-hero,
+.pkp_page_submissions .homepage-hero,
+body:not(.pkp_page_index):not(.pkp_page_about) .homepage-hero {
+    display: none !important;
+}
+
+.homepage-hero {
+    height: 544px;
+    margin: 0 auto !important;
+    position: relative;
+    background: linear-gradient(135deg, #2ecc71 0%, #3498db 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;       /* FIXED: space-between for proper layout */
+    gap: 0;
+    padding: 60px 0 60px 100px;           /* FIXED: No right padding for image */
+    box-sizing: border-box;
+    width: 100vw !important;              /* FIXED: Full viewport width */
+    max-width: 100vw !important;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+}
+    width: 100vw !important;
+    max-width: 100vw !important;
+}
+
+/* Hero gradient overlay effect */
+.homepage-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+    z-index: 1;
+}
+
+/* Remove Bootstrap container padding/margins from hero section */
+body > .homepage-hero,
+#main-content > .homepage-hero,
+.homepage-hero {
+    padding-left: 100px !important;       /* EDIT: Padding kiri - standard */
+    padding-right: 100px !important;      /* EDIT: Padding kanan - standard */
+}
+
+/* Hero Inner Container - untuk centering content */
+.homepage-hero > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   HERO TEXT CONTENT (Title & Subtitle)
+   Untuk mengatur text "Jurnal Riptek" dan subtitle
+   ========================================================================== */
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+    flex: 0 0 auto;
+    max-width: 600px;                     /* INCREASED: More width untuk prevent cutoff */
+    padding-left: 0;
+    padding-right: 40px;                  /* Space between text and image */
+    margin-left: 80px;                    /* INCREASED: Larger left margin untuk visible gap */
+}
+
+/* HERO TITLE "Jurnal Riptek" - Edit ukuran font di sini */
+.hero-content h1 {
+    font-family: 'Inria Serif', serif;
+    font-size: 70px;                      /* EDIT: Ukuran font title */
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0%;
+    margin: 0 0 20px 0;                   /* EDIT: Margin bawah untuk jarak ke subtitle */
+    padding: 0;
+    color: #ffffff;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    max-width: 100%;
+    height: auto;
+    word-wrap: break-word;
+}
+
+/* HERO SUBTITLE "Badan Riset dan Inovasi..." - Edit ukuran font di sini */
+.hero-content .subtitle {
+    font-family: 'Inria Serif', serif;
+    font-size: 20px;                      /* EDIT: Ukuran font subtitle */
+    font-weight: 600;
+    max-width: 100%;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    text-align: left;
+}
+
+/* ==========================================================================
+   HERO IMAGE (Semarang City illustration)  
+   FIXED: Absolute positioning to truly touch right edge
+   ========================================================================== */
+
+.hero-image {
+    position: absolute !important;        /* ABSOLUTE positioning */
+    right: 0 !important;                  /* Stick to right edge */
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 2;
+    width: 650px !important;              /* FIXED width */
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 650px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+/* ==========================================================================
+   MAIN CONTENT LAYOUT
+   Container untuk sidebar dan main content
+   ========================================================================== */
+
+.page_index_journal {
+    background-color: #ffffff;
+    margin: 0 auto;
+    min-height: calc(100vh - 71px - 243px);
+}
+
+/* CONTENT WRAPPER - MAXIMUM WIDTH */
+.content-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: none !important;
+    margin: 0 auto !important;
+    padding: 50px 50px !important;        /* REDUCED padding for wider content */
+    gap: 60px !important;                 /* REDUCED gap */
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   SIDEBAR MENU BUTTONS (Green Buttons)
+   Untuk mengatur tombol-tombol hijau di sidebar (Editorial Team, dll)
+   ========================================================================== */
+
+.sidebar-menu {
+    flex: 0 0 200px !important;           /* SMALLER: 200px sidebar */
+    width: 200px !important;
+    min-width: 200px !important;
+}
+
+.sidebar-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;                            /* EDIT: Jarak antar tombol */
+}
+
+.sidebar-menu-item {
+    margin: 0;
+}
+
+/* SIDEBAR BUTTON STYLING - Edit warna, ukuran di sini */
+.sidebar-menu-link {
+    display: block;
+    width: 200px !important;              /* Match sidebar width */
+    height: 62px;
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 62px;
+    border-radius: 4px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+}
+
+/* Hover effect untuk tombol */
+.sidebar-menu-link:hover {
+    background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
+    color: #ffffff !important;
+    text-decoration: none;
+}
+
+.sidebar-menu-link:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* SINTA Badge in Sidebar - Below Author Guidelines */
+.sidebar-sinta-badge {
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 20px;
+    border-top: 2px solid #e0e0e0;
+}
+
+.sidebar-sinta-badge img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.sidebar-sinta-badge img:hover {
+    transform: scale(1.05);
+}
+
+/* =========================================
+   MAIN CONTENT AREA - NO CARD
+   ========================================= */
+.main-content-area {
+    flex: 1 !important;
+    min-width: 0 !important;
+    background: transparent !important;   /* NO CARD - transparent */
+    padding: 40px 60px !important;        /* REDUCED padding */
+    border-radius: 0 !important;          /* NO border radius */
+    box-shadow: none !important;          /* NO shadow */
+}
+
+.journal-description {
+    margin-bottom: 30px;
+}
+
+.journal-description h2 {
+    color: #2ecc71;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.journal-description p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #555;
+    text-align: justify;
+}
+
+/* Info Boxes */
+.info-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border-left: 4px solid #2ecc71;
+}
+
+.info-section h3 {
+    color: #2c3e50;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.info-section p,
+.info-section ul {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.info-section ul {
+    padding-left: 20px;
+}
+
+/* Index Badge */
+.index-badge {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.index-badge img {
+    max-width: 180px;
+    height: auto;
+}
+
+/* ==========================================================================
+   ABOUT PAGE - GREEN THEME LIKE FIGMA
+   ========================================================================== */
+.page_about,
+.pkp_page_about {
+    background-color: #ffffff !important;
+}
+
+/* About page main title - RED */
+.page_about .page-header h1,
+.pkp_page_about .page-header h1,
+.page_about h1:first-of-type,
+.pkp_page_about h1:first-of-type {
+    color: #e74c3c !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    margin-bottom: 30px !important;
+}
+
+/* About page section headers - GREEN */
+.page_about h2,
+.pkp_page_about h2 {
+    color: #2ecc71 !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    margin-top: 20px !important;
+    margin-bottom: 15px !important;
+}
+
+.page_about h3,
+.pkp_page_about h3 {
+    color: #e97e6a !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    margin-top: 20px !important;
+    margin-bottom: 10px !important;
+}
+
+.page_about h4,
+.pkp_page_about h4 {
+    color: #27ae60 !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+}
+
+/* About page content wrapper - sama seperti homepage */
+.page_about .container,
+.pkp_page_about .container {
+    max-width: none !important;
+    padding: 0 !important;
+}
+
+.page_about {
+    background-color: #ffffff !important;
+}
+
+/* About page should have same layout as homepage */
+.pkp_page_about .page {
+    display: flex;
+    width: 100%;
+    max-width: none !important;
+    margin: 0 auto !important;
+    padding: 50px 50px !important;
+    gap: 60px !important;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   FOOTER STYLING (Green Background with Landmark Image)
+   Untuk mengatur footer hijau dengan gambar Semarang di belakang
+   ========================================================================== */
+
+.footer {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    min-height: 243px;                    /* EDIT: Minimum tinggi footer */
+    margin: 0;
+    background: linear-gradient(135deg, #1e8449 0%, #27ae60 100%) !important;  /* EDIT: Warna gradient footer */
+    color: #ffffff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 40px 0;
+}
+
+/* Override any white background */
+footer.footer,
+.pkp_structure_footer,
+.footer {
+    background-color: #27ae60 !important;
+    background: linear-gradient(135deg, #1e8449 0%, #27ae60 100%) !important;
+}
+
+/* FOOTER BACKGROUND IMAGE - Gambar Semarang sebagai WATERMARK (19% opacity) 
+   CATATAN: Gambar TIDAK mengganti background, hanya muncul sebagai watermark di belakang text */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: -116px;
+    left: 0;
+    width: 100%;
+    height: 359px;
+    background-image: url('https://ojsimg.netlify.app/semarang-landmark.png');  /* EDIT: URL gambar */
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    opacity: 0.19;                        /* EDIT: 0.19 = 19% opacity (0.0 = invisible, 1.0 = full visible) */
+    z-index: 1;                           /* Behind text (jangan diubah) */
+    pointer-events: none;
+}
+
+.footer .container {
+    position: relative;
+    z-index: 2;                           /* Text di atas gambar (jangan diubah) */
+    width: 100%;
+    max-width: 1440px;
+    padding: 0 46px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* FOOTER TEXT STYLING - Edit font size di sini */
+.footer-title {
+    font-size: 20px;                      /* EDIT: Ukuran font judul footer */
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.footer-info {
+    font-size: 13px;                      /* EDIT: Ukuran font info footer */
+    line-height: 1.8;
+    opacity: 0.95;
+    color: #ffffff;
+}
+
+.footer-info p {
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.footer-info a {
+    color: #ffffff;
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+}
+
+.footer-info a:hover {
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   DESKTOP SPECIFIC OVERRIDES (min-width 1201px)
+   Untuk FORCE hero image ke kanan HANYA DI DESKTOP
+   ========================================================================== */
+@media (min-width: 1201px) {
+    /* Desktop hero breakout - FULL WIDTH */
+    .homepage-hero {
+        margin-left: -50vw !important;    /* DESKTOP: Full breakout */
+        margin-right: -50vw !important;   /* Both sides equal */
+        padding-left: 100px !important;   /* Inner padding left */
+        padding-right: 0 !important;      /* No right padding: image will touch edge */
+        position: relative !important;    /* For absolute-positioned image */
+        align-items: center !important;   /* Vertical center content */
+    }
+
+    /* Desktop hero content - keep left side with visible gap */
+    .hero-content {
+        margin-left: 60px !important;     /* Gap from left edge */
+        margin-right: 0 !important;
+        padding-right: 50px !important;   /* Space before image */
+        z-index: 3 !important;            /* Ensure content sits above */
+        max-width: 600px !important;      /* Limit text width */
+    }
+
+    /* Desktop hero image - absolutely position to REALLY touch right edge */
+    .hero-image {
+        position: absolute !important;
+        right: -20px !important;          /* Slight negative to ensure touch */
+        top: 50% !important;
+        transform: translateY(-50%) !important; /* Vertical center */
+        justify-content: flex-end !important;
+        padding-left: 0 !important;       /* No left padding */
+        padding-right: 0 !important;      /* No right padding */
+        margin-left: 0 !important;        /* Reset margin */
+        margin-right: 0 !important;       /* Reset margin */
+        max-width: 550px !important;      /* Limit image size */
+        z-index: 2 !important;
+    }
+    
+    .hero-image img {
+        margin-right: -20px !important;   /* Pull image to edge */
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN - MOBILE & TABLET ADJUSTMENTS
+   Untuk mengatur tampilan di berbagai ukuran layar
+   EDIT BREAKPOINTS: Ubah nilai px untuk adjust kapan style berubah
+   ========================================================================== */
+
+/* ===== DESKTOP LARGE (1440px and below) ===== */
+@media (max-width: 1440px) {
+    .homepage-hero {
+        padding: 60px 80px;               /* Reduce padding on smaller desktop */
+    }
+    
+    .hero-content {
+        margin-left: 30px;                /* Reduce left margin */
+    }
+    
+    .hero-image {
+        margin-left: 60px;                /* Reduce spacing */
+    }
+    
+    .hero-content h1 {
+        font-size: 60px;                  /* Smaller title font */
+    }
+    
+    .hero-content .subtitle {
+        font-size: 18px;
+    }
+    
+    .hero-image {
+        max-width: 450px;                 /* Smaller image */
+    }
+    
+    .content-wrapper {
+        padding: 40px 80px;               /* Match hero padding */
+    }
+}
+
+/* ===== LAPTOP/TABLET LANDSCAPE (1200px and below) ===== */
+@media (max-width: 1200px) {
+    .homepage-hero {
+        height: auto;
+        min-height: 450px;
+        padding: 40px 40px;
+        flex-direction: column;           /* Stack vertically */
+        justify-content: center;
+        gap: 40px;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+        text-align: center;               /* Center text on tablet */
+        padding: 0;
+        padding-right: 0;
+        margin-left: 0;                   /* Reset left margin on vertical stack */
+    }
+    
+    .hero-content h1 {
+        font-size: 50px;
+        max-width: 100%;
+        margin: 0 auto 20px;
+    }
+    
+    .hero-content .subtitle {
+        font-size: 16px;
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .hero-image {
+        max-width: 450px;
+        width: 80%;
+        margin: 30px auto 0;              /* Reset margins on vertical stack */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    #headerNavigationContainer .navbar-brand {
+        font-size: 22px;
+    }
+    
+    .content-wrapper {
+        flex-direction: column;
+        padding: 40px 40px;               /* Match hero padding */
+    }
+    
+    .sidebar-menu {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}
+
+/* ===== TABLET PORTRAIT (992px and below) ===== */
+@media (max-width: 992px) {
+    body {
+        padding-top: 71px;
+    }
+    
+    .homepage-hero {
+        padding: 30px 30px;
+        min-height: 400px;
+        gap: 30px;
+    }
+    
+    .hero-content {
+        margin-left: 0;                   /* Reset left margin on vertical stack */
+    }
+    
+    .hero-content h1 {
+        font-size: 42px;
+    }
+    
+    .hero-content .subtitle {
+        font-size: 15px;
+    }
+    
+    .hero-image {
+        max-width: 400px;
+        width: 75%;
+        margin-left: auto;                /* Center on vertical stack */
+        margin-right: auto;
+    }
+    
+    .content-wrapper {
+        padding: 30px 30px;               /* Match hero padding */
+    }
+    
+    /* PC KECIL: Logo shift untuk tidak nempel ke hamburger */
+    #headerNavigationContainer .navbar-header {
+        left: 100px !important;           /* Shift right di PC kecil */
+    }
+    
+    .sidebar-menu {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+    
+    /* Sidebar buttons horizontal on tablet */
+    .sidebar-menu-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .sidebar-menu-link {
+        width: 280px;
+    }
+    
+    #headerNavigationContainer .navbar-brand {
+        font-size: 20px;
+    }
+}
+
+/* ===== MOBILE LANDSCAPE (768px and below) ===== */
+@media (max-width: 768px) {
+    #headerNavigationContainer {
+        height: auto;
+        min-height: 71px;
+        position: relative;
+    }
+    
+    body {
+        padding-top: 0;
+    }
+    
+    .homepage-hero {
+        padding: 30px 20px;
+        min-height: 350px;
+        gap: 20px;
+        margin-left: -50vw !important;    /* MOBILE: Full breakout -50vw */
+    }
+    
+    .hero-content {
+        margin-left: 0;                   /* Reset left margin */
+    }
+    
+    .hero-content h1 {
+        font-size: 36px;
+    }
+    
+    .hero-content .subtitle {
+        font-size: 14px;
+    }
+    
+    .hero-image {
+        max-width: 350px;
+        width: 70%;
+        margin-left: auto;                /* Center on mobile */
+        margin-right: auto;
+        padding-left: 0 !important;       /* Reset padding on mobile */
+        justify-content: center !important; /* Center image on mobile */
+    }
+    
+    .content-wrapper {
+        padding: 30px 20px;               /* Match hero padding */
+    }
+    
+    .sidebar-menu-link {
+        width: 100%;
+        max-width: 320px;
+    }
+    
+    .main-content-area {
+        padding: 20px;
+    }
+    
+    .footer {
+        height: auto;
+        padding: 30px 15px;
+    }
+    
+    .footer .container {
+        padding: 0 20px;
+    }
+    
+    #headerNavigationContainer > .container-fluid:first-child {
+        position: relative;
+        top: auto;
+        right: auto;
+        text-align: right;
+        padding: 5px 15px;
+    }
+}
+
+/* ===== MOBILE PORTRAIT (576px and below) ===== */
+@media (max-width: 576px) {
+    .homepage-hero {
+        padding: 20px 15px;
+        min-height: 300px;
+        gap: 15px;
+    }
+    
+    .hero-content {
+        margin-left: 0;                   /* Reset left margin */
+    }
+    
+    .hero-content h1 {
+        font-size: 28px;                  /* Smallest title size */
+    }
+    
+    .hero-content .subtitle {
+        font-size: 13px;
+    }
+    
+    .hero-image {
+        max-width: 280px;
+        width: 65%;
+        margin-left: auto;                /* Center on mobile */
+        margin-right: auto;
+        padding-left: 0 !important;       /* Reset padding on mobile */
+        justify-content: center !important; /* Center image on mobile */
+    }
+    
+    .content-wrapper {
+        padding: 20px 15px;               /* Match hero padding */
+    }
+    
+    .sidebar-menu-link {
+        height: 50px;
+        line-height: 50px;
+        font-size: 14px;
+    }
+    
+    .footer-title {
+        font-size: 16px;
+    }
+    
+    .footer-info {
+        font-size: 12px;
+    }
+}
+
+/* =========================================
+   UTILITY CLASSES
+   ========================================= */
+.text-green {
+    color: #2ecc71;
+}
+
+.bg-green {
+    background-color: #2ecc71;
+}
+
+.shadow-sm {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-md {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.shadow-lg {
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================================
+   HIDE OLD CAROUSEL
+   ========================================= */
+#carouselExample,
+.carousel {
+    display: none !important;
+}
+
+/* Hide default homepage image if using hero section */
+.homepage-image {
+    display: none;
+}
+
+/* =========================================
+   HIDE ARTICLES AND ISSUES ON HOMEPAGE
+   ========================================= */
+.page_index_journal .current_issue,
+.page_index_journal section.current_issue,
+.page_index_journal .issue-toc,
+.page_index_journal .articles,
+.page_index_journal .obj_issue_toc {
+    display: none !important;
+}
+
+/* Hide "View All Issues" button */
+.page_index_journal a[href*="issue/archive"],
+.page_index_journal .read-more {
+    display: none !important;
+}
+/* ==========================================================================
+   LOGIN & REGISTER PAGES STYLING
+   CENTER FORM, TRANSPARENT/INVISIBLE BACKGROUND
+   ========================================================================== */
+
+/* Ensure login/register pages have proper spacing for fixed header */
+.pkp_page_login,
+.pkp_page_user.pkp_op_register,
+body.pkp_page_login,
+body.pkp_page_user.pkp_op_register {
+    padding-top: 71px;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Login/Register content area - TRANSPARENT BACKGROUND, CENTERED */
+.pkp_page_login .pkp_page_content,
+.pkp_page_login .page,
+.pkp_page_user.pkp_op_register .pkp_page_content,
+.pkp_page_user.pkp_op_register .page,
+.pkp_page_login main,
+.pkp_page_user.pkp_op_register main {
+    max-width: 480px !important;
+    margin: 0 auto !important;
+    padding: 40px !important;
+    background: transparent !important;   /* TRANSPARENT - no white bg */
+    border-radius: 0 !important;
+    box-shadow: none !important;          /* NO shadow */
+}
+
+/* Style the FORM itself with white background */
+.pkp_page_login form,
+.pkp_page_user.pkp_op_register form {
+    background: #ffffff !important;
+    padding: 50px 40px !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Remove breadcrumbs styling on login/register */
+.pkp_page_login .cmp_breadcrumbs,
+.pkp_page_user.pkp_op_register .cmp_breadcrumbs {
+    background: transparent !important;
+    padding: 10px 0 !important;
+    margin-bottom: 20px !important;
+}
+
+/* Form heading - FIGMA STYLE */
+.pkp_page_login h1,
+.pkp_page_user.pkp_op_register h1,
+.pkp_page_login h2,
+.pkp_page_user.pkp_op_register h2 {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    color: #1a1a1a !important;
+    text-align: center !important;
+    margin-bottom: 35px !important;
+    margin-top: 0 !important;
+}
+
+/* Hide "required field" text or style it better */
+.pkp_page_login > div > p:first-of-type,
+.pkp_page_user.pkp_op_register > div > p:first-of-type {
+    font-size: 13px;
+    color: #888;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Form fields - FIGMA STYLE */
+.pkp_page_login .form-group,
+.pkp_page_user.pkp_op_register .form-group,
+.pkp_page_login fieldset,
+.pkp_page_user.pkp_op_register fieldset {
+    margin-bottom: 0 !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.pkp_page_login label,
+.pkp_page_user.pkp_op_register label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.pkp_page_login .form-control,
+.pkp_page_user.pkp_op_register .form-control,
+.pkp_page_login input[type="text"],
+.pkp_page_login input[type="email"],
+.pkp_page_login input[type="password"],
+.pkp_page_user.pkp_op_register input[type="text"],
+.pkp_page_user.pkp_op_register input[type="email"],
+.pkp_page_user.pkp_op_register input[type="password"],
+.pkp_page_user.pkp_op_register select {
+    margin-bottom: 20px !important;
+    height: 52px !important;
+    padding: 14px 18px !important;
+    border: 2px solid #ddd !important;
+    border-radius: 10px !important;
+    font-size: 15px !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.pkp_page_login .form-control:focus,
+.pkp_page_user.pkp_op_register .form-control:focus,
+.pkp_page_login input:focus,
+.pkp_page_user.pkp_op_register input:focus,
+.pkp_page_user.pkp_op_register select:focus {
+    border-color: #2ecc71 !important;
+    box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.15) !important;
+    outline: none !important;
+}
+
+/* Submit button - FIGMA GREEN GRADIENT */
+.pkp_page_login .btn-primary,
+.pkp_page_login button[type="submit"],
+.pkp_page_login .submit,
+.pkp_page_user.pkp_op_register .btn-primary,
+.pkp_page_user.pkp_op_register button[type="submit"],
+.pkp_page_user.pkp_op_register .submit {
+    width: 100% !important;
+    height: 54px !important;
+    background: linear-gradient(135deg, #2ecc71 0%, #3498db 100%) !important;
+    border: none !important;
+    border-radius: 10px !important;
+    color: #ffffff !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.2px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    margin-top: 25px !important;
+}
+
+.pkp_page_login .btn-primary:hover,
+.pkp_page_login button[type="submit"]:hover,
+.pkp_page_login .submit:hover,
+.pkp_page_user.pkp_op_register .btn-primary:hover,
+.pkp_page_user.pkp_op_register button[type="submit"]:hover,
+.pkp_page_user.pkp_op_register .submit:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 24px rgba(46, 204, 113, 0.35) !important;
+}
+
+/* Register button (secondary) */
+.pkp_page_login .register,
+.pkp_page_login a.register {
+    display: inline-block !important;
+    width: 100% !important;
+    height: 54px !important;
+    line-height: 54px !important;
+    text-align: center !important;
+    background: #f0f0f0 !important;
+    color: #555 !important;
+    border-radius: 10px !important;
+    margin-top: 15px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+}
+
+.pkp_page_login .register:hover {
+    background: #e0e0e0 !important;
+    color: #333 !important;
+}
+
+/* Links (Forgot Password, Login from register) */
+.pkp_page_login a,
+.pkp_page_user.pkp_op_register a {
+    color: #3498db !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    transition: color 0.3s ease !important;
+}
+
+.pkp_page_login a:hover,
+.pkp_page_user.pkp_op_register a:hover {
+    color: #2ecc71 !important;
+    text-decoration: underline !important;
+}
+
+/* Checkbox styling */
+.pkp_page_login .checkbox label,
+.pkp_page_user.pkp_op_register .checkbox label,
+.pkp_page_login .optin label,
+.pkp_page_user.pkp_op_register .optin label {
+    font-weight: 400 !important;
+    color: #666 !important;
+    font-size: 14px !important;
+}
+
+/* Ensure footer appears PROPERLY on login/register pages - FULL WIDTH */
+.pkp_page_login .footer,
+.pkp_page_user.pkp_op_register .footer,
+.pkp_page_login .pkp_structure_footer,
+.pkp_page_user.pkp_op_register .pkp_structure_footer,
+.pkp_page_login footer,
+.pkp_page_user.pkp_op_register footer {
+    position: relative !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    margin-top: 80px !important;
+    padding: 40px 0 !important;
+}
+
+.pkp_page_login .footer .container,
+.pkp_page_user.pkp_op_register .footer .container {
+    max-width: 1440px !important;
+    margin: 0 auto !important;
+    padding: 0 100px !important;
+}
+
+/* FIX: Logo position on login/register - LOWER position */
+.pkp_page_login #headerNavigationContainer .navbar-header,
+.pkp_page_user.pkp_op_register #headerNavigationContainer .navbar-header {
+    top: 60% !important;                  /* LOWER: 60% instead of 50% */
+    transform: translateY(-50%) !important;
+}
+
+.pkp_page_login #headerNavigationContainer,
+.pkp_page_user.pkp_op_register #headerNavigationContainer {
+    height: 71px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.pkp_page_user.pkp_op_register .birthday-fields .form-control {
+    flex: 1;
+}

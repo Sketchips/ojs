@@ -1,0 +1,22 @@
+<?php $exp = 1793853014; $val = array (
+  'domain' => NULL,
+  'plural-forms' => NULL,
+  'messages' => 
+  array (
+    '' => 
+    array (
+      'plugins.generic.crossrefReferenceLinking.displayName' => 'Crossref Reference Linking',
+      'plugins.generic.crossrefReferenceLinking.description' => 'This plugin submits article references to Crossref when a DOI is registered and automatically displays DOIs for references found in Crossref\'s database.',
+      'plugins.generic.crossrefReferenceLinking.description.long' => 'This plugin will automatically add the extracted article references to the DOI registration with Crossref. Crossref will then automatically check if any DOIs can be found for the submitted references. Using the scheduled task the plugin will then check for the found references DOIs.',
+      'plugins.generic.crossrefReferenceLinking.description.note' => 'If you change an article\'s references after registering the DOI, you will need to register the article\'s DOI again and check again for the article references\' DOIs.',
+      'plugins.generic.crossrefReferenceLinking.description.requirements' => 'This plugin requires an article to be assigned a Crossref DOI and this DOI must be deposited with Crossref from within OJS. Article references can be provided in the References section in the Publication tab of each submission.',
+      'plugins.generic.crossrefReferenceLinking.settings.form.crossrefSettings' => 'Crossref Settings',
+      'plugins.generic.crossrefReferenceLinking.settings.form.crossrefSettings.required' => 'Crossref username and password must be configured:',
+      'plugins.generic.crossrefReferenceLinking.settings.form.submissionSettings' => 'Submission Metadata Settings',
+      'plugins.generic.crossrefReferenceLinking.settings.form.submissionSettings.required' => 'Submission references metadata must be enabled:',
+      'plugins.generic.crossrefReferenceLinking.settings.form.requirements.ok' => 'You\'re all set up!',
+      'plugins.generic.crossrefReferenceLinking.citationsFormActionName' => 'Check Crossref DOIs',
+      'plugins.generic.crossrefReferenceLinking.senderTask.name' => 'CrossrefReferenceLinking automatic registration task',
+    ),
+  ),
+);

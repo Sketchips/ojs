@@ -1,0 +1,895 @@
+/**
+ * ============================================================================
+ * MODERN OJS THEME - CUSTOM ENHANCEMENT
+ * ============================================================================
+ * Tema modern dengan carousel besar, header compact, dan interaksi smooth
+ * Warna: Gradient biru-ungu modern dengan aksen orange
+ * 
+ * FITUR UTAMA:
+ * - Header compact dengan search bar di kanan
+ * - Carousel banner besar dan responsif
+ * - Animasi dan transisi smooth
+ * - Design modern dengan gradient dan shadow
+ * - Fully responsive
+ * ============================================================================
+ */
+
+/* ============================================================================
+   1. IMPORT FONTS & RESET
+   ============================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ============================================================================
+   2. CSS VARIABLES - MODERN COLOR PALETTE
+   ============================================================================ */
+:root {
+    /* Modern Gradient Colors */
+    --primary-blue: #4F46E5;        /* Indigo modern */
+    --primary-purple: #7C3AED;      /* Purple vibrant */
+    --accent-orange: #F59E0B;       /* Orange warm */
+    --accent-pink: #EC4899;         /* Pink fresh */
+    
+    /* Neutral Colors */
+    --dark-blue: #1E293B;           /* Navy dark */
+    --medium-gray: #64748B;         /* Slate medium */
+    --light-gray: #F1F5F9;          /* Slate light */
+    --white: #FFFFFF;
+    --text-primary: #0F172A;        /* Almost black */
+    --text-secondary: #475569;      /* Gray text */
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-warm: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    --gradient-cool: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+    --shadow-xl: 0 20px 40px rgba(0,0,0,0.2);
+    --shadow-glow: 0 0 20px rgba(103, 126, 234, 0.4);
+    
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    
+    /* Border Radius */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+    
+    /* Transitions */
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================================
+   3. GLOBAL STYLES
+   ============================================================================ */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: linear-gradient(to bottom, #f8fafc 0%, #e2e8f0 100%);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+
+a {
+    text-decoration: none;
+    color: var(--primary-blue);
+    transition: all var(--transition-base);
+}
+
+a:hover {
+    color: var(--primary-purple);
+}
+
+/* ============================================================================
+   4. HEADER - COMPACT & MODERN
+   ============================================================================ */
+.navbar,
+.pkp_structure_head,
+header.navbar,
+.navbar-default {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    z-index: 9999;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    min-height: 65px !important;
+    max-height: 65px !important;
+    transition: all var(--transition-base);
+}
+
+/* Header saat scroll - lebih compact */
+.navbar.scrolled,
+header.navbar.scrolled {
+    min-height: 55px !important;
+    max-height: 55px !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Container header */
+.navbar .container,
+.navbar-header {
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 65px;
+    display: flex;
+    align-items: center;
+}
+
+/* Logo / Site Name - Lebih compact */
+.navbar-brand,
+.pkp_site_name,
+.pkp_site_name a {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 1.4rem !important;
+    font-weight: 800 !important;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding: 0.5rem 1rem !important;
+    margin: 0 !important;
+    height: auto !important;
+    line-height: 1.2 !important;
+    transition: all var(--transition-base);
+    display: flex !important;
+    align-items: center !important;
+}
+
+.navbar-brand:hover,
+.pkp_site_name a:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+/* Logo image */
+.pkp_site_name img {
+    max-height: 45px !important;
+    width: auto !important;
+    transition: all var(--transition-base);
+}
+
+.pkp_site_name img:hover {
+    transform: scale(1.05);
+}
+
+/* ============================================================================
+   5. NAVIGATION MENU - MODERN STYLE
+   ============================================================================ */
+.navbar-nav,
+.pkp_navigation_primary,
+.pkp_navigation_primary ul {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    height: 65px;
+}
+
+.navbar-nav > li,
+.pkp_navigation_primary > ul > li {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav > li > a,
+.pkp_navigation_primary a {
+    color: var(--text-secondary) !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    padding: 0.75rem 1.25rem !important;
+    margin: 0 0.25rem !important;
+    border-radius: var(--radius-md) !important;
+    transition: all var(--transition-base) !important;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: auto;
+    background: transparent !important;
+}
+
+/* Hover effect - Gradient background */
+.navbar-nav > li > a:hover,
+.pkp_navigation_primary a:hover,
+.navbar-nav > li.active > a,
+.pkp_navigation_primary li.current > a {
+    color: var(--white) !important;
+    background: var(--gradient-primary) !important;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Active menu indicator */
+.navbar-nav > li.active > a::after,
+.pkp_navigation_primary li.current > a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 3px;
+    background: var(--accent-orange);
+    border-radius: var(--radius-full);
+}
+
+/* ============================================================================
+   6. SEARCH BAR - POSITIONED NEXT TO USER ACCOUNT
+   ============================================================================ */
+.navbar-form,
+.pkp_head_wrapper .search_form,
+.navbar-right form,
+form[role="search"] {
+    position: absolute !important;
+    right: 180px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.navbar-form .form-control,
+.search_form input[type="text"],
+.search_form input[type="search"],
+input.form-control[type="search"] {
+    width: 240px !important;
+    height: 42px !important;
+    padding: 0.5rem 1rem !important;
+    padding-right: 3rem !important;
+    border: 2px solid #e2e8f0 !important;
+    border-radius: var(--radius-full) !important;
+    background: var(--white) !important;
+    color: var(--text-primary) !important;
+    font-size: 0.9rem !important;
+    transition: all var(--transition-base) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+.navbar-form .form-control:focus,
+.search_form input:focus {
+    width: 300px !important;
+    border-color: var(--primary-blue) !important;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1), var(--shadow-md) !important;
+    outline: none !important;
+}
+
+/* Search button */
+.navbar-form button,
+.search_form button,
+button[type="submit"].btn {
+    position: absolute !important;
+    right: 8px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: var(--radius-full) !important;
+    background: var(--gradient-primary) !important;
+    border: none !important;
+    color: var(--white) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all var(--transition-base) !important;
+    padding: 0 !important;
+}
+
+.navbar-form button:hover,
+.search_form button:hover {
+    transform: translateY(-50%) scale(1.1) !important;
+    box-shadow: var(--shadow-glow) !important;
+}
+
+/* Search icon */
+.navbar-form button::before,
+.search_form button::before {
+    content: '🔍';
+    font-size: 14px;
+}
+
+/* ============================================================================
+   7. USER ACCOUNT - POSITIONED AT TOP RIGHT
+   ============================================================================ */
+.navbar-right,
+.pkp_navigation_user,
+.navbar-nav.navbar-right {
+    position: absolute !important;
+    right: 20px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.navbar-right > li > a,
+.pkp_navigation_user a {
+    color: var(--text-primary) !important;
+    font-weight: 600 !important;
+    padding: 0.6rem 1.2rem !important;
+    border-radius: var(--radius-full) !important;
+    background: var(--gradient-primary) !important;
+    color: var(--white) !important;
+    transition: all var(--transition-base) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+.navbar-right > li > a:hover,
+.pkp_navigation_user a:hover {
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+/* User icon/avatar */
+.navbar-right .glyphicon,
+.pkp_navigation_user .glyphicon {
+    margin-right: 6px;
+}
+
+/* ============================================================================
+   8. CAROUSEL BANNER - LARGE & MODERN
+   ============================================================================ */
+
+/* Adjust body padding for compact header */
+body {
+    padding-top: 65px !important;
+}
+
+/* Carousel container */
+.carousel,
+.homepage-image,
+.pkp_page_index .carousel,
+.slider-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 600px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Carousel items */
+.carousel-inner,
+.carousel .item,
+.carousel-item {
+    width: 100% !important;
+    height: 600px !important;
+    position: relative;
+}
+
+/* Carousel images */
+.carousel img,
+.carousel-item img,
+.homepage-image img,
+img.img-responsive {
+    width: 100% !important;
+    height: 600px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+    border-radius: 0 !important;
+}
+
+/* Gradient overlay untuk carousel */
+.carousel-inner::after,
+.carousel .item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Carousel caption - Modern style */
+.carousel-caption {
+    position: absolute;
+    bottom: 60px !important;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    text-align: center;
+    width: 80%;
+    max-width: 900px;
+}
+
+.carousel-caption h1,
+.carousel-caption h2,
+.carousel-caption h3 {
+    color: var(--white) !important;
+    font-size: 3rem !important;
+    font-weight: 800 !important;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1rem !important;
+    line-height: 1.2;
+}
+
+.carousel-caption p {
+    color: var(--white) !important;
+    font-size: 1.3rem !important;
+    font-weight: 400 !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1.5rem !important;
+}
+
+/* Carousel controls - Modern arrows */
+.carousel-control {
+    width: 60px !important;
+    height: 60px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-full) !important;
+    opacity: 0.8 !important;
+    transition: all var(--transition-base) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.carousel-control.left {
+    left: 30px !important;
+}
+
+.carousel-control.right {
+    right: 30px !important;
+}
+
+.carousel-control:hover {
+    opacity: 1 !important;
+    background: rgba(255, 255, 255, 0.4) !important;
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+.carousel-control .glyphicon {
+    font-size: 2rem !important;
+    color: var(--white) !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Carousel indicators - Modern dots */
+.carousel-indicators {
+    bottom: 25px !important;
+    z-index: 3 !important;
+}
+
+.carousel-indicators li {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: var(--radius-full) !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+    border: 2px solid var(--white) !important;
+    margin: 0 6px !important;
+    transition: all var(--transition-base) !important;
+}
+
+.carousel-indicators .active {
+    width: 40px !important;
+    border-radius: var(--radius-full) !important;
+    background: var(--white) !important;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+/* ============================================================================
+   9. MAIN CONTENT - MODERN CARDS & LAYOUT
+   ============================================================================ */
+.container,
+.pkp_structure_main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-md);
+}
+
+/* Article cards */
+.article,
+.article-summary,
+.obj_article_summary {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    margin-bottom: var(--space-xl);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    border: 1px solid #e2e8f0;
+}
+
+.article:hover,
+.article-summary:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-blue);
+}
+
+/* Article title */
+.article h2,
+.article h3,
+.article-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    line-height: 1.3;
+    transition: color var(--transition-base);
+}
+
+.article h2:hover,
+.article h3:hover,
+.article-title:hover {
+    color: var(--primary-purple);
+}
+
+/* ============================================================================
+   10. BUTTONS - MODERN GRADIENT STYLE
+   ============================================================================ */
+.btn,
+button,
+input[type="submit"],
+.pkp_button {
+    padding: 0.75rem 2rem !important;
+    border-radius: var(--radius-full) !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all var(--transition-base) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: var(--shadow-md) !important;
+}
+
+.btn-primary,
+.btn-success {
+    background: var(--gradient-primary) !important;
+    color: var(--white) !important;
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+.btn-default {
+    background: var(--white) !important;
+    color: var(--text-primary) !important;
+    border: 2px solid #e2e8f0 !important;
+}
+
+.btn-default:hover {
+    background: var(--light-gray) !important;
+    transform: translateY(-3px) !important;
+}
+
+/* ============================================================================
+   11. FOOTER - MODERN GRADIENT
+   ============================================================================ */
+.pkp_structure_footer,
+footer {
+    background: var(--gradient-primary) !important;
+    color: var(--white) !important;
+    padding: var(--space-2xl) var(--space-md) !important;
+    margin-top: var(--space-2xl);
+    text-align: center;
+}
+
+.pkp_structure_footer a,
+footer a {
+    color: var(--white) !important;
+    font-weight: 500;
+    text-decoration: underline;
+    opacity: 0.9;
+    transition: opacity var(--transition-base);
+}
+
+.pkp_structure_footer a:hover,
+footer a:hover {
+    opacity: 1;
+}
+
+/* ============================================================================
+   12. ANIMATIONS & INTERACTIVE ELEMENTS
+   ============================================================================ */
+
+/* Smooth fade in animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.article,
+.article-summary {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Pulse animation for important elements */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Glow effect */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(103, 126, 234, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(103, 126, 234, 0.8);
+    }
+}
+
+/* Loading skeleton */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ============================================================================
+   13. RESPONSIVE DESIGN
+   ============================================================================ */
+
+/* Tablet */
+@media (max-width: 992px) {
+    /* Header adjustments */
+    .navbar-brand,
+    .pkp_site_name a {
+        font-size: 1.2rem !important;
+    }
+    
+    /* Search bar - Stack below on mobile */
+    .navbar-form,
+    .search_form {
+        position: relative !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+        width: 100%;
+        margin-top: var(--space-md) !important;
+    }
+    
+    .navbar-form .form-control,
+    .search_form input {
+        width: 100% !important;
+    }
+    
+    /* User account */
+    .navbar-right {
+        position: relative !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+    }
+    
+    /* Carousel height */
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 450px !important;
+    }
+    
+    .carousel-caption h1,
+    .carousel-caption h2,
+    .carousel-caption h3 {
+        font-size: 2rem !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    /* Smaller header */
+    .navbar,
+    header.navbar {
+        min-height: 60px !important;
+        max-height: auto !important;
+    }
+    
+    body {
+        padding-top: 60px !important;
+    }
+    
+    /* Logo smaller */
+    .pkp_site_name img {
+        max-height: 35px !important;
+    }
+    
+    /* Carousel height */
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 350px !important;
+    }
+    
+    .carousel-caption {
+        bottom: 30px !important;
+    }
+    
+    .carousel-caption h1,
+    .carousel-caption h2,
+    .carousel-caption h3 {
+        font-size: 1.5rem !important;
+    }
+    
+    .carousel-caption p {
+        font-size: 1rem !important;
+    }
+    
+    /* Carousel controls smaller */
+    .carousel-control {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .carousel-control.left {
+        left: 15px !important;
+    }
+    
+    .carousel-control.right {
+        right: 15px !important;
+    }
+    
+    /* Content padding */
+    .container {
+        padding: var(--space-md);
+    }
+    
+    .article,
+    .article-summary {
+        padding: var(--space-lg);
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .navbar-brand,
+    .pkp_site_name a {
+        font-size: 1rem !important;
+        padding: 0.5rem !important;
+    }
+    
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 280px !important;
+    }
+    
+    .carousel-caption h1,
+    .carousel-caption h2,
+    .carousel-caption h3 {
+        font-size: 1.2rem !important;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem !important;
+    }
+}
+
+/* ============================================================================
+   14. UTILITY CLASSES
+   ============================================================================ */
+.text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.shadow-glow {
+    box-shadow: var(--shadow-glow);
+}
+
+.card-hover {
+    transition: all var(--transition-base);
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+    transition: background-color var(--transition-base),
+                color var(--transition-base),
+                border-color var(--transition-base),
+                box-shadow var(--transition-base);
+}
+
+/* ============================================================================
+   15. CUSTOM SCROLLBAR
+   ============================================================================ */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-primary);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-accent);
+}
+
+/* ============================================================================
+   END OF MODERN OJS THEME
+   ============================================================================ */

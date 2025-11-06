@@ -1,0 +1,555 @@
+/**
+ * ============================================================================
+ * IMPLEMENTASI TEMPLATE OJS - Modern Theme
+ * ============================================================================
+ * 
+ * File ini berisi contoh kode untuk implementasi di template OJS Anda
+ * Copy-paste kode yang sesuai ke file template OJS
+ * 
+ * STRUKTUR FILE OJS:
+ * ojs/
+ * ├── templates/
+ * │   └── frontend/
+ * │       ├── components/
+ * │       │   ├── header.tpl          <- Edit file ini untuk header
+ * │       │   └── footer.tpl          <- Edit file ini untuk footer
+ * │       └── pages/
+ * │           ├── indexJournal.tpl    <- Edit file ini untuk homepage
+ * │           └── article.tpl         <- Edit file ini untuk article page
+ * └── public/
+ *     ├── modern-ojs-theme.css        <- Upload file CSS di sini
+ *     └── modern-ojs-theme.js         <- Upload file JS di sini
+ * 
+ * ============================================================================
+ */
+
+
+/* ============================================================================
+   1. HEADER.TPL - Modifikasi Header OJS
+   ============================================================================
+   
+   File: ojs/templates/frontend/components/header.tpl
+   
+   Tambahkan kode berikut:
+*/
+
+{**
+ * CONTOH KODE UNTUK header.tpl
+ *
+ * Ganti atau tambahkan di dalam <head> tag:
+ **}
+
+<!-- Modern OJS Theme Styles -->
+<link rel="stylesheet" href="{$baseUrl}/modern-ojs-theme.css">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+{**
+ * Ganti atau modifikasi bagian navigation dengan kode berikut:
+ **}
+
+<!-- Modern Navigation Header -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Logo / Brand -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+            {if $displayPageHeaderLogo}
+                <a class="navbar-brand" href="{url page="index"}">
+                    <img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" 
+                         alt="{$displayPageHeaderLogo.altText|default:''|escape}">
+                </a>
+            {else}
+                <a class="navbar-brand" href="{url page="index"}">
+                    {$displayPageHeaderTitle|strip_unsafe_html}
+                </a>
+            {/if}
+        </div>
+
+        <!-- Navigation Menu -->
+        <div class="collapse navbar-collapse" id="main-navigation">
+            <!-- Primary Navigation -->
+            <ul class="nav navbar-nav">
+                <li class="{if $requestedPage == 'index'}active{/if}">
+                    <a href="{url page="index"}">
+                        {translate key="navigation.current"}
+                    </a>
+                </li>
+                <li class="{if $requestedPage == 'issue'}active{/if}">
+                    <a href="{url router=$smarty.const.ROUTE_PAGE page="issue" op="archive"}">
+                        {translate key="navigation.archives"}
+                    </a>
+                </li>
+                
+                {if $currentContext}
+                    <!-- About Dropdown -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            {translate key="navigation.about"}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{url router=$smarty.const.ROUTE_PAGE page="about"}">
+                                    {translate key="about.aboutContext"}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="submissions"}">
+                                    {translate key="about.submissions"}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="contact"}">
+                                    {translate key="about.contact"}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {/if}
+            </ul>
+
+            <!-- Search Form - Positioned strategically -->
+            {if !$noContextsConfigured}
+                <form class="navbar-form navbar-right" role="search" method="post" action="{url page="search" op="search"}">
+                    <div class="form-group">
+                        <input class="form-control" name="query" type="search" 
+                               placeholder="{translate key="common.search"}..."
+                               aria-label="{translate key="common.search"}">
+                        <button type="submit" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </form>
+            {/if}
+
+            <!-- User Navigation - Top Right -->
+            <ul class="nav navbar-nav navbar-right">
+                {if $isUserLoggedIn}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span>
+                            {$loggedInUsername|escape}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{url page="user" op="profile"}">
+                                    {translate key="user.profile"}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{url page="submissions"}">
+                                    {translate key="navigation.dashboard"}
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="{url page="login" op="signOut"}">
+                                    {translate key="user.logOut"}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {else}
+                    <li>
+                        <a href="{url page="login"}">
+                            <span class="glyphicon glyphicon-user"></span>
+                            {translate key="navigation.login"}
+                        </a>
+                    </li>
+                    {if !$disableUserReg}
+                        <li>
+                            <a href="{url page="user" op="register"}">
+                                {translate key="navigation.register"}
+                            </a>
+                        </li>
+                    {/if}
+                {/if}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+/* ============================================================================
+   2. INDEXJOURNAL.TPL - Homepage dengan Carousel
+   ============================================================================
+   
+   File: ojs/templates/frontend/pages/indexJournal.tpl
+   
+   Tambahkan kode berikut setelah header dan sebelum content utama:
+*/
+
+{**
+ * CAROUSEL BANNER untuk Homepage
+ * 
+ * Letakkan kode ini di dalam indexJournal.tpl,
+ * setelah {include file="frontend/components/header.tpl"}
+ **}
+
+<!-- Large Carousel Banner -->
+<div id="journalCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#journalCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#journalCarousel" data-slide-to="1"></li>
+        <li data-target="#journalCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Slides -->
+    <div class="carousel-inner" role="listbox">
+        <!-- Slide 1 - Welcome -->
+        <div class="item active">
+            {if $homepageImage}
+                <img src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}" 
+                     alt="{$homepageImageAltText|escape}">
+            {else}
+                <img src="{$baseUrl}/public/default-banner-1.jpg" 
+                     alt="Welcome to {$displayPageHeaderTitle|strip_unsafe_html}">
+            {/if}
+            <div class="carousel-caption">
+                <h1>{translate key="journal.welcome"}</h1>
+                <p>{$currentContext->getLocalizedDescription()|strip_unsafe_html}</p>
+            </div>
+        </div>
+
+        <!-- Slide 2 - Latest Issue (if available) -->
+        {if $issue}
+            <div class="item">
+                <img src="{$baseUrl}/public/default-banner-2.jpg" 
+                     alt="Latest Issue">
+                <div class="carousel-caption">
+                    <h2>{translate key="journal.currentIssue"}</h2>
+                    <p>{$issue->getIssueIdentification()|strip_unsafe_html}</p>
+                    <a href="{url page="issue" op="view" path=$issue->getBestIssueId()}" 
+                       class="btn btn-primary btn-lg">
+                        {translate key="issue.viewIssue"}
+                    </a>
+                </div>
+            </div>
+        {/if}
+
+        <!-- Slide 3 - Call for Papers atau Info lain -->
+        <div class="item">
+            <img src="{$baseUrl}/public/default-banner-3.jpg" 
+                 alt="Submit Your Research">
+            <div class="carousel-caption">
+                <h2>{translate key="about.submissions"}</h2>
+                <p>{translate key="about.onlineSubmissions.description"}</p>
+                <a href="{url page="about" op="submissions"}" 
+                   class="btn btn-primary btn-lg">
+                    {translate key="about.submissions.learnMore"}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#journalCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#journalCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+
+/* ============================================================================
+   3. FOOTER.TPL - Modern Footer
+   ============================================================================
+   
+   File: ojs/templates/frontend/components/footer.tpl
+*/
+
+{**
+ * Modern Footer
+ * 
+ * Ganti atau modifikasi footer.tpl dengan kode berikut:
+ **}
+
+<!-- Modern Footer -->
+<footer class="pkp_structure_footer">
+    <div class="container">
+        <div class="row">
+            <!-- Journal Info -->
+            <div class="col-md-4">
+                <h4>{$displayPageHeaderTitle|strip_unsafe_html}</h4>
+                <p>{$currentContext->getLocalizedDescription()|strip_unsafe_html|truncate:200}</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-4">
+                <h4>{translate key="navigation.navigationMenus"}</h4>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="{url page="index"}">
+                            {translate key="navigation.current"}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{url page="issue" op="archive"}">
+                            {translate key="navigation.archives"}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{url page="about"}">
+                            {translate key="navigation.about"}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{url page="about" op="submissions"}">
+                            {translate key="about.submissions"}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-md-4">
+                <h4>{translate key="about.contact"}</h4>
+                {if $currentContext->getData('contactEmail')}
+                    <p>
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        <a href="mailto:{$currentContext->getData('contactEmail')|escape}">
+                            {$currentContext->getData('contactEmail')|escape}
+                        </a>
+                    </p>
+                {/if}
+                
+                {if $currentContext->getData('mailingAddress')}
+                    <p>
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                        {$currentContext->getData('mailingAddress')|nl2br}
+                    </p>
+                {/if}
+            </div>
+        </div>
+
+        <!-- Copyright & Credits -->
+        <div class="row" style="margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);">
+            <div class="col-md-12 text-center">
+                <p>© {$smarty.now|date_format:"%Y"} {$displayPageHeaderTitle|strip_unsafe_html}. 
+                   {translate key="common.allRightsReserved"}
+                </p>
+                <p>
+                    {translate key="common.poweredBy"}
+                    <a href="https://pkp.sfu.ca/ojs/" target="_blank">
+                        Open Journal Systems
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Modern Theme JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="{$baseUrl}/modern-ojs-theme.js"></script>
+
+
+/* ============================================================================
+   4. CONFIG.INC.PHP - Konfigurasi Tambahan (OPSIONAL)
+   ============================================================================
+   
+   File: ojs/config.inc.php
+   
+   Jika ingin menambah konfigurasi custom, tambahkan di bagian [general]:
+*/
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+; Custom Theme Settings ;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Enable modern theme
+installed = On
+theme = "bootstrap3"
+
+; Custom stylesheets (jika tidak upload via admin)
+; additional_css[] = "modern-ojs-theme.css"
+
+
+/* ============================================================================
+   5. ADDITIONAL TIPS - Optimasi & Customization
+   ============================================================================ */
+
+// ===== A. UPLOAD BANNER IMAGES VIA ADMIN =====
+/**
+ * Cara upload banner images:
+ * 
+ * 1. Login sebagai Admin
+ * 2. Settings > Website > Appearance
+ * 3. Scroll ke "Homepage Image"
+ * 4. Upload image dengan specs:
+ *    - Size: 1920x600px
+ *    - Format: JPG (optimized)
+ *    - File size: < 200KB
+ *    - Aspect ratio: 16:5
+ */
+
+
+// ===== B. CUSTOM COLORS VIA ADMIN =====
+/**
+ * Cara customize colors via admin panel:
+ * 
+ * 1. Settings > Website > Appearance > Advanced
+ * 2. Di "Additional Content" atau "Stylesheet", tambahkan:
+ */
+
+/* Custom Color Override */
+:root {
+    --primary-blue: #YOUR_COLOR;
+    --primary-purple: #YOUR_COLOR;
+    --accent-orange: #YOUR_COLOR;
+}
+
+
+// ===== C. INJECT CUSTOM CSS SNIPPET =====
+/**
+ * Jika ingin menambah CSS tanpa edit file, tambahkan di:
+ * Settings > Website > Appearance > Advanced > Additional Content
+ */
+
+<style>
+/* Custom adjustments */
+.navbar {
+    /* Your custom CSS here */
+}
+</style>
+
+
+// ===== D. LANGUAGE CUSTOMIZATION =====
+/**
+ * Untuk customize text/translation:
+ * 
+ * 1. Pergi ke: Settings > Website > Setup > Masthead
+ * 2. Edit "Journal Name", "Description", dll
+ * 
+ * Atau edit file locale:
+ * locale/id_ID/locale.po (untuk Bahasa Indonesia)
+ */
+
+
+// ===== E. SIDEBAR WIDGETS =====
+/**
+ * Untuk customize sidebar widgets:
+ * 
+ * 1. Settings > Website > Appearance > Sidebar Management
+ * 2. Drag & drop widgets yang diinginkan
+ * 3. Customize order sesuai kebutuhan
+ */
+
+
+/* ============================================================================
+   6. TROUBLESHOOTING - Common Issues
+   ============================================================================ */
+
+// ===== Issue 1: CSS Not Loading =====
+/**
+ * SOLUSI:
+ * 1. Clear OJS cache: php tools/rebuildSearchIndex.php
+ * 2. Clear browser cache: Ctrl+F5
+ * 3. Check file permissions: chmod 644 modern-ojs-theme.css
+ * 4. Verify path in template: {$baseUrl}/modern-ojs-theme.css
+ */
+
+
+// ===== Issue 2: JavaScript Errors =====
+/**
+ * SOLUSI:
+ * 1. Check browser console (F12)
+ * 2. Ensure jQuery loaded before custom JS
+ * 3. Ensure Bootstrap JS loaded
+ * 4. Check for conflicts with other plugins
+ */
+
+
+// ===== Issue 3: Carousel Not Working =====
+/**
+ * SOLUSI:
+ * 1. Verify Bootstrap JS is loaded
+ * 2. Check carousel HTML structure
+ * 3. Ensure images exist and paths are correct
+ * 4. Check browser console for errors
+ */
+
+
+// ===== Issue 4: Mobile Responsiveness =====
+/**
+ * SOLUSI:
+ * 1. Add viewport meta tag in header.tpl:
+ */
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+/**
+ * 2. Test in Chrome DevTools (F12 > Toggle Device Toolbar)
+ * 3. Check media queries in CSS
+ */
+
+
+/* ============================================================================
+   7. PERFORMANCE OPTIMIZATION
+   ============================================================================ */
+
+// ===== A. Image Optimization =====
+/**
+ * Optimize banner images:
+ * 
+ * 1. Use tools like TinyPNG (https://tinypng.com)
+ * 2. Convert to WebP format for better compression
+ * 3. Use lazy loading for images
+ */
+
+
+// ===== B. CSS Minification =====
+/**
+ * For production, minify CSS:
+ * 
+ * Online tools:
+ * - https://cssminifier.com
+ * - https://cssnano.co
+ * 
+ * Or use build tools like Gulp/Webpack
+ */
+
+
+// ===== C. Enable Caching =====
+/**
+ * In config.inc.php, enable caching:
+ */
+[cache]
+cache = on
+cache_lifetime = 86400
+
+
+// ===== D. CDN for Static Assets =====
+/**
+ * Use CDN for jQuery and Bootstrap:
+ * (Already included in theme, but you can switch to different CDN)
+ */
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
+
+
+/* ============================================================================
+   END OF IMPLEMENTATION GUIDE
+   ============================================================================
+   
+   Jika masih ada pertanyaan, silakan cek:
+   - README-MODERN-THEME.md (dokumentasi lengkap)
+   - QUICK-START.md (panduan cepat)
+   - demo-modern-theme.html (preview theme)
+   
+   Good luck! 🚀
+   
+   ============================================================================ */

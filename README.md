@@ -1,1 +1,0 @@
-# OJS (Open Journal System)

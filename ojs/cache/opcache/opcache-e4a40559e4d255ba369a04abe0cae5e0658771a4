@@ -1,0 +1,12 @@
+<?php $exp = 1793853014; $val = array (
+  'domain' => NULL,
+  'plural-forms' => NULL,
+  'messages' => 
+  array (
+    '' => 
+    array (
+      'plugins.generic.sitesearch.displayName' => 'Sitesearch Plugin',
+      'plugins.generic.sitesearch.description' => 'Overrides the public search functionality to act at the site level instead of within the context.',
+    ),
+  ),
+);

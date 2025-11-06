@@ -1,0 +1,1664 @@
+/**
+ * JOURNAL RIPTEK THEME CSS - FIXED VERSION 2.0
+ * Custom styling for Journal Riptek - Jurnal Riset dan Inovasi Daerah Kota Semarang
+ * Created: October 27, 2025
+ * Updated: October 30, 2025 - v2.0 FIXED
+ * 
+ * CHANGELOG v2.0:
+ * 1. Hero image digabung dengan header di bawah (seperti papan menempel)
+ * 2. Teks "Jurnal Riptek" di hero digeser ke kanan
+ * 3. About page: Added sidebar kiri dan hero image seperti home
+ * 4. Description box: Changed to horizontal rectangle (tidak gepeng)
+ * 5. Mobile description: Fixed to be square/rectangle (tidak gepeng)
+ * 6. Login/Register: Logo dan header centered seperti home page
+ */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:wght@700&family=Poppins:wght@700&display=swap');
+
+/* =========================================
+   GLOBAL RESETS & BASE STYLES
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+.container-fluid {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* =========================================
+   HEADER STYLING - WHITE BACKGROUND
+   ========================================= */
+#headerNavigationContainer {
+    background: #ffffff !important;
+    height: 71px;
+    margin-bottom: 0;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.navbar-default {
+    background-color: #ffffff !important;
+    background-image: none !important;
+}
+
+/* Header Top Navigation (User Menu) */
+#headerNavigationContainer > .container-fluid:first-child {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    background: transparent;
+    padding: 0;
+    height: auto;
+    z-index: 1001;
+}
+
+#headerNavigationContainer > .container-fluid:first-child .row {
+    margin: 0;
+}
+
+/* Main Header Container */
+#headerNavigationContainer > .container-fluid:last-child {
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 71px;
+    padding: 0 20px;
+    position: relative;
+}
+
+#headerNavigationContainer .navbar-header {
+    height: 71px;
+    display: flex;
+    align-items: center;
+    float: none !important;                /* Remove float */
+    width: auto;
+    margin: 0;
+    position: absolute;
+    left: 20px !important;                 /* ALWAYS LEFT - 20px from edge */
+    top: 0;
+}
+
+/* Logo Image */
+#headerNavigationContainer .navbar-brand-logo {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+#headerNavigationContainer .navbar-brand-logo img {
+    height: 45px;
+    width: auto;
+    margin-right: 0;
+}
+
+/* Text "Jurnal Riptek" beside logo */
+#headerNavigationContainer .navbar-brand {
+    color: #000000 !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: 0%;
+    padding: 0;
+    padding-left: 15px;
+    height: 71px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    margin-left: 12px;
+    text-transform: none;
+    border-left: 2px solid #e0e0e0;
+}
+
+#headerNavigationContainer .site-name {
+    display: flex;
+    align-items: center;
+    height: 71px;
+    gap: 0;
+}
+
+#headerNavigationContainer .navbar-brand:hover {
+    color: #000000 !important;
+    text-decoration: none;
+}
+
+/* Navigation Menu Container - CENTERED */
+#nav-menu {
+    float: none !important;
+    height: 71px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center;
+    position: absolute;
+    left: 44%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    z-index: 10;
+}
+
+#nav-menu.collapse {
+    display: flex !important;
+    height: auto;
+}
+
+/* Navigation Links Styling */
+#headerNavigationContainer .navbar-nav {
+    margin: 0;
+    display: flex !important;
+    align-items: center;
+    height: auto;
+    list-style: none;
+    padding: 0;
+}
+
+#headerNavigationContainer .navbar-nav > li {
+    display: flex;
+    align-items: center;
+    height: auto;
+    margin: 0;
+}
+
+#headerNavigationContainer .navbar-nav > li > a {
+    color: #333333 !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    padding: 12px 15px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    background-color: transparent;
+}
+
+#headerNavigationContainer .navbar-nav > li > a:hover,
+#headerNavigationContainer .navbar-nav > li > a:focus {
+    color: #2ecc71 !important;
+    background-color: rgba(46, 204, 113, 0.05);
+}
+
+#headerNavigationContainer .navbar-nav > li.active > a,
+#headerNavigationContainer .navbar-nav > li.current > a {
+    color: #2ecc71 !important;
+    background-color: rgba(46, 204, 113, 0.1);
+}
+
+/* User Navigation (Login/Register) */
+#navigationUser {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+}
+
+#navigationUser li {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#navigationUser li a {
+    color: #333333 !important;
+    font-size: 14px;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+#navigationUser li a:hover {
+    color: #2ecc71 !important;
+    text-decoration: none;
+}
+
+#navigationUser a[href*="login"]::before,
+#navigationUser a[href*="register"]::before {
+    content: "👤 ";
+    margin-right: 5px;
+}
+
+/* Mobile Navigation */
+.navbar-toggle {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    .navbar-toggle {
+        display: block;
+        position: absolute;
+        left: -35px;
+        top: 25% !important;               /* NAIK (was: 50%) */
+        transform: translateY(-25%) !important;
+        background: transparent;
+        border: 2px solid #2ecc71;
+        padding: 8px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1002;
+    }
+    
+    .navbar-toggle .icon-bar {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background-color: #2ecc71;
+        margin: 4px 0;
+        transition: all 0.3s ease;
+    }
+    
+    #headerNavigationContainer .navbar-header {
+        left: 140px !important;
+    }
+    
+    #nav-menu {
+        position: fixed !important;
+        left: -300px !important;
+        top: 0 !important;
+        transform: none !important;
+        width: 280px !important;
+        height: 100vh !important;
+        background: #ffffff;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+        transition: left 0.3s ease;
+        z-index: 1001;
+        padding-top: 80px;
+    }
+    
+    #nav-menu.in,
+    #nav-menu.show {
+        left: 0 !important;
+    }
+    
+    #headerNavigationContainer .navbar-nav {
+        flex-direction: column;
+        width: 75%;
+        padding: 0;
+        margin: 0;
+    }
+    
+    #headerNavigationContainer .navbar-nav > li {
+        width: 100%;
+        border-bottom: 1px solid #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+    
+    #headerNavigationContainer .navbar-nav > li > a {
+        width: 100%;
+        padding: 15px 15px 15px 0;
+        justify-content: flex-start;
+        text-align: left;
+        margin: 0;
+        padding-left: 20px;
+    }
+}
+
+.pull-md-right,
+div[class*="search"] {
+    display: none !important;
+}
+
+body {
+    padding-top: 71px;
+}
+
+body, html {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* ==========================================================================
+   HERO SECTION - FIXED v2.0
+   1. DIGABUNG DENGAN HEADER (menempel di bawah header seperti papan)
+   2. Teks "Jurnal Riptek" DIGESER KE KANAN
+   ========================================================================== */
+
+/* Hide hero on pages except home and about */
+.pkp_page_login .homepage-hero,
+.pkp_page_user .homepage-hero,
+.pkp_page_issue .homepage-hero,
+.pkp_page_article .homepage-hero,
+.pkp_page_submissions .homepage-hero {
+    display: none !important;
+}
+
+/* Show hero on home AND about pages */
+.pkp_page_index .homepage-hero,
+.pkp_page_about .homepage-hero {
+    display: flex !important;
+}
+
+/* HERO SECTION - DEFAULT (All devices) */
+.homepage-hero {
+    height: 544px;
+    margin: -71px 0 0 0 !important;        /* NEGATIVE margin to attach below header */
+    padding-top: 71px !important;          /* Add padding equal to header height */
+    position: relative;
+    background: linear-gradient(135deg, #2ecc71 0%, #3498db 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    padding-left: 150px !important;        /* Default left padding */
+    padding-right: 0 !important;
+    box-sizing: border-box;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    left: 50%;                              /* DEFAULT: Centered */
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+}
+
+.homepage-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+    z-index: 1;
+}
+
+.homepage-hero > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* HERO CONTENT - GESER KE KANAN */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+    flex: 0 0 auto;
+    max-width: 600px;
+    padding-left: 0;
+    padding-right: 40px;
+    margin-left: 120px !important;         /* INCREASED margin untuk geser ke kanan */
+}
+
+.hero-content h1 {
+    font-family: 'Inria Serif', serif;
+    font-size: 70px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0%;
+    margin: 0 0 20px 0;
+    padding: 0;
+    color: #ffffff;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    max-width: 100%;
+    height: auto;
+    word-wrap: break-word;
+}
+
+.hero-content .subtitle {
+    font-family: 'Inria Serif', serif;
+    font-size: 20px;
+    font-weight: 600;
+    max-width: 100%;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    text-align: left;
+}
+
+/* HERO IMAGE - DI KANAN TENGAH (TIDAK DI POJOK ATAS) */
+.hero-image {
+    position: absolute !important;
+    right: 0 !important;                   /* Di kanan */
+    top: 50% !important;                   /* Vertikal center */
+    transform: translateY(-50%) !important; /* Center adjustment */
+    z-index: 2;
+    width: auto !important;
+    max-width: 650px !important;
+    height: auto !important;               /* Auto height */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.hero-image img {
+    width: auto;
+    max-width: 650px;
+    height: 100%;
+    max-height: 473px;                     /* 544px - 71px */
+    object-fit: contain;
+    object-position: right center;         /* Stick to right */
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+/* ==========================================================================
+   MAIN CONTENT LAYOUT - FIXED v2.0
+   3. Description boxes: HORIZONTAL RECTANGLE (tidak gepeng)
+   ========================================================================== */
+
+.page_index_journal {
+    background-color: #ffffff;
+    margin: 0 auto;
+    min-height: calc(100vh - 71px - 243px);
+}
+
+.content-wrapper {
+    display: flex;                         /* FLEXBOX (not grid) */
+    flex-direction: row;                   /* Horizontal layout */
+    width: 100%;
+    max-width: 1600px !important;
+    margin: 0 auto !important;
+    padding: 50px 80px !important;
+    gap: 40px !important;
+    box-sizing: border-box;
+    align-items: flex-start;               /* Align top */
+}
+
+/* SIDEBAR MENU - Fixed width, no grid */
+.sidebar-menu {
+    flex: 0 0 280px !important;            /* Fixed 280px width */
+    width: 280px !important;
+    min-width: 280px !important;
+}
+
+.sidebar-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar-menu-item {
+    margin: 0;
+}
+
+.sidebar-menu-link {
+    display: block;
+    width: 100%;
+    height: 62px;
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(46, 204, 113, 0.3);
+    border: none;
+}
+
+.sidebar-menu-link:hover {
+    background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(46, 204, 113, 0.4);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.sidebar-menu-link:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(46, 204, 113, 0.3);
+}
+
+/* DESCRIPTION CONTENT AREA - Horizontal flow (wrapping) */
+.main-content-area {
+    flex: 1 !important;                    /* GROW to fill remaining space */
+    display: block !important;             /* BLOCK layout (normal flow) */
+    width: 100% !important;
+}
+
+/* Journal Description - PERSEGI PANJANG KE KANAN (Horizontal Rectangle) */
+.journal-description {
+    width: 100% !important;                /* FULL width */
+    margin-bottom: 30px !important;        /* Space between sections */
+    padding: 25px 30px !important;
+    background: transparent !important;
+    border-radius: 0;
+    border-left: 4px solid #2ecc71 !important;
+    min-height: 180px !important;          /* Rectangle height */
+    max-height: 250px !important;          /* LIMIT height (panjang ke kanan) */
+    display: block;
+    overflow: hidden;
+}
+
+.journal-description h2 {
+    color: #2c3e50;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    padding-left: 20px;
+    border-left: 4px solid #2ecc71;
+}
+
+.journal-description p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #555;
+    text-align: justify;
+    padding-left: 24px;
+}
+
+/* INFO SECTIONS - PERSEGI PANJANG KE KANAN (Horizontal Rectangle) */
+.info-section {
+    background: transparent !important;
+    padding: 25px 30px !important;
+    border-radius: 0;
+    border-left: 4px solid #2ecc71 !important;
+    margin-bottom: 30px !important;        /* Space between sections */
+    min-height: 180px !important;          /* Rectangle height */
+    max-height: 250px !important;          /* LIMIT height (panjang ke kanan) */
+    width: 100% !important;
+    display: block;
+    overflow: hidden;
+}
+
+.sidebar-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar-menu-item {
+    margin: 0;
+}
+
+.sidebar-menu-link {
+    display: block;
+    width: 100%;
+    height: 62px;
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 62px;
+    border-radius: 4px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+}
+
+.sidebar-menu-link:hover {
+    background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
+    color: #ffffff !important;
+    text-decoration: none;
+}
+
+.sidebar-menu-link:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-sinta-badge {
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 20px;
+    border-top: 2px solid #e0e0e0;
+}
+
+.sidebar-sinta-badge img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.sidebar-sinta-badge img:hover {
+    transform: scale(1.05);
+}
+
+/* MAIN CONTENT AREA - HORIZONTAL LAYOUT (Sidebar + Description Side by Side) */
+.main-content-area {
+    flex: 1 !important;
+    min-width: 0 !important;
+    background: #ffffff !important;        /* FULL WHITE BACKGROUND */
+    padding: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    display: grid !important;              /* GRID for side-by-side layout */
+    grid-template-columns: auto 1fr !important; /* Sidebar auto, content fills rest */
+    gap: 40px !important;                  /* Gap between sidebar and content */
+    align-items: start;
+}
+
+/* Journal Description - Full Width Horizontal Rectangle */
+.journal-description {
+    width: 100% !important;                /* Full width */
+    margin-bottom: 15px;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #2ecc71;
+    min-height: 120px;                     /* Taller rectangle */
+}
+
+.journal-description h2 {
+    color: #2ecc71;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.journal-description p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #555;
+    text-align: justify;
+}
+
+/* INFO SECTIONS - WIDE HORIZONTAL RECTANGLES */
+.info-section {
+    background: #f8f9fa;
+    padding: 25px !important;
+    border-radius: 8px;
+    border-left: 4px solid #2ecc71;
+    min-height: 150px !important;          /* Rectangle height - not too tall */
+    width: 100% !important;                /* Full width untuk horizontal */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.info-section h3 {
+    color: #2c3e50;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    margin-top: 0;
+}
+
+.info-section p,
+.info-section ul {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #666;
+    margin-bottom: 8px;
+    flex-grow: 1;
+}
+
+.info-section ul {
+    padding-left: 20px;
+}
+
+.index-badge {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.index-badge img {
+    max-width: 180px;
+    height: auto;
+}
+
+/* ==========================================================================
+   ABOUT PAGE - FIXED v3.0
+   SAME LAYOUT AS HOME (Grid with sidebar + content side by side)
+   ========================================================================== */
+
+.page_about,
+.pkp_page_about {
+    background-color: #ffffff !important;
+}
+
+/* About page uses same layout as homepage */
+.pkp_page_about .page,
+.page_about {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* About page content wrapper - GRID LAYOUT like home */
+.pkp_page_about #main-content,
+.page_about #main-content {
+    display: grid !important;
+    grid-template-columns: 280px 1fr !important; /* Sidebar + Content */
+    width: 100%;
+    max-width: 1600px !important;          /* WIDER seperti home */
+    margin: 0 auto !important;
+    padding: 50px 80px !important;
+    gap: 40px !important;
+    box-sizing: border-box;
+    background: #ffffff !important;
+}
+
+/* About page - sidebar placeholder (for consistency) */
+.pkp_page_about #main-content::before,
+.page_about #main-content::before {
+    content: '';
+    grid-column: 1;
+    width: 280px;
+}
+
+/* About page actual content - Grid Column 2 */
+.pkp_page_about #main-content > *,
+.page_about #main-content > * {
+    grid-column: 2;
+    width: 100%;
+}
+
+/* About page sections - NO CARD BACKGROUNDS (like home) */
+.pkp_page_about #main-content section,
+.page_about #main-content section {
+    background: transparent !important;
+    padding: 20px 0 20px 20px !important;
+    border-left: 4px solid #2ecc71;
+    margin-bottom: 30px;
+}
+
+/* About page titles */
+.page_about .page-header h1,
+.pkp_page_about .page-header h1 {
+    color: #2c3e50 !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    text-align: left !important;
+    margin-bottom: 30px !important;
+    padding-left: 20px;
+    border-left: 4px solid #2ecc71;
+}
+
+.page_about h2,
+.pkp_page_about h2 {
+    color: #2c3e50 !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    margin-top: 25px !important;
+    margin-bottom: 15px !important;
+}
+
+.page_about h3,
+.pkp_page_about h3 {
+    color: #2ecc71 !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    margin-top: 20px !important;
+    margin-bottom: 10px !important;
+}
+
+.page_about h4,
+.pkp_page_about h4 {
+    color: #27ae60 !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+}
+
+/* About page paragraphs and lists */
+.pkp_page_about p,
+.page_about p {
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.pkp_page_about ul,
+.page_about ul {
+    padding-left: 30px;
+    margin-bottom: 20px;
+}
+
+.pkp_page_about li,
+.page_about li {
+    margin-bottom: 8px;
+    color: #666;
+}
+
+/* ==========================================================================
+   FOOTER STYLING
+   ========================================================================== */
+
+.footer {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    min-height: 243px;
+    margin: 0;
+    background: linear-gradient(135deg, #1e8449 0%, #27ae60 100%) !important;
+    color: #ffffff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 40px 0;
+}
+
+footer.footer,
+.pkp_structure_footer,
+.footer {
+    background-color: #27ae60 !important;
+    background: linear-gradient(135deg, #1e8449 0%, #27ae60 100%) !important;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: -116px;
+    left: 0;
+    width: 100%;
+    height: 359px;
+    background-image: url('https://ojsimg.netlify.app/semarang-landmark.png');
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    opacity: 0.19;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.footer .container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1440px;
+    padding: 0 46px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.footer-info {
+    font-size: 13px;
+    line-height: 1.8;
+    opacity: 0.95;
+    color: #ffffff;
+}
+
+.footer-info p {
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.footer-info a {
+    color: #ffffff;
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+}
+
+.footer-info a:hover {
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   LOGIN & REGISTER PAGES - FIXED v2.0
+   5. Logo dan header centered seperti home page
+   ========================================================================== */
+
+.pkp_page_login,
+.pkp_page_user.pkp_op_register,
+body.pkp_page_login,
+body.pkp_page_user.pkp_op_register {
+    padding-top: 71px;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pkp_page_login .pkp_page_content,
+.pkp_page_login .page,
+.pkp_page_user.pkp_op_register .pkp_page_content,
+.pkp_page_user.pkp_op_register .page,
+.pkp_page_login main,
+.pkp_page_user.pkp_op_register main {
+    max-width: 480px !important;
+    margin: 0 auto !important;
+    padding: 40px !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.pkp_page_login form,
+.pkp_page_user.pkp_op_register form {
+    background: #ffffff !important;
+    padding: 50px 40px !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+.pkp_page_login .cmp_breadcrumbs,
+.pkp_page_user.pkp_op_register .cmp_breadcrumbs {
+    background: transparent !important;
+    padding: 10px 0 !important;
+    margin-bottom: 20px !important;
+}
+
+.pkp_page_login h1,
+.pkp_page_user.pkp_op_register h1,
+.pkp_page_login h2,
+.pkp_page_user.pkp_op_register h2 {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    color: #1a1a1a !important;
+    text-align: center !important;
+    margin-bottom: 35px !important;
+    margin-top: 0 !important;
+}
+
+.pkp_page_login .form-group,
+.pkp_page_user.pkp_op_register .form-group,
+.pkp_page_login fieldset,
+.pkp_page_user.pkp_op_register fieldset {
+    margin-bottom: 0 !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.pkp_page_login label,
+.pkp_page_user.pkp_op_register label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.pkp_page_login .form-control,
+.pkp_page_user.pkp_op_register .form-control,
+.pkp_page_login input[type="text"],
+.pkp_page_login input[type="email"],
+.pkp_page_login input[type="password"],
+.pkp_page_user.pkp_op_register input[type="text"],
+.pkp_page_user.pkp_op_register input[type="email"],
+.pkp_page_user.pkp_op_register input[type="password"],
+.pkp_page_user.pkp_op_register select {
+    margin-bottom: 20px !important;
+    height: 52px !important;
+    padding: 14px 18px !important;
+    border: 2px solid #ddd !important;
+    border-radius: 10px !important;
+    font-size: 15px !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.pkp_page_login .form-control:focus,
+.pkp_page_user.pkp_op_register .form-control:focus,
+.pkp_page_login input:focus,
+.pkp_page_user.pkp_op_register input:focus,
+.pkp_page_user.pkp_op_register select:focus {
+    border-color: #2ecc71 !important;
+    box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.15) !important;
+    outline: none !important;
+}
+
+.pkp_page_login .btn-primary,
+.pkp_page_login button[type="submit"],
+.pkp_page_login .submit,
+.pkp_page_user.pkp_op_register .btn-primary,
+.pkp_page_user.pkp_op_register button[type="submit"],
+.pkp_page_user.pkp_op_register .submit {
+    width: 100% !important;
+    height: 54px !important;
+    background: linear-gradient(135deg, #2ecc71 0%, #3498db 100%) !important;
+    border: none !important;
+    border-radius: 10px !important;
+    color: #ffffff !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.2px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    margin-top: 25px !important;
+}
+
+.pkp_page_login .btn-primary:hover,
+.pkp_page_login button[type="submit"]:hover,
+.pkp_page_login .submit:hover,
+.pkp_page_user.pkp_op_register .btn-primary:hover,
+.pkp_page_user.pkp_op_register button[type="submit"]:hover,
+.pkp_page_user.pkp_op_register .submit:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 24px rgba(46, 204, 113, 0.35) !important;
+}
+
+.pkp_page_login .register,
+.pkp_page_login a.register {
+    display: inline-block !important;
+    width: 100% !important;
+    height: 54px !important;
+    line-height: 54px !important;
+    text-align: center !important;
+    background: #f0f0f0 !important;
+    color: #555 !important;
+    border-radius: 10px !important;
+    margin-top: 15px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+}
+
+.pkp_page_login .register:hover {
+    background: #e0e0e0 !important;
+    color: #333 !important;
+}
+
+.pkp_page_login a,
+.pkp_page_user.pkp_op_register a {
+    color: #3498db !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    transition: color 0.3s ease !important;
+}
+
+.pkp_page_login a:hover,
+.pkp_page_user.pkp_op_register a:hover {
+    color: #2ecc71 !important;
+    text-decoration: underline !important;
+}
+
+.pkp_page_login .checkbox label,
+.pkp_page_user.pkp_op_register .checkbox label,
+.pkp_page_login .optin label,
+.pkp_page_user.pkp_op_register .optin label {
+    font-weight: 400 !important;
+    color: #666 !important;
+    font-size: 14px !important;
+}
+
+/* Footer on login/register pages */
+.pkp_page_login .footer,
+.pkp_page_user.pkp_op_register .footer,
+.pkp_page_login .pkp_structure_footer,
+.pkp_page_user.pkp_op_register .pkp_structure_footer,
+.pkp_page_login footer,
+.pkp_page_user.pkp_op_register footer {
+    position: relative !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    margin-top: 80px !important;
+    padding: 40px 0 !important;
+}
+
+.pkp_page_login .footer .container,
+.pkp_page_user.pkp_op_register .footer .container {
+    max-width: 1440px !important;
+    margin: 0 auto !important;
+    padding: 0 100px !important;
+}
+
+/* Logo position on login/register - PC di kiri, Mobile normal */
+/* PC NORMAL/GEDE: Logo LEBIH jauh di kiri */
+@media (min-width: 993px) {
+    .pkp_page_login #headerNavigationContainer .navbar-header,
+    .pkp_page_user.pkp_op_register #headerNavigationContainer .navbar-header {
+        position: absolute;
+        left: -500px !important;           /* PC NORMAL: LEBIH jauh di kiri (-500px) */
+        top: 0 !important;
+        transform: none !important;
+    }
+    
+    /* Login page: Turunkan logo (tidak terlalu keatas) */
+    .pkp_page_login #headerNavigationContainer .navbar-header {
+        top: 10px !important;              /* LOGIN: Turun 10px */
+    }
+}
+
+/* PC TAMPILAN KECIL (Tablet landscape): Logo jauh di kiri */
+@media (min-width: 768px) and (max-width: 992px) {
+    .pkp_page_login #headerNavigationContainer .navbar-header,
+    .pkp_page_user.pkp_op_register #headerNavigationContainer .navbar-header {
+        position: absolute;
+        left: -400px !important;           /* PC kecil: Jauh di kiri */
+        top: 15px !important;              /* TURUNKAN DIKIT */
+        transform: none !important;
+    }
+    
+    /* Login page: Turunkan logo lebih */
+    .pkp_page_login #headerNavigationContainer .navbar-header {
+        top: 20px !important;              /* LOGIN: Turun 20px */
+    }
+}
+
+/* Mobile ONLY: Logo di kiri normal */
+@media (max-width: 767px) {
+    .pkp_page_login #headerNavigationContainer .navbar-header,
+    .pkp_page_user.pkp_op_register #headerNavigationContainer .navbar-header {
+        position: absolute;
+        left: 20px !important;             /* Mobile: Kiri normal (BENAR) */
+        top: 15px !important;              /* TURUNKAN DIKIT */
+        transform: none !important;
+    }
+    
+    /* Login page: Turunkan logo lebih */
+    .pkp_page_login #headerNavigationContainer .navbar-header {
+        top: 20px !important;              /* LOGIN: Turun 20px */
+    }
+    
+    /* User nav (login/register) di kanan */
+    #navigationUser {
+        position: absolute !important;
+        right: 20px !important;            /* KANAN (bukan kiri) */
+        top: 15px !important;
+    }
+}
+
+.pkp_page_login #headerNavigationContainer,
+.pkp_page_user.pkp_op_register #headerNavigationContainer {
+    height: 71px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE - DESKTOP LARGE (1200px+)
+   Hero left: 75% ONLY for large desktop screens
+   ========================================================================== */
+
+@media (min-width: 1200px) {
+    .homepage-hero {
+        left: 75% !important;              /* SHIFT right ONLY on large desktop */
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE - MOBILE FIXES v2.0
+   4. Mobile description: Square/Rectangle (tidak gepeng)
+   ========================================================================== */
+
+@media (max-width: 1440px) {
+    .homepage-hero {
+        padding: 60px 80px;
+        padding-top: 91px;                 /* Adjust for header */
+        left: 50% !important;              /* RESET to center for smaller screens */
+    }
+
+    .hero-content {
+        margin-left: 60px;
+    }
+
+    .hero-content h1 {
+        font-size: 60px;
+    }
+
+    .hero-content .subtitle {
+        font-size: 18px;
+    }
+    
+    .hero-image {
+        max-width: 450px;
+    }
+    
+    .content-wrapper {
+        padding: 40px 80px;
+    }
+}
+
+@media (max-width: 1200px) {
+    /* Single column layout on tablet */
+    .main-content-area {
+        grid-template-columns: 1fr !important; /* Single column */
+    }
+    
+    /* Info sections remain rectangular but stack vertically */
+    .info-section {
+        min-height: 150px !important;
+    }
+    
+    .homepage-hero {
+        height: auto;
+        min-height: 450px;
+        padding: 40px 40px;
+        padding-top: 91px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+        text-align: center;
+        padding: 0;
+        margin-left: 0;
+    }
+    
+    .hero-content h1 {
+        font-size: 50px;
+        max-width: 100%;
+        margin: 0 auto 20px;
+    }
+    
+    .hero-content .subtitle {
+        font-size: 16px;
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .hero-image {
+        position: relative !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+        max-width: 450px;
+        width: 80%;
+        margin: 30px auto 0;
+    }
+    
+    #headerNavigationContainer .navbar-brand {
+        font-size: 22px;
+    }
+    
+    .content-wrapper {
+        flex-direction: column;
+        padding: 40px 40px;
+    }
+    
+    .sidebar-menu {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 992px) {
+    body {
+        padding-top: 71px;
+    }
+    
+    /* MOBILE: Change flex to column (stack sidebar + content) */
+    .content-wrapper {
+        flex-direction: column !important; /* Stack vertically */
+        gap: 30px !important;
+        padding: 40px 30px !important;
+    }
+    
+    /* MOBILE: Main content area full width */
+    .main-content-area {
+        width: 100% !important;
+    }
+    
+    /* Sidebar full width on mobile */
+    .sidebar-menu {
+        flex: 0 0 auto !important;         /* No fixed flex-basis */
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+    
+    /* Sidebar buttons centered (not menjorok kanan) */
+    .sidebar-menu-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center !important; /* CENTERED */
+        gap: 15px;
+        padding: 0 20px;                   /* Side padding */
+    }
+    
+    .sidebar-menu-link {
+        width: 280px !important;           /* Fixed width */
+        max-width: calc(100% - 40px);      /* Responsive max width */
+    }
+    
+    /* Description full width */
+    .journal-description,
+    .info-section {
+        width: 100% !important;
+        padding: 20px 25px !important;     /* Padding for content */
+        min-height: 120px !important;      /* Shorter on mobile */
+    }
+    
+    .homepage-hero {
+        padding: 30px 30px;
+        padding-top: 91px;
+        min-height: 400px;
+        gap: 30px;
+        left: 50% !important;              /* Center on mobile */
+    }
+    
+    .hero-content h1 {
+        font-size: 42px;
+    }
+    
+    .hero-content .subtitle {
+        font-size: 15px;
+    }
+    
+    .hero-image {
+        max-width: 400px;
+        width: 75%;
+        margin: 0 auto;
+    }
+    
+    .content-wrapper {
+        padding: 30px 30px;
+    }
+    
+    /* NAVBAR HEADER - Keep left on tablet */
+    #headerNavigationContainer .navbar-header {
+        left: 100px !important;
+    }
+    
+    .sidebar-menu {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+    
+    .sidebar-menu-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .sidebar-menu-link {
+        width: 280px;
+    }
+    
+    #headerNavigationContainer .navbar-brand {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    #headerNavigationContainer {
+        height: auto;
+        min-height: 71px;
+        position: relative;
+    }
+    
+    body {
+        padding-top: 0;
+    }
+    
+    /* MOBILE: Keep flex column for horizontal rectangles */
+    .main-content-area {
+        flex-direction: column !important;  /* Single column */
+        gap: 20px !important;
+    }
+    
+    /* Info sections remain horizontal rectangles (not tall gepeng) */
+    .info-section {
+        min-height: 120px !important;       /* Not too tall */
+        width: 100% !important;             /* Full width horizontal */
+        padding: 20px !important;
+    }
+    
+    .homepage-hero {
+        padding: 30px 20px;
+        padding-top: 91px;
+        min-height: 350px;
+        gap: 20px;
+        margin-left: -50vw !important;
+    }
+    
+    .hero-content h1 {
+        font-size: 36px;
+    }
+    
+    .hero-content .subtitle {
+        font-size: 14px;
+    }
+    
+    .hero-image {
+        position: relative !important;      /* Remove absolute on mobile */
+        max-width: 350px;
+        width: 70%;
+        height: auto !important;
+        margin: 0 auto;
+    }
+    
+    .content-wrapper {
+        padding: 30px 20px;
+    }
+    
+    .sidebar-menu-link {
+        width: 100%;
+        max-width: 320px;
+    }
+    
+    .main-content-area {
+        padding: 0;
+    }
+    
+    .footer {
+        height: auto;
+        padding: 30px 15px;
+    }
+    
+    .footer .container {
+        padding: 0 20px;
+    }
+    
+    /* NAVBAR HEADER - Proper left positioning for mobile */
+    #headerNavigationContainer .navbar-header {
+        left: 60px !important;              /* Visible on mobile */
+        position: relative !important;
+    }
+    
+    #headerNavigationContainer > .container-fluid:first-child {
+        position: relative;
+        top: auto;
+        right: auto;
+        text-align: right;
+        padding: 5px 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    /* MOBILE: Info sections - horizontal rectangles (tidak gepeng vertikal) */
+    .info-section {
+        min-height: 100px !important;       /* Shorter for very small screens */
+        width: 100% !important;             /* Full width horizontal */
+        padding: 18px !important;
+    }
+    
+    .homepage-hero {
+        padding: 20px 15px;
+        padding-top: 91px;
+        min-height: 300px;
+        gap: 15px;
+        flex-direction: column;             /* Stack content vertically */
+    }
+    
+    .hero-content {
+        margin-left: 0 !important;
+        text-align: center;
+    }
+    
+    .hero-content h1 {
+        font-size: 28px;
+    }
+    
+    .hero-content .subtitle {
+        font-size: 13px;
+    }
+    
+    .hero-image {
+        position: relative !important;      /* Not absolute on very small screens */
+        max-width: 280px;
+        width: 65%;
+        height: auto !important;
+        margin: 0 auto;
+    }
+    
+    .content-wrapper {
+        padding: 20px 15px;
+    }
+    
+    .sidebar-menu-link {
+        height: 50px;
+        line-height: 50px;
+        font-size: 14px;
+    }
+    
+    /* NAVBAR HEADER - Center logo for very small mobile */
+    #headerNavigationContainer .navbar-header {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        position: relative !important;
+    }
+    
+    #headerNavigationContainer .navbar-brand {
+        font-size: 16px;
+    }
+    
+    .navbar-brand-logo img {
+        max-height: 35px !important;
+    }
+    
+    .footer-title {
+        font-size: 16px;
+    }
+    
+    .footer-info {
+        font-size: 12px;
+    }
+}
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+.text-green {
+    color: #2ecc71;
+}
+
+.bg-green {
+    background-color: #2ecc71;
+}
+
+.shadow-sm {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-md {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.shadow-lg {
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Hide old carousel */
+#carouselExample,
+.carousel {
+    display: none !important;
+}
+
+.homepage-image {
+    display: none;
+}
+
+/* Hide articles on homepage */
+.page_index_journal .current_issue,
+.page_index_journal section.current_issue,
+.page_index_journal .issue-toc,
+.page_index_journal .articles,
+.page_index_journal .obj_issue_toc {
+    display: none !important;
+}
+
+.page_index_journal a[href*="issue/archive"],
+.page_index_journal .read-more {
+    display: none !important;
+}
+
+/* ==========================================================================
+   MOBILE SIDEBAR BACKDROP
+   ========================================================================== */
+
+/* Backdrop overlay for mobile sidebar */
+.nav-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;                         /* INCREASE: above sidebar */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: auto;                  /* ENSURE backdrop is clickable */
+}
+
+.nav-backdrop.show {
+    display: block;
+    opacity: 1;
+}
+
+/* Prevent body scroll when menu open */
+body.menu-open {
+    overflow: hidden;
+}
+
+/* Ensure sidebar appears BELOW backdrop (so toggle button above both) */
+#nav-menu {
+    z-index: 999 !important;               /* BELOW backdrop */
+}
+
+/* Ensure navbar toggle button ABOVE everything */
+.navbar-toggle {
+    z-index: 1003 !important;              /* HIGHEST - always clickable */
+    position: relative;
+}
+
+/* Make toggle button fixed when menu open (always visible) */
+body.menu-open .navbar-toggle {
+    position: fixed !important;            /* FIXED position */
+    left: 20px !important;                 /* Fixed left position */
+    top: 20px !important;                  /* Fixed top position */
+    transform: none !important;            /* Remove transform */
+    z-index: 1003 !important;              /* Above everything */
+}

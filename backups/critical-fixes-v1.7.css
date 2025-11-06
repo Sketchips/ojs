@@ -1,0 +1,426 @@
+/**
+ * ============================================================================
+ * CRITICAL FIXES v1.7 - FINAL ADJUSTMENTS
+ * ============================================================================
+ * 1. Carousel dipanjangin ke kanan (margin adjustment)
+ * 2. Logo dinaikkan lebih ke atas (vertical positioning)
+ * 3. About dropdown background fix (remove black box)
+ * 4. Added detailed comments untuk setiap section
+ * ============================================================================
+ */
+
+/* ============================================================================
+   FIX 1: LOGO POSITIONING - NAIK LEBIH KE ATAS
+   ============================================================================ */
+
+/**
+ * LOGO VERTICAL POSITIONING
+ * - Mengatur posisi logo secara vertikal di header
+ * - top: 8px = Jarak dari atas header (ATUR DI SINI untuk naik/turun logo)
+ * - Semakin kecil nilai top, semakin ke atas logo
+ * - Default: 12px, Fixed: 8px (lebih ke atas)
+ */
+.navbar-brand,
+.pkp_site_name,
+.pkp_site_name a {
+    position: absolute !important;
+    left: 15px !important;
+    top: 8px !important; /* LOGO HEIGHT POSITION - Kurangi nilai untuk naikkan logo */
+    z-index: 150 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: flex-start !important; /* Align dari atas, bukan center */
+}
+
+/**
+ * LOGO IMAGE SIZE
+ * - max-height: Tinggi maksimal logo (ATUR DI SINI untuk ukuran logo)
+ * - Default: 42px, bisa diubah sesuai kebutuhan
+ */
+.navbar-brand img,
+.pkp_site_name img,
+.pkp_site_name a img {
+    max-height: 42px !important; /* LOGO SIZE - Tinggi logo dalam pixel */
+    width: auto !important;
+    height: auto !important;
+    display: block !important;
+    object-fit: contain !important;
+}
+
+/* ============================================================================
+   FIX 2: MEGA CAROUSEL - EXTEND KE KANAN (WIDER)
+   ============================================================================ */
+
+/**
+ * CAROUSEL WIDTH & HORIZONTAL POSITIONING
+ * - width: 100vw = Full viewport width
+ * - margin-left/right: calc() = Formula untuk break out dari container
+ * - Formula: calc(-50vw + 50% + OFFSET)
+ * - OFFSET POSITIF = Geser ke kanan
+ * - OFFSET NEGATIF = Geser ke kiri
+ * - Adjust OFFSET di bawah untuk geser carousel
+ */
+.homepage-image,
+.carousel,
+.carousel-inner,
+body .homepage-image,
+body .carousel {
+    width: 100vw !important; /* CAROUSEL WIDTH - Full viewport width */
+    max-width: none !important;
+    /* CAROUSEL HORIZONTAL POSITION - Adjust nilai setelah + untuk geser kanan/kiri */
+    margin-left: calc(-50vw + 50% + 15px) !important; /* +15px = Geser 15px ke kanan */
+    margin-right: calc(-50vw + 50% - 15px) !important; /* -15px = Kompensasi geser kanan */
+    height: 550px !important; /* CAROUSEL HEIGHT - Tinggi carousel desktop */
+    padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/**
+ * CAROUSEL WRAPPER WIDTH
+ * - Same formula as carousel untuk consistency
+ */
+.carousel-wrapper,
+.homepage-image-wrapper {
+    width: 100vw !important;
+    max-width: none !important;
+    margin-left: calc(-50vw + 50% + 15px) !important; /* WRAPPER LEFT MARGIN - Sama dengan carousel */
+    margin-right: calc(-50vw + 50% - 15px) !important; /* WRAPPER RIGHT MARGIN - Kompensasi */
+    padding: 0 !important;
+}
+
+/**
+ * CAROUSEL ITEM HEIGHT
+ * - height: Tinggi setiap carousel item (sama dengan container)
+ */
+.carousel .item,
+.carousel-inner .item,
+.carousel-inner > .item {
+    width: 100% !important;
+    height: 550px !important; /* CAROUSEL ITEM HEIGHT - Harus sama dengan carousel height */
+    position: relative !important;
+}
+
+/* ============================================================================
+   FIX 3: ABOUT DROPDOWN BACKGROUND - REMOVE BLACK BOX
+   ============================================================================ */
+
+/**
+ * DROPDOWN MENU BACKGROUND
+ * - background: Warna background dropdown (white = putih bersih)
+ * - border: Border untuk memisahkan dropdown dari background
+ * - box-shadow: Shadow untuk depth effect
+ * - border-radius: Rounded corners
+ */
+.pkp_navigation_primary ul li ul,
+.navbar-nav li ul,
+.dropdown-menu {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important; /* DROPDOWN TOP POSITION - Jarak dari parent menu */
+    left: 0 !important;
+    background: #ffffff !important; /* DROPDOWN BACKGROUND COLOR - Putih bersih */
+    border: 1px solid #e5e7eb !important; /* DROPDOWN BORDER - Subtle gray border */
+    border-radius: 10px !important; /* DROPDOWN BORDER RADIUS - Rounded corners */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12) !important; /* DROPDOWN SHADOW - Soft shadow */
+    min-width: 220px !important; /* DROPDOWN MIN WIDTH - Lebar minimal dropdown */
+    padding: 0.5rem 0 !important; /* DROPDOWN PADDING - Vertical padding */
+    margin-top: 0.5rem !important; /* DROPDOWN TOP MARGIN - Spacing dari parent */
+    z-index: 9999 !important;
+    list-style: none !important;
+}
+
+/**
+ * REMOVE BLACK/DARK BACKGROUND OVERLAY
+ * - Ensure no dark background behind dropdown
+ */
+.pkp_navigation_primary ul li ul::before,
+.navbar-nav li ul::before,
+.dropdown-menu::before,
+.pkp_navigation_primary ul li ul::after,
+.navbar-nav li ul::after,
+.dropdown-menu::after {
+    display: none !important; /* Remove any pseudo-elements creating dark background */
+}
+
+/**
+ * DROPDOWN ITEMS STYLING
+ * - Clean white background for each item
+ */
+.pkp_navigation_primary ul li ul li,
+.navbar-nav li ul li,
+.dropdown-menu li {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important; /* DROPDOWN ITEM BACKGROUND - Transparent by default */
+}
+
+/**
+ * DROPDOWN LINK STYLING
+ * - Styling untuk link di dalam dropdown
+ */
+.pkp_navigation_primary ul li ul li a,
+.navbar-nav li ul li a,
+.dropdown-menu li a {
+    display: block !important;
+    width: 100% !important;
+    padding: 0.65rem 1.2rem !important; /* DROPDOWN LINK PADDING - Vertical & horizontal */
+    color: #111827 !important; /* DROPDOWN LINK COLOR - Dark gray text */
+    background: transparent !important;
+    border-radius: 0 !important;
+    height: auto !important;
+    line-height: 1.5 !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    text-decoration: none !important;
+}
+
+/**
+ * DROPDOWN LINK HOVER EFFECT
+ * - background: Light gray saat hover
+ * - color: Teal accent saat hover
+ */
+.pkp_navigation_primary ul li ul li a:hover,
+.navbar-nav li ul li a:hover,
+.dropdown-menu li a:hover {
+    background: #f3f4f6 !important; /* DROPDOWN HOVER BACKGROUND - Light gray */
+    color: #0d9488 !important; /* DROPDOWN HOVER COLOR - Teal accent */
+    padding-left: 1.5rem !important; /* DROPDOWN HOVER INDENT - Slide right effect */
+}
+
+/**
+ * SHOW DROPDOWN ON HOVER OR OPEN CLASS
+ * - .open class = Added by JavaScript when clicked
+ * - :hover = Show on mouse hover
+ */
+.pkp_navigation_primary li:hover > ul,
+.pkp_navigation_primary li.open > ul,
+.pkp_navigation_primary li.show > ul,
+.navbar-nav li:hover > ul,
+.navbar-nav li.open > ul,
+.navbar-nav li.show > ul,
+.dropdown.open .dropdown-menu,
+.dropdown.show .dropdown-menu {
+    display: block !important; /* DROPDOWN DISPLAY - Show dropdown */
+}
+
+/* ============================================================================
+   FIX 4: NAVIGATION POSITIONING - FINE TUNING
+   ============================================================================ */
+
+/**
+ * NAVIGATION HORIZONTAL POSITIONING
+ * - left: Jarak dari kiri (ATUR DI SINI untuk geser nav kanan/kiri)
+ * - Default: 200px dari kiri
+ * - Increase untuk geser ke kanan, decrease untuk ke kiri
+ */
+.pkp_navigation_primary_row,
+.pkp_navigation_primary {
+    position: absolute !important;
+    left: 200px !important; /* NAVIGATION LEFT POSITION - Jarak dari logo */
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    z-index: 100 !important;
+}
+
+/**
+ * NAVIGATION LINKS SPACING
+ * - padding: Internal spacing di dalam link
+ * - margin: Spacing antar link
+ */
+.navbar-nav > li > a,
+.pkp_navigation_primary a {
+    padding: 0.65rem 1.2rem !important; /* NAVIGATION LINK PADDING - Vertical & horizontal */
+    margin: 0 0.15rem !important; /* NAVIGATION LINK SPACING - Spacing antar menu */
+    height: auto !important;
+    line-height: 1.5 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+/* ============================================================================
+   FIX 5: CAROUSEL IMAGE FIT - CONTAIN (NO ZOOM)
+   ============================================================================ */
+
+/**
+ * CAROUSEL IMAGE OBJECT FIT
+ * - object-fit: contain = Show full image without crop
+ * - object-fit: cover = Fill container, may crop image
+ * - background: Black letterbox untuk aspect ratio berbeda
+ */
+.carousel img,
+.carousel-item img,
+.homepage-image img,
+.carousel .item img,
+.carousel-inner .item img,
+.carousel-inner > .item > img {
+    width: 100% !important;
+    height: 550px !important; /* IMAGE HEIGHT - Harus sama dengan carousel height */
+    object-fit: contain !important; /* IMAGE FIT MODE - contain = no zoom/crop */
+    object-position: center center !important; /* IMAGE POSITION - Center horizontal & vertical */
+    display: block !important;
+    border-radius: 0 !important;
+    background: #000 !important; /* IMAGE LETTERBOX BACKGROUND - Black background */
+}
+
+/* ============================================================================
+   FIX 6: CAROUSEL CONTROLS POSITIONING
+   ============================================================================ */
+
+/**
+ * CAROUSEL PREV/NEXT BUTTONS
+ * - width/height: Ukuran button (ATUR DI SINI untuk ukuran button)
+ * - left/right: Posisi horizontal button dari edge
+ */
+.carousel-control {
+    width: 50px !important; /* CONTROL BUTTON SIZE - Width & height */
+    height: 50px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: rgba(0, 0, 0, 0.6) !important; /* CONTROL BACKGROUND - Semi-transparent black */
+    border-radius: 50% !important; /* CONTROL SHAPE - Circle */
+    opacity: 0.8 !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    z-index: 10 !important;
+}
+
+/**
+ * CAROUSEL LEFT BUTTON POSITION
+ * - left: Jarak dari kiri carousel (ATUR DI SINI)
+ */
+.carousel-control.left {
+    left: 30px !important; /* LEFT BUTTON POSITION - Jarak dari kiri */
+}
+
+/**
+ * CAROUSEL RIGHT BUTTON POSITION
+ * - right: Jarak dari kanan carousel (ATUR DI SINI)
+ */
+.carousel-control.right {
+    right: 30px !important; /* RIGHT BUTTON POSITION - Jarak dari kanan */
+}
+
+/**
+ * CAROUSEL BUTTON HOVER EFFECT
+ */
+.carousel-control:hover {
+    opacity: 1 !important;
+    background: rgba(0, 0, 0, 0.85) !important;
+    transform: translateY(-50%) scale(1.1) !important; /* HOVER SCALE - Enlarge saat hover */
+}
+
+/**
+ * CAROUSEL BUTTON ICON SIZE
+ */
+.carousel-control .glyphicon {
+    font-size: 2rem !important; /* CONTROL ICON SIZE - Ukuran icon */
+    color: #ffffff !important;
+    line-height: 50px !important;
+}
+
+/* ============================================================================
+   FIX 7: RESPONSIVE BREAKPOINTS
+   ============================================================================ */
+
+/**
+ * RESPONSIVE ADJUSTMENTS
+ * - Adjust carousel height untuk berbagai device
+ */
+
+/* Desktop Large (1600px+) */
+@media (max-width: 1600px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 500px !important; /* CAROUSEL HEIGHT - Desktop large */
+    }
+}
+
+/* Laptop (1200px) */
+@media (max-width: 1200px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 420px !important; /* CAROUSEL HEIGHT - Laptop */
+    }
+}
+
+/* Tablet (991px) */
+@media (max-width: 991px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 350px !important; /* CAROUSEL HEIGHT - Tablet */
+    }
+    
+    .carousel-control {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .carousel-control.left {
+        left: 15px !important;
+    }
+    
+    .carousel-control.right {
+        right: 15px !important;
+    }
+}
+
+/* Mobile (768px) */
+@media (max-width: 768px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 280px !important; /* CAROUSEL HEIGHT - Mobile */
+    }
+    
+    .carousel-control {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    
+    /* Logo smaller on mobile */
+    .pkp_site_name img {
+        max-height: 38px !important;
+    }
+    
+    /* Logo position adjustment for mobile */
+    .navbar-brand,
+    .pkp_site_name {
+        top: 12px !important; /* MOBILE LOGO POSITION - Center di mobile */
+    }
+}
+
+/* Mobile Small (575px) */
+@media (max-width: 575px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 220px !important; /* CAROUSEL HEIGHT - Small mobile */
+    }
+    
+    .carousel-control {
+        width: 30px !important;
+        height: 30px !important;
+    }
+}
+
+/* ============================================================================
+   END OF CRITICAL FIXES v1.7
+   ============================================================================ */

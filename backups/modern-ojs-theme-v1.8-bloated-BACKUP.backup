@@ -1,0 +1,3067 @@
+/**
+ * ============================================================================
+ * MODERN OJS THEME - CUSTOM ENHANCEMENT
+ * ============================================================================
+ * Tema modern dengan carousel besar, header compact, dan interaksi smooth
+ * Warna: Gradient biru-ungu modern dengan aksen orange
+ * 
+ * FITUR UTAMA:
+ * - Header compact dengan search bar di kanan
+ * - Carousel banner besar dan responsif
+ * - Animasi dan transisi smooth
+ * - Design modern dengan gradient dan shadow
+ * - Fully responsive
+ * ============================================================================
+ */
+
+/* ============================================================================
+   1. IMPORT FONTS & RESET
+   ============================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ============================================================================
+   2. CSS VARIABLES - PROFESSIONAL COLOR PALETTE (JURNAL)
+   ============================================================================ */
+:root {
+    /* Professional Dark Colors */
+    --primary-dark: #1a1a1a;        /* Almost black - main color */
+    --primary-charcoal: #2d3748;    /* Charcoal gray - secondary */
+    --accent-teal: #0d9488;         /* Teal - professional accent */
+    --accent-slate: #475569;        /* Slate blue - subtle accent */
+    
+    /* Neutral Colors */
+    --dark-gray: #374151;           /* Dark gray for text */
+    --medium-gray: #6b7280;         /* Medium gray */
+    --light-gray: #f3f4f6;          /* Light gray background */
+    --white: #ffffff;
+    --text-primary: #111827;        /* Very dark gray (almost black) */
+    --text-secondary: #4b5563;      /* Medium dark gray */
+    
+    /* Professional Gradients (Subtle) */
+    --gradient-primary: linear-gradient(135deg, #1a1a1a 0%, #2d3748 100%);
+    --gradient-accent: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+    --gradient-dark: linear-gradient(to bottom, #1f2937 0%, #111827 100%);
+    --gradient-light: linear-gradient(to bottom, #f9fafb 0%, #f3f4f6 100%);
+    
+    /* Shadows (Professional & Subtle) */
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+    --shadow-lg: 0 10px 20px rgba(0,0,0,0.1);
+    --shadow-xl: 0 20px 30px rgba(0,0,0,0.12);
+    --shadow-glow: 0 0 15px rgba(13, 148, 136, 0.2);
+    
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    
+    /* Border Radius */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+    
+    /* Transitions */
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================================
+   3. GLOBAL STYLES
+   ============================================================================ */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: linear-gradient(to bottom, #f8fafc 0%, #e2e8f0 100%);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+
+a {
+    text-decoration: none;
+    color: var(--primary-blue);
+    transition: all var(--transition-base);
+}
+
+a:hover {
+    color: var(--primary-purple);
+}
+
+/* ============================================================================
+   4. HEADER - COMPACT & MODERN
+   ============================================================================ */
+.navbar,
+.pkp_structure_head,
+header.navbar,
+.navbar-default {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    z-index: 9999;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    min-height: 65px !important;
+    max-height: 65px !important;
+    transition: all var(--transition-base);
+}
+
+/* Header saat scroll - lebih compact */
+.navbar.scrolled,
+header.navbar.scrolled {
+    min-height: 60px !important;
+    max-height: 60px !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Container header */
+.navbar .container,
+.navbar-header {
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 65px;
+    display: flex;
+    align-items: center;
+}
+
+/* ============================================================================
+   5. NAVIGATION MENU - INLINE WITH HEADER (FIXED POSITIONING)
+   ============================================================================ */
+
+/* Force navigation to be inside header - INLINE horizontal */
+.pkp_head_wrapper,
+.pkp_structure_head {
+    position: relative !important;
+    z-index: 1000 !important;
+    overflow: visible !important;
+}
+
+/* Navigation container - FORCE ABSOLUTE positioning untuk inline */
+.pkp_navigation_primary_row,
+.pkp_navigation_primary {
+    position: absolute !important;
+    left: 220px !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    height: 65px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    list-style: none !important;
+    background: transparent !important;
+    z-index: 100 !important;
+}
+
+/* Navigation ul - inline flex */
+.pkp_navigation_primary ul,
+.navbar-nav ul {
+    display: inline-flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 65px !important;
+    list-style: none !important;
+}
+
+/* Navigation items - full height untuk vertical center */
+.navbar-nav > li,
+.pkp_navigation_primary > ul > li,
+.pkp_navigation_primary li {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    height: 65px !important;
+    list-style: none !important;
+}
+
+/* Navigation links - sejajar dengan search dan account */
+.navbar-nav > li > a,
+.pkp_navigation_primary a,
+.pkp_navigation_primary ul li a {
+    color: var(--text-primary) !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    padding: 1rem 1.2rem !important;
+    margin: 0 0.15rem !important;
+    border-radius: var(--radius-md) !important;
+    transition: all var(--transition-base) !important;
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    height: 65px !important;
+    line-height: 65px !important;
+    background: transparent !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+}
+
+/* Hover effect - Solid teal background (prominent) */
+.navbar-nav > li > a:hover,
+.pkp_navigation_primary a:hover,
+.navbar-nav > li.active > a,
+.pkp_navigation_primary li.current > a {
+    color: var(--white) !important;
+    background: var(--accent-teal) !important;
+    transform: none !important;
+}
+
+/* Active menu - same as hover */
+.navbar-nav > li.active > a,
+.pkp_navigation_primary li.current > a {
+    color: var(--white) !important;
+    background: var(--accent-teal) !important;
+}
+
+
+/* Active menu underline - removed, using background instead */
+.navbar-nav > li.active > a,
+.pkp_navigation_primary li.current > a {
+    color: var(--white) !important;
+    background: var(--accent-teal) !important;
+}
+
+/* ============================================================================
+   6. SEARCH BAR - POSITIONED NEXT TO USER ACCOUNT
+   ============================================================================ */
+.navbar-form,
+.pkp_head_wrapper .search_form,
+.navbar-right form,
+form[role="search"] {
+    position: absolute !important;
+    right: 120px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.navbar-form .form-control,
+.search_form input[type="text"],
+.search_form input[type="search"],
+input.form-control[type="search"] {
+    width: 200px !important;
+    height: 38px !important;
+    padding: 0.4rem 2.5rem 0.4rem 1rem !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: var(--radius-full) !important;
+    background: #f8f9fa !important;
+    color: var(--text-primary) !important;
+    font-size: 0.85rem !important;
+    transition: all var(--transition-base) !important;
+    box-shadow: none !important;
+}
+
+.navbar-form .form-control:focus,
+.search_form input:focus {
+    width: 250px !important;
+    border-color: var(--accent-teal) !important;
+    box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.1) !important;
+    outline: none !important;
+    background: var(--white) !important;
+}
+
+/* Search button - Hanya ikon dengan glyphicon */
+.navbar-form button,
+.search_form button,
+button[type="submit"].btn,
+.pkp_search button {
+    position: absolute !important;
+    right: 5px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: var(--radius-full) !important;
+    background: var(--accent-teal) !important;
+    border: none !important;
+    color: var(--white) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all var(--transition-base) !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+}
+
+.navbar-form button:hover,
+.search_form button:hover,
+.pkp_search button:hover {
+    background: var(--primary-charcoal) !important;
+    transform: translateY(-50%) scale(1.08) !important;
+}
+
+/* Force show glyphicon, hide text */
+.navbar-form button *:not(.glyphicon),
+.search_form button *:not(.glyphicon),
+.pkp_search button *:not(.glyphicon) {
+    display: none !important;
+}
+
+/* Search icon - Force display glyphicon */
+.navbar-form button .glyphicon,
+.search_form button .glyphicon,
+.pkp_search button .glyphicon,
+.navbar-form button .glyphicon-search,
+.search_form button .glyphicon-search {
+    font-size: 12px !important;
+    display: inline-block !important;
+    line-height: 1 !important;
+    color: var(--white) !important;
+}
+
+/* Fallback: If no glyphicon, add content */
+.navbar-form button:empty::before,
+.search_form button:empty::before,
+.pkp_search button:empty::before {
+    content: "\e003" !important;
+    font-family: 'Glyphicons Halflings' !important;
+    font-size: 12px !important;
+    display: inline-block !important;
+}
+
+/* ============================================================================
+   7. USER ACCOUNT - POSITIONED AT TOP RIGHT (FIXED WITH HIGH SPECIFICITY)
+   ============================================================================ */
+.navbar-right,
+.pkp_navigation_user,
+.navbar-nav.navbar-right,
+.pkp_structure_head .navbar-right,
+.pkp_head_wrapper .pkp_navigation_user {
+    position: absolute !important;
+    right: 15px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    list-style: none !important;
+    z-index: 200 !important;
+}
+
+.navbar-right > li,
+.pkp_navigation_user > ul > li,
+.pkp_navigation_user li {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Account button - FORCE STYLING dengan specificity tinggi */
+.pkp_structure_head .navbar-right > li > a,
+.pkp_structure_head .pkp_navigation_user a,
+.pkp_head_wrapper .pkp_navigation_user ul li a,
+.navbar-right > li > a,
+.pkp_navigation_user a,
+.pkp_navigation_user ul li a,
+a.profile {
+    color: var(--white) !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    padding: 0.6rem 1.4rem !important;
+    border-radius: var(--radius-full) !important;
+    background: var(--primary-dark) !important;
+    background-color: var(--primary-dark) !important;
+    transition: all var(--transition-base) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    white-space: nowrap !important;
+    line-height: 1.2 !important;
+}
+
+/* Hover state - FORCE */
+.pkp_structure_head .navbar-right > li > a:hover,
+.pkp_structure_head .pkp_navigation_user a:hover,
+.navbar-right > li > a:hover,
+.pkp_navigation_user a:hover,
+a.profile:hover {
+    background: var(--accent-teal) !important;
+    background-color: var(--accent-teal) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 14px rgba(13, 148, 136, 0.4) !important;
+    border-color: var(--accent-teal) !important;
+    color: var(--white) !important;
+}
+
+/* User icon/avatar */
+.navbar-right .glyphicon,
+.pkp_navigation_user .glyphicon {
+    font-size: 14px !important;
+}
+
+/* Dropdown for logged-in user */
+.navbar-right .dropdown-menu {
+    right: 0 !important;
+    left: auto !important;
+    margin-top: 0.5rem !important;
+    border: none !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+/* ============================================================================
+   8. CAROUSEL BANNER - FULL WIDTH (DILUAR GRID BOOTSTRAP)
+   ============================================================================ */
+
+/* Adjust body padding for compact header */
+body {
+    padding-top: 65px !important;
+}
+
+/* Carousel container - Full width, outside grid (col-md-12) */
+.carousel,
+.homepage-image,
+.pkp_page_index .carousel,
+.slider-container,
+.pkp_page_index .homepage-image {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 450px !important;
+    margin: 0 !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    margin-bottom: 3rem !important;
+    padding: 0 !important;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Alternative: If carousel is in col-md-12, make it full width */
+.col-md-12 .carousel,
+.row > .col-md-12 > .carousel {
+    width: 100vw !important;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+}
+
+/* Carousel items */
+.carousel-inner,
+.carousel .item,
+.carousel-item {
+    width: 100% !important;
+    height: 450px !important;
+    position: relative;
+}
+
+/* Carousel images - Full width landscape dengan consistent sizing */
+.carousel img,
+.carousel-item img,
+.homepage-image img {
+    width: 100% !important;
+    height: 450px !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    display: block !important;
+    border-radius: 0 !important;
+}
+
+/* Force consistent image sizing - prevent zoom/distortion */
+.carousel .item img,
+.carousel-inner .item img,
+.carousel-inner > .item > img {
+    width: 100% !important;
+    height: 450px !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+}
+
+/* Regular homepage image (non-carousel) - normal size */
+img.img-responsive:not(.carousel img):not(.homepage-image img) {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 400px !important;
+    object-fit: cover !important;
+}
+
+/* Gradient overlay untuk carousel - Lebih subtle */
+.carousel-inner::after,
+.carousel .item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Carousel caption - Proportional untuk landscape */
+.carousel-caption {
+    position: absolute;
+    bottom: 40px !important;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    text-align: center;
+    width: 80%;
+    max-width: 800px;
+}
+
+.carousel-caption h1,
+.carousel-caption h2,
+.carousel-caption h3 {
+    color: var(--white) !important;
+    font-size: 2.2rem !important;
+    font-weight: 700 !important;
+    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.6);
+    margin-bottom: 0.8rem !important;
+    line-height: 1.2;
+}
+
+.carousel-caption p {
+    color: var(--white) !important;
+    font-size: 1.1rem !important;
+    font-weight: 400 !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    margin-bottom: 1rem !important;
+}
+
+/* Carousel controls - Simple and clean */
+.carousel-control {
+    width: 45px !important;
+    height: 45px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    border-radius: 50% !important;
+    opacity: 0.7 !important;
+    transition: all var(--transition-base) !important;
+}
+
+.carousel-control.left {
+    left: 20px !important;
+}
+
+.carousel-control.right {
+    right: 20px !important;
+}
+
+.carousel-control:hover {
+    opacity: 1 !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+}
+
+.carousel-control .glyphicon {
+    font-size: 1.5rem !important;
+    color: var(--white) !important;
+}
+
+/* Carousel indicators - Simple dots */
+.carousel-indicators {
+    bottom: 20px !important;
+    z-index: 3 !important;
+}
+
+.carousel-indicators li {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.6) !important;
+    border: 1px solid var(--white) !important;
+    margin: 0 5px !important;
+    transition: all var(--transition-base) !important;
+}
+
+.carousel-indicators .active {
+    width: 30px !important;
+    border-radius: 5px !important;
+    background: var(--white) !important;
+}
+
+/* ============================================================================
+   9. MAIN CONTENT - MODERN CARDS & LAYOUT
+   ============================================================================ */
+.container,
+.pkp_structure_main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-md);
+}
+
+/* Article cards */
+.article,
+.article-summary,
+.obj_article_summary {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    margin-bottom: var(--space-xl);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    border: 1px solid #e2e8f0;
+}
+
+.article:hover,
+.article-summary:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-blue);
+}
+
+/* Article title */
+.article h2,
+.article h3,
+.article-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    line-height: 1.3;
+    transition: color var(--transition-base);
+}
+
+.article h2:hover,
+.article h3:hover,
+.article-title:hover {
+    color: var(--primary-purple);
+}
+
+/* ============================================================================
+   10. BUTTONS - PROFESSIONAL STYLE
+   ============================================================================ */
+/* Buttons - Professional style */
+.btn,
+button:not(.navbar-form button):not(.search_form button),
+input[type="submit"],
+.pkp_button {
+    padding: 0.65rem 1.5rem !important;
+    border-radius: var(--radius-md) !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all var(--transition-base) !important;
+    letter-spacing: 0.3px;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+.btn-primary,
+.btn-success {
+    background: var(--primary-dark) !important;
+    color: var(--white) !important;
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+    background: var(--accent-teal) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+.btn-default {
+    background: var(--white) !important;
+    color: var(--text-primary) !important;
+    border: 2px solid #e2e8f0 !important;
+}
+
+.btn-default:hover {
+    background: var(--light-gray) !important;
+    transform: translateY(-3px) !important;
+}
+
+/* ============================================================================
+   11. FOOTER - MODERN GRADIENT
+   ============================================================================ */
+.pkp_structure_footer,
+footer {
+    background: var(--primary-dark) !important;
+    color: var(--white) !important;
+    padding: var(--space-2xl) var(--space-md) !important;
+    margin-top: var(--space-2xl);
+    text-align: center;
+    border-top: 3px solid var(--accent-teal);
+}
+
+.pkp_structure_footer a,
+footer a {
+    color: var(--white) !important;
+    font-weight: 500;
+    text-decoration: underline;
+    opacity: 0.9;
+    transition: opacity var(--transition-base);
+}
+
+.pkp_structure_footer a:hover,
+footer a:hover {
+    opacity: 1;
+}
+
+/* ============================================================================
+   12. ANIMATIONS & INTERACTIVE ELEMENTS
+   ============================================================================ */
+
+/* Smooth fade in animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.article,
+.article-summary {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Pulse animation for important elements */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Glow effect */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(103, 126, 234, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(103, 126, 234, 0.8);
+    }
+}
+
+/* Loading skeleton */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ============================================================================
+   13. RESPONSIVE DESIGN
+   ============================================================================ */
+
+/* Tablet */
+@media (max-width: 992px) {
+    /* Navigation position */
+    .pkp_navigation_primary_row {
+        left: 150px !important;
+    }
+    
+    /* Search bar adjustments */
+    .navbar-form,
+    .search_form {
+        right: 100px !important;
+    }
+    
+    .navbar-form .form-control,
+    .search_form input {
+        width: 180px !important;
+    }
+    
+    .navbar-form .form-control:focus,
+    .search_form input:focus {
+        width: 220px !important;
+    }
+    
+    /* Carousel height - maintain aspect ratio */
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 380px !important;
+    }
+    
+    .carousel-caption h1,
+    .carousel-caption h2,
+    .carousel-caption h3 {
+        font-size: 1.8rem !important;
+    }
+    
+    .carousel-caption p {
+        font-size: 1rem !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    /* Smaller header */
+    .navbar,
+    header.navbar {
+        min-height: 60px !important;
+    }
+    
+    body {
+        padding-top: 60px !important;
+    }
+    
+    /* Logo smaller */
+    .pkp_site_name img {
+        max-height: 40px !important;
+    }
+    
+    /* Navigation stack */
+    .pkp_navigation_primary_row {
+        position: relative !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        margin-top: 60px !important;
+    }
+    
+    /* Search and account stack */
+    .navbar-form,
+    .search_form,
+    .navbar-right {
+        position: relative !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+        margin: 0.5rem !important;
+    }
+    
+    /* Carousel height - smaller for mobile */
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 300px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+    }
+    
+    .carousel-caption {
+        bottom: 20px !important;
+    }
+    
+    .carousel-caption h1,
+    .carousel-caption h2,
+    .carousel-caption h3 {
+        font-size: 1.3rem !important;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem !important;
+    }
+    
+    /* Carousel controls smaller */
+    .carousel-control {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    
+    .carousel-control.left {
+        left: 10px !important;
+    }
+    
+    .carousel-control.right {
+        right: 10px !important;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .navbar-brand,
+    .pkp_site_name a {
+        font-size: 0.95rem !important;
+    }
+    
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 250px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    .carousel-caption h1,
+    .carousel-caption h2,
+    .carousel-caption h3 {
+        font-size: 1.1rem !important;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.85rem !important;
+        display: none; /* Hide description on very small screens */
+    }
+}
+
+/* ============================================================================
+   14. UTILITY CLASSES
+   ============================================================================ */
+.text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.shadow-glow {
+    box-shadow: var(--shadow-glow);
+}
+
+.card-hover {
+    transition: all var(--transition-base);
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+    transition: background-color var(--transition-base),
+                color var(--transition-base),
+                border-color var(--transition-base),
+                box-shadow var(--transition-base);
+}
+
+/* ============================================================================
+   15. CUSTOM SCROLLBAR
+   ============================================================================ */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-primary);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-accent);
+}
+
+/* ============================================================================
+   16. RESPONSIVE DESIGN - COMPREHENSIVE (MERGED FROM RESPONSIVE FILE)
+   ============================================================================ */
+
+/* LARGE DESKTOP (1920px+) */
+@media (min-width: 1920px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 550px !important;
+    }
+    
+    .container {
+        max-width: 1600px !important;
+    }
+    
+    .pkp_navigation_primary a {
+        font-size: 1rem !important;
+        padding: 1rem 1.4rem !important;
+    }
+}
+
+/* DESKTOP (1200px - 1919px) */
+@media (min-width: 1200px) and (max-width: 1919px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 480px !important;
+    }
+}
+
+/* LAPTOP (992px - 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 420px !important;
+    }
+    
+    .pkp_navigation_primary_row,
+    .pkp_navigation_primary {
+        left: 180px !important;
+    }
+    
+    .navbar-form,
+    .search_form {
+        right: 110px !important;
+    }
+    
+    .navbar-form .form-control,
+    .search_form input {
+        width: 180px !important;
+    }
+}
+
+/* TABLET LANDSCAPE (768px - 991px) */
+@media (max-width: 991px) and (min-width: 768px) {
+    .navbar,
+    .pkp_structure_head {
+        height: auto !important;
+        min-height: 65px !important;
+        padding: 0.5rem 0 !important;
+    }
+    
+    .pkp_site_name img {
+        max-height: 36px !important;
+    }
+    
+    .navbar-brand,
+    .pkp_site_name a {
+        font-size: 0.9rem !important;
+    }
+    
+    .pkp_navigation_primary_row,
+    .pkp_navigation_primary {
+        left: 160px !important;
+        height: 65px !important;
+    }
+    
+    .navbar-nav > li > a,
+    .pkp_navigation_primary a {
+        font-size: 0.85rem !important;
+        padding: 0.5rem 0.8rem !important;
+    }
+    
+    .navbar-form,
+    .search_form {
+        right: 90px !important;
+    }
+    
+    .navbar-form .form-control,
+    .search_form input {
+        width: 140px !important;
+        font-size: 0.85rem !important;
+        height: 34px !important;
+    }
+    
+    .navbar-form button,
+    .search_form button {
+        width: 26px !important;
+        height: 26px !important;
+    }
+    
+    .navbar-form button .glyphicon {
+        font-size: 11px !important;
+    }
+    
+    .navbar-right > li > a,
+    .pkp_navigation_user a {
+        font-size: 0.8rem !important;
+        padding: 0.45rem 1rem !important;
+    }
+    
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 380px !important;
+    }
+}
+
+/* TABLET PORTRAIT (576px - 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+    .navbar,
+    .pkp_structure_head {
+        height: auto !important;
+        min-height: 55px !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .pkp_site_name img {
+        max-height: 32px !important;
+    }
+    
+    .navbar-brand,
+    .pkp_site_name a {
+        font-size: 0.85rem !important;
+    }
+    
+    .pkp_navigation_primary_row,
+    .pkp_navigation_primary {
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 0.5rem 0 !important;
+        justify-content: center !important;
+        order: 3 !important;
+    }
+    
+    .pkp_navigation_primary ul {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        height: auto !important;
+    }
+    
+    .navbar-nav > li > a,
+    .pkp_navigation_primary a {
+        font-size: 0.8rem !important;
+        padding: 0.4rem 0.7rem !important;
+        height: auto !important;
+        line-height: 1.2 !important;
+    }
+    
+    .navbar-form,
+    .search_form {
+        right: 70px !important;
+        top: 12px !important;
+        order: 2 !important;
+    }
+    
+    .navbar-form .form-control,
+    .search_form input {
+        width: 120px !important;
+        font-size: 0.75rem !important;
+        height: 30px !important;
+    }
+    
+    .navbar-form button,
+    .search_form button {
+        width: 22px !important;
+        height: 22px !important;
+    }
+    
+    .navbar-right {
+        right: 8px !important;
+        top: 12px !important;
+        order: 1 !important;
+    }
+    
+    .navbar-right > li > a,
+    .pkp_navigation_user a {
+        font-size: 0.7rem !important;
+        padding: 0.35rem 0.75rem !important;
+    }
+    
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 300px !important;
+    }
+    
+    .carousel-caption h1,
+    .carousel-caption h2 {
+        font-size: 1.2rem !important;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.85rem !important;
+    }
+    
+    body {
+        padding-top: 100px !important;
+    }
+}
+
+/* MOBILE (320px - 575px) */
+@media (max-width: 575px) {
+    .navbar,
+    .pkp_structure_head {
+        min-height: 50px !important;
+        padding: 0.5rem 0 !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .pkp_site_name img {
+        max-height: 28px !important;
+    }
+    
+    .navbar-brand,
+    .pkp_site_name a {
+        font-size: 0.8rem !important;
+        padding: 0.3rem 0.5rem !important;
+    }
+    
+    .pkp_navigation_primary_row,
+    .pkp_navigation_primary {
+        width: 100% !important;
+        position: relative !important;
+        padding: 0.4rem 0 !important;
+        order: 3 !important;
+    }
+    
+    .navbar-nav > li > a,
+    .pkp_navigation_primary a {
+        font-size: 0.75rem !important;
+        padding: 0.35rem 0.6rem !important;
+        margin: 0 0.1rem !important;
+        height: auto !important;
+        line-height: 1.2 !important;
+    }
+    
+    .navbar-form,
+    .search_form {
+        right: 60px !important;
+        top: 10px !important;
+    }
+    
+    .navbar-form .form-control,
+    .search_form input {
+        width: 100px !important;
+        font-size: 0.7rem !important;
+        height: 28px !important;
+        padding: 0.3rem 0.5rem !important;
+    }
+    
+    .navbar-form button,
+    .search_form button {
+        width: 20px !important;
+        height: 20px !important;
+        right: 3px !important;
+    }
+    
+    .navbar-form button .glyphicon {
+        font-size: 9px !important;
+    }
+    
+    .navbar-right {
+        right: 6px !important;
+        top: 10px !important;
+    }
+    
+    .navbar-right > li > a,
+    .pkp_navigation_user a {
+        font-size: 0.65rem !important;
+        padding: 0.3rem 0.6rem !important;
+    }
+    
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 250px !important;
+    }
+    
+    .carousel-caption {
+        bottom: 15px !important;
+        padding: 10px !important;
+    }
+    
+    .carousel-caption h1,
+    .carousel-caption h2 {
+        font-size: 1rem !important;
+    }
+    
+    .carousel-caption p {
+        display: none !important;
+    }
+    
+    .carousel-control {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 18px !important;
+    }
+    
+    .container {
+        padding: 0 10px !important;
+    }
+    
+    body {
+        padding-top: 90px !important;
+    }
+    
+    .btn:not(.navbar-form button):not(.search_form button),
+    button:not(.navbar-form button):not(.search_form button):not(.carousel-control) {
+        width: 100% !important;
+        padding: 0.6rem 1rem !important;
+        font-size: 0.85rem !important;
+    }
+}
+
+/* EXTRA SMALL (320px and below) */
+@media (max-width: 374px) {
+    .pkp_site_name img {
+        max-height: 24px !important;
+    }
+    
+    .navbar-brand,
+    .pkp_site_name a {
+        font-size: 0.75rem !important;
+    }
+    
+    .navbar-nav > li > a,
+    .pkp_navigation_primary a {
+        font-size: 0.7rem !important;
+        padding: 0.3rem 0.5rem !important;
+    }
+    
+    .navbar-form .form-control {
+        width: 80px !important;
+        font-size: 0.65rem !important;
+    }
+    
+    .navbar-right > li > a {
+        font-size: 0.6rem !important;
+        padding: 0.25rem 0.5rem !important;
+    }
+    
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 220px !important;
+    }
+    
+    body {
+        padding-top: 85px !important;
+    }
+}
+
+/* PRINT STYLES */
+@media print {
+    .navbar,
+    .pkp_structure_head,
+    .carousel,
+    .navbar-form,
+    .navbar-right,
+    .pkp_navigation_primary {
+        display: none !important;
+    }
+    
+    body {
+        padding-top: 0 !important;
+    }
+    
+    .container {
+        max-width: 100% !important;
+    }
+}
+
+/* ============================================================================
+   END OF MODERN OJS THEME
+   ============================================================================ */
+/* ============================================================================
+   MODERN OJS THEME v1.5 - CRITICAL FIXES
+   Add this AFTER uploading modern-ojs-theme.css OR paste at bottom of main CSS
+   ============================================================================ */
+
+/* ===========================================================================
+   FIX 1: NAVIGATION POSITIONING - INLINE WITH HEADER
+   =========================================================================== */
+.pkp_navigation_primary_row,
+.pkp_navigation_primary,
+nav.pkp_navigation_primary {
+    position: absolute !important;
+    left: 200px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    height: auto !important;
+    display: inline-flex !important;
+    z-index: 100 !important;
+}
+
+.pkp_navigation_primary ul {
+    display: inline-flex !important;
+    height: auto !important;
+}
+
+.pkp_navigation_primary li {
+    display: inline-block !important;
+}
+
+.pkp_navigation_primary a {
+    display: inline-block !important;
+    padding: 0.7rem 1.1rem !important;
+    height: auto !important;
+    line-height: normal !important;
+}
+
+/* ===========================================================================
+   FIX 2: DROPDOWN MENU - HIDE BY DEFAULT (FIX ABOUT KELUAR OTOMATIS)
+   =========================================================================== */
+.pkp_navigation_primary ul li ul,
+.pkp_navigation_primary li .dropdown-menu,
+.navbar-nav > li > ul,
+.navbar-nav .dropdown-menu {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    background: white !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    min-width: 200px !important;
+    padding: 0.5rem 0 !important;
+    margin-top: 0.5rem !important;
+    z-index: 1000 !important;
+}
+
+/* Show dropdown ONLY on hover */
+.pkp_navigation_primary li:hover > ul,
+.pkp_navigation_primary li:hover > .dropdown-menu,
+.navbar-nav > li:hover > ul {
+    display: block !important;
+}
+
+/* Dropdown items styling */
+.pkp_navigation_primary ul li ul li {
+    display: block !important;
+    width: 100% !important;
+}
+
+.pkp_navigation_primary ul li ul li a {
+    display: block !important;
+    padding: 0.6rem 1.2rem !important;
+    color: #111827 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+}
+
+.pkp_navigation_primary ul li ul li a:hover {
+    background: #f3f4f6 !important;
+    color: #0d9488 !important;
+}
+
+/* ===========================================================================
+   FIX 3: ACCOUNT BUTTON - ULTRA FORCE CUSTOM STYLING
+   =========================================================================== */
+body .navbar-right > li > a,
+body .pkp_navigation_user a,
+body #navigationUser a,
+body header .navbar-right a {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+    color: white !important;
+    padding: 0.65rem 1.5rem !important;
+    border-radius: 50px !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25) !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    transition: all 0.3s ease !important;
+}
+
+body .navbar-right > li > a:hover,
+body .pkp_navigation_user a:hover,
+body #navigationUser a:hover,
+body header .navbar-right a:hover {
+    background: #0d9488 !important;
+    background-color: #0d9488 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 16px rgba(13,148,136,0.5) !important;
+    border-color: #0d9488 !important;
+}
+
+/* ===========================================================================
+   FIX 4: CAROUSEL - RESPONSIVE SIZE & CENTER ALIGNMENT
+   =========================================================================== */
+/* Default carousel - responsive max-width */
+.carousel,
+.homepage-image,
+.pkp_page_index .carousel {
+    width: 100% !important;
+    max-width: 1400px !important;
+    height: 420px !important;
+    margin: 0 auto 2rem auto !important;
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+}
+
+/* Carousel items */
+.carousel-inner,
+.carousel .item {
+    width: 100% !important;
+    height: 420px !important;
+}
+
+/* Carousel images - consistent sizing */
+.carousel img,
+.carousel-item img {
+    width: 100% !important;
+    height: 420px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* Carousel controls - ensure visible */
+.carousel-control {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 45px !important;
+    height: 45px !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    border-radius: 50% !important;
+    opacity: 0.8 !important;
+    transition: all 0.3s ease !important;
+}
+
+.carousel-control.left {
+    left: 20px !important;
+}
+
+.carousel-control.right {
+    right: 20px !important;
+}
+
+.carousel-control:hover {
+    opacity: 1 !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Carousel indicators */
+.carousel-indicators {
+    bottom: 20px !important;
+}
+
+.carousel-indicators li {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+    border: 2px solid white !important;
+    margin: 0 5px !important;
+}
+
+.carousel-indicators li.active {
+    background: white !important;
+}
+
+/* ===========================================================================
+   FIX 5: RESPONSIVE CAROUSEL SIZES
+   =========================================================================== */
+@media (max-width: 1600px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        max-width: 1200px !important;
+        height: 380px !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        max-width: 100% !important;
+        height: 350px !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 300px !important;
+    }
+    
+    .carousel-control {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .carousel-control.left {
+        left: 15px !important;
+    }
+    
+    .carousel-control.right {
+        right: 15px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 250px !important;
+    }
+    
+    .carousel-control {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    
+    .carousel-control.left {
+        left: 10px !important;
+    }
+    
+    .carousel-control.right {
+        right: 10px !important;
+    }
+}
+
+@media (max-width: 575px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 220px !important;
+    }
+    
+    .carousel-control {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 18px !important;
+    }
+    
+    .carousel-indicators li {
+        width: 8px !important;
+        height: 8px !important;
+    }
+}
+
+/* ===========================================================================
+   END OF CRITICAL FIXES
+   =========================================================================== */
+/**
+ * ============================================================================
+ * CRITICAL FIXES v1.6 - MEGA CAROUSEL & NAVIGATION FIX
+ * ============================================================================
+ * 1. Carousel nyaris full-width seperti Riptek (keluar dari container Bootstrap)
+ * 2. Navigation naik masuk header sepenuhnya
+ * 3. About dropdown stay saat diklik (tidak hilang)
+ * 4. About dropdown background pas (tidak overflow)
+ * 5. Account dropdown tidak pakai background box
+ * 6. Gambar carousel object-fit: contain (tidak zoom/crop)
+ * ============================================================================
+ */
+
+/* ============================================================================
+   FIX 1: NAVIGATION - NAIK KE HEADER SEPENUHNYA
+   ============================================================================ */
+
+/* Navigation positioning - Naik sampai sepenuhnya masuk header */
+.pkp_navigation_primary_row,
+.pkp_navigation_primary {
+    position: absolute !important;
+    left: 200px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    z-index: 100 !important;
+}
+
+/* Navigation items - adjust height untuk pas header */
+.navbar-nav > li,
+.pkp_navigation_primary > ul > li,
+.pkp_navigation_primary li {
+    height: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    position: relative !important;
+}
+
+/* Navigation links - height auto untuk flex center */
+.navbar-nav > li > a,
+.pkp_navigation_primary a {
+    padding: 0.65rem 1.2rem !important;
+    height: auto !important;
+    line-height: 1.5 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+/* ============================================================================
+   FIX 2: ABOUT DROPDOWN - STAY SAAT DIKLIK (TIDAK HILANG)
+   ============================================================================ */
+
+/* Dropdown menu - Hidden by default */
+.pkp_navigation_primary ul li ul,
+.navbar-nav li ul,
+.dropdown-menu {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    background: var(--white) !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    min-width: 220px !important;
+    padding: 0.5rem 0 !important;
+    margin-top: 0.5rem !important;
+    z-index: 9999 !important;
+    list-style: none !important;
+}
+
+/* Show dropdown on hover OR when has .open/.show class (for click) */
+.pkp_navigation_primary li:hover > ul,
+.pkp_navigation_primary li.open > ul,
+.pkp_navigation_primary li.show > ul,
+.navbar-nav li:hover > ul,
+.navbar-nav li.open > ul,
+.navbar-nav li.show > ul,
+.dropdown.open .dropdown-menu,
+.dropdown.show .dropdown-menu {
+    display: block !important;
+}
+
+/* Dropdown items styling */
+.pkp_navigation_primary ul li ul li,
+.navbar-nav li ul li,
+.dropdown-menu li {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Dropdown links */
+.pkp_navigation_primary ul li ul li a,
+.navbar-nav li ul li a,
+.dropdown-menu li a {
+    display: block !important;
+    width: 100% !important;
+    padding: 0.65rem 1.2rem !important;
+    color: var(--text-primary) !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    height: auto !important;
+    line-height: 1.5 !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+    transition: all var(--transition-fast) !important;
+}
+
+/* Dropdown links hover */
+.pkp_navigation_primary ul li ul li a:hover,
+.navbar-nav li ul li a:hover,
+.dropdown-menu li a:hover {
+    background: var(--light-gray) !important;
+    color: var(--accent-teal) !important;
+    padding-left: 1.5rem !important;
+}
+
+/* Force dropdown to stay open on click (JavaScript fallback via CSS) */
+.pkp_navigation_primary li.dropdown-clicked > ul,
+.navbar-nav li.dropdown-clicked > ul {
+    display: block !important;
+}
+
+/* ============================================================================
+   FIX 3: ACCOUNT DROPDOWN - NO BACKGROUND BOX
+   ============================================================================ */
+
+/* Account dropdown - Clean tanpa background box heavy */
+.navbar-right .dropdown-menu,
+#navigationUser .dropdown-menu,
+.pkp_navigation_user .dropdown-menu {
+    background: var(--white) !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12) !important;
+    padding: 0.5rem 0 !important;
+    min-width: 180px !important;
+}
+
+/* Account dropdown items - Simple clean styling */
+.navbar-right .dropdown-menu li a,
+#navigationUser .dropdown-menu li a,
+.pkp_navigation_user .dropdown-menu li a {
+    display: block !important;
+    padding: 0.6rem 1.2rem !important;
+    color: var(--text-primary) !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    transition: all var(--transition-fast) !important;
+}
+
+/* Account dropdown hover - Subtle background saja */
+.navbar-right .dropdown-menu li a:hover,
+#navigationUser .dropdown-menu li a:hover,
+.pkp_navigation_user .dropdown-menu li a:hover {
+    background: var(--light-gray) !important;
+    color: var(--accent-teal) !important;
+}
+
+/* ============================================================================
+   FIX 4: MEGA CAROUSEL - NYARIS FULL WIDTH (BREAK OUT BOOTSTRAP)
+   ============================================================================ */
+
+/* Container carousel - Break out dari Bootstrap grid */
+.homepage-image,
+.carousel,
+.carousel-inner,
+body .homepage-image,
+body .carousel {
+    width: 100vw !important;
+    max-width: none !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    height: 550px !important;
+    padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Force full-width untuk carousel wrapper */
+.carousel-wrapper,
+.homepage-image-wrapper {
+    width: 100vw !important;
+    max-width: none !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    padding: 0 !important;
+}
+
+/* Carousel items full width */
+.carousel .item,
+.carousel-inner .item,
+.carousel-inner > .item {
+    width: 100% !important;
+    height: 550px !important;
+    position: relative !important;
+}
+
+/* ============================================================================
+   FIX 5: GAMBAR CAROUSEL - OBJECT-FIT CONTAIN (TIDAK ZOOM)
+   ============================================================================ */
+
+/* Carousel images - CONTAIN untuk tidak zoom/crop */
+.carousel img,
+.carousel-item img,
+.homepage-image img,
+.carousel .item img,
+.carousel-inner .item img,
+.carousel-inner > .item > img {
+    width: 100% !important;
+    height: 550px !important;
+    object-fit: contain !important; /* CHANGED dari cover ke contain */
+    object-position: center center !important;
+    display: block !important;
+    border-radius: 0 !important;
+    background: #000 !important; /* Dark background untuk letterbox */
+}
+
+/* Override any existing cover rules */
+body .carousel img,
+body .homepage-image img {
+    object-fit: contain !important;
+    background: #000 !important;
+}
+
+/* ============================================================================
+   FIX 6: CAROUSEL CONTROLS - POSITIONED UNTUK MEGA CAROUSEL
+   ============================================================================ */
+
+/* Carousel controls - Positioned untuk full-width carousel */
+.carousel-control {
+    width: 50px !important;
+    height: 50px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+    border-radius: 50% !important;
+    opacity: 0.8 !important;
+    transition: all var(--transition-base) !important;
+    z-index: 10 !important;
+}
+
+.carousel-control.left {
+    left: 30px !important;
+}
+
+.carousel-control.right {
+    right: 30px !important;
+}
+
+.carousel-control:hover {
+    opacity: 1 !important;
+    background: rgba(0, 0, 0, 0.85) !important;
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+.carousel-control .glyphicon {
+    font-size: 2rem !important;
+    color: var(--white) !important;
+    line-height: 50px !important;
+}
+
+/* ============================================================================
+   FIX 7: CAROUSEL CAPTION - ADJUSTED UNTUK MEGA SIZE
+   ============================================================================ */
+
+.carousel-caption {
+    position: absolute !important;
+    bottom: 50px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 5 !important;
+    text-align: center !important;
+    width: 90% !important;
+    max-width: 1000px !important;
+}
+
+.carousel-caption h1,
+.carousel-caption h2,
+.carousel-caption h3 {
+    color: var(--white) !important;
+    font-size: 2.8rem !important;
+    font-weight: 700 !important;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8) !important;
+    margin-bottom: 1rem !important;
+}
+
+.carousel-caption p {
+    color: var(--white) !important;
+    font-size: 1.3rem !important;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* ============================================================================
+   FIX 8: RESPONSIVE - MEGA CAROUSEL UNTUK MOBILE
+   ============================================================================ */
+
+@media (max-width: 1600px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .homepage-image {
+        height: 500px !important;
+    }
+    
+    .carousel img {
+        height: 500px !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .homepage-image {
+        height: 420px !important;
+    }
+    
+    .carousel img {
+        height: 420px !important;
+    }
+    
+    .carousel-caption h1,
+    .carousel-caption h2,
+    .carousel-caption h3 {
+        font-size: 2.2rem !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .homepage-image {
+        height: 350px !important;
+    }
+    
+    .carousel img {
+        height: 350px !important;
+    }
+    
+    .carousel-control {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .carousel-control.left {
+        left: 15px !important;
+    }
+    
+    .carousel-control.right {
+        right: 15px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .homepage-image {
+        height: 280px !important;
+    }
+    
+    .carousel img {
+        height: 280px !important;
+    }
+    
+    .carousel-caption h1,
+    .carousel-caption h2,
+    .carousel-caption h3 {
+        font-size: 1.6rem !important;
+    }
+    
+    .carousel-caption p {
+        font-size: 1rem !important;
+    }
+}
+
+@media (max-width: 575px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .homepage-image {
+        height: 220px !important;
+    }
+    
+    .carousel img {
+        height: 220px !important;
+    }
+    
+    .carousel-control {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    
+    .carousel-caption {
+        bottom: 20px !important;
+    }
+    
+    .carousel-caption h1,
+    .carousel-caption h2,
+    .carousel-caption h3 {
+        font-size: 1.2rem !important;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.85rem !important;
+    }
+}
+
+/* ============================================================================
+   FIX 9: GRADIENT OVERLAY - UNTUK MEGA CAROUSEL
+   ============================================================================ */
+
+/* Gradient overlay - Subtle untuk readability caption */
+.carousel-inner::after,
+.carousel .item::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 50% !important;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%) !important;
+    pointer-events: none !important;
+    z-index: 2 !important;
+}
+
+/* ============================================================================
+   END OF CRITICAL FIXES v1.6
+   ============================================================================ */
+/**
+ * ============================================================================
+ * CRITICAL FIXES v1.7 - FINAL ADJUSTMENTS
+ * ============================================================================
+ * 1. Carousel dipanjangin ke kanan (margin adjustment)
+ * 2. Logo dinaikkan lebih ke atas (vertical positioning)
+ * 3. About dropdown background fix (remove black box)
+ * 4. Added detailed comments untuk setiap section
+ * ============================================================================
+ */
+
+/* ============================================================================
+   FIX 1: LOGO POSITIONING - NAIK LEBIH KE ATAS
+   ============================================================================ */
+
+/**
+ * LOGO VERTICAL POSITIONING
+ * - Mengatur posisi logo secara vertikal di header
+ * - top: 8px = Jarak dari atas header (ATUR DI SINI untuk naik/turun logo)
+ * - Semakin kecil nilai top, semakin ke atas logo
+ * - Default: 12px, Fixed: 8px (lebih ke atas)
+ */
+.navbar-brand,
+.pkp_site_name,
+.pkp_site_name a {
+    position: absolute !important;
+    left: 15px !important;
+    top: 8px !important; /* LOGO HEIGHT POSITION - Kurangi nilai untuk naikkan logo */
+    z-index: 150 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: flex-start !important; /* Align dari atas, bukan center */
+}
+
+/**
+ * LOGO IMAGE SIZE
+ * - max-height: Tinggi maksimal logo (ATUR DI SINI untuk ukuran logo)
+ * - Default: 42px, bisa diubah sesuai kebutuhan
+ */
+.navbar-brand img,
+.pkp_site_name img,
+.pkp_site_name a img {
+    max-height: 42px !important; /* LOGO SIZE - Tinggi logo dalam pixel */
+    width: auto !important;
+    height: auto !important;
+    display: block !important;
+    object-fit: contain !important;
+}
+
+/* ============================================================================
+   FIX 2: MEGA CAROUSEL - EXTEND KE KANAN (WIDER)
+   ============================================================================ */
+
+/**
+ * CAROUSEL WIDTH & HORIZONTAL POSITIONING
+ * - width: 100vw = Full viewport width
+ * - margin-left/right: calc() = Formula untuk break out dari container
+ * - Formula: calc(-50vw + 50% + OFFSET)
+ * - OFFSET POSITIF = Geser ke kanan
+ * - OFFSET NEGATIF = Geser ke kiri
+ * - Adjust OFFSET di bawah untuk geser carousel
+ */
+.homepage-image,
+.carousel,
+.carousel-inner,
+body .homepage-image,
+body .carousel {
+    width: 100vw !important; /* CAROUSEL WIDTH - Full viewport width */
+    max-width: none !important;
+    /* CAROUSEL HORIZONTAL POSITION - Adjust nilai setelah + untuk geser kanan/kiri */
+    margin-left: calc(-50vw + 50% + 15px) !important; /* +15px = Geser 15px ke kanan */
+    margin-right: calc(-50vw + 50% - 15px) !important; /* -15px = Kompensasi geser kanan */
+    height: 550px !important; /* CAROUSEL HEIGHT - Tinggi carousel desktop */
+    padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/**
+ * CAROUSEL WRAPPER WIDTH
+ * - Same formula as carousel untuk consistency
+ */
+.carousel-wrapper,
+.homepage-image-wrapper {
+    width: 100vw !important;
+    max-width: none !important;
+    margin-left: calc(-50vw + 50% + 15px) !important; /* WRAPPER LEFT MARGIN - Sama dengan carousel */
+    margin-right: calc(-50vw + 50% - 15px) !important; /* WRAPPER RIGHT MARGIN - Kompensasi */
+    padding: 0 !important;
+}
+
+/**
+ * CAROUSEL ITEM HEIGHT
+ * - height: Tinggi setiap carousel item (sama dengan container)
+ */
+.carousel .item,
+.carousel-inner .item,
+.carousel-inner > .item {
+    width: 100% !important;
+    height: 550px !important; /* CAROUSEL ITEM HEIGHT - Harus sama dengan carousel height */
+    position: relative !important;
+}
+
+/* ============================================================================
+   FIX 3: ABOUT DROPDOWN BACKGROUND - REMOVE BLACK BOX
+   ============================================================================ */
+
+/**
+ * DROPDOWN MENU BACKGROUND
+ * - background: Warna background dropdown (white = putih bersih)
+ * - border: Border untuk memisahkan dropdown dari background
+ * - box-shadow: Shadow untuk depth effect
+ * - border-radius: Rounded corners
+ */
+.pkp_navigation_primary ul li ul,
+.navbar-nav li ul,
+.dropdown-menu {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important; /* DROPDOWN TOP POSITION - Jarak dari parent menu */
+    left: 0 !important;
+    background: #ffffff !important; /* DROPDOWN BACKGROUND COLOR - Putih bersih */
+    border: 1px solid #e5e7eb !important; /* DROPDOWN BORDER - Subtle gray border */
+    border-radius: 10px !important; /* DROPDOWN BORDER RADIUS - Rounded corners */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12) !important; /* DROPDOWN SHADOW - Soft shadow */
+    min-width: 220px !important; /* DROPDOWN MIN WIDTH - Lebar minimal dropdown */
+    padding: 0.5rem 0 !important; /* DROPDOWN PADDING - Vertical padding */
+    margin-top: 0.5rem !important; /* DROPDOWN TOP MARGIN - Spacing dari parent */
+    z-index: 9999 !important;
+    list-style: none !important;
+}
+
+/**
+ * REMOVE BLACK/DARK BACKGROUND OVERLAY
+ * - Ensure no dark background behind dropdown
+ */
+.pkp_navigation_primary ul li ul::before,
+.navbar-nav li ul::before,
+.dropdown-menu::before,
+.pkp_navigation_primary ul li ul::after,
+.navbar-nav li ul::after,
+.dropdown-menu::after {
+    display: none !important; /* Remove any pseudo-elements creating dark background */
+}
+
+/**
+ * DROPDOWN ITEMS STYLING
+ * - Clean white background for each item
+ */
+.pkp_navigation_primary ul li ul li,
+.navbar-nav li ul li,
+.dropdown-menu li {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important; /* DROPDOWN ITEM BACKGROUND - Transparent by default */
+}
+
+/**
+ * DROPDOWN LINK STYLING
+ * - Styling untuk link di dalam dropdown
+ */
+.pkp_navigation_primary ul li ul li a,
+.navbar-nav li ul li a,
+.dropdown-menu li a {
+    display: block !important;
+    width: 100% !important;
+    padding: 0.65rem 1.2rem !important; /* DROPDOWN LINK PADDING - Vertical & horizontal */
+    color: #111827 !important; /* DROPDOWN LINK COLOR - Dark gray text */
+    background: transparent !important;
+    border-radius: 0 !important;
+    height: auto !important;
+    line-height: 1.5 !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    text-decoration: none !important;
+}
+
+/**
+ * DROPDOWN LINK HOVER EFFECT
+ * - background: Light gray saat hover
+ * - color: Teal accent saat hover
+ */
+.pkp_navigation_primary ul li ul li a:hover,
+.navbar-nav li ul li a:hover,
+.dropdown-menu li a:hover {
+    background: #f3f4f6 !important; /* DROPDOWN HOVER BACKGROUND - Light gray */
+    color: #0d9488 !important; /* DROPDOWN HOVER COLOR - Teal accent */
+    padding-left: 1.5rem !important; /* DROPDOWN HOVER INDENT - Slide right effect */
+}
+
+/**
+ * SHOW DROPDOWN ON HOVER OR OPEN CLASS
+ * - .open class = Added by JavaScript when clicked
+ * - :hover = Show on mouse hover
+ */
+.pkp_navigation_primary li:hover > ul,
+.pkp_navigation_primary li.open > ul,
+.pkp_navigation_primary li.show > ul,
+.navbar-nav li:hover > ul,
+.navbar-nav li.open > ul,
+.navbar-nav li.show > ul,
+.dropdown.open .dropdown-menu,
+.dropdown.show .dropdown-menu {
+    display: block !important; /* DROPDOWN DISPLAY - Show dropdown */
+}
+
+/* ============================================================================
+   FIX 4: NAVIGATION POSITIONING - FINE TUNING
+   ============================================================================ */
+
+/**
+ * NAVIGATION HORIZONTAL POSITIONING
+ * - left: Jarak dari kiri (ATUR DI SINI untuk geser nav kanan/kiri)
+ * - Default: 200px dari kiri
+ * - Increase untuk geser ke kanan, decrease untuk ke kiri
+ */
+.pkp_navigation_primary_row,
+.pkp_navigation_primary {
+    position: absolute !important;
+    left: 200px !important; /* NAVIGATION LEFT POSITION - Jarak dari logo */
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    z-index: 100 !important;
+}
+
+/**
+ * NAVIGATION LINKS SPACING
+ * - padding: Internal spacing di dalam link
+ * - margin: Spacing antar link
+ */
+.navbar-nav > li > a,
+.pkp_navigation_primary a {
+    padding: 0.65rem 1.2rem !important; /* NAVIGATION LINK PADDING - Vertical & horizontal */
+    margin: 0 0.15rem !important; /* NAVIGATION LINK SPACING - Spacing antar menu */
+    height: auto !important;
+    line-height: 1.5 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+/* ============================================================================
+   FIX 5: CAROUSEL IMAGE FIT - CONTAIN (NO ZOOM)
+   ============================================================================ */
+
+/**
+ * CAROUSEL IMAGE OBJECT FIT
+ * - object-fit: contain = Show full image without crop
+ * - object-fit: cover = Fill container, may crop image
+ * - background: Black letterbox untuk aspect ratio berbeda
+ */
+.carousel img,
+.carousel-item img,
+.homepage-image img,
+.carousel .item img,
+.carousel-inner .item img,
+.carousel-inner > .item > img {
+    width: 100% !important;
+    height: 550px !important; /* IMAGE HEIGHT - Harus sama dengan carousel height */
+    object-fit: contain !important; /* IMAGE FIT MODE - contain = no zoom/crop */
+    object-position: center center !important; /* IMAGE POSITION - Center horizontal & vertical */
+    display: block !important;
+    border-radius: 0 !important;
+    background: #000 !important; /* IMAGE LETTERBOX BACKGROUND - Black background */
+}
+
+/* ============================================================================
+   FIX 6: CAROUSEL CONTROLS POSITIONING
+   ============================================================================ */
+
+/**
+ * CAROUSEL PREV/NEXT BUTTONS
+ * - width/height: Ukuran button (ATUR DI SINI untuk ukuran button)
+ * - left/right: Posisi horizontal button dari edge
+ */
+.carousel-control {
+    width: 50px !important; /* CONTROL BUTTON SIZE - Width & height */
+    height: 50px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: rgba(0, 0, 0, 0.6) !important; /* CONTROL BACKGROUND - Semi-transparent black */
+    border-radius: 50% !important; /* CONTROL SHAPE - Circle */
+    opacity: 0.8 !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    z-index: 10 !important;
+}
+
+/**
+ * CAROUSEL LEFT BUTTON POSITION
+ * - left: Jarak dari kiri carousel (ATUR DI SINI)
+ */
+.carousel-control.left {
+    left: 30px !important; /* LEFT BUTTON POSITION - Jarak dari kiri */
+}
+
+/**
+ * CAROUSEL RIGHT BUTTON POSITION
+ * - right: Jarak dari kanan carousel (ATUR DI SINI)
+ */
+.carousel-control.right {
+    right: 30px !important; /* RIGHT BUTTON POSITION - Jarak dari kanan */
+}
+
+/**
+ * CAROUSEL BUTTON HOVER EFFECT
+ */
+.carousel-control:hover {
+    opacity: 1 !important;
+    background: rgba(0, 0, 0, 0.85) !important;
+    transform: translateY(-50%) scale(1.1) !important; /* HOVER SCALE - Enlarge saat hover */
+}
+
+/**
+ * CAROUSEL BUTTON ICON SIZE
+ */
+.carousel-control .glyphicon {
+    font-size: 2rem !important; /* CONTROL ICON SIZE - Ukuran icon */
+    color: #ffffff !important;
+    line-height: 50px !important;
+}
+
+/* ============================================================================
+   FIX 7: RESPONSIVE BREAKPOINTS
+   ============================================================================ */
+
+/**
+ * RESPONSIVE ADJUSTMENTS
+ * - Adjust carousel height untuk berbagai device
+ */
+
+/* Desktop Large (1600px+) */
+@media (max-width: 1600px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 500px !important; /* CAROUSEL HEIGHT - Desktop large */
+    }
+}
+
+/* Laptop (1200px) */
+@media (max-width: 1200px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 420px !important; /* CAROUSEL HEIGHT - Laptop */
+    }
+}
+
+/* Tablet (991px) */
+@media (max-width: 991px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 350px !important; /* CAROUSEL HEIGHT - Tablet */
+    }
+    
+    .carousel-control {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .carousel-control.left {
+        left: 15px !important;
+    }
+    
+    .carousel-control.right {
+        right: 15px !important;
+    }
+}
+
+/* Mobile (768px) */
+@media (max-width: 768px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 280px !important; /* CAROUSEL HEIGHT - Mobile */
+    }
+    
+    .carousel-control {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    
+    /* Logo smaller on mobile */
+    .pkp_site_name img {
+        max-height: 38px !important;
+    }
+    
+    /* Logo position adjustment for mobile */
+    .navbar-brand,
+    .pkp_site_name {
+        top: 12px !important; /* MOBILE LOGO POSITION - Center di mobile */
+    }
+}
+
+/* Mobile Small (575px) */
+@media (max-width: 575px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 220px !important; /* CAROUSEL HEIGHT - Small mobile */
+    }
+    
+    .carousel-control {
+        width: 30px !important;
+        height: 30px !important;
+    }
+}
+
+/* ============================================================================
+   END OF CRITICAL FIXES v1.7
+   ============================================================================ */
+/**
+ * ============================================================================
+ * CRITICAL FIXES v1.8 - CAROUSEL CONTROLS, DROPDOWN, SPACING & SIDEBAR
+ * ============================================================================
+ * 1. Carousel arrow buttons fix (icon tidak muncul)
+ * 2. About dropdown background fix (remove black box completely)
+ * 3. Navigation spacing adjustment (lebih ke kanan dari logo)
+ * 4. Sidebar modern & interactive design
+ * 5. Carousel positioning above sidebar (break out grid Bootstrap)
+ * ============================================================================
+ */
+
+/* ============================================================================
+   FIX 1: CAROUSEL CONTROLS - FIX ARROW ICONS
+   ============================================================================ */
+
+/**
+ * CAROUSEL CONTROL BUTTONS
+ * - Fix untuk icon arrow yang tidak muncul
+ * - Menggunakan font-family Glyphicons untuk compatibility
+ */
+.carousel-control {
+    width: 55px !important; /* CONTROL SIZE - Ukuran button */
+    height: 55px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: rgba(0, 0, 0, 0.7) !important; /* CONTROL BACKGROUND - Semi-transparent */
+    border-radius: 50% !important;
+    opacity: 0.85 !important;
+    transition: all 0.3s ease !important;
+    z-index: 20 !important; /* CONTROL Z-INDEX - Above carousel */
+    border: 2px solid rgba(255, 255, 255, 0.3) !important; /* CONTROL BORDER - Subtle white border */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/**
+ * CAROUSEL LEFT BUTTON POSITION
+ * - left: Jarak dari kiri carousel
+ */
+.carousel-control.left {
+    left: 25px !important; /* LEFT BUTTON POSITION */
+}
+
+/**
+ * CAROUSEL RIGHT BUTTON POSITION
+ * - right: Jarak dari kanan carousel
+ */
+.carousel-control.right {
+    right: 25px !important; /* RIGHT BUTTON POSITION */
+}
+
+/**
+ * CAROUSEL BUTTON HOVER EFFECT
+ */
+.carousel-control:hover {
+    opacity: 1 !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+    border-color: rgba(255, 255, 255, 0.6) !important;
+    transform: translateY(-50%) scale(1.15) !important;
+}
+
+/**
+ * CAROUSEL BUTTON ICON - FIX ARROW DISPLAY
+ * - Menggunakan Unicode character untuk arrow
+ * - Fallback ke Glyphicons font jika tersedia
+ */
+.carousel-control .glyphicon {
+    font-size: 2.5rem !important; /* ICON SIZE */
+    color: #ffffff !important; /* ICON COLOR */
+    line-height: 1 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-family: 'Glyphicons Halflings', Arial, sans-serif !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
+}
+
+/**
+ * LEFT ARROW ICON FIX
+ * - Using content for fallback
+ */
+.carousel-control.left .glyphicon::before,
+.carousel-control.left .icon-prev::before {
+    content: "‹" !important; /* LEFT ARROW CHARACTER */
+    font-size: 3rem !important;
+    font-weight: bold !important;
+    display: block !important;
+}
+
+/**
+ * RIGHT ARROW ICON FIX
+ * - Using content for fallback
+ */
+.carousel-control.right .glyphicon::before,
+.carousel-control.right .icon-next::before {
+    content: "›" !important; /* RIGHT ARROW CHARACTER */
+    font-size: 3rem !important;
+    font-weight: bold !important;
+    display: block !important;
+}
+
+/* ============================================================================
+   FIX 2: ABOUT DROPDOWN - COMPLETE BACKGROUND FIX
+   ============================================================================ */
+
+/**
+ * DROPDOWN MENU BACKGROUND - REMOVE BLACK BOX COMPLETELY
+ * - Force white background
+ * - Remove all pseudo-elements
+ * - Clean border & shadow
+ */
+.pkp_navigation_primary ul li ul,
+.navbar-nav li ul,
+.navbar-nav .dropdown-menu,
+.pkp_navigation_primary .dropdown-menu {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    background: #ffffff !important; /* DROPDOWN BACKGROUND - Pure white */
+    border: 1px solid #d1d5db !important; /* DROPDOWN BORDER */
+    border-radius: 8px !important; /* DROPDOWN ROUNDED CORNERS */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important; /* DROPDOWN SHADOW */
+    min-width: 230px !important;
+    padding: 0.5rem 0 !important;
+    margin-top: 0.5rem !important;
+    z-index: 9999 !important;
+    list-style: none !important;
+    overflow: hidden !important; /* PREVENT OVERFLOW */
+}
+
+/**
+ * FORCE REMOVE ALL PSEUDO-ELEMENTS CREATING BLACK BACKGROUND
+ */
+.pkp_navigation_primary ul li ul::before,
+.pkp_navigation_primary ul li ul::after,
+.navbar-nav li ul::before,
+.navbar-nav li ul::after,
+.dropdown-menu::before,
+.dropdown-menu::after,
+.pkp_navigation_primary::before,
+.pkp_navigation_primary::after {
+    display: none !important;
+    content: none !important;
+    background: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/**
+ * DROPDOWN ITEMS - CLEAN WHITE BACKGROUND
+ */
+.pkp_navigation_primary ul li ul li,
+.navbar-nav li ul li,
+.dropdown-menu li {
+    display: block !important;
+    width: 100% !important;
+    background: #ffffff !important; /* ITEM BACKGROUND - White */
+    margin: 0 !important;
+    padding: 0 !important;
+    border-bottom: 1px solid #f3f4f6 !important; /* ITEM SEPARATOR */
+}
+
+.pkp_navigation_primary ul li ul li:last-child,
+.navbar-nav li ul li:last-child,
+.dropdown-menu li:last-child {
+    border-bottom: none !important;
+}
+
+/**
+ * DROPDOWN LINKS - CLEAN STYLING
+ */
+.pkp_navigation_primary ul li ul li a,
+.navbar-nav li ul li a,
+.dropdown-menu li a {
+    display: block !important;
+    width: 100% !important;
+    padding: 0.75rem 1.2rem !important;
+    color: #374151 !important; /* LINK COLOR - Dark gray */
+    background: #ffffff !important; /* LINK BACKGROUND - White */
+    text-decoration: none !important;
+    font-size: 0.9rem !important;
+    transition: all 0.2s ease !important;
+}
+
+/**
+ * DROPDOWN LINK HOVER - TEAL ACCENT
+ */
+.pkp_navigation_primary ul li ul li a:hover,
+.navbar-nav li ul li a:hover,
+.dropdown-menu li a:hover {
+    background: #f0fdfa !important; /* HOVER BACKGROUND - Very light teal */
+    color: #0d9488 !important; /* HOVER COLOR - Teal */
+    padding-left: 1.5rem !important;
+}
+
+/* ============================================================================
+   FIX 3: NAVIGATION SPACING - GESER LEBIH KE KANAN
+   ============================================================================ */
+
+/**
+ * NAVIGATION HORIZONTAL POSITION
+ * - left: Jarak dari logo (INCREASE untuk lebih ke kanan)
+ * - Before: 200px, After: 250px (50px lebih ke kanan)
+ */
+.pkp_navigation_primary_row,
+.pkp_navigation_primary {
+    position: absolute !important;
+    left: 250px !important; /* NAVIGATION LEFT - Lebih ke kanan dari logo (was 200px) */
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    z-index: 100 !important;
+}
+
+/* ============================================================================
+   FIX 4: CAROUSEL POSITIONING - ABOVE SIDEBAR (BREAK GRID)
+   ============================================================================ */
+
+/**
+ * CAROUSEL FULL-WIDTH POSITIONING
+ * - Break out dari Bootstrap grid
+ * - Position di atas sidebar (z-index tinggi)
+ * - Margin adjustment untuk hampir full-width
+ */
+.homepage-image,
+.carousel,
+.carousel-inner,
+body .homepage-image,
+body .carousel {
+    width: 100vw !important; /* CAROUSEL WIDTH - Full viewport */
+    max-width: none !important;
+    /* CAROUSEL MARGIN - Break out dari container */
+    margin-left: calc(-50vw + 50% + 20px) !important; /* +20px = Geser kanan, space dari kiri */
+    margin-right: calc(-50vw + 50% - 20px) !important; /* -20px = Space dari kanan */
+    height: 560px !important; /* CAROUSEL HEIGHT - Desktop */
+    padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+    z-index: 50 !important; /* CAROUSEL Z-INDEX - Above sidebar */
+    margin-bottom: 3rem !important; /* CAROUSEL BOTTOM SPACING */
+}
+
+/**
+ * CAROUSEL WRAPPER
+ */
+.carousel-wrapper,
+.homepage-image-wrapper {
+    width: 100vw !important;
+    max-width: none !important;
+    margin-left: calc(-50vw + 50% + 20px) !important;
+    margin-right: calc(-50vw + 50% - 20px) !important;
+    padding: 0 !important;
+    z-index: 50 !important;
+}
+
+/* ============================================================================
+   FIX 5: SIDEBAR MODERN & INTERACTIVE DESIGN
+   ============================================================================ */
+
+/**
+ * SIDEBAR CONTAINER
+ * - Modern card-based design
+ * - Interactive hover effects
+ * - Clean spacing & shadows
+ */
+.pkp_sidebar,
+aside.pkp_sidebar,
+.sidebar,
+aside.sidebar {
+    background: #ffffff !important; /* SIDEBAR BACKGROUND */
+    border-radius: 12px !important; /* SIDEBAR ROUNDED CORNERS */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08) !important; /* SIDEBAR SHADOW */
+    padding: 1.5rem !important; /* SIDEBAR PADDING */
+    margin-bottom: 2rem !important;
+    border: 1px solid #e5e7eb !important;
+    transition: all 0.3s ease !important;
+    overflow: hidden !important;
+}
+
+.pkp_sidebar:hover,
+aside.pkp_sidebar:hover {
+    box-shadow: 0 6px 25px rgba(0,0,0,0.12) !important; /* HOVER SHADOW - Deeper */
+    transform: translateY(-2px) !important; /* HOVER LIFT EFFECT */
+}
+
+/**
+ * SIDEBAR HEADINGS
+ * - Modern typography
+ * - Accent border
+ */
+.pkp_sidebar h2,
+.pkp_sidebar h3,
+.sidebar h2,
+.sidebar h3,
+aside h2,
+aside h3 {
+    color: #111827 !important; /* HEADING COLOR - Almost black */
+    font-size: 1.25rem !important; /* HEADING SIZE */
+    font-weight: 700 !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 0.75rem !important;
+    border-bottom: 3px solid #0d9488 !important; /* HEADING BORDER - Teal accent */
+    font-family: 'Poppins', sans-serif !important;
+}
+
+/**
+ * SIDEBAR LISTS
+ * - Clean list styling
+ * - Interactive items
+ */
+.pkp_sidebar ul,
+.sidebar ul,
+aside ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.pkp_sidebar ul li,
+.sidebar ul li,
+aside ul li {
+    margin-bottom: 0.5rem !important;
+    padding: 0 !important;
+}
+
+/**
+ * SIDEBAR LINKS
+ * - Modern button-like appearance
+ * - Smooth hover transitions
+ */
+.pkp_sidebar a,
+.sidebar a,
+aside a {
+    display: block !important;
+    padding: 0.75rem 1rem !important;
+    color: #4b5563 !important; /* LINK COLOR - Medium gray */
+    text-decoration: none !important;
+    background: #f9fafb !important; /* LINK BACKGROUND - Very light gray */
+    border-radius: 8px !important;
+    border-left: 3px solid transparent !important;
+    transition: all 0.25s ease !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+}
+
+/**
+ * SIDEBAR LINK HOVER
+ * - Teal accent
+ * - Slide right effect
+ */
+.pkp_sidebar a:hover,
+.sidebar a:hover,
+aside a:hover {
+    background: #f0fdfa !important; /* HOVER BACKGROUND - Light teal */
+    color: #0d9488 !important; /* HOVER COLOR - Teal */
+    border-left-color: #0d9488 !important; /* HOVER BORDER - Teal accent */
+    padding-left: 1.25rem !important; /* HOVER INDENT - Slide right */
+    transform: translateX(3px) !important;
+}
+
+/**
+ * SIDEBAR ACTIVE LINK
+ */
+.pkp_sidebar a.active,
+.pkp_sidebar a.current,
+.sidebar a.active,
+aside a.active {
+    background: #0d9488 !important; /* ACTIVE BACKGROUND - Teal */
+    color: #ffffff !important; /* ACTIVE COLOR - White */
+    border-left-color: #0f766e !important; /* ACTIVE BORDER - Dark teal */
+    font-weight: 600 !important;
+}
+
+/**
+ * SIDEBAR BUTTONS
+ * - CTA buttons (e.g., "Make a Submission")
+ * - Prominent styling
+ */
+.pkp_sidebar button,
+.pkp_sidebar .btn,
+.sidebar button,
+aside button,
+.pkp_sidebar input[type="submit"] {
+    width: 100% !important;
+    padding: 0.875rem 1.5rem !important;
+    background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%) !important; /* BUTTON GRADIENT */
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3) !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    display: block !important;
+    margin-top: 1rem !important;
+}
+
+.pkp_sidebar button:hover,
+.pkp_sidebar .btn:hover,
+.sidebar button:hover,
+aside button:hover {
+    background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%) !important;
+    box-shadow: 0 6px 20px rgba(13, 148, 136, 0.4) !important;
+    transform: translateY(-2px) !important;
+}
+
+/**
+ * SIDEBAR SECTIONS
+ * - Separated content blocks
+ */
+.pkp_sidebar .section,
+.sidebar .section,
+aside .section,
+.pkp_block {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 10px !important;
+    padding: 1.25rem !important;
+    margin-bottom: 1.5rem !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+}
+
+.pkp_sidebar .section:last-child,
+.pkp_block:last-child {
+    margin-bottom: 0 !important;
+}
+
+/**
+ * SIDEBAR ICONS (if present)
+ */
+.pkp_sidebar .icon,
+.sidebar .icon,
+aside .icon {
+    margin-right: 0.5rem !important;
+    color: #0d9488 !important;
+    font-size: 1.1rem !important;
+}
+
+/* ============================================================================
+   FIX 6: RESPONSIVE ADJUSTMENTS
+   ============================================================================ */
+
+/**
+ * TABLET RESPONSIVE (991px and below)
+ */
+@media (max-width: 991px) {
+    /* Navigation spacing - reduce untuk tablet */
+    .pkp_navigation_primary_row,
+    .pkp_navigation_primary {
+        left: 200px !important; /* Reduce spacing on tablet */
+    }
+    
+    /* Carousel height adjustment */
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 400px !important;
+    }
+    
+    /* Sidebar full-width on tablet */
+    .pkp_sidebar,
+    aside.pkp_sidebar {
+        width: 100% !important;
+        margin-bottom: 2rem !important;
+    }
+}
+
+/**
+ * MOBILE RESPONSIVE (768px and below)
+ */
+@media (max-width: 768px) {
+    /* Carousel controls smaller */
+    .carousel-control {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    
+    .carousel-control.left {
+        left: 15px !important;
+    }
+    
+    .carousel-control.right {
+        right: 15px !important;
+    }
+    
+    /* Sidebar stacks below content */
+    .pkp_sidebar,
+    aside.pkp_sidebar {
+        margin-top: 2rem !important;
+    }
+    
+    /* Navigation spacing - minimal for mobile */
+    .pkp_navigation_primary_row,
+    .pkp_navigation_primary {
+        left: 150px !important;
+    }
+}
+
+/* ============================================================================
+   END OF CRITICAL FIXES v1.8
+   ============================================================================ */

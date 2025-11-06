@@ -1,0 +1,283 @@
+/* ============================================================================
+   MODERN OJS THEME v1.5 - CRITICAL FIXES
+   Add this AFTER uploading modern-ojs-theme.css OR paste at bottom of main CSS
+   ============================================================================ */
+
+/* ===========================================================================
+   FIX 1: NAVIGATION POSITIONING - INLINE WITH HEADER
+   =========================================================================== */
+.pkp_navigation_primary_row,
+.pkp_navigation_primary,
+nav.pkp_navigation_primary {
+    position: absolute !important;
+    left: 200px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    height: auto !important;
+    display: inline-flex !important;
+    z-index: 100 !important;
+}
+
+.pkp_navigation_primary ul {
+    display: inline-flex !important;
+    height: auto !important;
+}
+
+.pkp_navigation_primary li {
+    display: inline-block !important;
+}
+
+.pkp_navigation_primary a {
+    display: inline-block !important;
+    padding: 0.7rem 1.1rem !important;
+    height: auto !important;
+    line-height: normal !important;
+}
+
+/* ===========================================================================
+   FIX 2: DROPDOWN MENU - HIDE BY DEFAULT (FIX ABOUT KELUAR OTOMATIS)
+   =========================================================================== */
+.pkp_navigation_primary ul li ul,
+.pkp_navigation_primary li .dropdown-menu,
+.navbar-nav > li > ul,
+.navbar-nav .dropdown-menu {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    background: white !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    min-width: 200px !important;
+    padding: 0.5rem 0 !important;
+    margin-top: 0.5rem !important;
+    z-index: 1000 !important;
+}
+
+/* Show dropdown ONLY on hover */
+.pkp_navigation_primary li:hover > ul,
+.pkp_navigation_primary li:hover > .dropdown-menu,
+.navbar-nav > li:hover > ul {
+    display: block !important;
+}
+
+/* Dropdown items styling */
+.pkp_navigation_primary ul li ul li {
+    display: block !important;
+    width: 100% !important;
+}
+
+.pkp_navigation_primary ul li ul li a {
+    display: block !important;
+    padding: 0.6rem 1.2rem !important;
+    color: #111827 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+}
+
+.pkp_navigation_primary ul li ul li a:hover {
+    background: #f3f4f6 !important;
+    color: #0d9488 !important;
+}
+
+/* ===========================================================================
+   FIX 3: ACCOUNT BUTTON - ULTRA FORCE CUSTOM STYLING
+   =========================================================================== */
+body .navbar-right > li > a,
+body .pkp_navigation_user a,
+body #navigationUser a,
+body header .navbar-right a {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+    color: white !important;
+    padding: 0.65rem 1.5rem !important;
+    border-radius: 50px !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25) !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    transition: all 0.3s ease !important;
+}
+
+body .navbar-right > li > a:hover,
+body .pkp_navigation_user a:hover,
+body #navigationUser a:hover,
+body header .navbar-right a:hover {
+    background: #0d9488 !important;
+    background-color: #0d9488 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 16px rgba(13,148,136,0.5) !important;
+    border-color: #0d9488 !important;
+}
+
+/* ===========================================================================
+   FIX 4: CAROUSEL - RESPONSIVE SIZE & CENTER ALIGNMENT
+   =========================================================================== */
+/* Default carousel - responsive max-width */
+.carousel,
+.homepage-image,
+.pkp_page_index .carousel {
+    width: 100% !important;
+    max-width: 1400px !important;
+    height: 420px !important;
+    margin: 0 auto 2rem auto !important;
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+}
+
+/* Carousel items */
+.carousel-inner,
+.carousel .item {
+    width: 100% !important;
+    height: 420px !important;
+}
+
+/* Carousel images - consistent sizing */
+.carousel img,
+.carousel-item img {
+    width: 100% !important;
+    height: 420px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* Carousel controls - ensure visible */
+.carousel-control {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 45px !important;
+    height: 45px !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    border-radius: 50% !important;
+    opacity: 0.8 !important;
+    transition: all 0.3s ease !important;
+}
+
+.carousel-control.left {
+    left: 20px !important;
+}
+
+.carousel-control.right {
+    right: 20px !important;
+}
+
+.carousel-control:hover {
+    opacity: 1 !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Carousel indicators */
+.carousel-indicators {
+    bottom: 20px !important;
+}
+
+.carousel-indicators li {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+    border: 2px solid white !important;
+    margin: 0 5px !important;
+}
+
+.carousel-indicators li.active {
+    background: white !important;
+}
+
+/* ===========================================================================
+   FIX 5: RESPONSIVE CAROUSEL SIZES
+   =========================================================================== */
+@media (max-width: 1600px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        max-width: 1200px !important;
+        height: 380px !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        max-width: 100% !important;
+        height: 350px !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 300px !important;
+    }
+    
+    .carousel-control {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .carousel-control.left {
+        left: 15px !important;
+    }
+    
+    .carousel-control.right {
+        right: 15px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 250px !important;
+    }
+    
+    .carousel-control {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    
+    .carousel-control.left {
+        left: 10px !important;
+    }
+    
+    .carousel-control.right {
+        right: 10px !important;
+    }
+}
+
+@media (max-width: 575px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 220px !important;
+    }
+    
+    .carousel-control {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 18px !important;
+    }
+    
+    .carousel-indicators li {
+        width: 8px !important;
+        height: 8px !important;
+    }
+}
+
+/* ===========================================================================
+   END OF CRITICAL FIXES
+   =========================================================================== */

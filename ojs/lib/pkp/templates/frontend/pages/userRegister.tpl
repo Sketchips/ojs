@@ -13,6 +13,7 @@
 
 <div class="page page_register">
 	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="user.register"}
+	<main class="pkp_page_content">
 	<h1>
 		{translate key="user.register"}
 	</h1>
@@ -164,6 +165,8 @@
 			<a href="{url page="login" source=$rolesProfileUrl}" class="login">{translate key="user.login"}</a>
 		</div>
 	</form>
+
+	</main>
 
 </div><!-- .page -->
 

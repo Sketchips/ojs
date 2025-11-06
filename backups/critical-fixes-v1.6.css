@@ -1,0 +1,438 @@
+/**
+ * ============================================================================
+ * CRITICAL FIXES v1.6 - MEGA CAROUSEL & NAVIGATION FIX
+ * ============================================================================
+ * 1. Carousel nyaris full-width seperti Riptek (keluar dari container Bootstrap)
+ * 2. Navigation naik masuk header sepenuhnya
+ * 3. About dropdown stay saat diklik (tidak hilang)
+ * 4. About dropdown background pas (tidak overflow)
+ * 5. Account dropdown tidak pakai background box
+ * 6. Gambar carousel object-fit: contain (tidak zoom/crop)
+ * ============================================================================
+ */
+
+/* ============================================================================
+   FIX 1: NAVIGATION - NAIK KE HEADER SEPENUHNYA
+   ============================================================================ */
+
+/* Navigation positioning - Naik sampai sepenuhnya masuk header */
+.pkp_navigation_primary_row,
+.pkp_navigation_primary {
+    position: absolute !important;
+    left: 200px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    z-index: 100 !important;
+}
+
+/* Navigation items - adjust height untuk pas header */
+.navbar-nav > li,
+.pkp_navigation_primary > ul > li,
+.pkp_navigation_primary li {
+    height: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    position: relative !important;
+}
+
+/* Navigation links - height auto untuk flex center */
+.navbar-nav > li > a,
+.pkp_navigation_primary a {
+    padding: 0.65rem 1.2rem !important;
+    height: auto !important;
+    line-height: 1.5 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+/* ============================================================================
+   FIX 2: ABOUT DROPDOWN - STAY SAAT DIKLIK (TIDAK HILANG)
+   ============================================================================ */
+
+/* Dropdown menu - Hidden by default */
+.pkp_navigation_primary ul li ul,
+.navbar-nav li ul,
+.dropdown-menu {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    background: var(--white) !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    min-width: 220px !important;
+    padding: 0.5rem 0 !important;
+    margin-top: 0.5rem !important;
+    z-index: 9999 !important;
+    list-style: none !important;
+}
+
+/* Show dropdown on hover OR when has .open/.show class (for click) */
+.pkp_navigation_primary li:hover > ul,
+.pkp_navigation_primary li.open > ul,
+.pkp_navigation_primary li.show > ul,
+.navbar-nav li:hover > ul,
+.navbar-nav li.open > ul,
+.navbar-nav li.show > ul,
+.dropdown.open .dropdown-menu,
+.dropdown.show .dropdown-menu {
+    display: block !important;
+}
+
+/* Dropdown items styling */
+.pkp_navigation_primary ul li ul li,
+.navbar-nav li ul li,
+.dropdown-menu li {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Dropdown links */
+.pkp_navigation_primary ul li ul li a,
+.navbar-nav li ul li a,
+.dropdown-menu li a {
+    display: block !important;
+    width: 100% !important;
+    padding: 0.65rem 1.2rem !important;
+    color: var(--text-primary) !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    height: auto !important;
+    line-height: 1.5 !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+    transition: all var(--transition-fast) !important;
+}
+
+/* Dropdown links hover */
+.pkp_navigation_primary ul li ul li a:hover,
+.navbar-nav li ul li a:hover,
+.dropdown-menu li a:hover {
+    background: var(--light-gray) !important;
+    color: var(--accent-teal) !important;
+    padding-left: 1.5rem !important;
+}
+
+/* Force dropdown to stay open on click (JavaScript fallback via CSS) */
+.pkp_navigation_primary li.dropdown-clicked > ul,
+.navbar-nav li.dropdown-clicked > ul {
+    display: block !important;
+}
+
+/* ============================================================================
+   FIX 3: ACCOUNT DROPDOWN - NO BACKGROUND BOX
+   ============================================================================ */
+
+/* Account dropdown - Clean tanpa background box heavy */
+.navbar-right .dropdown-menu,
+#navigationUser .dropdown-menu,
+.pkp_navigation_user .dropdown-menu {
+    background: var(--white) !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12) !important;
+    padding: 0.5rem 0 !important;
+    min-width: 180px !important;
+}
+
+/* Account dropdown items - Simple clean styling */
+.navbar-right .dropdown-menu li a,
+#navigationUser .dropdown-menu li a,
+.pkp_navigation_user .dropdown-menu li a {
+    display: block !important;
+    padding: 0.6rem 1.2rem !important;
+    color: var(--text-primary) !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    transition: all var(--transition-fast) !important;
+}
+
+/* Account dropdown hover - Subtle background saja */
+.navbar-right .dropdown-menu li a:hover,
+#navigationUser .dropdown-menu li a:hover,
+.pkp_navigation_user .dropdown-menu li a:hover {
+    background: var(--light-gray) !important;
+    color: var(--accent-teal) !important;
+}
+
+/* ============================================================================
+   FIX 4: MEGA CAROUSEL - NYARIS FULL WIDTH (BREAK OUT BOOTSTRAP)
+   ============================================================================ */
+
+/* Container carousel - Break out dari Bootstrap grid */
+.homepage-image,
+.carousel,
+.carousel-inner,
+body .homepage-image,
+body .carousel {
+    width: 100vw !important;
+    max-width: none !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    height: 550px !important;
+    padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Force full-width untuk carousel wrapper */
+.carousel-wrapper,
+.homepage-image-wrapper {
+    width: 100vw !important;
+    max-width: none !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    padding: 0 !important;
+}
+
+/* Carousel items full width */
+.carousel .item,
+.carousel-inner .item,
+.carousel-inner > .item {
+    width: 100% !important;
+    height: 550px !important;
+    position: relative !important;
+}
+
+/* ============================================================================
+   FIX 5: GAMBAR CAROUSEL - OBJECT-FIT CONTAIN (TIDAK ZOOM)
+   ============================================================================ */
+
+/* Carousel images - CONTAIN untuk tidak zoom/crop */
+.carousel img,
+.carousel-item img,
+.homepage-image img,
+.carousel .item img,
+.carousel-inner .item img,
+.carousel-inner > .item > img {
+    width: 100% !important;
+    height: 550px !important;
+    object-fit: contain !important; /* CHANGED dari cover ke contain */
+    object-position: center center !important;
+    display: block !important;
+    border-radius: 0 !important;
+    background: #000 !important; /* Dark background untuk letterbox */
+}
+
+/* Override any existing cover rules */
+body .carousel img,
+body .homepage-image img {
+    object-fit: contain !important;
+    background: #000 !important;
+}
+
+/* ============================================================================
+   FIX 6: CAROUSEL CONTROLS - POSITIONED UNTUK MEGA CAROUSEL
+   ============================================================================ */
+
+/* Carousel controls - Positioned untuk full-width carousel */
+.carousel-control {
+    width: 50px !important;
+    height: 50px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+    border-radius: 50% !important;
+    opacity: 0.8 !important;
+    transition: all var(--transition-base) !important;
+    z-index: 10 !important;
+}
+
+.carousel-control.left {
+    left: 30px !important;
+}
+
+.carousel-control.right {
+    right: 30px !important;
+}
+
+.carousel-control:hover {
+    opacity: 1 !important;
+    background: rgba(0, 0, 0, 0.85) !important;
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+.carousel-control .glyphicon {
+    font-size: 2rem !important;
+    color: var(--white) !important;
+    line-height: 50px !important;
+}
+
+/* ============================================================================
+   FIX 7: CAROUSEL CAPTION - ADJUSTED UNTUK MEGA SIZE
+   ============================================================================ */
+
+.carousel-caption {
+    position: absolute !important;
+    bottom: 50px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 5 !important;
+    text-align: center !important;
+    width: 90% !important;
+    max-width: 1000px !important;
+}
+
+.carousel-caption h1,
+.carousel-caption h2,
+.carousel-caption h3 {
+    color: var(--white) !important;
+    font-size: 2.8rem !important;
+    font-weight: 700 !important;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8) !important;
+    margin-bottom: 1rem !important;
+}
+
+.carousel-caption p {
+    color: var(--white) !important;
+    font-size: 1.3rem !important;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* ============================================================================
+   FIX 8: RESPONSIVE - MEGA CAROUSEL UNTUK MOBILE
+   ============================================================================ */
+
+@media (max-width: 1600px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .homepage-image {
+        height: 500px !important;
+    }
+    
+    .carousel img {
+        height: 500px !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .homepage-image {
+        height: 420px !important;
+    }
+    
+    .carousel img {
+        height: 420px !important;
+    }
+    
+    .carousel-caption h1,
+    .carousel-caption h2,
+    .carousel-caption h3 {
+        font-size: 2.2rem !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .homepage-image {
+        height: 350px !important;
+    }
+    
+    .carousel img {
+        height: 350px !important;
+    }
+    
+    .carousel-control {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .carousel-control.left {
+        left: 15px !important;
+    }
+    
+    .carousel-control.right {
+        right: 15px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .homepage-image {
+        height: 280px !important;
+    }
+    
+    .carousel img {
+        height: 280px !important;
+    }
+    
+    .carousel-caption h1,
+    .carousel-caption h2,
+    .carousel-caption h3 {
+        font-size: 1.6rem !important;
+    }
+    
+    .carousel-caption p {
+        font-size: 1rem !important;
+    }
+}
+
+@media (max-width: 575px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .homepage-image {
+        height: 220px !important;
+    }
+    
+    .carousel img {
+        height: 220px !important;
+    }
+    
+    .carousel-control {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    
+    .carousel-caption {
+        bottom: 20px !important;
+    }
+    
+    .carousel-caption h1,
+    .carousel-caption h2,
+    .carousel-caption h3 {
+        font-size: 1.2rem !important;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.85rem !important;
+    }
+}
+
+/* ============================================================================
+   FIX 9: GRADIENT OVERLAY - UNTUK MEGA CAROUSEL
+   ============================================================================ */
+
+/* Gradient overlay - Subtle untuk readability caption */
+.carousel-inner::after,
+.carousel .item::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 50% !important;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%) !important;
+    pointer-events: none !important;
+    z-index: 2 !important;
+}
+
+/* ============================================================================
+   END OF CRITICAL FIXES v1.6
+   ============================================================================ */

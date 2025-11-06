@@ -1,0 +1,120 @@
+/* ============================================================================
+   CRITICAL CSS OVERRIDES - LOADED AFTER BOOTSTRAP CACHE
+   High Priority Fixes for Navbar & Login Button
+   ============================================================================ */
+
+/* NAVBAR POSITIONING - ULTRA HIGH PRIORITY */
+html body .pkp_structure_head .pkp_navigation_primary_row,
+html body .pkp_structure_head .pkp_navigation_primary,
+html body .pkp_navigation_primary_row,
+html body .pkp_navigation_primary,
+html body #main-navigation,
+html body .navbar-nav {
+    position: absolute !important;
+    left: 50px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+}
+
+@media (max-width: 992px) {
+    html body .pkp_navigation_primary_row,
+    html body .pkp_navigation_primary {
+        left: 280px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    html body .pkp_navigation_primary_row,
+    html body .pkp_navigation_primary {
+        left: 180px !important;
+    }
+}
+
+/* LOGIN PAGE - BUTTON ALIGNMENT - ULTRA SPECIFIC */
+html body .page_login form.pkp_form.login div.buttons,
+html body .page.page_login form.login div.buttons,
+html body form.pkp_form.login .buttons,
+html body .pkp_structure_main .page_login form .buttons {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 1rem !important;
+    margin-top: 1.5rem !important;
+    width: 100% !important;
+}
+
+html body .page_login form.login .buttons .btn,
+html body .page_login form.login .buttons button,
+html body .page_login form.login .buttons a.btn {
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 120px !important;
+    height: auto !important;
+    vertical-align: middle !important;
+}
+
+/* UNIFIED BUTTON STYLING - All login page buttons look identical (except color) */
+html body .page_login form.login button[type="submit"].btn,
+html body .page_login form.login .buttons button[type="submit"],
+html body .page_login .buttons .btn-primary,
+html body .page_login .buttons .btn-default,
+html body .page_login .btn-primary,
+html body .page_login .btn-default {
+    /* Cancel absolute positioning from global search button rule */
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    transform: none !important;
+    width: auto !important;
+    height: auto !important;
+    
+    /* EXACTLY Bootstrap 3 default button style */
+    padding: 8px 12px !important;
+    font-size: 15px !important;
+    line-height: 1.42857143 !important;
+    font-weight: normal !important;
+    border-radius: 4px !important;
+    border: 1px solid transparent !important;
+    
+    /* NO custom shadows or effects */
+    box-shadow: none !important;
+    transition: none !important;
+    
+    /* Sizing */
+    min-width: 120px !important;
+    text-align: center !important;
+}
+
+
+/* HEADER USER NAVIGATION - LOGIN/REGISTER BUTTONS */
+html body .navbar-right,
+html body .pkp_navigation_user {
+    position: absolute !important;
+    right: 20px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+}
+
+/* CAROUSEL BLACK FADE */
+html body .carousel,
+html body .carousel-inner {
+    background: #000000 !important;
+}
+
+html body .carousel .item {
+    background: #000000 !important;
+    opacity: 0 !important;
+    transition: opacity 0.8s ease-in-out !important;
+}
+
+html body .carousel .item.active {
+    opacity: 1 !important;
+}
