@@ -88,7 +88,9 @@ class CrossrefReferenceLinkingPlugin extends GenericPlugin
     {
         // If crossref plugin is set i.e. the crossref credentials exist we can assume that DOI plugin is set correctly
         $crossrefPlugin = PluginRegistry::getPlugin('generic', 'crossrefplugin');
-        return $crossrefPlugin && strlen($crossrefPlugin->getSetting($contextId, 'username')) > 0 && strlen($crossrefPlugin->getSetting($contextId, 'password')) > 0;
+        $username = $crossrefPlugin ? $crossrefPlugin->getSetting($contextId, 'username') : null;
+        $password = $crossrefPlugin ? $crossrefPlugin->getSetting($contextId, 'password') : null;
+        return $crossrefPlugin && !empty($username) && !empty($password);
     }
 
     /**
