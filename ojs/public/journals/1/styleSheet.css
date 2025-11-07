@@ -224,11 +224,13 @@ body {
     padding: 0;
     display: flex;
     list-style: none;
+    align-items: center;           /* v10.25: Vertical align all items */
 }
 
 #navigationUser li {
     display: inline-block;
     margin-left: 10px;
+    margin-bottom: 0;              /* v10.25: Remove bottom margin */
 }
 
 #navigationUser li a {
@@ -238,11 +240,14 @@ body {
     transition: color 0.3s ease;
     display: flex;
     align-items: center;
+    background: transparent !important;  /* v10.25: Force transparent */
+    line-height: 1.2;              /* v10.25: Consistent height */
 }
 
 #navigationUser li a:hover {
     color: #2ecc71 !important;
     text-decoration: none;
+    background: rgba(46, 204, 113, 0.1) !important;  /* v10.25: Light green on hover only */
 }
 
 #navigationUser a[href*="login"]::before,
@@ -277,7 +282,7 @@ body {
     }
 }
 
-/* ========== v10.22: MOBILE MENU VERTICAL COLUMN FIX ========== */
+/* ========== v10.25: MOBILE UNIFIED POSITIONING - EDIT HERE FOR ALL PAGES ========== */
 @media (max-width: 767px) {
     /* Body padding for fixed header at top 0 */
     body {
@@ -295,11 +300,11 @@ body {
         background: #ffffff !important;
     }
     
-    /* Navbar-toggle - dalam header, kiri dengan spacing */
+    /* ========== EDIT NAVBAR-TOGGLE POSITION (burger menu) ========== */
     .navbar-toggle {
         position: absolute !important;
-        left: -15px !important;              /* v10.19: Lebih kiri (was 15px) */
-        top: -45px !important;              /* v10.19: Lebih naik (was 18px) */
+        left: -15px !important;              /* HORIZONTAL: negative = more left */
+        top: -45px !important;               /* VERTICAL: negative = more up */
         transform: none !important;
         z-index: 1005 !important;
         display: block !important;
@@ -308,43 +313,57 @@ body {
         padding: 8px 10px !important;
         border-radius: 4px !important;
         cursor: pointer !important;
-        margin-right: 15px !important;     /* v10.22: Space from logo */
     }
     
-    /* Navbar-header container - LEBIH KANAN dengan padding */
+    /* ========== EDIT LOGO + TEXT POSITION ========== */
     #headerNavigationContainer .navbar-header {
         position: absolute !important;
-        left: 70px !important;             /* v10.22: Space after toggle (~10 + 40 + 20 spacing) */
-        top: 8px !important;
+        left: 65px !important;               /* HORIZONTAL: from left edge */
+        top: 45px !important;                /* VERTICAL: from top (center ~17-20px for 71px header) */
         transform: none !important;
         height: auto !important;
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
         z-index: 1002 !important;
-        padding-left: 10px !important;     /* v10.22: Extra padding for spacing */
+        padding-left: 36px !important;       /* EXTRA SPACING: prevent logo cutoff */
+    }
+    
+    /* ========== EDIT NAVIGATION USER (Register/Login icons in header) ========== */
+    #navigationUser {
+        position: absolute !important;
+        right: 10px !important;              /* HORIZONTAL: from right edge */
+        top: 0px !important;                /* user edit, fix */
+    }
+    
+    #navigationUser li a {
+        font-size: 12px !important;          /* ICON SIZE: text + icon size */
+        padding: 3px 6px !important;         /* CLICK AREA: vertical horizontal */
     }
     
     /* Logo image - proper sizing for mobile */
     #headerNavigationContainer .navbar-brand-logo {
         display: flex !important;
         align-items: center !important;
-        margin-right: 8px !important;
+        margin-right: 10px !important;     /* v10.23: More spacing between logo & text */
     }
     
     #headerNavigationContainer .navbar-brand-logo img {
-        height: 45px !important;
+        height: 42px !important;           /* v10.23: Slightly smaller for mobile */
         width: auto !important;
         display: block !important;
     }
     
     /* Text "Jurnal Riptek" - responsive sizing */
     #headerNavigationContainer .navbar-brand {
-        font-size: 15px !important;
+        font-size: 14px !important;        /* v10.23: Slightly smaller to fit better */
         white-space: nowrap !important;
         padding-left: 8px !important;
         display: block !important;
         line-height: 1.2 !important;
+        max-width: 180px !important;       /* v10.23: Prevent overflow */
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
     
     /* v10.22: MOBILE MENU SIDEBAR - VERTICAL COLUMN */
@@ -401,6 +420,13 @@ body {
     #nav-menu .navbar-nav > li > a:hover {
         background: #f5f5f5 !important;
         color: #2ecc71 !important;
+    }
+    
+    /* v10.23: Icon for login/register in mobile sidebar - consistent with desktop */
+    #nav-menu a[href*="login"]::before,
+    #nav-menu a[href*="register"]::before {
+        content: "👤 ";
+        margin-right: 8px;
     }
     
     /* Navbar collapse behavior */
@@ -522,6 +548,23 @@ body, html {
 .pkp_page_index .homepage-hero,
 .pkp_page_about .homepage-hero {
     display: flex !important;
+}
+
+/* v10.25: About page hero - add background image if .hero-image element doesn't exist */
+.pkp_page_about .homepage-hero::after {
+    content: '';
+    position: absolute !important;
+    right: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 650px !important;
+    height: 473px !important;
+    background-image: url('https://ojsimg.netlify.app/semarang-landmark.png') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: right center !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
 }
 
 /* HERO SECTION - DEFAULT (All devices) */
@@ -1216,11 +1259,10 @@ body.pkp_page_user.pkp_op_register {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
 }
 
+/* v10.23: Hide breadcrumbs on login & register pages */
 .pkp_page_login .cmp_breadcrumbs,
 .pkp_page_user.pkp_op_register .cmp_breadcrumbs {
-    background: transparent !important;
-    padding: 10px 0 !important;
-    margin-bottom: 20px !important;
+    display: none !important;
 }
 
 .pkp_page_login h1,
@@ -1315,12 +1357,14 @@ body.pkp_page_user.pkp_op_register {
     box-shadow: 0 8px 24px rgba(46, 204, 113, 0.35) !important;
 }
 
+/* v10.23: Register button on Login page - match padding with login button */
 .pkp_page_login .register,
-.pkp_page_login a.register {
+.pkp_page_login a.register,
+.pkp_page_login .btn-default {
     display: inline-block !important;
     width: 100% !important;
     height: 54px !important;
-    line-height: 54px !important;
+    line-height: 38px !important;         /* v10.23: Adjusted for padding */
     text-align: center !important;
     background: #f0f0f0 !important;
     color: #555 !important;
@@ -1331,14 +1375,40 @@ body.pkp_page_user.pkp_op_register {
     transition: all 0.3s ease !important;
 }
 
-.pkp_page_login .register:hover {
+.pkp_page_login .register:hover,
+.pkp_page_login a.register:hover,
+.pkp_page_login .btn-default:hover {
     background: #e0e0e0 !important;
     color: #333 !important;
 }
 
+/* v10.23: Login link on Register page - match Register button style on Login page */
+.pkp_page_user.pkp_op_register .page a[href*="login"],
+.pkp_page_user.pkp_op_register .btn-default {
+    display: inline-block !important;
+    width: 100% !important;
+    text-align: center !important;
+    background: #f0f0f0 !important;
+    color: #555 !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+    margin-top: 15px !important;
+    height: 54px !important;
+}
+
+.pkp_page_user.pkp_op_register .page a[href*="login"]:hover,
+.pkp_page_user.pkp_op_register .btn-default:hover {
+    background: #e0e0e0 !important;
+    color: #333 !important;
+}
+
+
+
 .pkp_page_login a,
 .pkp_page_user.pkp_op_register a {
-    color: #3498db !important;
     text-decoration: none !important;
     font-weight: 500 !important;
     transition: color 0.3s ease !important;
@@ -1439,13 +1509,12 @@ body.pkp_page_user.pkp_op_register {
 /* v10.19: Simplified - inherits base mobile styles, only override differences */
 @media (max-width: 767px) {
     .pkp_page_login #headerNavigationContainer .navbar-header {
-        left: 70px !important;
-        top: 3px !important;               /* v10.19: Match base mobile */
+        left: 165px !important;
+        top: 40px !important;               /* user, tdk usah diubah */
     }
     
     .pkp_page_login .navbar-toggle {
         left: 8px !important;              /* v10.19: Match base mobile */
-        top: 10px !important;              /* v10.19: Match base mobile */
     }
 }
 
@@ -1458,6 +1527,24 @@ body.pkp_page_user.pkp_op_register {
         top: 5px !important;               /* v10.6: NAIKKAN more from 10px */
         transform: none !important;
     }
+    
+    /* v10.25: Fix navigationUser - sama tinggi, pojok kanan atas & no dark background */
+    .pkp_page_user.pkp_op_register #navigationUser {
+        position: absolute !important;
+        right: 15px !important;            /* Pojok kanan */
+        top: 0 !important;              /* Sama tinggi dengan halaman lain */
+    }
+    
+    .pkp_page_user.pkp_op_register #navigationUser li a {
+        background: transparent !important;
+        padding: 5px 10px !important;
+        vertical-align: middle !important; /* Pastikan sejajar */
+    }
+    
+    .pkp_page_user.pkp_op_register #navigationUser li a:hover {
+        background: rgba(46, 204, 113, 0.1) !important;
+    }
+
 }
 
 /* REGISTER PAGE - PC MINI (768-992px) */
@@ -1468,6 +1555,24 @@ body.pkp_page_user.pkp_op_register {
         left: 30px !important;
         top: 10px !important;              /* v10.5: NAIKKAN from 20px */
         transform: none !important;
+    }
+    
+    /* v10.25: Fix navigationUser - sama tinggi, pojok kanan atas */
+    .pkp_page_user.pkp_op_register #navigationUser {
+        position: absolute !important;
+        right: 15px !important;
+        top: 12px !important;
+    }
+    
+    /* v10.25: Fix navigationUser - sama tinggi & no dark background */
+    .pkp_page_user.pkp_op_register #navigationUser li a {
+        background: transparent !important;
+        padding: 5px 10px !important;
+        vertical-align: middle !important;
+    }
+    
+    .pkp_page_user.pkp_op_register #navigationUser li a:hover {
+        background: rgba(46, 204, 113, 0.1) !important;
     }
     
     .pkp_page_user.pkp_op_register .navbar-toggle {
@@ -1481,16 +1586,26 @@ body.pkp_page_user.pkp_op_register {
 }
 
 /* REGISTER PAGE - MOBILE (≤767px) */
-/* v10.19: Simplified - inherits base mobile styles */
+/* v10.26: Add override for navigationUser positioning - Icon Login naik biar sama dengan icon Register */
 @media (max-width: 767px) {
-    .pkp_page_user.pkp_op_register #headerNavigationContainer .navbar-header {
-        left: 70px !important;
-        top: 3px !important;               /* v10.19: Match base mobile */
+    /* PENTING: Ini override khusus register page mobile, tidak mengubah top: 0 base config */
+    .pkp_page_user.pkp_op_register #navigationUser {
+        position: absolute !important;
+        right: 1px !important;
+        top: 0px !important;              /* v10.26: Naik 2px dari base config (24px) biar icon login sama tinggi dengan icon register */
+        padding: 3px 6px !important;
+        font-size: 12px !important;
     }
     
-    .pkp_page_user.pkp_op_register .navbar-toggle {
-        left: 8px !important;              /* v10.19: Match base mobile */
-        top: 10px !important;              /* v10.19: Match base mobile */
+    .pkp_page_user.pkp_op_register #navigationUser li a {
+        background: transparent !important;
+        padding: 5px 8px !important;       /* Pastikan padding sama */
+        line-height: 1.2 !important;       /* Tinggi konsisten */
+        vertical-align: middle !important;
+    }
+    
+    .pkp_page_user.pkp_op_register #navigationUser li a:hover {
+        background: rgba(46, 204, 113, 0.1) !important;
     }
 }
 
@@ -2296,15 +2411,24 @@ body .pkp_page_about .hero-image {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    position: relative !important;
+    position: absolute !important;       /* v10.25: Absolute like home page */
+    right: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 2 !important;
+    max-width: 650px !important;
 }
 
 body .pkp_page_about .hero-image img {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    width: 100% !important;
+    width: auto !important;
+    max-width: 650px !important;
     height: auto !important;
+    max-height: 473px !important;
+    object-fit: contain !important;
+    object-position: right center !important;
 }
 
 /* Mobile specific adjustments */
@@ -2314,7 +2438,7 @@ body .pkp_page_about .hero-image img {
     html body.pkp_page_about .hero-content h1,
     body.pkp_page_about .homepage-hero h1,
     body .pkp_page_about .hero-content h1 {
-        font-size: 36px !important;        /* Match homepage font size */
+        font-size: 28px !important;        /* Match homepage font size */
         line-height: 1.2 !important;
     }
     
