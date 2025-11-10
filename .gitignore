@@ -16,6 +16,7 @@ ojs/plugins/**/node_modules/
 # Keep database backups for team sharing
 # *.sql (commented to allow SQL dumps)
 *.zip
+*.gz
 
 # Documentation archives (old versions)
 documentation/archive/

@@ -149,46 +149,10 @@ body {
     gap: 0;
 }
 
-/* v11.3: Ensure consistent header positioning for ALL pages */
-.pkp_page_index #headerNavigationContainer .site-name,
-.pkp_page_about #headerNavigationContainer .site-name,
-.pkp_page_submissions #headerNavigationContainer .site-name,
-.pkp_page_login #headerNavigationContainer .site-name,
-.pkp_page_register #headerNavigationContainer .site-name {
-    display: flex !important;
-    align-items: center !important;
-    height: 0 !important;
-    gap: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
 #headerNavigationContainer .navbar-brand:hover {
     color: #000000 !important;
     text-decoration: none;
 }
-
-/* v11.3: HIDE logo IMAGE di header untuk homepage, login, register, about, submissions (teks "Jurnal Riptek" tetap tampil) */
-.pkp_page_index #headerNavigationContainer .navbar-brand-logo,
-.pkp_page_login #headerNavigationContainer .navbar-brand-logo,
-.pkp_page_register #headerNavigationContainer .navbar-brand-logo,
-.pkp_page_user #headerNavigationContainer .navbar-brand-logo,
-body.pkp_page_register #headerNavigationContainer .navbar-brand-logo,
-body[class*="register"] #headerNavigationContainer .navbar-brand-logo,
-.pkp_page_about #headerNavigationContainer .navbar-brand-logo,
-.pkp_page_submissions #headerNavigationContainer .navbar-brand-logo {
-    display: none !important;
-}
-
-/* v11.3: OPTIONAL - Uncomment untuk hide logo di halaman lain jika diperlukan */
-/*
-.pkp_page_issue #headerNavigationContainer .navbar-brand-logo,
-.pkp_page_article #headerNavigationContainer .navbar-brand-logo,
-.pkp_page_search #headerNavigationContainer .navbar-brand-logo,
-.pkp_page_submissions #headerNavigationContainer .navbar-brand-logo {
-    display: none !important;
-}
-*/
 
 /* Navigation Menu Container - CENTERED */
 #nav-menu {
@@ -571,19 +535,18 @@ body, html {
    2. Teks "Jurnal Riptek" DIGESER KE KANAN
    ========================================================================== */
 
-/* Hide hero on pages except home, about, and submissions (author guidelines) */
+/* Hide hero on pages except home and about */
 .pkp_page_login .homepage-hero,
 .pkp_page_user .homepage-hero,
-.pkp_page_register .homepage-hero,
 .pkp_page_issue .homepage-hero,
-.pkp_page_article .homepage-hero {
+.pkp_page_article .homepage-hero,
+.pkp_page_submissions .homepage-hero {
     display: none !important;
 }
 
-/* v11.3: Show hero on home, about, AND submissions (author guidelines) pages */
+/* Show hero on home AND about pages */
 .pkp_page_index .homepage-hero,
-.pkp_page_about .homepage-hero,
-.pkp_page_submissions .homepage-hero {
+.pkp_page_about .homepage-hero {
     display: flex !important;
 }
 
@@ -611,7 +574,7 @@ body, html {
     padding-top: 71px !important;          /* Add padding equal to header height */
     position: relative;
     background: linear-gradient(135deg, #2ecc71 0%, #3498db 100%);
-    overflow: visible;                      /* v11.2: Changed from hidden to visible untuk logo/ISSN di pojok */
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -627,53 +590,6 @@ body, html {
     margin-right: -50vw !important;
 }
 
-/* v11.0: Logo + BRIDA text di pojok kiri atas hero */
-.homepage-hero .hero-logo-wrapper {
-    position: absolute;
-    top: 91px;                              /* v11.2: 71px padding + 20px offset = 91px from top */
-    left: 180px;                            /* v11.3: Moved more to right for desktop */
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.homepage-hero .hero-logo {
-    width: 35px;
-    height: 46px;
-}
-
-.homepage-hero .hero-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
-
-.homepage-hero .hero-brida-text {
-    font-family: 'Inria Serif', serif;
-    font-weight: 700;
-    font-size: 13px;
-    line-height: 100%;
-    letter-spacing: 0%;
-    color: #ffffff;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-    max-width: 280px;
-}
-
-/* v11.0: ISSN di pojok kanan atas hero */
-.homepage-hero .hero-issn {
-    position: absolute;
-    top: 91px;                              /* v11.2: 71px padding + 20px offset = 91px from top */
-    right: 180px;                           /* v11.3: Moved more to left (balanced with logo) */
-    z-index: 10;
-    font-family: 'Inria Serif', serif;
-    font-weight: 600;
-    font-size: 12px;
-    color: #ffffff;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-}
-
 .homepage-hero::before {
     content: '';
     position: absolute;
@@ -685,51 +601,10 @@ body, html {
     z-index: 1;
 }
 
-/* Default z-index for hero children */
-.homepage-hero > .hero-content,
-.homepage-hero > .hero-image {
+.homepage-hero > * {
     position: relative;
     z-index: 2;
 }
-
-/* Higher z-index for logo wrapper and ISSN to appear on top */
-.homepage-hero .hero-logo-wrapper,
-.homepage-hero .hero-issn {
-    z-index: 10 !important;
-}
-
-/* v11.3: ABOUT PAGE - Automatically inherits all logo/BRIDA/ISSN styling from .homepage-hero rules above
-   No additional styling needed - all positioning, fonts, colors are shared between homepage and about page */
-
-/* v11.3: OPTIONAL - Uncomment untuk apply hero styling ke halaman lain jika diperlukan */
-/*
-.pkp_page_issue .homepage-hero,
-.pkp_page_article .homepage-hero,
-.pkp_page_search .homepage-hero {
-    display: flex !important;
-}
-
-.pkp_page_issue .homepage-hero .hero-logo-wrapper,
-.pkp_page_article .homepage-hero .hero-logo-wrapper,
-.pkp_page_search .homepage-hero .hero-logo-wrapper {
-    position: absolute;
-    top: 91px;
-    left: 180px;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.pkp_page_issue .homepage-hero .hero-issn,
-.pkp_page_article .homepage-hero .hero-issn,
-.pkp_page_search .homepage-hero .hero-issn {
-    position: absolute;
-    top: 91px;
-    right: 180px;
-    z-index: 10;
-}
-*/
 
 /* HERO CONTENT - GESER KE KANAN */
 .hero-content {
@@ -770,7 +645,6 @@ body, html {
     color: #ffffff !important;             /* PUTIH - bukan hijau */
     color: #ffffff;
     text-align: left;
-    display: none !important;              /* v11.0: HAPUS subtitle lama (BRIDA text) */
 }
 
 /* HERO IMAGE - DI KANAN TENGAH (TIDAK DI POJOK ATAS) */
@@ -870,8 +744,7 @@ body, html {
 
 /* ===== v10.14: REMOVED DUPLICATE - See consolidated section at end of file ===== */
 
-.sidebar-menu-link:hover,
-.sidebar-menu-item.active .sidebar-menu-link {
+.sidebar-menu-link:hover {
     background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
     transform: translateY(-2px);
@@ -903,102 +776,6 @@ body, html {
     transform: scale(1.05);
 }
 
-/* ==========================================================================
-   v11.3: SUBMISSIONS PAGE - Upload Button Layout
-   ========================================================================== */
-
-.submissions-page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 60px 40px;
-    gap: 60px;
-}
-
-.upload-button-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 40px 0;
-}
-
-.btn-upload-article {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    padding: 20px 50px;
-    background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
-    color: #ffffff !important;
-    font-size: 18px;
-    font-weight: 600;
-    text-decoration: none;
-    border-radius: 8px;
-    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.35);
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-    min-width: 300px;
-}
-
-.btn-upload-article:hover {
-    background: linear-gradient(135deg, #229954 0%, #1e8449 100%);
-    box-shadow: 0 8px 25px rgba(39, 174, 96, 0.45);
-    transform: translateY(-2px);
-    color: #ffffff !important;
-}
-
-.btn-upload-article:active {
-    transform: translateY(0);
-    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
-}
-
-.upload-icon {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-/* Sidebar positioning for submissions page */
-.sidebar-menu-submissions {
-    width: 100%;
-    max-width: 800px;
-}
-
-/* ==========================================================================
-   AUTHOR GUIDELINES CONTENT STYLING (v11.4)
-   ========================================================================== */
-
-.author-guidelines-section {
-    margin-bottom: 40px;
-}
-
-.author-guidelines-section .section-title {
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 24px;
-    color: #1a1a1a;
-    line-height: 1.3;
-}
-
-.author-guidelines-section .section-content p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: justify;
-}
-
-.author-guidelines-section .section-content p:last-child {
-    margin-bottom: 0;
-}
-
-/* ==========================================================================
-   END: SUBMISSIONS PAGE STYLING
-   ========================================================================== */
-
 /* DUPLICATE REMOVED - CAUSING 2-2 LAYOUT ISSUE */
 
 .info-section h3 {
@@ -1029,7 +806,19 @@ body, html {
 /* ========== v10.4: HARDWAY GRID ESCAPE - DESCRIPTIONS ========== */
 /* Photo 1 & 4: Descriptions blocked by grid - AGGRESSIVE OVERRIDE */
 
-/* v10.13: DUPLICATE REMOVED - .content-wrapper already defined at line ~736 */
+/* Content wrapper - NO CONSTRAINTS */
+.content-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 50px 80px !important;
+    gap: 40px !important;
+    box-sizing: border-box !important;
+    align-items: flex-start !important;
+    position: relative !important;
+}
 
 /* Main content area - BREAK FREE FROM GRID */
 .main-content-area,
@@ -1221,6 +1010,16 @@ body .about-content-wrapper div {
 }
 
 /* About page titles - v10.7: SPECIFIC COLOR RULES */
+/* v10.7 Photo 5: Hero "Jurnal Riptek" should be WHITE (not green) */
+.pkp_page_about .homepage-hero h1,
+.page_about .homepage-hero h1,
+.pkp_page_index .homepage-hero h1,
+.homepage-hero h1,
+.hero-content h1 {
+    color: #ffffff !important;             /* v10.7: WHITE - consistent across all pages */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
 /* "About the Journal" and other content headings - BLACK (EXCLUDE hero h1) */
 .page_about .about-content-wrapper h1,
 .pkp_page_about .about-content-wrapper h1,
@@ -1234,13 +1033,17 @@ body .about-content-wrapper div {
     border-left: 4px solid #2ecc71;
 }
 
-/* v10.6: About page hero h1 specific overrides (if needed beyond base) */
+/* v10.6: FORCE hero h1 to match home page - WHITE & LARGE */
 .pkp_page_about .hero-content h1,
 .page_about .hero-content h1 {
-    font-size: 70px !important;            /* Ensure LARGE like home */
+    color: #ffffff !important;             /* WHITE like home */
+    font-size: 70px !important;            /* LARGE like home */
+    font-weight: 700 !important;
     text-align: left !important;
+    margin-bottom: 20px !important;
     padding-left: 0 !important;
     border-left: none !important;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3) !important;
 }
 
 .page_about h2,
@@ -2004,15 +1807,6 @@ body.pkp_page_user.pkp_op_register {
         width: 100%;
         margin-bottom: 30px;
     }
-    
-    /* Author Guidelines title responsive - tablet */
-    .author-guidelines-section .section-title {
-        font-size: 28px;
-    }
-    
-    .author-guidelines-section .section-content p {
-        font-size: 15px;
-    }
 }
 
 /* v10.20: TABLET ONLY (768-992px) - not mobile */
@@ -2069,36 +1863,6 @@ body.pkp_page_user.pkp_op_register {
         min-height: 400px;
         gap: 30px;
         left: 50% !important;              /* Center on mobile */
-    }
-    
-    /* v11.0: Hero logo/BRIDA/ISSN responsive - Tablet */
-    .homepage-hero .hero-logo-wrapper,
-    .pkp_page_about .homepage-hero .hero-logo-wrapper,
-    .pkp_page_submissions .homepage-hero .hero-logo-wrapper {
-        top: 106px;                         /* v11.2: 91px padding + 15px offset for tablet */
-        left: 100px;                        /* v11.3: More to right for tablet (not edge) */
-    }
-    
-    .homepage-hero .hero-logo,
-    .pkp_page_about .homepage-hero .hero-logo,
-    .pkp_page_submissions .homepage-hero .hero-logo {
-        width: 30px;
-        height: 39px;
-    }
-    
-    .homepage-hero .hero-brida-text,
-    .pkp_page_about .homepage-hero .hero-brida-text,
-    .pkp_page_submissions .homepage-hero .hero-brida-text {
-        font-size: 11px;
-        max-width: 220px;
-    }
-    
-    .homepage-hero .hero-issn,
-    .pkp_page_about .homepage-hero .hero-issn,
-    .pkp_page_submissions .homepage-hero .hero-issn {
-        top: 106px;                         /* v11.2: Match logo wrapper position */
-        right: 100px;                       /* v11.3: More to left for tablet (balanced) */
-        font-size: 10px;
     }
     
     .hero-content h1 {
@@ -2325,55 +2089,12 @@ body.pkp_page_user.pkp_op_register {
         padding: 20px !important;
     }
     
-    /* Author Guidelines title responsive - mobile */
-    .author-guidelines-section .section-title {
-        font-size: 24px;
-        margin-bottom: 16px;
-    }
-    
-    .author-guidelines-section .section-content p {
-        font-size: 14px;
-        line-height: 1.7;
-        margin-bottom: 16px;
-    }
-    
     .homepage-hero {
         padding: 30px 20px;
         padding-top: 91px;
         min-height: 350px;
         gap: 20px;
         margin-left: -50vw !important;
-    }
-    
-    /* v11.0: Hero logo/BRIDA/ISSN responsive - Mobile */
-    .homepage-hero .hero-logo-wrapper,
-    .pkp_page_about .homepage-hero .hero-logo-wrapper,
-    .pkp_page_submissions .homepage-hero .hero-logo-wrapper {
-        top: 106px;                         /* v11.2: 91px padding + 15px offset for mobile */
-        left: 15px;
-        gap: 8px;
-    }
-    
-    .homepage-hero .hero-logo,
-    .pkp_page_about .homepage-hero .hero-logo,
-    .pkp_page_submissions .homepage-hero .hero-logo {
-        width: 28px;
-        height: 37px;
-    }
-    
-    .homepage-hero .hero-brida-text,
-    .pkp_page_about .homepage-hero .hero-brida-text,
-    .pkp_page_submissions .homepage-hero .hero-brida-text {
-        font-size: 9px;
-        max-width: 180px;
-    }
-    
-    .homepage-hero .hero-issn,
-    .pkp_page_about .homepage-hero .hero-issn,
-    .pkp_page_submissions .homepage-hero .hero-issn {
-        top: 106px;                         /* v11.2: Match logo wrapper position */
-        right: 15px;
-        font-size: 9px;
     }
     
     .hero-content h1 {

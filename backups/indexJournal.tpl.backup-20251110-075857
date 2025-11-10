@@ -22,26 +22,6 @@
 
 <!-- Homepage Hero Section (1440px x 544px, positioned at top: 71px) -->
 <section class="homepage-hero">
-	
-	{* v11.0: Logo + BRIDA text di pojok kiri atas hero *}
-	<div class="hero-logo-wrapper">
-		<div class="hero-logo">
-			{if $displayPageHeaderLogo}
-				<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" alt="Logo Jurnal Riptek">
-			{else}
-				<img src="{$baseUrl}/templates/images/structure/logo.png" alt="Logo Jurnal Riptek">
-			{/if}
-		</div>
-		<div class="hero-brida-text">
-			Badan Riset dan Inovasi Daerah Kota Semarang Pemerintah Kota Semarang
-		</div>
-	</div>
-	
-	{* v11.0: ISSN di pojok kanan atas hero *}
-	<div class="hero-issn">
-		ISSN: 2716-3482 (E) 1978-8320 (P)
-	</div>
-	
 	<div class="hero-content">
 		<h1>Jurnal Riptek</h1>
 		<p class="subtitle">Badan Riset dan Inovasi Daerah Kota Semarang</p>
@@ -72,7 +52,7 @@
 					</a>
 				</li>
 				<li class="sidebar-menu-item">
-					<a href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="about" op="editorialPolicies"}" class="sidebar-menu-link">
+					<a href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="about" op="submissions"}" class="sidebar-menu-link">
 						Peer-Review Process
 					</a>
 				</li>
@@ -87,13 +67,13 @@
 					</a>
 				</li>
 				<li class="sidebar-menu-item">
-					<a href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="about" op="authorGuidelines"}" class="sidebar-menu-link">
+					<a href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="about" op="submissions"}" class="sidebar-menu-link">
 						Author Guidelines
 					</a>
 				</li>
 			</ul>
 			
-			<!-- SINTA Badge -->
+			<!-- SINTA Badge - Moved below Author Guidelines -->
 			<div class="sidebar-sinta-badge" style="padding: 20px 0; text-align: center;">
 				<img src="https://sinta.kemdikbud.go.id/assets/img/site/logo.png" alt="SINTA - Science and Technology Index" style="max-width: 100%; height: auto;">
 			</div>
