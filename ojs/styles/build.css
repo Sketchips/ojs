@@ -859,26 +859,26 @@ textarea {
   display: inline-block;
   padding: 0 0.5em;
   min-width: 2.13rem;
-  background: #fff;
+  background: #46cc85;
   border: 1px solid #ddd;
   border-radius: 2px;
   text-align: center;
   font-size: 0.875rem;
   line-height: 2rem;
   font-weight: 700;
-  color: #006798;
+  color: #ffffff;
   text-decoration: none;
-  -webkit-box-shadow: 0 1px 0 #ddd;
   box-shadow: 0 1px 0 #ddd;
   cursor: pointer;
 }
 .pkpButton:focus,
 .pkpButton:hover {
-  color: #006798;
-  border-color: #006798;
+  background: #ffffff;
+  color: #46cc85;
+  border-color: #46cc85;
 }
 .pkpButton:focus {
-  outline: 1px solid #006798;
+  outline: 1px solid #088a45;
 }
 .pkpButton:active {
   -webkit-box-shadow: 0 0 2px;
@@ -886,15 +886,12 @@ textarea {
 }
 .pkpButton--isPrimary {
   color: #fff;
-  background: #006798;
-  border-color: #006798;
-  -webkit-box-shadow: 0 1px 0 #006798;
-  box-shadow: 0 1px 0 #006798;
+  background: #14b15d;
 }
 .pkpButton--isPrimary:focus,
 .pkpButton--isPrimary:hover {
-  background: #008acb;
-  color: #fff;
+  background: #ffffff;
+  color: #14b15d;
 }
 .pkpButton--isLink {
   -webkit-box-shadow: none;
@@ -1186,7 +1183,7 @@ textarea {
   background: #fff;
   text-decoration: none;
   font-weight: 700;
-  color: #006798;
+  color: #000000;
 }
 .pkpTabs__button:before {
   content: "";
@@ -1225,17 +1222,14 @@ textarea {
   padding-left: 0.5em;
   padding-right: 0.5em;
   min-width: 2.25em;
-  border-color: #bbb;
+  border-color: #222222;
+  color: #222222;
   background: #fff;
 }
 .pkpTabs__button:focus:before,
 .pkpTabs__button:hover:before,
 .pkpTabs__button[aria-selected="true"]:before {
-  background: #008acb;
   width: 100%;
-}
-.pkpTabs__button[aria-selected="true"] {
-  color: #777;
 }
 .pkpTab {
   position: relative;
@@ -1855,17 +1849,17 @@ textarea.pkpFormField__input:read-only {
 .pkpSearch__input:hover + .pkpSearch__icons,
 .pkp_form .pkpSearch .pkpSearch__input:hover,
 .pkp_form .pkpSearch .pkpSearch__input:hover + .pkpSearch__icons {
-  border-color: #006798;
+  border-color: #088a45;
 }
 .pkpSearch__input:focus,
 .pkp_form .pkpSearch .pkpSearch__input:focus {
   outline: 0;
-  border-color: #006798;
+  border-color: #46cc85;
 }
 .pkpSearch__input:focus + .pkpSearch__icons,
 .pkp_form .pkpSearch .pkpSearch__input:focus + .pkpSearch__icons {
-  border-color: #006798;
-  background: #006798;
+  border-color: #46cc85;
+  background: #46cc85;
 }
 .pkpSearch__input:focus + .pkpSearch__icons .pkpSearch__icons--search:before,
 .pkp_form
@@ -1911,7 +1905,7 @@ textarea.pkpFormField__input:read-only {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  color: #006798;
+  color: #46cc85;
 }
 [dir="rtl"] .pkpSearch__clear {
   right: auto;
@@ -3979,15 +3973,15 @@ button.pkpFormLocales__locale {
   border-radius: 2px;
   font-size: 0.875rem;
   line-height: 2rem;
-  color: #006798;
+  color: #46cc85;
   -webkit-box-shadow: 0 1px 0 #ddd;
   box-shadow: 0 1px 0 #ddd;
   cursor: pointer;
 }
 .expander:focus,
 .expander:hover {
-  color: #006798;
-  border-color: #006798;
+  color: #46cc85;
+  border-color: #46cc85;
   outline: 0;
 }
 .expander:active {
@@ -4151,6 +4145,9 @@ button.pkpFormLocales__locale {
   text-decoration: none;
   cursor: pointer;
 }
+.app {
+  min-height: 100vh;
+}
 .app__header {
   position: sticky;
   top: 0;
@@ -4160,10 +4157,19 @@ button.pkpFormLocales__locale {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  min-height: 3rem;
+  min-height: 4rem;
   background: #ffffff;
   font-size: 0.85rem;
   z-index: 10;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+}
+.app__contextLogoLink {
+  margin-left: 10px;
+  line-height: 0;
+}
+.app__contextLogoImage {
+  height: 40px;
+  width: auto;
 }
 .app__contextTitle {
   margin-left: 0.5rem;
@@ -4182,7 +4188,7 @@ button.pkpFormLocales__locale {
   border-radius: 2px;
 }
 .app__contextTitle:hover {
-  color: #fff;
+  color: #000000;
 }
 .app__contextTitle:focus {
   outline: none;
@@ -4228,7 +4234,7 @@ button.pkpFormLocales__locale {
   transform: translateY(-0.25rem);
   -webkit-box-shadow: 0 0.25rem 0 #fff;
   box-shadow: 0 0.25rem 0 #fff;
-  color: #fff;
+  color: #383838ff;
 }
 .app__contexts {
   border-right: 1px solid hsla(0, 0%, 100%, 0.2);
@@ -4330,10 +4336,12 @@ button.pkpFormLocales__locale {
   -ms-flex: 0 0 15rem;
   flex: 0 0 15rem;
   padding-top: 1.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5rem;
+  background: #3bb46e;
+  min-height: 100%;
+  height: 100%;
+  overflow-y: auto;
 }
 .app__nav ul {
   margin: 0;
@@ -4345,9 +4353,9 @@ button.pkpFormLocales__locale {
   margin-bottom: 2rem;
 }
 .app__navItem {
-  display: inline-block;
-  padding: 0.25rem 0.5rem;
-  color: #002c40;
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #ffffff;
 }
 .app__navItem .app__navItem {
   padding-left: 0;
@@ -4355,23 +4363,24 @@ button.pkpFormLocales__locale {
 }
 .app__navItem--hasSubmenu {
   font-weight: 700;
+  color: #ffffff;
 }
 a.app__navItem {
+  display: block;
   text-decoration: none;
+  color: #ffffff;
 }
 a.app__navItem:hover {
-  color: #006798;
+  color: #088a45;
 }
 a.app__navItem:focus {
   -webkit-box-shadow: 0 0 0 1px #006798;
   box-shadow: 0 0 0 1px #006798;
-  border-radius: 2px;
   outline: 0;
-  color: #002c40;
+  color: #088a45;
 }
 a.app__navItem--isCurrent {
-  background: #002c40;
-  border-radius: 2px;
+  background: #088a45;
   font-weight: 700;
   color: #fff;
 }
@@ -4385,9 +4394,12 @@ a.app__navItem--isCurrent:focus {
   color: #fff;
 }
 .app__main {
+  flex-grow: 1;
   padding: 1rem;
   width: 100%;
   min-width: 1px;
+  min-height: 100%;
+  background: #ffffff;
 }
 .app__breadcrumbs {
   margin: -1rem -1rem 1rem;
