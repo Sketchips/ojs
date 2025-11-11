@@ -57,7 +57,8 @@
 			{/if}
 			{if $currentContext}
 				<a class="app__contextTitle" href="{url page="index"}">
-					{$currentContext->getLocalizedData('name')|escape}
+					Badan Riset dan Inovasi Daerah Kota Semarang<br>
+    				Pemerintah Kota Semarang
 				</a>
 			{elseif $siteTitle}
 				<a class="app__contextTitle" href="{$baseUrl}">
