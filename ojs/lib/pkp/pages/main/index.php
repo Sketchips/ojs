@@ -11,8 +11,5 @@
  * Handle requests for the main page operations.
  */
 
-switch ($op) {
-    case 'index':
-    default:
-        return new APP\pages\main\MainHandler();
-}
+require('MainHandler.php');
+return new \PKP\pages\main\MainHandler();

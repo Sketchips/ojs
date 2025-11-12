@@ -4396,7 +4396,7 @@ a.app__navItem--isCurrent:focus {
 .app__main {
   flex-grow: 1;
   padding: 1rem;
-  width: 100%;
+  max-width: 100%;
   min-width: 1px;
   min-height: 100%;
   background: #ffffff;
@@ -5574,4 +5574,200 @@ ul.submissionWizard__reviewPanel__item__value {
 .app__contentPanel__overflow[data-v-09b97495] {
   width: inherit !important;
   overflow: auto !important;
+}
+
+/* - MAIN PAGE CSS - */
+/* /main */
+.custom-dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  transparent: 0;
+  min-height: 100vh;
+}
+
+.dashboard-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 35px;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 40px;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+}
+/*Cards Styling */
+.stats-row {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.stat-card {
+  flex: 1 1 280px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 30px;
+  border-radius: 12px;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.stat-published {
+  background: linear-gradient(135deg, #46cc85, #088a45);
+}
+.stat-queue {
+  background: linear-gradient(135deg, #46cc85, #088a45);
+}
+.stat-archived {
+  background: linear-gradient(135deg, #46cc85, #088a45);
+}
+.stat-icon {
+  font-size: 40px;
+  margin-right: 0;
+  opacity: 0.8;
+}
+.stat-content {
+  text-align: right;
+  line-height: 1.2;
+}
+
+.stat-count {
+  display: block;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+}
+.stat-label {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+/*Submissions Table Styling*/
+.latest-submissions-table {
+  margin-top: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+}
+
+.pkp_table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pkp_table th,
+.pkp_table td {
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+}
+
+.pkp_table tr:last-child td {
+  border-bottom: none;
+}
+
+.pkp_table th {
+  font-weight: 700;
+  color: #4b5563;
+  background-color: #f9fafb;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+.pkp_table th:first-child,
+.pkp_table td:first-child {
+  width: 60%;
+  white-space: normal;
+  word-break: break-word;
+}
+.pkp_table th:nth-child(2),
+.pkp_table td:nth-child(2) {
+  width: 20%;
+  white-space: nowrap;
+}
+.pkp_table th:last-child,
+.pkp_table td:last-child {
+  width: 20%;
+  text-align: right;
+  white-space: nowrap;
+}
+.status-tag {
+  padding: 8px 16px;
+  border-radius: 50rem;
+  font-weight: 600;
+  font-size: 0.875em;
+  white-space: nowrap;
+  display: inline-block;
+  text-transform: capitalize;
+  line-height: 1.2;
+}
+
+/* Status: Published */
+.status-published {
+  background-color: #00b376;
+  color: #ffffff;
+}
+
+/* Status: Queue */
+.status-queue,
+.status-in-review {
+  background-color: #1e40af;
+  color: #ffffff;
+}
+
+/* Menambahkan status umum lainnya */
+.status-awaiting-assignment {
+  background-color: #92400e;
+  color: #ffffff;
+}
+
+.status-rejected {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.status-editing {
+  background-color: #1d4ed8;
+  color: #ffffff;
+}
+
+/* Responsivenes / Media Query */
+
+@media (max-width: 1024px) {
+  .stats-row {
+    gap: 20px;
+  }
+  .stat-card {
+    flex: 1 1 calc(50% - 10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-dashboard-container {
+    padding: 20px 15px;
+  }
+  .dashboard-title {
+    font-size: 2rem;
+  }
+  .section-title {
+    font-size: 1.5rem;
+  }
+  .stat-card {
+    flex: 1 1 100%;
+  }
+  .pkp_table th,
+  .pkp_table td {
+    padding: 1rem;
+  }
 }
