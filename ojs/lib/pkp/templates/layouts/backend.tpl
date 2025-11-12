@@ -19,6 +19,20 @@
 	<style type="text/css">
 		/* Prevent flash of unstyled content in some browsers */
 		[v-cloak] { display: none; }
+		html, body {
+            height: 100%;
+        }
+		.app {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+		.app__body {
+            flex-grow: 1;
+            display: flex;
+			min-height: 0;
+        }
+        
 	</style>
 </head>
 <body class="pkp_page_{$requestedPage|escape|default:"index"} pkp_op_{$requestedOp|escape|default:"index"}" dir="{$currentLocaleLangDir|escape|default:"ltr"}">
@@ -56,6 +70,14 @@
 				</dropdown>
 			{/if}
 			{if $currentContext}
+
+            <a href="{url page="index"}" class="app__contextLogoLink">
+                    <img 
+                        src="{$baseUrl|escape}/public/journals/1/pageHeaderLogoImage_en.png" 
+                        alt="{translate key="common.pageHeaderLogo.altText"}" 
+                        class="app__contextLogoImage"
+                    />
+                </a>
 				<a class="app__contextTitle" href="{url page="index"}">
 					Badan Riset dan Inovasi Daerah Kota Semarang<br>
     				Pemerintah Kota Semarang
