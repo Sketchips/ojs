@@ -9,8 +9,7 @@
  *
  * @uses $currentJournal Journal The current journal
  *}
-{assign var="pageTitleTranslated" value="Submissions"}
-{include file="frontend/components/header.tpl"}
+{include file="frontend/components/header.tpl" pageTitle="about.submissions"}
 
 {* v11.4: HERO SECTION - Same layout as homepage *}
 <div class="homepage-hero">
@@ -76,17 +75,19 @@
 					Focus and Scope
 				</a>
 			</li>
-		<li class="sidebar-menu-item">
-			<a href="{url page="about" op="editorialPolicies"}" class="sidebar-menu-link">
-				Section Policies
-			</a>
-		</li>
-		<li class="sidebar-menu-item">
-			<a href="{url page="about" op="authorGuidelines"}" class="sidebar-menu-link">
-				Author Guidelines
-			</a>
-		</li>
-	</ul>		{* SINTA Badge *}
+			<li class="sidebar-menu-item">
+				<a href="{url page="about" op="editorialPolicies"}" class="sidebar-menu-link">
+					Section Policies
+				</a>
+			</li>
+			<li class="sidebar-menu-item active">
+				<a href="{url page="about" op="authorGuidelines"}" class="sidebar-menu-link">
+					Author Guidelines
+				</a>
+			</li>
+		</ul>
+		
+		{* SINTA Badge *}
 		<div class="sidebar-sinta-badge" style="padding: 20px 0; text-align: center;">
 			<img src="https://sinta.kemdikbud.go.id/assets/img/site/logo.png" alt="SINTA" style="max-width: 100%; height: auto;">
 		</div>

@@ -92,27 +92,29 @@
 
 				{if !empty(trim($primaryMenu)) || $currentContext}
 					<nav id="nav-menu" class="navbar-collapse collapse" aria-label="{translate|escape key="common.navigation.site"}">
-					{* Custom Primary Navigation Menu *}
-					<ul class="nav navbar-nav">
-						<li class="{if $requestedPage == 'index'}active{/if}">
-							<a href="{url page="index" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Home</a>
-						</li>
-						<li class="{if $requestedPage == 'about' && ($requestedOp == '' || $requestedOp == 'index')}active{/if}">
-							<a href="{url page="about" router=\PKP\core\PKPApplication::ROUTE_PAGE}">About</a>
-						</li>
-						<li class="{if $requestedPage == 'issue'}active{/if}">
-							<a href="{url page="issue" op="archive" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Issues</a>
-						</li>
-						<li class="{if $requestedPage == 'about' && $requestedOp == 'submissions'}active{/if}">
-							<a href="{url page="about" op="submissions" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Submissions</a>
-						</li>
-						<li class="{if $requestedPage == 'announcement'}active{/if}">
-							<a href="{url page="announcement" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Announcements</a>
-						</li>
-						<li class="{if $requestedPage == 'contact'}active{/if}">
-							<a href="{url page="contact" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Contact</a>
-						</li>
-					</ul>						{* Search form - DISABLED *}
+						{* Custom Primary Navigation Menu *}
+						<ul class="nav navbar-nav">
+							<li class="{if $requestedPage == 'index'}active{/if}">
+								<a href="{url page="index" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Home</a>
+							</li>
+							<li class="{if $requestedPage == 'about'}active{/if}">
+								<a href="{url page="about" router=\PKP\core\PKPApplication::ROUTE_PAGE}">About</a>
+							</li>
+							<li class="{if $requestedPage == 'issue'}active{/if}">
+								<a href="{url page="issue" op="archive" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Issues</a>
+							</li>
+							<li class="{if $requestedPage == 'submissions'}active{/if}">
+								<a href="{url page="about" op="submissions" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Submissions</a>
+							</li>
+							<li class="{if $requestedPage == 'announcement'}active{/if}">
+								<a href="{url page="announcement" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Announcements</a>
+							</li>
+							<li class="{if $requestedPage == 'contact'}active{/if}">
+								<a href="{url page="contact" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Contact</a>
+							</li>
+						</ul>
+
+						{* Search form - DISABLED *}
 						{* 
 						{if $currentContext}
 							<div class="pull-md-right">

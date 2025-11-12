@@ -1,0 +1,262 @@
+{**
+ * templates/frontend/pages/contact.tpl
+ *
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2003-2024 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+ *
+ * Contact page with modern design - no sidebar, home page style.
+ *
+ *}
+{include file="frontend/components/header.tpl" pageTitle="Contact"}
+
+{* Hero Section *}
+{include file="frontend/components/aboutHero.tpl"}
+
+{* Contact Content - Full width like home, no sidebar *}
+<div class="content-wrapper">
+	<div class="main-content-area" style="margin-left: 0; max-width: 100%; padding: 40px 60px;">
+		
+		{* Mailing Address *}
+		{if $mailingAddress}
+			<div class="contact-section" style="margin-bottom: 40px;">
+				<h2 style="color: #2ecc71; font-size: 24px; font-weight: 600; margin-bottom: 20px;">
+					Contact
+				</h2>
+				<div class="contact-section-content address" style="line-height: 1.8; font-size: 16px;">
+					{$mailingAddress|nl2br|strip_unsafe_html}
+				</div>
+			</div>
+		{/if}
+
+		{* Primary Contact *}
+		{if $contactTitle || $contactName || $contactAffiliation || $contactPhone || $contactEmail}
+			<div class="contact-section" style="margin-bottom: 40px;">
+				<h2 style="color: #2ecc71; font-size: 24px; font-weight: 600; margin-bottom: 20px;">
+					Principal Contact
+				</h2>
+				<div class="contact-section-content primary-contact" style="line-height: 1.8;">
+					{if $contactName}
+						<div class="contact-item" style="margin-bottom: 10px;">
+							<strong>Name:</strong> {$contactName|escape}
+						</div>
+					{/if}
+
+					{if $contactTitle}
+						<div class="contact-item" style="margin-bottom: 10px;">
+							<strong>Title:</strong> {$contactTitle|escape}
+						</div>
+					{/if}
+
+					{if $contactAffiliation}
+						<div class="contact-item" style="margin-bottom: 10px;">
+							<strong>Affiliation:</strong> {$contactAffiliation|strip_unsafe_html}
+						</div>
+					{/if}
+
+					{if $contactPhone}
+						<div class="contact-item" style="margin-bottom: 10px;">
+							<strong>Phone:</strong> <a href="tel:{$contactPhone|escape}">{$contactPhone|escape}</a>
+						</div>
+					{/if}
+
+					{if $contactEmail}
+						<div class="contact-item" style="margin-bottom: 10px;">
+							<strong>Email:</strong> <a href="mailto:{$contactEmail|escape}">{$contactEmail|escape}</a>
+						</div>
+					{/if}
+				</div>
+			</div>
+		{/if}
+
+		{* Technical/Support Contact *}
+		{if $supportName || $supportPhone || $supportEmail}
+			<div class="contact-section" style="margin-bottom: 40px;">
+				<h2 style="color: #2ecc71; font-size: 24px; font-weight: 600; margin-bottom: 20px;">
+					Support Contact
+				</h2>
+				<div class="contact-section-content support-contact" style="line-height: 1.8;">
+					{if $supportName}
+						<div class="contact-item" style="margin-bottom: 10px;">
+							<strong>Name:</strong> {$supportName|escape}
+						</div>
+					{/if}
+
+					{if $supportPhone}
+						<div class="contact-item" style="margin-bottom: 10px;">
+							<strong>Phone:</strong> <a href="tel:{$supportPhone|escape}">{$supportPhone|escape}</a>
+						</div>
+					{/if}
+
+					{if $supportEmail}
+						<div class="contact-item" style="margin-bottom: 10px;">
+							<strong>Email:</strong> <a href="mailto:{$supportEmail|escape}">{$supportEmail|escape}</a>
+						</div>
+					{/if}
+				</div>
+			</div>
+		{/if}
+		
+	</div>
+</div><!-- .content-wrapper -->
+
+{include file="common/frontend/footer.tpl"}
+
+
+<div id="main-content" class="page page_contact">
+
+	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="about.contact"}
+
+	{* Hero Section *}
+	<div class="hero-section-contact">
+		<div class="hero-content-contact">
+			<div class="journal-logo-contact">
+				{if $displayPageHeaderLogo}
+					<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" 
+						 {if $displayPageHeaderLogo.altText}
+							alt="{$displayPageHeaderLogo.altText|escape}"
+						 {/if}
+						 class="img-responsive">
+				{else}
+					<div class="journal-title-contact">
+						{$currentContext->getLocalizedName()|escape}
+					</div>
+				{/if}
+			</div>
+			
+			{if $currentContext->getData('onlineIssn')}
+				<div class="issn-contact">
+					<span class="issn-label">e-ISSN:</span>
+					<span class="issn-value">{$currentContext->getData('onlineIssn')|escape}</span>
+				</div>
+			{elseif $currentContext->getData('printIssn')}
+				<div class="issn-contact">
+					<span class="issn-label">ISSN:</span>
+					<span class="issn-value">{$currentContext->getData('printIssn')|escape}</span>
+				</div>
+			{/if}
+			
+			<h1 class="page-title-contact">{translate key="about.contact"}</h1>
+		</div>
+	</div>
+
+	{* Contact Content *}
+	<div class="contact-content-wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					
+					{* Mailing Address *}
+					{if $mailingAddress}
+						<div class="contact-section">
+							<h2 class="contact-section-title">
+								<i class="fa fa-map-marker"></i> {translate key="common.mailingAddress"}
+							</h2>
+							<div class="contact-section-content address">
+								{$mailingAddress|nl2br|strip_unsafe_html}
+							</div>
+						</div>
+					{/if}
+
+					{* Primary Contact *}
+					{if $contactTitle || $contactName || $contactAffiliation || $contactPhone || $contactEmail}
+						<div class="contact-section">
+							<h2 class="contact-section-title">
+								<i class="fa fa-user"></i> {translate key="about.contact.principalContact"}
+							</h2>
+							<div class="contact-section-content primary-contact">
+								{if $contactName}
+									<div class="contact-item">
+										<span class="contact-label">{translate key="user.name"}:</span>
+										<span class="contact-value">{$contactName|escape}</span>
+									</div>
+								{/if}
+
+								{if $contactTitle}
+									<div class="contact-item">
+										<span class="contact-label">{translate key="user.title"}:</span>
+										<span class="contact-value">{$contactTitle|escape}</span>
+									</div>
+								{/if}
+
+								{if $contactAffiliation}
+									<div class="contact-item">
+										<span class="contact-label">{translate key="user.affiliation"}:</span>
+										<span class="contact-value">{$contactAffiliation|strip_unsafe_html}</span>
+									</div>
+								{/if}
+
+								{if $contactPhone}
+									<div class="contact-item">
+										<span class="contact-label">
+											<i class="fa fa-phone"></i> {translate key="about.contact.phone"}:
+										</span>
+										<span class="contact-value">
+											<a href="tel:{$contactPhone|escape}">{$contactPhone|escape}</a>
+										</span>
+									</div>
+								{/if}
+
+								{if $contactEmail}
+									<div class="contact-item">
+										<span class="contact-label">
+											<i class="fa fa-envelope"></i> {translate key="about.contact.email"}:
+										</span>
+										<span class="contact-value">
+											<a href="mailto:{$contactEmail|escape}">{$contactEmail|escape}</a>
+										</span>
+									</div>
+								{/if}
+							</div>
+						</div>
+					{/if}
+
+					{* Technical/Support Contact *}
+					{if $supportName || $supportPhone || $supportEmail}
+						<div class="contact-section">
+							<h2 class="contact-section-title">
+								<i class="fa fa-life-ring"></i> {translate key="about.contact.supportContact"}
+							</h2>
+							<div class="contact-section-content support-contact">
+								{if $supportName}
+									<div class="contact-item">
+										<span class="contact-label">{translate key="user.name"}:</span>
+										<span class="contact-value">{$supportName|escape}</span>
+									</div>
+								{/if}
+
+								{if $supportPhone}
+									<div class="contact-item">
+										<span class="contact-label">
+											<i class="fa fa-phone"></i> {translate key="about.contact.phone"}:
+										</span>
+										<span class="contact-value">
+											<a href="tel:{$supportPhone|escape}">{$supportPhone|escape}</a>
+										</span>
+									</div>
+								{/if}
+
+								{if $supportEmail}
+									<div class="contact-item">
+										<span class="contact-label">
+											<i class="fa fa-envelope"></i> {translate key="about.contact.email"}:
+										</span>
+										<span class="contact-value">
+											<a href="mailto:{$supportEmail|escape}">{$supportEmail|escape}</a>
+										</span>
+									</div>
+								{/if}
+							</div>
+						</div>
+					{/if}
+
+					{* Note: If journal admin wants custom contact form, it can be added here *}
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div><!-- .page -->
+
+{include file="frontend/components/footer.tpl"}
