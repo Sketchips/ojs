@@ -135,4 +135,25 @@ class AboutHandler extends \PKP\pages\about\AboutContextHandler
         $this->setupTemplate($request);
         $templateMgr->display('frontend/pages/sectionPolicies.tpl');
     }
+
+    /**
+     * Display announcements page.
+     *
+     * @param array $args
+     * @param \APP\core\Request $request
+     */
+    public function announcements($args, $request)
+    {
+        $templateMgr = TemplateManager::getManager($request);
+        $this->setupTemplate($request);
+        $context = $request->getJournal();
+        
+        // Get announcements from the context
+        if ($context) {
+            $announcementsEnabled = $context->getData('enableAnnouncements');
+            $templateMgr->assign('announcementsEnabled', $announcementsEnabled);
+        }
+        
+        $templateMgr->display('frontend/pages/announcements.tpl');
+    }
 }

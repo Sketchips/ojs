@@ -23,6 +23,7 @@ switch ($op) {
     case 'peerReview':
     case 'focusAndScope':
     case 'sectionPolicies':
+    case 'announcements':
         return new APP\pages\about\AboutHandler();
     default:
         // Fall back on pkp-lib implementation

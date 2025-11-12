@@ -97,7 +97,7 @@
 						<li class="{if $requestedPage == 'index'}active{/if}">
 							<a href="{url page="index" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Home</a>
 						</li>
-						<li class="{if $requestedPage == 'about' && ($requestedOp == '' || $requestedOp == 'index')}active{/if}">
+						<li class="{if $requestedPage == 'about' && ($requestedOp == '' || $requestedOp == 'index' || $requestedOp == 'editorialTeam' || $requestedOp == 'peerReview' || $requestedOp == 'focusAndScope' || $requestedOp == 'sectionPolicies' || $requestedOp == 'authorGuidelines')}active{/if}">
 							<a href="{url page="about" router=\PKP\core\PKPApplication::ROUTE_PAGE}">About</a>
 						</li>
 						<li class="{if $requestedPage == 'issue'}active{/if}">
