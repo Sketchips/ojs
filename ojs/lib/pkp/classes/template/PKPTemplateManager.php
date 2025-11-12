@@ -1041,6 +1041,11 @@ class PKPTemplateManager extends Smarty
 
                 if ($request->getContext()) {
                     if (count(array_intersect([Role::ROLE_ID_MANAGER, Role::ROLE_ID_SITE_ADMIN, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT, Role::ROLE_ID_REVIEWER, Role::ROLE_ID_AUTHOR], $userRoles))) {
+                        $menu['dashboard'] = [
+                            'name' => __('navigation.dashboard'),
+                            'url' => $router->url($request, null, 'main'),
+                            'isCurrent' => $router->getRequestedPage($request) === 'main',
+                        ];
                         $menu['submissions'] = [
                             'name' => __('navigation.submissions'),
                             'url' => $router->url($request, null, 'submissions'),
