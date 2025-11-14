@@ -135,17 +135,4 @@ class AboutHandler extends \PKP\pages\about\AboutContextHandler
         $this->setupTemplate($request);
         $templateMgr->display('frontend/pages/sectionPolicies.tpl');
     }
-
-    /**
-     * Display editorial policies page (alias for editorialTeam).
-     * This method redirects to editorialTeam for backwards compatibility.
-     *
-     * @param array $args
-     * @param \APP\core\Request $request
-     */
-    public function editorialPolicies($args, $request)
-    {
-        // Redirect to editorialTeam to maintain proper URL structure
-        $request->redirect(null, 'about', 'editorialTeam');
-    }
 }

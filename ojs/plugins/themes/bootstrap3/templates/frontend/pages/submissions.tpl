@@ -67,17 +67,17 @@
 				</a>
 			</li>
 			<li class="sidebar-menu-item">
-				<a href="{url page="about" op="editorialPolicies"}" class="sidebar-menu-link">
+				<a href="{url page="about" op="peerReview"}" class="sidebar-menu-link">
 					Peer-Review Process
 				</a>
 			</li>
 			<li class="sidebar-menu-item">
-				<a href="{url page="about"}" class="sidebar-menu-link">
+				<a href="{url page="about" op="focusAndScope"}" class="sidebar-menu-link">
 					Focus and Scope
 				</a>
 			</li>
 		<li class="sidebar-menu-item">
-			<a href="{url page="about" op="editorialPolicies"}" class="sidebar-menu-link">
+			<a href="{url page="about" op="sectionPolicies"}" class="sidebar-menu-link">
 				Section Policies
 			</a>
 		</li>
