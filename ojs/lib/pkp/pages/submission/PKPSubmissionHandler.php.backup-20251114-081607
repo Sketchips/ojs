@@ -123,8 +123,6 @@ abstract class PKPSubmissionHandler extends Handler
      */
     protected function start(array $args, Request $request): void
     {
-        $this->setupTemplate($request);
-        
         $templateMgr = TemplateManager::getManager($request);
 
         $templateMgr->assign([

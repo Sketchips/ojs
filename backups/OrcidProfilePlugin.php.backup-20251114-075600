@@ -233,13 +233,12 @@ class OrcidProfilePlugin extends GenericPlugin
 
             Hook::add('Author::edit', [$this, 'handleAuthorFormExecute']);
 
-        Hook::add('Form::config::before', [$this, 'addOrcidFormFields']);
+            Hook::add('Form::config::before', [$this, 'addOrcidFormFields']);
 
 
-        Hook::add('Installer::postInstall', [$this, 'updateSchema']);
+            Hook::add('Installer::postInstall', [$this, 'updateSchema']);
 
-        // DISABLED: Validation hook causes error when ORCID not configured
-        // Hook::add('Publication::validatePublish', [$this, 'validate']);
+            Hook::add('Publication::validatePublish', [$this, 'validate']);
 
         return $success;
     }

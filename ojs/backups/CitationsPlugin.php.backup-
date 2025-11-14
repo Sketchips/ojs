@@ -65,8 +65,7 @@ class CitationsPlugin extends GenericPlugin
         $pubId = $this->getPubId($smarty);
         //$pubId = '10.1177/09636625221100686';
         $contextId = $request->getContext()->getId();
-        $settingsJson = $this->getSetting($contextId, 'settings');
-        $settings = !empty($settingsJson) ? json_decode($settingsJson, true) : null;
+        $settings = json_decode($this->getSetting($contextId, 'settings'), true);
         if (!empty($pubId) && !empty($settings)) {
             $smarty->assign(array(
                 'imagePath' => $request->getBaseUrl() . '/' . $this->getPluginPath() . '/images/',
