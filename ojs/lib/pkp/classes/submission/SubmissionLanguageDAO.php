@@ -110,10 +110,10 @@ class SubmissionLanguageDAO extends ControlledVocabDAO
         $currentLanguages = $this->build($publicationId, $assocType);
 
         if ($deleteFirst) {
-            $existingEntries = $languageDao->enumerate($currentLanguages->getId(), self::CONTROLLED_VOCAB_SUBMISSION_LANGUAGE);
+            $existingEntries = $languageDao->enumerate($currentLanguages->getId(), SubmissionLanguageDAO::CONTROLLED_VOCAB_SUBMISSION_LANGUAGE);
 
             foreach ($existingEntries as $id => $entry) {
-                $entry = trim($entry);
+                $entry = trim($entry ?? '');
                 $submissionLanguageEntryDao->deleteObjectById($id);
             }
         }

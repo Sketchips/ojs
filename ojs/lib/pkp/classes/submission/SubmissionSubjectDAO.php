@@ -114,7 +114,7 @@ class SubmissionSubjectDAO extends ControlledVocabDAO
             $existingEntries = $subjectDao->enumerate($currentSubjects->getId(), SubmissionSubjectDAO::CONTROLLED_VOCAB_SUBMISSION_SUBJECT);
 
             foreach ($existingEntries as $id => $entry) {
-                $entry = trim($entry);
+                $entry = trim($entry ?? '');
                 $submissionSubjectEntryDao->deleteObjectById($id);
             }
         }
