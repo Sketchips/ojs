@@ -72,17 +72,17 @@
 					</a>
 				</li>
 				<li class="sidebar-menu-item">
-					<a href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="about" op="editorialPolicies"}" class="sidebar-menu-link">
+					<a href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="about" op="peerReview"}" class="sidebar-menu-link">
 						Peer-Review Process
 					</a>
 				</li>
 				<li class="sidebar-menu-item">
-					<a href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="about"}" class="sidebar-menu-link">
+					<a href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="about" op="focusAndScope"}" class="sidebar-menu-link">
 						Focus and Scope
 					</a>
 				</li>
 				<li class="sidebar-menu-item">
-					<a href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="about" op="editorialPolicies"}" class="sidebar-menu-link">
+					<a href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="about" op="sectionPolicies"}" class="sidebar-menu-link">
 						Section Policies
 					</a>
 				</li>
