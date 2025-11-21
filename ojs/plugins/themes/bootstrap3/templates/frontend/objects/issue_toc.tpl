@@ -22,24 +22,26 @@
 	{/if}
 
 	{* Issue introduction area above articles *}
-	<div class="heading row">
+	<div class="heading row issue-heading-wrapper">
 		{assign var="issueDetailsCol" value="12"}
 
 		{* Issue cover image and description*}
 		{assign var=issueCover value=$issue->getLocalizedCoverImageUrl()}
 		{if $issueCover}
 			{assign var="issueDetailsCol" value="8"}
-			<div class="thumbnail col-md-4">
-				<a class="cover" href="{url|escape op="view" page="issue" path=$issue->getBestIssueId()}">
-					<img class="img-responsive" src="{$issueCover|escape}" alt="{$issue->getLocalizedCoverImageAltText()|escape|default:''}">
-				</a>
+			<div class="col-md-4 issue-cover-wrapper">
+				<div class="issue-cover-card">
+					<a class="cover" href="{url|escape op="view" page="issue" path=$issue->getBestIssueId()}">
+						<img class="img-responsive issue-cover-img" src="{$issueCover|escape}" alt="{$issue->getLocalizedCoverImageAltText()|escape|default:''}">
+					</a>
+				</div>
 			</div>
 		{/if}
 
 		<div class="issue-details col-md-{$issueDetailsCol}">
 
 			{if $issue->hasDescription()}
-				<div class="description">
+				<div class="description issue-desc">
 					{$issue->getLocalizedDescription()|strip_unsafe_html}
 				</div>
 			{/if}
@@ -82,7 +84,7 @@
 
 	{* Full-issue galleys *}
 	{if $issueGalleys}
-		<div class="galleys">
+		<div class="galleys issue-galleys-section">
 			<div class="page-header">
 				<h2>
 					<small>{translate key="issue.fullIssue"}</small>
@@ -97,18 +99,18 @@
 	{/if}
 
 	{* Articles *}
-	<div class="sections">
+	<div class="sections article-sections">
 		{foreach name=sections from=$publishedSubmissions item=section}
-			<section class="section">
+			<section class="section article-section">
 				{if $section.articles}
 					{if $section.title}
-						<div class="page-header">
+						<div class="page-header section-header">
 							<h2>
 								<small>{$section.title|escape}</small>
 							</h2>
 						</div>
 					{/if}
-					<div class="media-list">
+					<div class="media-list articles-list">
 						{foreach from=$section.articles item=article}
 							{include file="frontend/objects/article_summary.tpl"}
 						{/foreach}
