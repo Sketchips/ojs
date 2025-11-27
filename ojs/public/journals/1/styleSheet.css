@@ -1810,12 +1810,13 @@ body.pkp_page_user.pkp_op_register {
 
 /* About PC normal - Logo position + navbar-toggle */
 @media (min-width: 993px) {
-    .pkp_page_about #headerNavigationContainer .navbar-header {
+    /* v11.4: REMOVED - Use default homepage positioning for consistency */
+    /* .pkp_page_about #headerNavigationContainer .navbar-header {
         position: absolute !important;
-        left: 50px !important;             /* v10.8: Shift right (was 30px) */
-        top: 8px !important;               /* v10.8: Raised more (was 12px) */
+        left: 50px !important;
+        top: 8px !important;
         transform: none !important;
-    }
+    } */
     
     .pkp_page_about .navbar-toggle {
         top: 0px !important;               /* v10.5: At header top */
@@ -1825,12 +1826,13 @@ body.pkp_page_user.pkp_op_register {
 /* About PC mini (768-992px) - navbar-toggle position */
 /* v10.7 Photo 6: Navbar-toggle top: 0px */
 @media (min-width: 768px) and (max-width: 992px) {
-    .pkp_page_about #headerNavigationContainer .navbar-header {
+    /* v11.4: REMOVED - Use default homepage positioning for consistency */
+    /* .pkp_page_about #headerNavigationContainer .navbar-header {
         position: absolute !important;
-        left: 50px !important;             /* v10.8: Shift right (was 30px) */
-        top: 8px !important;               /* v10.8: Raised more (was 12px) */
+        left: 50px !important;
+        top: 8px !important;
         transform: none !important;
-    }
+    } */
     
     .pkp_page_about .navbar-toggle {
         position: fixed !important;

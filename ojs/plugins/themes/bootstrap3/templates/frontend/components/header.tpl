@@ -118,12 +118,12 @@
 						<li class="{if $requestedPage == 'about' && $requestedOp == 'submissions'}active{/if}">
 							<a href="{url page="about" op="submissions" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Submissions</a>
 						</li>
-						<li class="{if $requestedPage == 'announcement'}active{/if}">
-							<a href="{url page="announcement" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Announcements</a>
-						</li>
-						<li class="{if $requestedPage == 'contact'}active{/if}">
-							<a href="{url page="contact" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Contact</a>
-						</li>
+					<li class="{if $requestedPage == 'announcement'}active{/if}">
+						<a href="{url page="announcement" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Announcements</a>
+					</li>
+					<li class="{if $requestedPage == 'about' && $requestedOp == 'contact'}active{/if}">
+						<a href="{url page="about" op="contact" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Contact</a>
+					</li>
 					</ul>						{* Search form - DISABLED *}
 						{* 
 						{if $currentContext}

@@ -8,7 +8,9 @@
  * Contact page with modern design - no sidebar, home page style.
  *
  *}
-{assign var="pageTitleTranslated" value="Contact"}
+{if !$pageTitleTranslated}
+	{assign var="pageTitleTranslated" value="Contact"}
+{/if}
 {include file="frontend/components/header.tpl"}
 
 {* Hero Section - SAME AS HOME/ABOUT (with logo in hero) *}
@@ -50,85 +52,27 @@
 <div class="content-wrapper">
 	<div class="main-content-area" style="margin-left: 0; max-width: 100%; padding: 40px 60px;">
 		
-		{* Mailing Address *}
-		{if $mailingAddress}
-			<div class="contact-section" style="margin-bottom: 40px;">
-				<h2 style="color: #2ecc71; font-size: 24px; font-weight: 600; margin-bottom: 20px;">
-					Contact
-				</h2>
-				<div class="contact-section-content address" style="line-height: 1.8; font-size: 16px;">
-					{$mailingAddress|nl2br|strip_unsafe_html}
-				</div>
-			</div>
-		{/if}
-
-		{* Primary Contact *}
-		{if $contactTitle || $contactName || $contactAffiliation || $contactPhone || $contactEmail}
-			<div class="contact-section" style="margin-bottom: 40px;">
-				<h2 style="color: #2ecc71; font-size: 24px; font-weight: 600; margin-bottom: 20px;">
-					Principal Contact
-				</h2>
-				<div class="contact-section-content primary-contact" style="line-height: 1.8;">
-					{if $contactName}
-						<div class="contact-item" style="margin-bottom: 10px;">
-							<strong>Name:</strong> {$contactName|escape}
-						</div>
-					{/if}
-
-					{if $contactTitle}
-						<div class="contact-item" style="margin-bottom: 10px;">
-							<strong>Title:</strong> {$contactTitle|escape}
-						</div>
-					{/if}
-
-					{if $contactAffiliation}
-						<div class="contact-item" style="margin-bottom: 10px;">
-							<strong>Affiliation:</strong> {$contactAffiliation|strip_unsafe_html}
-						</div>
-					{/if}
-
-					{if $contactPhone}
-						<div class="contact-item" style="margin-bottom: 10px;">
-							<strong>Phone:</strong> <a href="tel:{$contactPhone|escape}">{$contactPhone|escape}</a>
-						</div>
-					{/if}
-
-					{if $contactEmail}
-						<div class="contact-item" style="margin-bottom: 10px;">
-							<strong>Email:</strong> <a href="mailto:{$contactEmail|escape}">{$contactEmail|escape}</a>
-						</div>
-					{/if}
-				</div>
-			</div>
-		{/if}
-
-		{* Technical/Support Contact *}
-		{if $supportName || $supportPhone || $supportEmail}
-			<div class="contact-section" style="margin-bottom: 40px;">
-				<h2 style="color: #2ecc71; font-size: 24px; font-weight: 600; margin-bottom: 20px;">
-					Support Contact
-				</h2>
-				<div class="contact-section-content support-contact" style="line-height: 1.8;">
-					{if $supportName}
-						<div class="contact-item" style="margin-bottom: 10px;">
-							<strong>Name:</strong> {$supportName|escape}
-						</div>
-					{/if}
-
-					{if $supportPhone}
-						<div class="contact-item" style="margin-bottom: 10px;">
-							<strong>Phone:</strong> <a href="tel:{$supportPhone|escape}">{$supportPhone|escape}</a>
-						</div>
-					{/if}
-
-					{if $supportEmail}
-						<div class="contact-item" style="margin-bottom: 10px;">
-							<strong>Email:</strong> <a href="mailto:{$supportEmail|escape}">{$supportEmail|escape}</a>
-						</div>
-					{/if}
-				</div>
-			</div>
-		{/if}
+		<div style="font-family: Arial, sans-serif; color: #222;">
+			<h2 style="color: #009245; font-size: 28px; font-weight: bold; margin-bottom: 10px;">Contact</h2>
+			<p style="margin: 0; font-size: 15px; line-height: 1.6;">
+				<strong>Badan Riset dan Inovasi Daerah Kota Semarang</strong><br>
+				Jl. Pemuda No. 175 Semarang<br>
+				Telp. (024) 3584037 Fax. (024) 3584038<br>
+				E-mail: <a style="color: #009245;" href="mailto:riptek@semarangkota.go.id">riptek@semarangkota.go.id</a>
+			</p>
+			
+			<h3 style="color: #009245; margin-top: 25px; font-size: 20px;">Principal Contact</h3>
+			<p style="margin: 0; font-size: 15px;">
+				Wahyudi, S.STP, MM<br>
+				Email: <a style="color: #009245;" href="mailto:brida@semarangkota.go.id">brida@semarangkota.go.id</a>
+			</p>
+			
+			<h3 style="color: #009245; margin-top: 20px; font-size: 20px;">Support Contact</h3>
+			<p style="margin: 0; font-size: 15px;">
+				Nanik Setyowati<br>
+				Email: <a style="color: #009245;" href="mailto:brida@semarangkota.go.id">brida@semarangkota.go.id</a>
+			</p>
+		</div>
 		
 	</div>
 </div><!-- .content-wrapper -->
