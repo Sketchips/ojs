@@ -16,6 +16,7 @@ use APP\template\TemplateManager;
 use PKP\security\authorization\SubmissionAccessPolicy;
 use PKP\security\authorization\UserRequiredPolicy;
 use PKP\security\Role;
+use PKP\db\DAORegistry;
 
 class MainHandler extends PKPHandler
 {
@@ -137,11 +138,11 @@ class MainHandler extends PKPHandler
         // Calculate offset
         $offset = ($currentPage - 1) * $itemsPerPage;
         
-        // Get submissions with pagination
+        // Get submissions with pagination (ordered by last activity for most recent updates)
         $submissions = $collector
             ->limit($itemsPerPage)
             ->offset($offset)
-            ->orderBy(\APP\submission\Collector::ORDERBY_DATE_SUBMITTED, 'DESC')
+            ->orderBy(\APP\submission\Collector::ORDERBY_LAST_ACTIVITY, 'DESC')
             ->getMany();
         
         // Format submissions for template
@@ -150,13 +151,54 @@ class MainHandler extends PKPHandler
             $publication = $submission->getCurrentPublication();
             if (!$publication) continue;
             
+            // Get authors info
             $authorString = '';
-            if ($publication->getData('authors')) {
-                $authors = $publication->getData('authors');
-                if (is_array($authors) && count($authors) > 0) {
-                    $authorString = $authors[0]->getFullName();
-                    if (count($authors) > 1) {
-                        $authorString .= ' et al.';
+            $authorCount = 0;
+            $contributorsString = '-';
+            
+            $authors = $publication->getData('authors');
+            if ($authors) {
+                // Handle both array and Collection/LazyCollection
+                $authorsArray = [];
+                if (is_array($authors)) {
+                    $authorsArray = $authors;
+                } elseif (is_object($authors)) {
+                    // It's a Collection or LazyCollection
+                    foreach ($authors as $author) {
+                        $authorsArray[] = $author;
+                    }
+                }
+                
+                if (count($authorsArray) > 0) {
+                    $authorCount = count($authorsArray);
+                    $authorString = $authorsArray[0]->getFullName();
+                    
+                    // Get all contributors (all authors)
+                    $contributorNames = [];
+                    foreach ($authorsArray as $author) {
+                        $contributorNames[] = $author->getFullName();
+                    }
+                    $contributorsString = implode(', ', $contributorNames);
+                }
+            }
+            
+            // Get assigned reviewers
+            $reviewerString = '-';
+            $reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
+            $reviewAssignments = $reviewAssignmentDao->getBySubmissionId($submission->getId());
+            
+            if (!empty($reviewAssignments)) {
+                $reviewerNames = [];
+                foreach ($reviewAssignments as $reviewAssignment) {
+                    $reviewer = \APP\facades\Repo::user()->get($reviewAssignment->getReviewerId());
+                    if ($reviewer) {
+                        $reviewerNames[] = $reviewer->getFullName();
+                    }
+                }
+                if (!empty($reviewerNames)) {
+                    $reviewerString = implode(', ', array_slice($reviewerNames, 0, 2));
+                    if (count($reviewerNames) > 2) {
+                        $reviewerString .= ' +' . (count($reviewerNames) - 2);
                     }
                 }
             }
@@ -168,10 +210,22 @@ class MainHandler extends PKPHandler
                 \PKP\submission\PKPSubmission::STATUS_PUBLISHED => 'Published',
             ];
             
+            // Format submission date
+            $dateSubmitted = $submission->getData('dateSubmitted');
+            $dateSubmittedFormatted = '-';
+            if ($dateSubmitted) {
+                $date = new \DateTime($dateSubmitted);
+                $dateSubmittedFormatted = $date->format('d M Y');
+            }
+            
             $latestSubmissions[] = [
                 'id' => $submission->getId(),
                 'title' => $publication->getLocalizedTitle() ?: 'Untitled',
                 'author' => $authorString ?: 'Unknown',
+                'authorCount' => $authorCount,
+                'contributors' => $contributorsString,
+                'dateSubmitted' => $dateSubmittedFormatted,
+                'reviewer' => $reviewerString,
                 'status' => $statusMap[$submission->getData('status')] ?? 'Unknown',
             ];
         }

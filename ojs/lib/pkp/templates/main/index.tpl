@@ -77,8 +77,11 @@
         <table class="pkp_table">
             <thead>
                 <tr>
-                    <th>Title</th>
+                    <th>Judul</th>
                     <th>Author</th>
+                    <th>Kontributor</th>
+                    <th>Tgl Submit</th>
+                    <th>Reviewer</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -86,10 +89,26 @@
                 {foreach from=$latestSubmissions item=submission}
                     <tr>
                         <td>
-                            {$submission.title}
+                            <div class="submission-title">{$submission.title}</div>
                         </td>
                         <td>
-                            {$submission.author}
+                            <div class="author-info">
+                                <span class="author-name">{$submission.author}</span>
+                                {if $submission.authorCount > 1}
+                                    <span class="author-count">+{$submission.authorCount - 1}</span>
+                                {/if}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="contributors-list" title="{$submission.contributors}">
+                                {$submission.contributors|default:'-'}
+                            </div>
+                        </td>
+                        <td>
+                            <span class="date-display">{$submission.dateSubmitted}</span>
+                        </td>
+                        <td>
+                            <span class="reviewer-name">{$submission.reviewer}</span>
                         </td>
                         <td>
                             <span class="status-tag status-{$submission.status|lower|replace:' ' : '-'}">
@@ -99,7 +118,7 @@
                     </tr>
                 {foreachelse}
                     <tr>
-                        <td colspan="3">Tidak ada data submission terbaru.</td>
+                        <td colspan="6">Tidak ada data submission terbaru.</td>
                     </tr>
                 {/foreach}
             </tbody>
