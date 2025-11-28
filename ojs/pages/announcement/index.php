@@ -15,6 +15,7 @@
 
 switch ($op) {
     case 'index':
+    case 'view':
     default:
         return new APP\pages\announcement\AnnouncementPageHandler();
 }

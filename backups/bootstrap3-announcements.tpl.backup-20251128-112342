@@ -13,35 +13,27 @@
 {* Hero Section *}
 {include file="frontend/components/aboutHero.tpl"}
 
-{* Content Wrapper with Sidebar *}
+{* Content Wrapper - No sidebar for announcements *}
 <div class="content-wrapper">
-
-	{* Sidebar Menu *}
-	<aside class="sidebar-menu">
-		{include file="frontend/components/sidebar.tpl"}
-	</aside>
-
-	{* Main Content *}
-	<div class="main-content-area">
-
+	
+	<div class="main-content-area" style="margin-left: 0; max-width: 100%;">
+		
 		<section class="info-section announcements-section">
 			<h2 class="section-title">Announcements</h2>
 			<div class="section-content">
 				{if $announcementsEnabled}
-					{if $announcements && $announcements|@count}
-						{include file="frontend/components/announcements.tpl"}
-					{else}
-						<p>No announcements have been published.</p>
-					{/if}
+					<p>No announcements have been published.</p>
 				{else}
 					<div class="alert alert-info">
 						<p><strong>Note:</strong> Announcements are currently disabled for this journal.</p>
-						<p>Check back later for updates and important announcements from this journal.</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Check back later for updates and important announcements from Jurnal Riptek.</p>
 					</div>
 				{/if}
 			</div>
 		</section>
 
 	</div>
+	
+</div><!-- .content-wrapper -->
 
-</div><!-- .content-wrapper -->{include file="common/frontend/footer.tpl"}
+{include file="common/frontend/footer.tpl"}

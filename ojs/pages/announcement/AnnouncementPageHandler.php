@@ -16,8 +16,11 @@
 
 namespace APP\pages\announcement;
 
+use APP\core\Application;
+use APP\facades\Repo;
 use APP\handler\Handler;
 use APP\template\TemplateManager;
+use PKP\announcement\Collector;
 use PKP\security\authorization\ContextRequiredPolicy;
 
 class AnnouncementPageHandler extends Handler
@@ -43,12 +46,57 @@ class AnnouncementPageHandler extends Handler
         $this->setupTemplate($request);
         $context = $request->getContext();
         
-        // Get announcements from the context
+        // Fetch announcements using Repo facade
+        $collector = Repo::announcement()
+            ->getCollector()
+            ->filterByActive();
+        
         if ($context) {
             $announcementsEnabled = $context->getData('enableAnnouncements');
             $templateMgr->assign('announcementsEnabled', $announcementsEnabled);
+            $collector->filterByContextIds([$context->getId()]);
+            
+            // Get announcements introduction text
+            $announcementsIntroduction = $context->getLocalizedData('announcementsIntroduction');
+            $templateMgr->assign('announcementsIntroduction', $announcementsIntroduction);
+        } else {
+            $collector->withSiteAnnouncements(Collector::SITE_ONLY);
         }
         
+        $announcements = $collector->getMany();
+        $templateMgr->assign('announcements', $announcements->toArray());
+        
         $templateMgr->display('frontend/pages/announcements.tpl');
+    }
+
+    /**
+     * View announcement details.
+     *
+     * @param array $args first parameter is the ID of the announcement to display
+     * @param \PKP\core\PKPRequest $request
+     */
+    public function view($args, $request)
+    {
+        $this->setupTemplate($request);
+        $context = $request->getContext();
+
+        $announcementId = (int) array_shift($args);
+        $announcement = Repo::announcement()->get($announcementId);
+        
+        if (
+            $announcement
+            && $announcement->getAssocType() == Application::getContextAssocType()
+            && $announcement->getAssocId() == $context?->getId()
+            && (
+                $announcement->getDateExpire() == null || strtotime($announcement->getDateExpire()) > time()
+            )
+        ) {
+            $templateMgr = TemplateManager::getManager($request);
+            $templateMgr->assign('announcement', $announcement);
+            $templateMgr->assign('announcementTitle', $announcement->getLocalizedTitleFull());
+            return $templateMgr->display('frontend/pages/announcement.tpl');
+        }
+        
+        $request->redirect(null, 'announcement');
     }
 }

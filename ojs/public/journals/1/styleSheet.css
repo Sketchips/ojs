@@ -3011,6 +3011,55 @@ body .pkp_page_about .hero-image img {
 
 /* ===== END v10.11 CONSOLIDATED CLEAN CSS ===== */
 
+/* =========================================
+   ANNOUNCEMENT PAGE STYLING
+   ========================================= */
+
+/* Announcement list item */
+.announcement-summary {
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.announcement-summary:last-child {
+    border-bottom: none;
+}
+
+/* Announcement title - GREEN color */
+.announcement-summary h2.media-heading a {
+    color: #2ecc71 !important;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.announcement-summary h2.media-heading a:hover {
+    color: #27ae60 !important;
+    text-decoration: none;
+}
+
+/* Announcement date */
+.announcement-summary .date {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 8px 0 12px 0;
+}
+
+/* Announcement description */
+.announcement-summary p {
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Announcements section title */
+.announcements-section h2.section-title {
+    color: #2ecc71;
+    border-left: 4px solid #2ecc71;
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
 
 
 
