@@ -33,4 +33,9 @@
 			</a>
 		</li>
 	</ul>
+	
+	<!-- SINTA Badge -->
+	<div class="sidebar-sinta-badge" style="padding: 20px 0; text-align: center;">
+		<img src="https://sinta.kemdikbud.go.id/assets/img/site/logo.png" alt="SINTA - Science and Technology Index" style="max-width: 100%; height: auto;">
+	</div>
 </div>
