@@ -1,0 +1,783 @@
+/**
+ * Riptek Archive & Issue Custom Styles
+ * Custom styling untuk Archive Page, Issue Summary, Issue TOC, dan Footer
+ * Sesuai dengan referensi visual Jurnal Riptek
+ */
+
+/* ========================================
+   ARCHIVE PAGE LAYOUT
+   ======================================== */
+
+/* Main Content Spacing */
+.pkp_structure_content {
+    padding-top: 40px !important;
+}
+
+.page_issue #main-content,
+.page_issue_archive #main-content {
+    padding-top: 0;
+}
+
+/* Archive & Issue Layout Container */
+.archive-layout,
+.issue-layout {
+    margin-top: 0;
+    margin-bottom: 40px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+/* Archive & Issue Sidebar */
+.archive-sidebar,
+.issue-sidebar {
+    padding-right: 20px;
+    padding-left: 0;
+}
+
+.sidebar-nav-wrapper {
+    position: sticky;
+    top: 20px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.sidebar-nav-item {
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.sidebar-nav-item .btn {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 14px 20px;
+    text-align: center;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 3px 8px rgba(40, 167, 69, 0.25);
+    white-space: normal;
+    word-wrap: break-word;
+    width: 100%;
+    line-height: 1.4;
+    display: block;
+    min-height: 50px;
+}
+
+.sidebar-nav-item .btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.sidebar-nav-item .btn-success:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+}
+
+/* INDEX BY Section */
+.sidebar-indexby {
+    margin-top: 35px;
+    padding: 25px 20px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+}
+
+.sidebar-indexby .index-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #8b6f47;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+.sidebar-indexby .index-logo {
+    max-width: 140px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Archive Content Area */
+.archive-content,
+.issue-content {
+    padding-left: 30px;
+    padding-right: 15px;
+}
+
+.archive-header,
+.issue-header {
+    margin-bottom: 35px;
+    border-bottom: 3px solid #28a745;
+    padding-bottom: 18px;
+    padding-top: 0;
+}
+
+.archive-header .page-title,
+.issue-header .page-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+    margin-top: 0;
+}
+
+.archive-header .archive-breadcrumb {
+    font-size: 13px;
+    color: #e83e8c;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Archive Year Group */
+.archive-year-group {
+    margin-bottom: 35px;
+}
+
+.archive-year-group .year-heading {
+    font-size: 22px;
+    font-weight: 700;
+    color: #28a745;
+    margin-bottom: 18px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.archive-year-group .issues-list {
+    margin-left: 0;
+}
+
+/* ========================================
+   ISSUE PAGE HEADER
+   ======================================== */
+
+.issue-header .issue-identification {
+    font-size: 22px;
+    font-weight: 600;
+    color: #28a745;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.issue-header .issue-doi {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.issue-header .issue-doi-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.issue-header .issue-doi-link:hover {
+    text-decoration: underline;
+}
+
+.issue-header .issue-toc-link {
+    margin-bottom: 0;
+}
+
+.issue-header .toc-link {
+    color: #e83e8c;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.issue-header .toc-link:hover {
+    text-decoration: underline;
+}
+
+/* ========================================
+   ISSUE SUMMARY CARD
+   ========================================== */
+
+.issue-summary-card {
+    margin-bottom: 25px;
+}
+
+.issue-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.issue-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
+}
+
+.issue-card .row.no-gutters {
+    margin: 0;
+}
+
+/* Issue Info Link — make entire card-body clickable */
+.issue-info-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.issue-info-link:hover {
+    text-decoration: none;
+}
+
+.issue-info-link:hover .issue-title {
+    color: #28a745;
+    text-decoration: underline;
+}
+
+.issue-cover-col {
+    padding: 0;
+}
+
+.issue-cover-link {
+    display: block;
+    height: 100%;
+}
+
+.issue-cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.issue-info {
+    padding: 25px;
+}
+
+.issue-info .issue-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.issue-info .issue-title a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.issue-info .issue-title a:hover {
+    color: #28a745;
+}
+
+.issue-info .issue-series {
+    font-size: 16px;
+    color: #28a745;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.issue-info .issue-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-top: 12px;
+}
+
+/* ========================================
+   ISSUE TOC PAGE
+   ======================================== */
+
+.issue-heading-wrapper {
+    margin-top: 25px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.issue-cover-wrapper {
+    padding-right: 20px;
+}
+
+.issue-cover-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.issue-cover-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.issue-details {
+    padding-left: 20px;
+}
+
+.issue-details .issue-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.issue-details .pub_id,
+.issue-details .published {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.issue-galleys-section {
+    margin: 30px 0;
+    padding: 25px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.issue-galleys-section .page-header {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.article-sections {
+    margin-top: 30px;
+}
+
+.article-section {
+    margin-bottom: 40px;
+}
+
+.article-section .section-header {
+    margin-bottom: 20px;
+}
+
+.article-section .section-header h2 {
+    color: #28a745;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.articles-list {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Articles Section Heading */
+.article-section .section-header h2 small {
+    font-size: 18px;
+    color: #28a745;
+}
+
+/* Article Items - Text Only Layout */
+.article-text-only {
+    padding: 18px 0;
+    border-bottom: 1px solid #e9ecef;
+    display: block;
+}
+
+.article-text-only:last-child {
+    border-bottom: none;
+}
+
+.article-text-only .article-content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.article-text-only .article-text-info {
+    flex: 1;
+}
+
+.article-text-only .article-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+    margin-top: 0;
+    line-height: 1.5;
+}
+
+.article-text-only .article-title a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.article-text-only .article-title a:hover {
+    color: #28a745;
+}
+
+.article-text-only .article-authors {
+    font-size: 14px;
+    color: #28a745;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.article-text-only .article-pages {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 0;
+}
+
+.article-text-only .article-galleys {
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.article-text-only .article-galleys .btn {
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.article-text-only .article-galleys .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+/* Old media layout - hide if exists */
+.articles-list .media {
+    padding: 0;
+    border-bottom: none;
+}
+
+.articles-list .media:last-child {
+    border-bottom: none;
+}
+
+/* ========================================
+   FOOTER RIPTEK — FULL BACKGROUND WATERMARK + PROPORTIONAL TEXT
+   ======================================== */
+
+.footer-riptek {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 50px 60px;
+    background-color: #1f8b4c;
+    color: #fff;
+    overflow: hidden;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Overlay: darken left side for contrast, transparent on right where watermark sits */
+.footer-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right,
+        rgba(31,139,76,0.94) 0%,
+        rgba(31,139,76,0.88) 28%,
+        rgba(31,139,76,0.60) 48%,
+        rgba(31,139,76,0.28) 68%,
+        rgba(31,139,76,0.00) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.footer-container {
+    position: relative;
+    z-index: 4; /* content above overlay */
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-container.container-fluid {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Left-aligned content block */
+.footer-content {
+    text-align: left;
+    width: 100%;
+    max-width: 640px; /* keep content column reasonably narrow for readability */
+    padding-left: 36px;
+}
+
+.footer-title {
+    font-size: 34px;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 8px 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1.08;
+}
+
+.footer-org {
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0 0 18px 0;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+.footer-info {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #fff;
+}
+
+.footer-details {
+    margin-top: 12px;
+}
+
+.footer-details p {
+    margin: 6px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #fff;
+}
+
+.footer-details i {
+    width: 18px;
+    min-width: 18px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1;
+    margin-top: 3px;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.footer-address {
+    white-space: normal;
+}
+
+.footer-info a {
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    transition: border-color 0.2s;
+}
+
+.footer-info a:hover {
+    border-bottom-color: rgba(255,255,255,0.4);
+}
+
+/* Watermark landmark image: full-width behind overlay, visible but not dominant */
+.footer-landmark {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 100%;            /* scale to footer height */
+    width: 100%;             /* full width of footer */
+    object-fit: cover;       /* fill footer area, may crop edges */
+    object-position: right center;
+    pointer-events: none;
+    z-index: 1;              /* behind overlay (2) and content (4) */
+    opacity: 0.15;           /* more visible watermark, proportional to reference */
+    filter: grayscale(60%) contrast(95%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .footer-riptek { padding: 40px 30px; min-height: 240px; }
+    .footer-title { font-size: 32px; letter-spacing: 2px; margin-bottom: 6px; }
+    .footer-org { font-size: 16px; margin-bottom: 16px; }
+    .footer-info { font-size: 12px; }
+    .footer-details p { gap: 11px; margin: 5px 0; }
+    .footer-details i { width: 16px; font-size: 13px; }
+}
+
+@media (max-width: 767px) {
+    .footer-riptek { padding: 34px 22px; min-height: 220px; }
+    .footer-title { font-size: 28px; letter-spacing: 1.5px; margin-bottom: 4px; }
+    .footer-org { font-size: 15px; margin-bottom: 14px; }
+    .footer-info { font-size: 11px; line-height: 1.6; }
+    .footer-details p { gap: 10px; margin: 4px 0; }
+    .footer-details i { width: 16px; font-size: 12px; margin-top: 2px; }
+    .footer-landmark { opacity: 0.10; }
+}
+
+@media (max-width: 480px) {
+    .footer-riptek { padding: 28px 14px; min-height: 200px; }
+    .footer-title { font-size: 22px; letter-spacing: 1px; margin-bottom: 3px; }
+    .footer-org { font-size: 13px; margin-bottom: 12px; }
+    .footer-info { font-size: 10px; line-height: 1.5; }
+    .footer-details p { gap: 9px; margin: 4px 0; }
+    .footer-details i { width: 15px; font-size: 11px; margin-top: 1px; }
+    .footer-landmark { display: none; }
+}
+
+/* ========================================
+   NAVBAR: Open dropdown on hover for desktop
+   ======================================== */
+@media (min-width: 768px) {
+    /* Show dropdown menu on hover while preserving click behavior */
+    .navbar-nav > li.dropdown:hover > .dropdown-menu {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Ensure submenu appears above other content */
+    .navbar-nav .dropdown-menu {
+        z-index: 1050;
+        transition: opacity 0.12s ease-in-out;
+    }
+
+    /* Keep caret visible and unchanged */
+    .navbar-nav > li.dropdown > a.dropdown-toggle .caret {
+        margin-left: 6px;
+    }
+}
+
+/* Dropdown visual overrides: ensure single-color hover (green), no red, smooth transition */
+.navbar-nav > li.dropdown .dropdown-menu {
+    background: #ffffff; /* white menu background */
+    border: 0;
+    padding: 6px 0;
+    min-width: 160px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.navbar-nav > li.dropdown .dropdown-menu > li > a {
+    display: block;
+    padding: 8px 18px;
+    color: #333;
+    background: transparent;
+    transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.navbar-nav > li.dropdown .dropdown-menu > li > a:hover,
+.navbar-nav > li.dropdown .dropdown-menu > li.active > a {
+    background-color: #1f8b4c; /* green hover */
+    color: #fff !important;
+}
+
+/* Parent toggle hover/active styling to match green indicator without doubling */
+.navbar-nav > li.dropdown > a.dropdown-toggle,
+.navbar-nav > li.dropdown.open > a.dropdown-toggle {
+    transition: background-color 0.12s ease, color 0.12s ease;
+}
+.navbar-nav > li.dropdown:hover > a.dropdown-toggle,
+.navbar-nav > li.dropdown.open > a.dropdown-toggle {
+    background-color: #1f8b4c;
+    color: #fff;
+}
+
+/* Prevent conflicting red styles from other rules by using stronger specificity */
+.navbar-nav > li.dropdown .dropdown-menu > li > a[style],
+.navbar-nav > li.dropdown .dropdown-menu > li > a {
+    background-image: none !important;
+}
+
+/* ========================================
+   PAGINATION STYLES
+   ======================================== */
+/* ========================================
+   PAGINATION STYLES
+   ======================================== */
+
+.page_issue_archive .pagination {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.page_issue_archive .pagination > li > a,
+.page_issue_archive .pagination > li > span {
+    color: #28a745;
+    border-color: #28a745;
+}
+
+.page_issue_archive .pagination > li > a:hover,
+.page_issue_archive .pagination > li > span:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #fff;
+}
+
+.page_issue_archive .pagination > .active > a,
+.page_issue_archive .pagination > .active > span {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #fff;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.no-gutters > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+/* ========================================
+   ARCHIVE & ISSUE VIEW — WIDEN RIGHT CONTENT AREA
+   ======================================== */
+
+@media (min-width: 992px) {
+    /* Make the archive & issue rows positioned containers */
+    .archive-layout,
+    .issue-layout {
+        position: relative;
+    }
+
+    /* Keep sidebars visually the same, pinned on the left */
+    .archive-layout .archive-sidebar,
+    .issue-layout .issue-sidebar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 280px;       /* adjust if sidebar visually appears wider/narrower */
+        z-index: 20;
+    }
+
+    /* Let content occupy the rest of the row, starting after the pinned sidebar */
+    .archive-layout .archive-content,
+    .issue-layout .issue-content {
+        margin-left: 300px; /* sidebar width + small gap */
+        margin-right: 20px; /* breathing space on right */
+    }
+
+    /* Ensure internal grid components behave correctly */
+    .archive-layout .archive-content .row,
+    .issue-layout .issue-content .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+/* Mobile / small screens — revert to default stacking */
+@media (max-width: 991px) {
+    .archive-layout .archive-sidebar,
+    .archive-layout .archive-content,
+    .issue-layout .issue-sidebar,
+    .issue-layout .issue-content {
+        position: static;
+        width: auto;
+        margin-left: 0;
+    }
+}
+

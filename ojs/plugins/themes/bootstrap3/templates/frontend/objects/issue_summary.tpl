@@ -9,40 +9,48 @@
  *
  * @uses $issue Issue The issue
  *}
-<div class="issue-summary media">
+<div class="issue-summary-card">
 
 	{* Retrieve separate entries for $issueTitle and $issueSeries *}
 	{assign var=issueTitle value=$issue->getLocalizedTitle()}
 	{assign var=issueSeries value=$issue->getIssueSeries()}
 	{assign var=issueDescription value=$issue->getLocalizedDescription()}
 
-	{* Show cover image and use cover description *}
-	{if $issue->getLocalizedCoverImage()}
-		<div class="media-left">
-			<a class="cover" href="{url|escape op="view" path=$issue->getBestIssueId($currentJournal)}">
-				<img class="media-object" src="{$issue->getLocalizedCoverImageUrl()|escape}" alt="{$issue->getLocalizedCoverImageAltText()|escape|default:''}">
-			</a>
-		</div>
-	{/if}
-
-
-	<div class="media-body">
-		<h2 class="media-heading">
-			<a class="title" href="{url|escape op="view" path=$issue->getBestIssueId($currentJournal)}">
-				{if $issueTitle}
-					{$issueTitle|escape}
-				{else}
-					{$issueSeries|escape}
-				{/if}
-			</a>
-			{if $issueTitle}
-				<div class="series lead">
-					{$issueSeries|escape}
+	<div class="card issue-card">
+		<div class="row no-gutters">
+			{* Show cover image *}
+			{if $issue->getLocalizedCoverImage()}
+				<div class="col-md-3 issue-cover-col">
+					<a class="issue-cover-link" href="{url|escape op="view" path=$issue->getBestIssueId($currentJournal)}">
+						<img class="issue-cover-image" src="{$issue->getLocalizedCoverImageUrl()|escape}" alt="{$issue->getLocalizedCoverImageAltText()|escape|default:''}">
+					</a>
 				</div>
+				<div class="col-md-9">
+			{else}
+				<div class="col-md-12">
 			{/if}
-		</h2>
-		<div class="description">
-			{$issueDescription|strip_unsafe_html|nl2br}
+				<a class="issue-info-link" href="{url|escape op="view" path=$issue->getBestIssueId($currentJournal)}">
+					<div class="card-body issue-info">
+						<h3 class="issue-title">
+							{if $issueTitle}
+								{$issueTitle|escape}
+							{else}
+								{$issueSeries|escape}
+							{/if}
+						</h3>
+						{if $issueTitle}
+							<p class="issue-series">
+								{$issueSeries|escape}
+							</p>
+						{/if}
+						{if $issueDescription}
+							<div class="issue-description">
+								{$issueDescription|strip_unsafe_html|nl2br}
+							</div>
+						{/if}
+					</div>
+				</a>
+			</div>
 		</div>
 	</div>
-</div><!-- .issue-summary -->
+</div><!-- .issue-summary-card -->

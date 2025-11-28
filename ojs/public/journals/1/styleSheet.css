@@ -596,7 +596,7 @@ body, html {
     transform: translateY(-50%) !important;
     width: 650px !important;
     height: 473px !important;
-    background-image: url('https://ojsimg.netlify.app/semarang-landmark.png') !important;
+    background-image: none !important;
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: right center !important;
@@ -1332,11 +1332,11 @@ footer.footer,
     left: 0;
     width: 100%;
     height: 359px;
-    background-image: url('https://ojsimg.netlify.app/semarang-landmark.png');
+    background-image: none;
     background-size: cover;
     background-position: center bottom;
     background-repeat: no-repeat;
-    opacity: 0.19;
+    opacity: 0.35;
     z-index: 1;
     pointer-events: none;
 }
@@ -1672,23 +1672,23 @@ body.pkp_page_user.pkp_op_register {
 /* ========== v10.4: Login & Register Complete Overhaul ========== */
 
 /* LOGIN PAGE - PC NORMAL (≥993px) */
-/* Photo 4: Logo + text turun ke top: 20px */
+/* v11.5: Login page - USE SAME positioning as About/Index (left: 20px, top: 0) */
 @media (min-width: 993px) {
     .pkp_page_login #headerNavigationContainer .navbar-header {
         position: absolute !important;
-        left: 30px !important;
-        top: 20px !important;              /* TURUN from 0px to 20px */
+        left: 20px !important;             /* MATCH homepage/about */
+        top: 0px !important;               /* MATCH homepage/about */
         transform: none !important;
     }
 }
 
 /* LOGIN PAGE - PC MINI (768-992px) */
-/* v10.6 Photo 10: Navbar-toggle top: 0px, left: 9px */
+/* v11.5: Match About page positioning */
 @media (min-width: 768px) and (max-width: 992px) {
     .pkp_page_login #headerNavigationContainer .navbar-header {
         position: absolute !important;
-        left: 30px !important;
-        top: 20px !important;              /* TURUN to 20px */
+        left: 20px !important;             /* MATCH homepage/about */
+        top: 0px !important;               /* MATCH homepage/about */
         transform: none !important;
     }
     
@@ -1716,12 +1716,12 @@ body.pkp_page_user.pkp_op_register {
 }
 
 /* REGISTER PAGE - PC NORMAL (≥993px) */
-/* v10.6 Photo 7: Logo raise up slightly */
+/* v11.5: Match About/Login page positioning */
 @media (min-width: 993px) {
     .pkp_page_user.pkp_op_register #headerNavigationContainer .navbar-header {
         position: absolute !important;
-        left: 30px !important;
-        top: 5px !important;               /* v10.6: NAIKKAN more from 10px */
+        left: 20px !important;             /* MATCH homepage/about/login */
+        top: 0px !important;               /* MATCH homepage/about/login */
         transform: none !important;
     }
     
@@ -1745,12 +1745,12 @@ body.pkp_page_user.pkp_op_register {
 }
 
 /* REGISTER PAGE - PC MINI (768-992px) */
-/* v10.6 Photo 8: Logo + navbar-toggle top: 0px, left: 9px */
+/* v11.5: Match About/Login page positioning */
 @media (min-width: 768px) and (max-width: 992px) {
     .pkp_page_user.pkp_op_register #headerNavigationContainer .navbar-header {
         position: absolute !important;
-        left: 30px !important;
-        top: 10px !important;              /* v10.5: NAIKKAN from 20px */
+        left: 20px !important;             /* MATCH homepage/about/login */
+        top: 0px !important;               /* MATCH homepage/about/login */
         transform: none !important;
     }
     
@@ -1810,12 +1810,13 @@ body.pkp_page_user.pkp_op_register {
 
 /* About PC normal - Logo position + navbar-toggle */
 @media (min-width: 993px) {
-    .pkp_page_about #headerNavigationContainer .navbar-header {
+    /* v11.4: REMOVED - Use default homepage positioning for consistency */
+    /* .pkp_page_about #headerNavigationContainer .navbar-header {
         position: absolute !important;
-        left: 50px !important;             /* v10.8: Shift right (was 30px) */
-        top: 8px !important;               /* v10.8: Raised more (was 12px) */
+        left: 50px !important;
+        top: 8px !important;
         transform: none !important;
-    }
+    } */
     
     .pkp_page_about .navbar-toggle {
         top: 0px !important;               /* v10.5: At header top */
@@ -1825,12 +1826,13 @@ body.pkp_page_user.pkp_op_register {
 /* About PC mini (768-992px) - navbar-toggle position */
 /* v10.7 Photo 6: Navbar-toggle top: 0px */
 @media (min-width: 768px) and (max-width: 992px) {
-    .pkp_page_about #headerNavigationContainer .navbar-header {
+    /* v11.4: REMOVED - Use default homepage positioning for consistency */
+    /* .pkp_page_about #headerNavigationContainer .navbar-header {
         position: absolute !important;
-        left: 50px !important;             /* v10.8: Shift right (was 30px) */
-        top: 8px !important;               /* v10.8: Raised more (was 12px) */
+        left: 50px !important;
+        top: 8px !important;
         transform: none !important;
-    }
+    } */
     
     .pkp_page_about .navbar-toggle {
         position: fixed !important;

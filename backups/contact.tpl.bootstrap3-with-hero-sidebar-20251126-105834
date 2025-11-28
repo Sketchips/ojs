@@ -1,0 +1,89 @@
+{**
+ * templates/frontend/pages/contact.tpl
+ *
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2003-2024 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+ *
+ * Contact page with hero and sidebar - same structure as About page.
+ *
+ *}
+{assign var="pageTitleTranslated" value="Contact"}
+{include file="frontend/components/header.tpl"}
+
+{* Hero Section *}
+{include file="frontend/components/aboutHero.tpl"}
+
+{* Content Wrapper with Sidebar *}
+<div class="content-wrapper">
+	
+	{* Sidebar Menu - Add contact to the menu *}
+	{include file="frontend/components/aboutSidebar.tpl" activePage="contact"}
+
+	{* Main Content Area *}
+	{* Main Content Area *}
+	<div class="main-content-area">
+		
+		{* Mailing Address *}
+		{if $mailingAddress}
+			<section class="info-section contact-section">
+				<h2 class="section-title">Contact</h2>
+				<div class="section-content address">
+					{$mailingAddress|nl2br|strip_unsafe_html}
+				</div>
+			</section>
+		{/if}
+
+		{* Primary Contact *}
+		{if $contactTitle || $contactName || $contactAffiliation || $contactPhone || $contactEmail}
+			<section class="info-section contact-section">
+				<h2 class="section-title">Principal Contact</h2>
+				<div class="section-content primary-contact">
+					{if $contactName}
+						<p><strong>Name:</strong> {$contactName|escape}</p>
+					{/if}
+
+					{if $contactTitle}
+						<p><strong>Title:</strong> {$contactTitle|escape}</p>
+					{/if}
+
+					{if $contactAffiliation}
+						<p><strong>Affiliation:</strong> {$contactAffiliation|strip_unsafe_html}</p>
+					{/if}
+
+					{if $contactPhone}
+						<p><strong>Phone:</strong> <a href="tel:{$contactPhone|escape}">{$contactPhone|escape}</a></p>
+					{/if}
+
+					{if $contactEmail}
+						<p><strong>Email:</strong> <a href="mailto:{$contactEmail|escape}">{$contactEmail|escape}</a></p>
+					{/if}
+				</div>
+			</section>
+		{/if}
+
+		{* Technical/Support Contact *}
+		{if $supportName || $supportPhone || $supportEmail}
+			<section class="info-section contact-section">
+				<h2 class="section-title">Support Contact</h2>
+				<div class="section-content support-contact">
+					{if $supportName}
+						<p><strong>Name:</strong> {$supportName|escape}</p>
+					{/if}
+
+					{if $supportPhone}
+						<p><strong>Phone:</strong> <a href="tel:{$supportPhone|escape}">{$supportPhone|escape}</a></p>
+					{/if}
+
+					{if $supportEmail}
+						<p><strong>Email:</strong> <a href="mailto:{$supportEmail|escape}">{$supportEmail|escape}</a></p>
+					{/if}
+				</div>
+			</section>
+		{/if}
+		
+	</div>
+	
+</div><!-- .content-wrapper -->
+
+{include file="common/frontend/footer.tpl"}

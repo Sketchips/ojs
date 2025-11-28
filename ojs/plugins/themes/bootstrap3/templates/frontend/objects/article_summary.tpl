@@ -21,51 +21,32 @@
 	{assign var="showAuthor" value=true}
 {/if}
 
-<div class="article-summary media">
-	{if $publication->getLocalizedData('coverImage')}
-		{assign var="coverImage" value=$publication->getLocalizedData('coverImage')}
-		<div class="cover media-left">
-			<a href="{if $journal}{url journal=$journal->getPath() page="article" op="view" path=$articlePath}{else}{url page="article" op="view" path=$articlePath}{/if}" class="file">
-				<img class="media-object" src="{$publication->getLocalizedCoverImageUrl($currentContext->getId())|escape}" alt="{$coverImage.altText|escape|default:''}">
-			</a>
-		</div>
-	{/if}
-
-	<div class="media-body">
-		<h3 class="media-heading">
-            <a href="{if $journal}{url journal=$journal->getPath() page="article" op="view" path=$articlePath}{else}{url page="article" op="view" path=$articlePath}{/if}">
-				{$article->getLocalizedTitle()|strip_unsafe_html}
-				{if $article->getLocalizedSubtitle()}
-					<p>
-						<small>{$article->getLocalizedSubtitle()|escape}</small>
-					</p>
-				{/if}
-			</a>
-		</h3>
-
-		{if $showAuthor || $article->getPages()}
+<div class="article-summary article-text-only">
+	
+	<div class="article-content-wrapper">
+		<div class="article-text-info">
+			<h4 class="article-title">
+				<a href="{if $journal}{url journal=$journal->getPath() page="article" op="view" path=$articlePath}{else}{url page="article" op="view" path=$articlePath}{/if}">
+					{$article->getLocalizedTitle()|strip_unsafe_html}
+				</a>
+			</h4>
 
 			{if $showAuthor}
-				<div class="meta">
-					{if $showAuthor}
-						<div class="authors">
-							{$article->getCurrentPublication()->getAuthorString($authorUserGroups)|escape}
-						</div>
-					{/if}
+				<div class="article-authors">
+					{$article->getCurrentPublication()->getAuthorString($authorUserGroups)|escape}
 				</div>
 			{/if}
 
 			{* Page numbers for this article *}
 			{if $article->getPages()}
-				<p class="pages">
+				<div class="article-pages">
 					{$article->getPages()|escape}
-				</p>
+				</div>
 			{/if}
-
-		{/if}
+		</div>
 
 		{if !$hideGalleys && $article->getGalleys()}
-			<div class="btn-group" role="group">
+			<div class="article-galleys">
 				{foreach from=$article->getGalleys() item=galley}
 					{if $primaryGenreIds}
 						{assign var="file" value=$galley->getFile()}

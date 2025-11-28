@@ -64,21 +64,23 @@
 				{else}
 					<div class="site-name">
 				{/if}
-					{capture assign="homeUrl"}
-						{url page="index" router=\PKP\core\PKPApplication::ROUTE_PAGE}
-					{/capture}
-					{* Logo Image *}
-					{if $displayPageHeaderLogo}
-						<a href="{$homeUrl}" class="navbar-brand navbar-brand-logo">
-							<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{/if}>
-						</a>
-					{else}
-						<a href="{$homeUrl}" class="navbar-brand navbar-brand-logo">
-							<img src="{$baseUrl}/templates/images/structure/logo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" />
-						</a>
-					{/if}
-					{* Jurnal Riptek Text - Poppins 32px Bold Black *}
-					<a href="{$homeUrl}" class="navbar-brand">Jurnal Riptek</a>
+				{capture assign="homeUrl"}
+					{url page="index" router=\PKP\core\PKPApplication::ROUTE_PAGE}
+				{/capture}
+				{* Logo Image - HIDDEN *}
+				{* 
+				{if $displayPageHeaderLogo}
+					<a href="{$homeUrl}" class="navbar-brand navbar-brand-logo">
+						<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{/if}>
+					</a>
+				{else}
+					<a href="{$homeUrl}" class="navbar-brand navbar-brand-logo">
+						<img src="{$baseUrl}/templates/images/structure/logo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" />
+					</a>
+				{/if}
+				*}
+				{* Jurnal Riptek Text - Poppins 32px Bold Black *}
+				<a href="{$homeUrl}" class="navbar-brand">Jurnal Riptek</a>
 				{if $requestedOp == 'index'}
 					</h1>
 				{else}
@@ -100,18 +102,28 @@
 						<li class="{if $requestedPage == 'about' && ($requestedOp == '' || $requestedOp == 'index')}active{/if}">
 							<a href="{url page="about" router=\PKP\core\PKPApplication::ROUTE_PAGE}">About</a>
 						</li>
-						<li class="{if $requestedPage == 'issue'}active{/if}">
-							<a href="{url page="issue" op="archive" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Issues</a>
+						<li class="dropdown {if $requestedPage == 'issue'}active{/if}">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								Issues <span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li class="{if $requestedPage == 'issue' && $requestedOp == 'current'}active{/if}">
+									<a href="{url page="issue" op="current" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Current</a>
+								</li>
+								<li class="{if $requestedPage == 'issue' && ($requestedOp == 'archive' || $requestedOp == '')}active{/if}">
+									<a href="{url page="issue" op="archive" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Archive</a>
+								</li>
+							</ul>
 						</li>
 						<li class="{if $requestedPage == 'about' && $requestedOp == 'submissions'}active{/if}">
 							<a href="{url page="about" op="submissions" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Submissions</a>
 						</li>
-						<li class="{if $requestedPage == 'announcement'}active{/if}">
-							<a href="{url page="announcement" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Announcements</a>
-						</li>
-						<li class="{if $requestedPage == 'contact'}active{/if}">
-							<a href="{url page="contact" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Contact</a>
-						</li>
+					<li class="{if $requestedPage == 'announcement'}active{/if}">
+						<a href="{url page="announcement" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Announcements</a>
+					</li>
+					<li class="{if $requestedPage == 'about' && $requestedOp == 'contact'}active{/if}">
+						<a href="{url page="about" op="contact" router=\PKP\core\PKPApplication::ROUTE_PAGE}">Contact</a>
+					</li>
 					</ul>						{* Search form - DISABLED *}
 						{* 
 						{if $currentContext}
