@@ -872,16 +872,16 @@ body, html {
 
 .sidebar-menu-link:hover,
 .sidebar-menu-item.active .sidebar-menu-link {
-    background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
-    transform: translateY(-2px);
+    background: linear-gradient(135deg, #27ae60 0%, #229954 100%) !important;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25) !important;
+    transform: translateY(-2px) !important;
     color: #ffffff !important;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .sidebar-menu-link:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) !important;
 }
 
 .sidebar-sinta-badge {
@@ -3058,6 +3058,79 @@ body .pkp_page_about .hero-image img {
     border-left: 4px solid #2ecc71;
     padding-left: 15px;
     margin-bottom: 20px;
+}
+
+/* ===== FORCE CONSISTENT SIDEBAR FOR ABOUT PAGES ===== */
+/* Ensure sidebar-menu in about pages has same styling as home/announcement */
+body.pkp_page_about .sidebar-menu,
+.pkp_page_about .sidebar-menu {
+    flex: 0 0 280px !important;
+    width: 280px !important;
+    min-width: 280px !important;
+    max-width: 280px !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+body.pkp_page_about .sidebar-menu-list,
+.pkp_page_about .sidebar-menu-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+body.pkp_page_about .sidebar-menu-item,
+.pkp_page_about .sidebar-menu-item {
+    display: block !important;
+    width: 100% !important;
+}
+
+body.pkp_page_about .sidebar-menu-link,
+.pkp_page_about .sidebar-menu-link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 50px !important;
+    min-height: 50px !important;
+    max-height: 50px !important;
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%) !important;
+    color: #ffffff !important;
+    padding: 0 !important;
+    border-radius: 6px !important;
+    text-decoration: none !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    box-sizing: border-box !important;
+    transition: all 0.3s ease !important;
+}
+
+body.pkp_page_about .sidebar-menu-link:hover,
+body.pkp_page_about .sidebar-menu-item.active .sidebar-menu-link,
+.pkp_page_about .sidebar-menu-link:hover,
+.pkp_page_about .sidebar-menu-item.active .sidebar-menu-link {
+    background: linear-gradient(135deg, #27ae60 0%, #229954 100%) !important;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25) !important;
+    transform: translateY(-2px) !important;
+}
+
+body.pkp_page_about .content-wrapper,
+.pkp_page_about .content-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 40px !important;
+    padding: 30px 40px !important;
+    width: 100% !important;
+    max-width: none !important;
+}
+
+body.pkp_page_about .main-content-area,
+.pkp_page_about .main-content-area {
+    flex: 1 !important;
+    width: 100% !important;
 }
 
 
