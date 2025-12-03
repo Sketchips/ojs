@@ -87,33 +87,45 @@
             </thead>
             <tbody>
                 {foreach from=$latestSubmissions item=submission}
-                    <tr>
+                    <tr class="submission-row" data-submission-id="{$submission.id}">
                         <td>
-                            <div class="submission-title">{$submission.title}</div>
+                            <a href="{url page="workflow" op="access" path=$submission.id}" class="submission-link">
+                                <div class="submission-title">{$submission.title}</div>
+                            </a>
                         </td>
                         <td>
-                            <div class="author-info">
-                                <span class="author-name">{$submission.author}</span>
-                                {if $submission.authorCount > 1}
-                                    <span class="author-count">+{$submission.authorCount - 1}</span>
-                                {/if}
-                            </div>
+                            <a href="{url page="workflow" op="access" path=$submission.id}" class="submission-link">
+                                <div class="author-info">
+                                    <span class="author-name">{$submission.author}</span>
+                                    {if $submission.authorCount > 1}
+                                        <span class="author-count">+{$submission.authorCount - 1}</span>
+                                    {/if}
+                                </div>
+                            </a>
                         </td>
                         <td>
-                            <div class="contributors-list" title="{$submission.contributors}">
-                                {$submission.contributors|default:'-'}
-                            </div>
+                            <a href="{url page="workflow" op="access" path=$submission.id}" class="submission-link">
+                                <div class="contributors-list" title="{$submission.contributors}">
+                                    {$submission.contributors|default:'-'}
+                                </div>
+                            </a>
                         </td>
                         <td>
-                            <span class="date-display">{$submission.dateSubmitted}</span>
+                            <a href="{url page="workflow" op="access" path=$submission.id}" class="submission-link">
+                                <span class="date-display">{$submission.dateSubmitted}</span>
+                            </a>
                         </td>
                         <td>
-                            <span class="reviewer-name">{$submission.reviewer}</span>
+                            <a href="{url page="workflow" op="access" path=$submission.id}" class="submission-link">
+                                <span class="reviewer-name">{$submission.reviewer}</span>
+                            </a>
                         </td>
                         <td>
-                            <span class="status-tag status-{$submission.status|lower|replace:' ' : '-'}">
-                                {$submission.status}
-                            </span>
+                            <a href="{url page="workflow" op="access" path=$submission.id}" class="submission-link">
+                                <span class="status-tag status-{$submission.status|lower|replace:' ':'-'}">
+                                    {$submission.status}
+                                </span>
+                            </a>
                         </td>
                     </tr>
                 {foreachelse}

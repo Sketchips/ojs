@@ -16,8 +16,13 @@
  *
  */
 
+// Redirect /submissions to /main (Dashboard) for default landing page
+if ($op === 'index') {
+    $request = Application::get()->getRequest();
+    $request->redirect(null, 'main');
+}
+
 switch ($op) {
-    case 'index':
     case 'tasks':
         define('HANDLER_CLASS', 'PKP\pages\dashboard\DashboardHandler');
         break;

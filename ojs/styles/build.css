@@ -5725,12 +5725,23 @@ ul.submissionWizard__reviewPanel__item__value {
   border-collapse: collapse;
 }
 
-.pkp_table th,
-.pkp_table td {
+.pkp_table th {
   padding: 1.25rem 1.5rem;
   text-align: left;
   border-bottom: 1px solid #f3f4f6;
   vertical-align: middle;
+}
+
+.pkp_table td {
+  padding: 0;
+  text-align: left;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+}
+
+.pkp_table td .submission-link {
+  padding: 1.25rem 1.5rem;
+  display: block;
 }
 
 .pkp_table tr:last-child td {
@@ -5791,10 +5802,38 @@ ul.submissionWizard__reviewPanel__item__value {
   white-space: nowrap;
 }
 
+/* Submission row clickable styling */
+.submission-row {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submission-row:hover {
+  background-color: #f8fafc;
+}
+
+/* Submission link styling */
+.submission-link {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.submission-link:hover {
+  text-decoration: none;
+}
+
+.submission-link:hover .submission-title {
+  color: #3b82f6;
+}
+
 .submission-title {
   font-weight: 600;
   color: #1f2937;
   line-height: 1.4;
+  transition: color 0.2s ease;
 }
 
 .author-info {

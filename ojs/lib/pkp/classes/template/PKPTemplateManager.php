@@ -1019,6 +1019,7 @@ class PKPTemplateManager extends Smarty
                 // Admins should switch to the same page on another context where possible
                 $requestedOp = $request->getRequestedOp() === 'index' ? null : $request->getRequestedOp();
                 $isSwitchable = $isAdmin && in_array($request->getRequestedPage(), [
+                    'main',
                     'submissions',
                     'manageIssues',
                     'management',
@@ -1026,11 +1027,11 @@ class PKPTemplateManager extends Smarty
                     'stats',
                 ]);
                 foreach ($availableContexts as $availableContext) {
-                    // Site admins redirected to the same page. Everyone else to submission lists
+                    // Site admins redirected to the same page. Everyone else to main dashboard
                     if ($isSwitchable) {
                         $availableContext->url = $dispatcher->url($request, PKPApplication::ROUTE_PAGE, $availableContext->urlPath, $request->getRequestedPage(), $requestedOp, $request->getRequestedArgs());
                     } else {
-                        $availableContext->url = $dispatcher->url($request, PKPApplication::ROUTE_PAGE, $availableContext->urlPath, 'submissions');
+                        $availableContext->url = $dispatcher->url($request, PKPApplication::ROUTE_PAGE, $availableContext->urlPath, 'main');
                     }
                 }
 
