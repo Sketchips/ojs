@@ -444,7 +444,7 @@ class PKPPageRouter extends PKPRouter
 
         if ($context = $this->getContext($request)) {
             // If the user has no roles, or only one role and this is reader, go to "Index" page.
-            // Else go to "submissions" page
+            // Else go to "main" page (dashboard)
             $userGroups = Repo::userGroup()->userUserGroups($userId, $context->getId());
 
             if ($userGroups->isEmpty()
@@ -453,7 +453,7 @@ class PKPPageRouter extends PKPRouter
                 return $request->url(null, 'index');
             }
 
-            return $request->url(null, 'submissions');
+            return $request->url(null, 'main');
         } else {
             // The user is at the site context, check to see if they are
             // only registered in one place w/ one role
