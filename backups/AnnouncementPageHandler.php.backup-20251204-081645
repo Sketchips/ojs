@@ -59,12 +59,6 @@ class AnnouncementPageHandler extends Handler
             // Get announcements introduction text
             $announcementsIntroduction = $context->getLocalizedData('announcementsIntroduction');
             $templateMgr->assign('announcementsIntroduction', $announcementsIntroduction);
-            
-            // Assign homepage image for hero section
-            $templateMgr->assign([
-                'homepageImage' => $context->getLocalizedData('homepageImage'),
-                'homepageImageAltText' => $context->getLocalizedData('homepageImageAltText'),
-            ]);
         } else {
             $collector->withSiteAnnouncements(Collector::SITE_ONLY);
         }
@@ -100,15 +94,6 @@ class AnnouncementPageHandler extends Handler
             $templateMgr = TemplateManager::getManager($request);
             $templateMgr->assign('announcement', $announcement);
             $templateMgr->assign('announcementTitle', $announcement->getLocalizedTitleFull());
-            
-            // Assign homepage image for hero section
-            if ($context) {
-                $templateMgr->assign([
-                    'homepageImage' => $context->getLocalizedData('homepageImage'),
-                    'homepageImageAltText' => $context->getLocalizedData('homepageImageAltText'),
-                ]);
-            }
-            
             return $templateMgr->display('frontend/pages/announcement.tpl');
         }
         

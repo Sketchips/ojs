@@ -887,8 +887,8 @@ body, html {
 .sidebar-sinta-badge {
     padding: 20px 0;
     text-align: center;
-    margin-top: 20px;
-    border-top: 2px solid #e0e0e0;
+    margin-top: 0;
+    /* border-top removed - separator line now before INDEX BY */
 }
 
 .sidebar-sinta-badge img {

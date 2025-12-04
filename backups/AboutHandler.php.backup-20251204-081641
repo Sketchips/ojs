@@ -74,8 +74,6 @@ class AboutHandler extends \PKP\pages\about\AboutContextHandler
                 'authorGuidelines' => $context->getLocalizedData('authorGuidelines'),
                 'submissionChecklist' => $context->getLocalizedData('submissionChecklist'),
                 'copyrightNotice' => $context->getLocalizedData('copyrightNotice'),
-                'homepageImage' => $context->getLocalizedData('homepageImage'),
-                'homepageImageAltText' => $context->getLocalizedData('homepageImageAltText'),
             ]);
         }
         
@@ -98,8 +96,6 @@ class AboutHandler extends \PKP\pages\about\AboutContextHandler
             $templateMgr->assign([
                 'reviewPolicy' => $context->getLocalizedData('reviewPolicy'),
                 'reviewGuidelines' => $context->getLocalizedData('reviewGuidelines'),
-                'homepageImage' => $context->getLocalizedData('homepageImage'),
-                'homepageImageAltText' => $context->getLocalizedData('homepageImageAltText'),
             ]);
         }
         
@@ -121,8 +117,6 @@ class AboutHandler extends \PKP\pages\about\AboutContextHandler
         if ($context) {
             $templateMgr->assign([
                 'focusScopeDesc' => $context->getLocalizedData('focusScopeDesc'),
-                'homepageImage' => $context->getLocalizedData('homepageImage'),
-                'homepageImageAltText' => $context->getLocalizedData('homepageImageAltText'),
             ]);
         }
         
@@ -139,16 +133,6 @@ class AboutHandler extends \PKP\pages\about\AboutContextHandler
     {
         $templateMgr = TemplateManager::getManager($request);
         $this->setupTemplate($request);
-        $context = $request->getJournal();
-        
-        // Assign homepage image for hero section
-        if ($context) {
-            $templateMgr->assign([
-                'homepageImage' => $context->getLocalizedData('homepageImage'),
-                'homepageImageAltText' => $context->getLocalizedData('homepageImageAltText'),
-            ]);
-        }
-        
         $templateMgr->display('frontend/pages/sectionPolicies.tpl');
     }
 
