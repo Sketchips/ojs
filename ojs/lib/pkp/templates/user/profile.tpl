@@ -10,6 +10,18 @@
 {extends file="layouts/backend.tpl"}
 
 {block name="page"}
+	<style>
+		/* User profile green header styling to match admin dashboard */
+		.app__pageHeading {
+			background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%) !important;
+			color: white !important;
+			padding: 20px 30px !important;
+			border-radius: 8px !important;
+			margin-bottom: 30px !important;
+			box-shadow: 0 4px 6px rgba(46, 204, 113, 0.2) !important;
+		}
+	</style>
+
 	<h1 class="app__pageHeading">
 		{translate key="user.profile"}
 	</h1>

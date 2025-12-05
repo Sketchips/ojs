@@ -182,6 +182,7 @@
 								{{ menuItem.name }}
 							</div>
 							<a v-else class="app__navItem" :class="menuItem.isCurrent ? 'app__navItem--isCurrent' : ''" :href="menuItem.url">
+								<span v-if="key === 'home'" style="margin-right: 8px;">←</span>
 								{{ menuItem.name }}
 							</a>
 							<ul v-if="!!menuItem.submenu">

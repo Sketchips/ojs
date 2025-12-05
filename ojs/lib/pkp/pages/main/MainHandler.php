@@ -13,6 +13,7 @@ namespace PKP\pages\main;
 
 use PKP\handler\PKPHandler;
 use APP\template\TemplateManager;
+use APP\facades\Repo;
 use PKP\security\authorization\SubmissionAccessPolicy;
 use PKP\security\authorization\UserRequiredPolicy;
 use PKP\security\Role;
@@ -72,41 +73,63 @@ class MainHandler extends PKPHandler
             $request->redirect(null, 'user');
         }
 
-        // Get filter parameter and page number
-        $filterStatus = $request->getUserVar('filter');
-        $currentPage = max(1, (int) $request->getUserVar('page'));
-        $itemsPerPage = 5;
+    // Get current user and check if admin/manager
+    $user = $request->getUser();
+    $userId = $user->getId();
+    
+    // Check if user has admin/manager role using Repo
+    $userGroups = Repo::userGroup()->userUserGroups($userId, $context->getId());
+    $isAdminOrManager = false;
+    
+    foreach ($userGroups as $userGroup) {
+        if (in_array($userGroup->getRoleId(), [Role::ROLE_ID_SITE_ADMIN, Role::ROLE_ID_MANAGER])) {
+            $isAdminOrManager = true;
+            break;
+        }
+    }
+
+    // Get filter parameter and page number
+    $filterStatus = $request->getUserVar('filter');
+    $currentPage = max(1, (int) $request->getUserVar('page'));
+    $itemsPerPage = 5;
+    
+    // Count submissions by status
+    $contextId = (int) $context->getId();
+    
+    // Build collector with user filter if not admin
+    $buildCollector = function() use ($contextId, $userId, $isAdminOrManager) {
+        $collector = \APP\facades\Repo::submission()->getCollector()
+            ->filterByContextIds([$contextId]);
         
-        // Count submissions by status
-        $contextId = (int) $context->getId();
+        // Non-admin users only see submissions where they are authors OR assigned
+        if (!$isAdminOrManager) {
+            // Use assignedTo which checks stage assignments, editorial assignments, and authorship
+            $collector->assignedTo([$userId]);
+        }
         
-        // Under Review (STATUS_QUEUED and in review stages)
-        $underReviewCount = \APP\facades\Repo::submission()->getCollector()
-            ->filterByContextIds([$contextId])
+        return $collector;
+    };        // Under Review (STATUS_QUEUED and in review stages)
+        $underReviewCount = $buildCollector()
             ->filterByStatus([\PKP\submission\PKPSubmission::STATUS_QUEUED])
             ->getCount();
         
         // Declined/Rejected
-        $rejectedCount = \APP\facades\Repo::submission()->getCollector()
-            ->filterByContextIds([$contextId])
+        $rejectedCount = $buildCollector()
             ->filterByStatus([\PKP\submission\PKPSubmission::STATUS_DECLINED])
             ->getCount();
         
         // Published
-        $publishedCount = \APP\facades\Repo::submission()->getCollector()
-            ->filterByContextIds([$contextId])
+        $publishedCount = $buildCollector()
             ->filterByStatus([\PKP\submission\PKPSubmission::STATUS_PUBLISHED])
             ->getCount();
         
         // Scheduled (Accepted - waiting to be published)
-        $scheduledCount = \APP\facades\Repo::submission()->getCollector()
-            ->filterByContextIds([$contextId])
+        $scheduledCount = $buildCollector()
             ->filterByStatus([\PKP\submission\PKPSubmission::STATUS_SCHEDULED])
             ->getCount();
 
         // Get submissions based on filter
-        $collector = \APP\facades\Repo::submission()->getCollector()
-            ->filterByContextIds([$contextId]);
+        $collector = $buildCollector();
         
         if ($filterStatus === 'review') {
             $collector->filterByStatus([\PKP\submission\PKPSubmission::STATUS_QUEUED]);

@@ -17,6 +17,7 @@
  */
 
 // Redirect /submissions to /main (Dashboard) for default landing page
+// Uncommented to allow direct access - redirect to main dashboard
 if ($op === 'index') {
     $request = Application::get()->getRequest();
     $request->redirect(null, 'main');

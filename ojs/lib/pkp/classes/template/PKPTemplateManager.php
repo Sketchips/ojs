@@ -318,6 +318,7 @@ class PKPTemplateManager extends Smarty
         $this->registerPlugin('modifier', 'array_key_exists', 'array_key_exists');
         $this->registerPlugin('modifier', 'array_key_first', 'array_key_first');
         $this->registerPlugin('modifier', 'array_values', 'array_values');
+        $this->registerPlugin('modifier', 'in_array', 'in_array'); // Fix Smarty deprecation warning
         $this->registerPlugin('modifier', 'fatalError', 'fatalError');
         $this->registerPlugin('modifier', 'translate', [$this, 'smartyTranslateModifier']);
         $this->registerPlugin('modifier', 'strip_unsafe_html', '\PKP\core\PKPString::stripUnsafeHtml');
@@ -1042,15 +1043,31 @@ class PKPTemplateManager extends Smarty
 
                 if ($request->getContext()) {
                     if (count(array_intersect([Role::ROLE_ID_MANAGER, Role::ROLE_ID_SITE_ADMIN, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_ASSISTANT, Role::ROLE_ID_REVIEWER, Role::ROLE_ID_AUTHOR], $userRoles))) {
+                        // Add Back to Home button (journal homepage)
+                        $menu['home'] = [
+                            'name' => __('navigation.home'),
+                            'url' => $router->url($request, null, 'index'),
+                            'isCurrent' => false,
+                        ];
+                        
                         $menu['dashboard'] = [
                             'name' => __('navigation.dashboard'),
                             'url' => $router->url($request, null, 'main'),
                             'isCurrent' => $router->getRequestedPage($request) === 'main',
                         ];
+                        
+                        // Submissions points to new submission page
                         $menu['submissions'] = [
                             'name' => __('navigation.submissions'),
-                            'url' => $router->url($request, null, 'submissions'),
-                            'isCurrent' => $router->getRequestedPage($request) === 'submissions',
+                            'url' => $router->url($request, null, 'submission'),
+                            'isCurrent' => $router->getRequestedPage($request) === 'submission',
+                        ];
+                        
+                        // Add Profile menu for all authenticated users
+                        $menu['profile'] = [
+                            'name' => __('user.profile'),
+                            'url' => $router->url($request, null, 'user', 'profile'),
+                            'isCurrent' => $router->getRequestedPage($request) === 'user' && $router->getRequestedOp($request) === 'profile',
                         ];
                     } elseif (count($userRoles) === 1 && in_array(Role::ROLE_ID_READER, $userRoles)) {
                         $menu['submit'] = [
