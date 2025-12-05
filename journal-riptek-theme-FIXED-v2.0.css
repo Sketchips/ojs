@@ -1344,3 +1344,78 @@ body.pkp_page_user.pkp_op_register {
 .page_index_journal .read-more {
     display: none !important;
 }
+
+/* =========================================
+   PDF VIEWER HEADER FIX
+   ========================================= */
+.header_view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #2c3e50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.header_view .return,
+.header_view .download {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #34495e;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.header_view .return:hover,
+.header_view .download:hover {
+    background-color: #1abc9c;
+}
+
+.header_view .return::before {
+    content: "← ";
+    margin-right: 5px;
+}
+
+.header_view .download::after {
+    content: " ↓";
+    margin-left: 5px;
+}
+
+.header_view .title {
+    flex: 1;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 20px;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header_view .title:hover {
+    color: #1abc9c;
+}
+
+/* PDF Container - Add top padding to account for fixed header */
+.pkp_page_article.pkp_op_view iframe,
+.pkp_page_article.pkp_op_view embed,
+.pkp_page_article.pkp_op_view object,
+#pdfCanvasContainer {
+    margin-top: 60px !important;
+}
+
+body.pkp_page_article.pkp_op_view {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}

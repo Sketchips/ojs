@@ -43,10 +43,45 @@
 					{$article->getPages()|escape}
 				</div>
 			{/if}
+			
+		{* Action Buttons *}
+		<div class="article-action-buttons" style="margin-top: 15px;">
+			{* View Article Button *}
+			<a href="{if $journal}{url journal=$journal->getPath() page="article" op="view" path=$articlePath}{else}{url page="article" op="view" path=$articlePath}{/if}" 
+			   class="btn btn-sm btn-success" 
+			   style="background-color: #2ecc71; border-color: #2ecc71; color: white; padding: 8px 20px; font-size: 14px; font-weight: 500; margin-right: 10px;">
+				<i class="fa fa-file-text-o" style="margin-right: 5px;"></i>
+				View Article
+			</a>
+			
+			{* View PDF Button (Preview Mode) - Get galleys from publication *}
+			{assign var="articleGalleys" value=$publication->getData('galleys')}
+			
+			{if !$articleGalleys}
+				{* Fallback: Try getting from article directly *}
+				{assign var="articleGalleys" value=$article->getGalleys()}
+			{/if}
+			
+			{if $articleGalleys|@count > 0}
+				{foreach from=$articleGalleys item=galley name=galleyLoop}
+					{if $smarty.foreach.galleyLoop.first}
+						{assign var="viewPath" value=$articlePath|to_array:$galley->getBestGalleyId()}
+						<a href="{if $journal}{url journal=$journal->getPath() page="article" op="view" path=$viewPath}{else}{url page="article" op="view" path=$viewPath}{/if}" 
+						   class="btn btn-sm btn-primary" 
+						   style="background-color: #3498db; border-color: #3498db; color: white; padding: 8px 20px; font-size: 14px; font-weight: 500;"
+						   target="_blank">
+							<i class="fa fa-file-pdf-o" style="margin-right: 5px;"></i>
+							View PDF
+						</a>
+						{break}
+					{/if}
+				{/foreach}
+			{/if}
 		</div>
+	</div>
 
-		{if !$hideGalleys && $article->getGalleys()}
-			<div class="article-galleys">
+	{if !$hideGalleys && $article->getGalleys()}
+		<div class="article-galleys">
 				{foreach from=$article->getGalleys() item=galley}
 					{if $primaryGenreIds}
 						{assign var="file" value=$galley->getFile()}
