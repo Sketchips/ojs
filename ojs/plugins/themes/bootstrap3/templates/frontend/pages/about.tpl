@@ -25,7 +25,11 @@
 		<section class="info-section about-section">
 			<h2 class="section-title">About Journal</h2>
 			<div class="section-content">
-				<p>Informasi umum mengenai fokus, kebijakan, dan etika publikasi jurnal ini.</p>
+				{if $currentJournal->getLocalizedData('about')}
+					{$currentJournal->getLocalizedData('about')}
+				{else}
+					<p>No information about this journal has been configured.</p>
+				{/if}
 			</div>
 		</section>
 
