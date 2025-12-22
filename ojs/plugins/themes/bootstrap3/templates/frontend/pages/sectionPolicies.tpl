@@ -25,6 +25,9 @@
 		<section class="info-section section-policies-section">
 			<h2 class="section-title">Section Policies</h2>
 			<div class="section-content">
+				{if $currentContext->getLocalizedData('sectionPolicies')}
+					{$currentContext->getLocalizedData('sectionPolicies')}
+				{else}
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesunt non ipsum facilisis, tincidunt ex eu, iaculis ex turpis. Sed ac lacus ligula posuere lacus posuere, lacus posuere maximus. Integer dictum rhoncus lectus eget dignissim. Nulla luctus neque ut interdum lacinia. Etiam quis elementum nisl. Praesent ac ante viverra, posuere diam ac, dictum enim. Vestibulum ultricies metus lacus, vel varius ligula dignissim sed. Ut eu ligula sagittis elit ac purus vel.</p>
 				
 				<h3>Open Access Policy</h3>
@@ -40,6 +43,7 @@
 				
 				<h3>Publication Ethics</h3>
 				<p>The journal follows the Committee on Publication Ethics (COPE) guidelines for ethical conduct in scholarly publishing.</p>
+				{/if}
 			</div>
 		</section>
 

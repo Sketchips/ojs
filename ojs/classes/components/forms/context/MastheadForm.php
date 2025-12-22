@@ -27,6 +27,9 @@ class MastheadForm extends PKPMastheadForm
     {
         parent::__construct($action, $locales, $context, $imageUploadUrl);
 
+        // Import FieldRichTextarea untuk field peer review
+        // Field ini sudah ada di parent class PKPMastheadForm
+        
         $this->addField(new FieldText('abbreviation', [
             'label' => __('manager.setup.journalAbbreviation'),
             'isMultilingual' => true,
@@ -54,6 +57,39 @@ class MastheadForm extends PKPMastheadForm
                 'size' => 'small',
                 'groupId' => 'publishing',
                 'value' => $context->getData('printIssn'),
+            ]))
+            ->addField(new \PKP\components\forms\FieldRichTextarea('peerReviewProcess', [
+                'label' => __('manager.setup.peerReviewProcess'),
+                'description' => __('manager.setup.peerReviewProcess.description'),
+                'isMultilingual' => true,
+                'size' => 'large',
+                'groupId' => 'about',
+                'toolbar' => 'bold italic superscript subscript | link | blockquote bullist numlist | image | code',
+                'plugins' => 'paste,link,lists,image,code',
+                'uploadUrl' => $imageUploadUrl,
+                'value' => $context->getData('peerReviewProcess'),
+            ]))
+            ->addField(new \PKP\components\forms\FieldRichTextarea('focusAndScope', [
+                'label' => __('manager.setup.focusAndScope'),
+                'description' => __('manager.setup.focusAndScope.description'),
+                'isMultilingual' => true,
+                'size' => 'large',
+                'groupId' => 'about',
+                'toolbar' => 'bold italic superscript subscript | link | blockquote bullist numlist | image | code',
+                'plugins' => 'paste,link,lists,image,code',
+                'uploadUrl' => $imageUploadUrl,
+                'value' => $context->getData('focusAndScope'),
+            ]))
+            ->addField(new \PKP\components\forms\FieldRichTextarea('sectionPolicies', [
+                'label' => __('manager.setup.sectionPolicies'),
+                'description' => __('manager.setup.sectionPolicies.description'),
+                'isMultilingual' => true,
+                'size' => 'large',
+                'groupId' => 'about',
+                'toolbar' => 'bold italic superscript subscript | link | blockquote bullist numlist | image | code',
+                'plugins' => 'paste,link,lists,image,code',
+                'uploadUrl' => $imageUploadUrl,
+                'value' => $context->getData('sectionPolicies'),
             ]));
     }
 }

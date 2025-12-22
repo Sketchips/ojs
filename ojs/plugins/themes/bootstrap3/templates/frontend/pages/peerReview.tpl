@@ -25,7 +25,9 @@
 		<section class="info-section peer-review-section">
 			<h2 class="section-title">Peer-Review Process</h2>
 			<div class="section-content">
-				{if $reviewPolicy}
+				{if $currentContext->getLocalizedData('peerReviewProcess')}
+					{$currentContext->getLocalizedData('peerReviewProcess')}
+				{elseif $reviewPolicy}
 					{$reviewPolicy}
 				{else}
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non ipsum facilisis, tincidunt ex eu, iaculis ex turpis. Sed ac lacus ligula posuere lacus posuere, lacus posuere maximus. Integer dictum rhoncus lectus eget dignissim. Nulla luctus neque ut interdum lacinia. Etiam quis elementum nisl. Praesent ac ante viverra, posuere diam ac,dictum enim. Vestibulum ultricies metus lacus, vel varius ligula digissim sed. Ut eu ligula sagittis elit ac purus vel.</p>
