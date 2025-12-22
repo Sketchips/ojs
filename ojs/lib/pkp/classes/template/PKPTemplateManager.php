@@ -1070,10 +1070,23 @@ class PKPTemplateManager extends Smarty
                             'isCurrent' => $router->getRequestedPage($request) === 'user' && $router->getRequestedOp($request) === 'profile',
                         ];
                     } elseif (count($userRoles) === 1 && in_array(Role::ROLE_ID_READER, $userRoles)) {
-                        $menu['submit'] = [
-                            'name' => __('author.submit'),
+                        // Readers get a simplified menu: Home, Submissions (to submit new article), and Profile
+                        $menu['home'] = [
+                            'name' => __('navigation.home'),
+                            'url' => $router->url($request, null, 'index'),
+                            'isCurrent' => false,
+                        ];
+                        
+                        $menu['submissions'] = [
+                            'name' => __('navigation.submissions'),
                             'url' => $router->url($request, null, 'submission'),
                             'isCurrent' => $router->getRequestedPage($request) === 'submission',
+                        ];
+                        
+                        $menu['profile'] = [
+                            'name' => __('user.profile'),
+                            'url' => $router->url($request, null, 'user', 'profile'),
+                            'isCurrent' => $router->getRequestedPage($request) === 'user' && $router->getRequestedOp($request) === 'profile',
                         ];
                     }
 

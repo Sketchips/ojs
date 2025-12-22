@@ -137,11 +137,26 @@
 							{/if}
 							<div class="pkpDropdown__section">
 								<ul>
-									<li v-if="backToDashboardLink">
-										<a :href="backToDashboardLink.url" class="pkpDropdown__action">
-											{{ backToDashboardLink.name }}
-										</a>
-									</li>
+									{* Only show back to dashboard link for non-reader roles *}
+									{assign var="isOnlyReader" value=true}
+									{if $currentContext}
+										{assign var="userRoles" value=$currentUser->getRoles($currentContext->getId())}
+										{foreach from=$userRoles item=role}
+											{if $role->getId() != $smarty.const.ROLE_ID_READER}
+												{assign var="isOnlyReader" value=false}
+											{/if}
+										{/foreach}
+									{else}
+										{* If no context, user is not a reader-only *}
+										{assign var="isOnlyReader" value=false}
+									{/if}
+									{if !$isOnlyReader}
+										<li v-if="backToDashboardLink">
+											<a :href="backToDashboardLink.url" class="pkpDropdown__action">
+												{{ backToDashboardLink.name }}
+											</a>
+										</li>
+									{/if}
 									<li>
 										<a href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="user" op="profile"}" class="pkpDropdown__action">
 											{translate key="user.profile.editProfile"}
@@ -167,11 +182,26 @@
 		</header>
 
 		{* Swap the navigation menu for a back-to-dashboard link when only one item exists *}
-		<nav v-if="backToDashboardLink" class="app__returnHeader" aria-label="{translate key="common.navigation.site"}">
-			<a class="app__returnHeaderLink" :href="backToDashboardLink.url">
-				{{ backToDashboardLabel }}
-			</a>
-		</nav>
+		{* Don't show this for readers - they only see profile pages without workflow access *}
+		{assign var="isOnlyReader" value=true}
+		{if $currentUser && $currentContext}
+			{assign var="userRoles" value=$currentUser->getRoles($currentContext->getId())}
+			{foreach from=$userRoles item=role}
+				{if $role->getId() != $smarty.const.ROLE_ID_READER}
+					{assign var="isOnlyReader" value=false}
+				{/if}
+			{/foreach}
+		{elseif $currentUser && !$currentContext}
+			{* If no context, user is not a reader-only *}
+			{assign var="isOnlyReader" value=false}
+		{/if}
+		{if !$isOnlyReader}
+			<nav v-if="backToDashboardLink" class="app__returnHeader" aria-label="{translate key="common.navigation.site"}">
+				<a class="app__returnHeaderLink" :href="backToDashboardLink.url">
+					{{ backToDashboardLabel }}
+				</a>
+			</nav>
+		{/if}
 
 		<div class="app__body">
 			{block name="menu"}
