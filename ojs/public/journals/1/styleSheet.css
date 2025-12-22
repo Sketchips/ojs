@@ -1862,7 +1862,7 @@ body.pkp_page_user.pkp_op_register {
     margin: 0 !important;
     padding: 20px 30px !important;
     background: transparent !important;
-    border-left: 4px solid #2ecc71 !important;
+    /*border-left: 4px solid #2ecc71 !important;*/
     min-height: 100px !important;          /* Not too thin */
     height: auto !important;               /* AUTO based on content */
     max-height: none !important;           /* NO LIMIT */
@@ -2808,7 +2808,7 @@ body .pkp_page_about .hero-image img {
     background: transparent !important;       /* v10.13: TRANSPARENT - no card */
     border-radius: 0 !important;
     border: none !important;                  /* v10.13: NO border except left */
-    border-left: 4px solid #2ecc71 !important; /* GREEN bar only */
+   /* border-left: 4px solid #2ecc71 !important; /* GREEN bar only */
     box-shadow: none !important;              /* v10.13: NO shadow */
     min-height: 120px !important;
     height: auto !important;
@@ -2819,7 +2819,7 @@ body .pkp_page_about .hero-image img {
 
 /* v10.13: About page - ONE green border encompasses all content */
 .pkp_page_about .about-content-wrapper {
-    border-left: 4px solid #2ecc71 !important; /* v10.13: ONE border for ALL */
+   /* border-left: 4px solid #2ecc71 !important; /* v10.13: ONE border for ALL */
     padding-left: 20px !important;
 }
 
@@ -2971,7 +2971,7 @@ body .pkp_page_about .hero-image img {
         margin: 0 0 20px 0 !important;
         background: transparent !important;  /* v10.13: NO card */
         border: none !important;
-        border-left: 4px solid #2ecc71 !important;
+     /*   border-left: 4px solid #2ecc71 !important; */
         box-shadow: none !important;
     }
     
@@ -3055,7 +3055,7 @@ body .pkp_page_about .hero-image img {
 /* Announcements section title */
 .announcements-section h2.section-title {
     color: #2ecc71;
-    border-left: 4px solid #2ecc71;
+ /*   border-left: 4px solid #2ecc71; */
     padding-left: 15px;
     margin-bottom: 20px;
 }
