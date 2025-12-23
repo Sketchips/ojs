@@ -22,7 +22,13 @@
 	
 	{* ISSN di pojok kanan atas hero *}
 	<div class="hero-issn">
-		ISSN: 2716-3482 (E) 1978-8320 (P)
+		{assign var="onlineIssn" value=$currentJournal->getData('onlineIssn')}
+		{assign var="printIssn" value=$currentJournal->getData('printIssn')}
+		{if $onlineIssn || $printIssn}
+			ISSN:
+			{if $onlineIssn}{$onlineIssn|escape} (E){/if}
+			{if $printIssn}{if $onlineIssn} {/if}{$printIssn|escape} (P){/if}
+		{/if}
 	</div>
 	
 	<div class="hero-content">
