@@ -30,34 +30,40 @@
 		<img class="footer-landmark" src="{$baseUrl}/plugins/themes/bootstrap3/styles/fonts/Semarang.png" alt="landmark illustration" aria-hidden="true" role="presentation" />
 		<div class="container-fluid footer-container">
 			<div class="footer-content">
-				<h3 class="footer-title">REDAKSI JURNAL RIPTEK</h3>
-				<div class="footer-info">
-					<p class="footer-org"><strong>Badan Riset dan Inovasi Daerah (BRIDA) Kota Semarang</strong></p>
-					<div class="footer-details">
-						<p class="footer-address">
-							<i class="fa fa-map-marker"></i> 
-							Gedung Pandanaran Lantai I<br>
-							Jl. Pemuda No.175, Sekayu, Kec. Semarang Tengah, Kota<br>
-							Semarang, Jawa Tengah 50132
-						</p>
-						<p class="footer-contact">
-							<i class="fa fa-envelope"></i> 
-							<a href="mailto:riptek@semarangkota.go.id">riptek@semarangkota.go.id</a>
-						</p>
-						<p class="footer-contact">
-							<i class="fa fa-globe"></i> 
-							<a href="https://www.riptek.semarangkota.go.id" target="_blank" rel="noopener">http riptek smg</a>
-						</p>
-						<p class="footer-contact">
-							<i class="fa fa-phone"></i> 
-							Telp. (024) 3584037
-						</p>
-						<p class="footer-contact">
-							<i class="fa fa-fax"></i> 
-							Fax. (024) 3584038
-						</p>
+				{* Footer content diambil dari Page Footer setting di admin *}
+				{if $currentJournal && $currentJournal->getLocalizedData('pageFooter')}
+					{$currentJournal->getLocalizedData('pageFooter')}
+				{else}
+					{* Default footer jika belum diisi di admin *}
+					<h3 class="footer-title">REDAKSI JURNAL RIPTEK</h3>
+					<div class="footer-info">
+						<p class="footer-org"><strong>Badan Riset dan Inovasi Daerah (BRIDA) Kota Semarang</strong></p>
+						<div class="footer-details">
+							<p class="footer-address">
+								<i class="fa fa-map-marker"></i> 
+								Gedung Pandanaran Lantai I<br>
+								Jl. Pemuda No.175, Sekayu, Kec. Semarang Tengah, Kota<br>
+								Semarang, Jawa Tengah 50132
+							</p>
+							<p class="footer-contact">
+								<i class="fa fa-envelope"></i> 
+								<a href="mailto:riptek@semarangkota.go.id">riptek@semarangkota.go.id</a>
+							</p>
+							<p class="footer-contact">
+								<i class="fa fa-globe"></i> 
+								<a href="http://riptek.eng" target="_blank" rel="noopener">http riptek.eng</a>
+							</p>
+							<p class="footer-contact">
+								<i class="fa fa-phone"></i> 
+								Telp. (024) 3584037
+							</p>
+							<p class="footer-contact">
+								<i class="fa fa-fax"></i> 
+								Fax. (024) 3584038
+							</p>
+						</div>
 					</div>
-				</div>
+				{/if}
 			</div>
 		</div><!-- .container-fluid -->
 	</footer>
