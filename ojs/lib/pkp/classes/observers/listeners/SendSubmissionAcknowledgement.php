@@ -68,19 +68,24 @@ abstract class SendSubmissionAcknowledgement
             }
 
             if (!empty($event->context->getData('copySubmissionAckAddress'))) {
-                $emails = explode(',', trim($event->context->getData('copySubmissionAckAddress')));
+                $emails = explode(',', trim($event->context->getData('copySubmissionAckAddress') ?? ''));
                 $mailable->bcc($emails);
             }
 
-            Mail::send($mailable);
+            try {
+                Mail::send($mailable);
 
-            /** @var SubmissionEmailLogDAO $logDao */
-            $logDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
-            $logDao->logMailable(
-                SubmissionEmailLogEntry::SUBMISSION_EMAIL_AUTHOR_SUBMISSION_ACK,
-                $mailable,
-                $event->submission
-            );
+                /** @var SubmissionEmailLogDAO $logDao */
+                $logDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
+                $logDao->logMailable(
+                    SubmissionEmailLogEntry::SUBMISSION_EMAIL_AUTHOR_SUBMISSION_ACK,
+                    $mailable,
+                    $event->submission
+                );
+            } catch (\Exception $e) {
+                // Log email error but don't break submission process
+                error_log('Failed to send submission acknowledgement email: ' . $e->getMessage());
+            }
         }
 
         if ($event->context->getData('submissionAcknowledgement') !== 'allAuthors') {
@@ -107,15 +112,20 @@ abstract class SendSubmissionAcknowledgement
                 ->subject($emailTemplate->getLocalizedData('subject'))
                 ->body($emailTemplate->getLocalizedData('body'));
 
-            Mail::send($mailable);
+            try {
+                Mail::send($mailable);
 
-            /** @var SubmissionEmailLogDAO $logDao */
-            $logDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
-            $logDao->logMailable(
-                SubmissionEmailLogEntry::SUBMISSION_EMAIL_AUTHOR_SUBMISSION_ACK,
-                $mailable,
-                $event->submission
-            );
+                /** @var SubmissionEmailLogDAO $logDao */
+                $logDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
+                $logDao->logMailable(
+                    SubmissionEmailLogEntry::SUBMISSION_EMAIL_AUTHOR_SUBMISSION_ACK,
+                    $mailable,
+                    $event->submission
+                );
+            } catch (\Exception $e) {
+                // Log email error but don't break submission process
+                error_log('Failed to send submission acknowledgement email to other authors: ' . $e->getMessage());
+            }
         }
     }
 

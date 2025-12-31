@@ -1,0 +1,31 @@
+# Ignore GeoIP DB (large, can be re-downloaded or regenerated)
+files/usageStats/IPGeoDB.mmdb
+
+# Database raw files (do NOT commit)
+db_data/
+
+# OJS caches and runtime files
+ojs/cache/
+ojs/cache/*
+
+# Node modules inside plugins (build artifacts)
+ojs/plugins/**/node_modules/
+
+# Build artifacts / logs
+*.log
+# Keep database backups for team sharing
+# *.sql (commented to allow SQL dumps)
+*.zip
+*.gz
+
+# Documentation archives (old versions)
+documentation/archive/
+
+# Git tools / temporary folders
+.git-mirror-temp/
+
+# Environment config
+.env
+
+# OS
+.DS_Store

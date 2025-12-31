@@ -1,0 +1,6 @@
+[2025-10-10 00:33:00] http://localhost:8080
+[2025-10-10 00:33:00] [Notice] Task process started.
+[2025-10-10 00:33:00] [Notice] File /var/ojs_files/usageStats/processing/usage_events_20251002.log was moved to dispatch folder.
+[2025-10-10 00:33:00] [Notice] File /var/ojs_files/usageStats/processing/usage_events_20251003.log was moved to dispatch folder.
+[2025-10-10 00:33:04] [Notice] The background jobs that will process the log files and store the statistics data have been dispatched.
+[2025-10-10 00:33:04] [Notice] Task process stopped.

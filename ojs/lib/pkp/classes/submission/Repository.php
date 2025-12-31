@@ -217,16 +217,22 @@ abstract class Repository
 
         // Send reviewers to review wizard
         $reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO'); /** @var ReviewAssignmentDAO $reviewAssignmentDao */
-        $reviewAssignment = $reviewAssignmentDao->getLastReviewRoundReviewAssignmentByReviewer($submission->getId(), $user->getId());
-        if ($reviewAssignment && !$reviewAssignment->getCancelled() && !$reviewAssignment->getDeclined()) {
-            return $dispatcher->url(
-                $request,
-                Application::ROUTE_PAGE,
-                $submissionContext->getPath(),
-                'reviewer',
-                'submission',
-                $submission->getId()
-            );
+        $reviewAssignments = $reviewAssignmentDao->getBySubmissionId($submission->getId());
+        
+        // Check if this user has any active (non-cancelled, non-declined) review assignments
+        foreach ($reviewAssignments as $reviewAssignment) {
+            if ($reviewAssignment->getReviewerId() == $user->getId() && 
+                !$reviewAssignment->getCancelled() && 
+                !$reviewAssignment->getDeclined()) {
+                return $dispatcher->url(
+                    $request,
+                    Application::ROUTE_PAGE,
+                    $submissionContext->getPath(),
+                    'reviewer',
+                    'submission',
+                    $submission->getId()
+                );
+            }
         }
 
         // Give any other users the editorial workflow URL. If they can't access

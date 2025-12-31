@@ -12,6 +12,7 @@
 
 <div class="page page_login">
 	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="user.login"}
+	<main class="pkp_page_content">
 	<h1>
 		{translate key="user.login"}
 	</h1>
@@ -103,6 +104,7 @@
 			</div>
 		</fieldset>
 	</form>
+	</main>
 </div><!-- .page -->
 
 {include file="frontend/components/footer.tpl"}

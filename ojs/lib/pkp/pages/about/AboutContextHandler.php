@@ -50,6 +50,16 @@ class AboutContextHandler extends Handler
     {
         $templateMgr = TemplateManager::getManager($request);
         $this->setupTemplate($request);
+        $context = $request->getContext();
+        
+        // Assign homepage image for hero section
+        if ($context) {
+            $templateMgr->assign([
+                'homepageImage' => $context->getLocalizedData('homepageImage'),
+                'homepageImageAltText' => $context->getLocalizedData('homepageImageAltText'),
+            ]);
+        }
+        
         $templateMgr->display('frontend/pages/about.tpl');
     }
 
@@ -63,6 +73,16 @@ class AboutContextHandler extends Handler
     {
         $templateMgr = TemplateManager::getManager($request);
         $this->setupTemplate($request);
+        $context = $request->getContext();
+        
+        // Assign homepage image for hero section
+        if ($context) {
+            $templateMgr->assign([
+                'homepageImage' => $context->getLocalizedData('homepageImage'),
+                'homepageImageAltText' => $context->getLocalizedData('homepageImageAltText'),
+            ]);
+        }
+        
         $templateMgr->display('frontend/pages/editorialTeam.tpl');
     }
 
@@ -96,6 +116,15 @@ class AboutContextHandler extends Handler
             ->all();
 
         $templateMgr->assign('sections', $sections);
+        
+        // Assign homepage image for hero section
+        if ($context) {
+            $templateMgr->assign([
+                'homepageImage' => $context->getLocalizedData('homepageImage'),
+                'homepageImageAltText' => $context->getLocalizedData('homepageImageAltText'),
+            ]);
+        }
+        
         $templateMgr->display('frontend/pages/submissions.tpl');
     }
 
@@ -111,6 +140,8 @@ class AboutContextHandler extends Handler
         $this->setupTemplate($request);
         $context = $request->getContext();
         $templateMgr->assign([
+            'pageTitleTranslated' => 'Contact',
+            'pageTitle' => 'about.contact',
             'mailingAddress' => $context->getData('mailingAddress'),
             'contactPhone' => $context->getData('contactPhone'),
             'contactEmail' => $context->getData('contactEmail'),
@@ -120,7 +151,78 @@ class AboutContextHandler extends Handler
             'supportEmail' => $context->getData('supportEmail'),
             'contactTitle' => $context->getLocalizedData('contactTitle'),
             'contactAffiliation' => $context->getLocalizedData('contactAffiliation'),
+            'homepageImage' => $context->getLocalizedData('homepageImage'),
+            'homepageImageAltText' => $context->getLocalizedData('homepageImageAltText'),
         ]);
         $templateMgr->display('frontend/pages/contact.tpl');
+    }
+
+    /**
+     * Display peer review page.
+     *
+     * @param array $args
+     * @param \PKP\core\PKPRequest $request
+     */
+    public function peerReview($args, $request)
+    {
+        $templateMgr = TemplateManager::getManager($request);
+        $this->setupTemplate($request);
+        $context = $request->getContext();
+        
+        // Assign homepage image for hero section
+        if ($context) {
+            $templateMgr->assign([
+                'homepageImage' => $context->getLocalizedData('homepageImage'),
+                'homepageImageAltText' => $context->getLocalizedData('homepageImageAltText'),
+            ]);
+        }
+        
+        $templateMgr->display('frontend/pages/peerReview.tpl');
+    }
+
+    /**
+     * Display focus and scope page.
+     *
+     * @param array $args
+     * @param \PKP\core\PKPRequest $request
+     */
+    public function focusAndScope($args, $request)
+    {
+        $templateMgr = TemplateManager::getManager($request);
+        $this->setupTemplate($request);
+        $context = $request->getContext();
+        
+        // Assign homepage image for hero section
+        if ($context) {
+            $templateMgr->assign([
+                'homepageImage' => $context->getLocalizedData('homepageImage'),
+                'homepageImageAltText' => $context->getLocalizedData('homepageImageAltText'),
+            ]);
+        }
+        
+        $templateMgr->display('frontend/pages/focusAndScope.tpl');
+    }
+
+    /**
+     * Display section policies page.
+     *
+     * @param array $args
+     * @param \PKP\core\PKPRequest $request
+     */
+    public function sectionPolicies($args, $request)
+    {
+        $templateMgr = TemplateManager::getManager($request);
+        $this->setupTemplate($request);
+        $context = $request->getContext();
+        
+        // Assign homepage image for hero section
+        if ($context) {
+            $templateMgr->assign([
+                'homepageImage' => $context->getLocalizedData('homepageImage'),
+                'homepageImageAltText' => $context->getLocalizedData('homepageImageAltText'),
+            ]);
+        }
+        
+        $templateMgr->display('frontend/pages/sectionPolicies.tpl');
     }
 }

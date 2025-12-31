@@ -1,0 +1,5 @@
+[2025-10-01 01:34:35] http://localhost:8080
+[2025-10-01 01:34:35] [Notice] Task process started.
+[2025-10-01 01:34:35] [Notice] Identifying editors to remind in context 1
+[2025-10-01 01:34:35] [Notice] Dispatched 2 jobs to send editorial email reminders to users 1, 2 in context 1
+[2025-10-01 01:34:35] [Notice] Task process stopped.

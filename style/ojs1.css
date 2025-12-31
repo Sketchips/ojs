@@ -1,0 +1,1182 @@
+/**
+ * ============================================================================
+ * CUSTOM MODERN THEME FOR OJS 3 - BOOTSTRAP 3
+ * ============================================================================
+ * Tema modern dengan desain clean, profesional, dan responsif penuh
+ * Warna utama: #006400 (Hijau Tua) | Aksen: #b22222 (Merah Maroon)
+ * 
+ * DAFTAR ISI:
+ * 1. IMPORT FONT & RESET
+ * 2. VARIABEL WARNA & GLOBAL STYLES
+ * 3. HEADER & NAVIGATION
+ * 4. HOMEPAGE IMAGE / HERO SECTION
+ * 5. MAIN CONTENT & LAYOUT
+ * 6. SIDEBAR & WIDGETS
+ * 7. FOOTER
+ * 8. BUTTONS & INTERACTIVE ELEMENTS
+ * 9. ANIMATIONS & TRANSITIONS
+ * 10. RESPONSIVE DESIGN (MEDIA QUERIES)
+ * ============================================================================
+ */
+
+
+/* ============================================================================
+   1. IMPORT FONT & RESET
+   ============================================================================ */
+
+/* Import Google Fonts - Roboto untuk body, Open Sans untuk heading */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+/* Reset dasar untuk konsistensi */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Smooth scroll untuk seluruh halaman */
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* ============================================================================
+   2. VARIABEL WARNA & GLOBAL STYLES
+   ============================================================================ */
+
+:root {
+    /* Warna Utama */
+    --primary-green: #006400;        /* Hijau tua - warna utama */
+    --accent-maroon: #b22222;        /* Merah maroon - warna aksen */
+    
+    /* Warna Pendukung */
+    --dark-gray: #2c3e50;           /* Abu gelap untuk footer */
+    --light-gray: #f8f9fa;          /* Abu terang untuk background */
+    --white: #cfcfcf;                
+    --text-dark: #333333;           /* Teks gelap */
+    --text-light: #000000;          /* Teks abu-abu */
+    
+    /* Shadow & Border */
+    --shadow-light: 0 2px 4px rgba(0,0,0,0.08);
+    --shadow-medium: 0 4px 12px rgba(0,0,0,0.12);
+    --shadow-heavy: 0 8px 24px rgba(0,0,0,0.15);
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    
+    /* Transition */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* Body - Typography dasar */
+body {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--light-gray);
+    overflow-x: hidden;
+}
+
+/* Heading - Menggunakan Open Sans */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: var(--spacing-sm);
+    color: var(--primary-green);
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+/* Links - Smooth transition */
+a {
+    color: var(--primary-green);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--accent-maroon);
+    text-decoration: none;
+}
+
+/* Paragraf spacing */
+p {
+    margin-bottom: var(--spacing-sm);
+}
+
+
+/* ============================================================================
+   3. HEADER & NAVIGATION
+   ============================================================================ */
+
+/* Header Container - Fixed position dengan shadow */
+.navbar,
+.pkp_structure_head,
+header.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: var(--white) !important;
+    box-shadow: var(--shadow-medium);
+    z-index: 1000;
+    padding: 0;
+    margin-bottom: 0;
+    border: none;
+    border-radius: 0;
+    transition: box-shadow var(--transition-normal);
+}
+
+/* Header saat di-scroll - shadow lebih tebal */
+.navbar.scrolled,
+header.navbar.scrolled {
+    box-shadow: var(--shadow-heavy);
+}
+
+/* Container dalam header */
+.navbar .container,
+.navbar .container-fluid,
+.pkp_structure_head .container {
+    padding-top: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+}
+
+/* Logo / Brand */
+.navbar-brand,
+.pkp_site_name a {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--primary-green) !important;
+    padding: 0.5rem 1rem;
+    transition: all var(--transition-normal);
+}
+
+.navbar-brand:hover,
+.pkp_site_name a:hover {
+    color: var(--accent-maroon) !important;
+    transform: scale(1.02);
+}
+
+/* Navigation Menu */
+.navbar-nav > li > a,
+.pkp_navigation_primary a {
+    color: var(--text-dark) !important;
+    font-weight: 500;
+    padding: 0.75rem 1.25rem !important;
+    position: relative;
+    transition: all var(--transition-normal);
+}
+
+/* Underline animation untuk menu - Menggunakan pseudo-element */
+.navbar-nav > li > a::after,
+.pkp_navigation_primary a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: var(--accent-maroon);
+    transform: translateX(-50%);
+    transition: width var(--transition-normal);
+}
+
+.navbar-nav > li > a:hover::after,
+.pkp_navigation_primary a:hover::after,
+.navbar-nav > li.active > a::after {
+    width: 80%;
+}
+
+/* Menu saat hover */
+.navbar-nav > li > a:hover,
+.pkp_navigation_primary a:hover {
+    color: var(--accent-maroon) !important;
+    background-color: transparent !important;
+}
+
+/* Menu aktif */
+.navbar-nav > li.active > a {
+    color: var(--primary-green) !important;
+    background-color: transparent !important;
+    font-weight: 600;
+}
+
+/* Dropdown menu styling */
+.navbar-nav .dropdown-menu {
+    border: none;
+    box-shadow: var(--shadow-medium);
+    border-radius: var(--radius-md);
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+}
+
+.navbar-nav .dropdown-menu > li > a {
+    padding: 0.75rem 1.5rem;
+    transition: all var(--transition-fast);
+}
+
+.navbar-nav .dropdown-menu > li > a:hover {
+    background-color: var(--light-gray);
+    color: var(--accent-maroon);
+    padding-left: 2rem;
+}
+
+/* Mobile menu toggle button */
+.navbar-toggle {
+    border-color: var(--primary-green);
+    margin-right: 1rem;
+}
+
+.navbar-toggle .icon-bar {
+    background-color: var(--primary-green);
+}
+
+.navbar-toggle:hover,
+.navbar-toggle:focus {
+    background-color: var(--primary-green);
+}
+
+.navbar-toggle:hover .icon-bar {
+    background-color: var(--white);
+}
+
+/* Spacing untuk konten agar tidak tertutup fixed header */
+body {
+    padding-top: 175px;
+}
+
+
+/* ============================================================================
+   4. HOMEPAGE IMAGE / HERO SECTION
+   ============================================================================ */
+
+/* Homepage image container - Full width responsive */
+.pkp_page_index .pkp_structure_content::before,
+.homepage-image,
+.hero-section,
+img.img-responsive.journal-thumbnail {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Hero section dengan overlay jika ada teks di atas gambar */
+.hero-section {
+    position: relative;
+    min-height: 400px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,100,0,0.3), rgba(0,100,0,0.6));
+    z-index: 1;
+}
+
+.hero-section .hero-content {
+    position: relative;
+    z-index: 2;
+    color: var(--white);
+    text-align: center;
+    padding: var(--spacing-xl);
+}
+
+.hero-section .hero-content h1 {
+    color: var(--white);
+    font-size: 3rem;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    margin-bottom: var(--spacing-md);
+}
+
+.hero-section .hero-content p {
+    font-size: 1.25rem;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+}
+
+
+/* ============================================================================
+   5. MAIN CONTENT & LAYOUT
+   ============================================================================ */
+
+/* Main container */
+.pkp_structure_main,
+.container,
+main {
+    background-color: var(--white);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-light);
+    animation: fadeInUp 0.6s ease;
+}
+
+/* Content area */
+.pkp_structure_content,
+.page-content,
+article {
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+/* Styling untuk artikel/issue list */
+.obj_article_summary,
+.obj_issue_summary {
+    background-color: var(--white);
+    border: 1px solid #e0e0e0;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    transition: all var(--transition-normal);
+}
+
+.obj_article_summary:hover,
+.obj_issue_summary:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-4px);
+    border-color: var(--primary-green);
+}
+
+/* Article title dalam list */
+.obj_article_summary h3 a,
+.obj_issue_summary h2 a {
+    color: var(--primary-green);
+    font-weight: 600;
+    transition: color var(--transition-fast);
+}
+
+.obj_article_summary h3 a:hover,
+.obj_issue_summary h2 a:hover {
+    color: var(--accent-maroon);
+}
+
+/* Metadata styling */
+.metadata {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-top: var(--spacing-xs);
+}
+
+/* Pagination */
+.pagination > li > a,
+.pagination > li > span {
+    color: var(--primary-green);
+    border-color: #dee2e6;
+    transition: all var(--transition-fast);
+}
+
+.pagination > li > a:hover {
+    background-color: var(--primary-green);
+    color: var(--white);
+    border-color: var(--primary-green);
+}
+
+.pagination > .active > a,
+.pagination > .active > span {
+    background-color: var(--accent-maroon);
+    border-color: var(--accent-maroon);
+}
+
+
+/* ============================================================================
+   6. SIDEBAR & WIDGETS
+   ============================================================================ */
+
+/* Sidebar container */
+.pkp_structure_sidebar,
+aside.sidebar,
+.sidebar {
+    padding-left: var(--spacing-md);
+}
+
+/* Sidebar block/widget - Card dengan background maroon */
+.pkp_block,
+.sidebar-block,
+.sidebar .panel {
+    background: linear-gradient(135deg, var(--accent-maroon) 0%, #8b1a1a 100%);
+    color: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    box-shadow: var(--shadow-light);
+    border: none;
+    transition: all var(--transition-normal);
+}
+
+/* Hover effect untuk sidebar block */
+.pkp_block:hover,
+.sidebar-block:hover,
+.sidebar .panel:hover {
+    box-shadow: var(--shadow-heavy);
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* Heading dalam sidebar */
+.pkp_block h2,
+.pkp_block h3,
+.sidebar-block h2,
+.sidebar-block h3,
+.sidebar .panel-heading {
+    color: var(--white) !important;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* List dalam sidebar */
+.pkp_block ul,
+.sidebar-block ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.pkp_block ul li,
+.sidebar-block ul li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: padding-left var(--transition-fast);
+}
+
+.pkp_block ul li:last-child,
+.sidebar-block ul li:last-child {
+    border-bottom: none;
+}
+
+.pkp_block ul li:hover,
+.sidebar-block ul li:hover {
+    padding-left: 0.5rem;
+}
+
+/* Link dalam sidebar */
+.pkp_block a,
+.sidebar-block a {
+    color: var(--white) !important;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    display: inline-block;
+}
+
+.pkp_block a:hover,
+.sidebar-block a:hover {
+    color: #ffd700 !important; /* Gold color untuk hover */
+    transform: translateX(4px);
+}
+
+/* Sidebar search form */
+.pkp_block form input[type="text"],
+.sidebar-block form input[type="text"] {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 1rem;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.pkp_block form button,
+.sidebar-block form button {
+    background-color: var(--primary-green);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    transition: all var(--transition-normal);
+}
+
+.pkp_block form button:hover,
+.sidebar-block form button:hover {
+    background-color: var(--primary-green);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-medium);
+}
+
+
+/* ============================================================================
+   7. FOOTER
+   ============================================================================ */
+
+/* Footer container - Full width dengan background gelap */
+.pkp_structure_footer,
+footer {
+    width: 100%;
+    background: linear-gradient(135deg, var(--dark-gray) 0%, #1a252f 100%);
+    color: var(--white);
+    padding: var(--spacing-xl) 0 var(--spacing-md) 0;
+    margin-top: var(--spacing-xl);
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+}
+
+/* Footer content wrapper */
+.pkp_structure_footer .container,
+footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* Footer sections */
+.pkp_structure_footer .row,
+footer .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Footer column */
+.pkp_structure_footer .col-md-4,
+footer .footer-column {
+    flex: 1;
+    min-width: 250px;
+    padding: 0 var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Footer heading */
+.pkp_structure_footer h3,
+.pkp_structure_footer h4,
+footer h3,
+footer h4 {
+    color: var(--white);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 2px solid var(--accent-maroon);
+    display: inline-block;
+}
+
+/* Footer paragraf */
+.pkp_structure_footer p,
+footer p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Footer list */
+.pkp_structure_footer ul,
+footer ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.pkp_structure_footer ul li,
+footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* Footer links */
+.pkp_structure_footer a,
+footer a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    position: relative;
+    display: inline-block;
+}
+
+.pkp_structure_footer a:hover,
+footer a:hover {
+    color: #ffd700;
+    padding-left: 0.5rem;
+}
+
+.pkp_structure_footer a::before,
+footer a::before {
+    content: '→ ';
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.pkp_structure_footer a:hover::before,
+footer a:hover::before {
+    opacity: 1;
+}
+
+/* Footer bottom - Copyright area */
+.pkp_structure_footer_wrapper,
+.footer-bottom {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: var(--spacing-md) 0;
+    margin-top: var(--spacing-md);
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pkp_structure_footer_wrapper p,
+.footer-bottom p {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Social media icons di footer */
+.footer-social {
+    text-align: center;
+    margin-top: var(--spacing-md);
+}
+
+.footer-social a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    margin: 0 0.5rem;
+    transition: all var(--transition-normal);
+}
+
+.footer-social a:hover {
+    background-color: var(--accent-maroon);
+    transform: translateY(-4px) rotate(360deg);
+    box-shadow: var(--shadow-medium);
+}
+
+
+/* ============================================================================
+   8. BUTTONS & INTERACTIVE ELEMENTS
+   ============================================================================ */
+
+/* Button dasar */
+.btn,
+button,
+input[type="submit"],
+input[type="button"],
+.pkp_button {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Button primary - Hijau */
+.btn-primary,
+.pkp_button_primary {
+    background-color: var(--primary-green);
+    color: var(--white);
+    box-shadow: var(--shadow-light);
+}
+
+.btn-primary:hover,
+.pkp_button_primary:hover {
+    background-color: #004d00;
+    color: var(--white);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Button secondary - Maroon */
+.btn-secondary,
+.btn-danger,
+.pkp_button_offset {
+    background-color: var(--accent-maroon);
+    color: var(--white);
+    box-shadow: var(--shadow-light);
+}
+
+.btn-secondary:hover,
+.btn-danger:hover,
+.pkp_button_offset:hover {
+    background-color: #8b1a1a;
+    color: var(--white);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Button default/outline */
+.btn-default,
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary-green);
+    border: 2px solid var(--primary-green);
+}
+
+.btn-default:hover,
+.btn-outline:hover {
+    background-color: var(--primary-green);
+    color: var(--white);
+    transform: scale(1.05);
+}
+
+/* Button disabled state */
+.btn:disabled,
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Form inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea,
+select,
+.form-control {
+    font-family: 'Roboto', sans-serif;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    width: 100%;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+textarea:focus,
+select:focus,
+.form-control:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 3px rgba(0, 100, 0, 0.1);
+    outline: none;
+}
+
+/* Labels */
+label {
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Badges & Tags */
+.badge,
+.label {
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+.badge-primary,
+.label-primary {
+    background-color: var(--primary-green);
+    color: var(--white);
+}
+
+.badge-danger,
+.label-danger {
+    background-color: var(--accent-maroon);
+    color: var(--white);
+}
+
+
+/* ============================================================================
+   9. ANIMATIONS & TRANSITIONS
+   ============================================================================ */
+
+/* Fade-in animation untuk konten */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Apply animations */
+.pkp_structure_main {
+    animation: fadeInUp 0.6s ease;
+}
+
+.navbar {
+    animation: fadeInDown 0.5s ease;
+}
+
+.pkp_structure_sidebar .pkp_block:nth-child(1) {
+    animation: slideInRight 0.6s ease;
+}
+
+.pkp_structure_sidebar .pkp_block:nth-child(2) {
+    animation: slideInRight 0.7s ease;
+}
+
+.pkp_structure_sidebar .pkp_block:nth-child(3) {
+    animation: slideInRight 0.8s ease;
+}
+
+/* Smooth transitions untuk semua interactive elements */
+a, button, input, textarea, select {
+    transition: all var(--transition-fast);
+}
+
+/* Loading spinner (jika diperlukan) */
+.loading-spinner {
+    border: 4px solid var(--light-gray);
+    border-top: 4px solid var(--primary-green);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/* ============================================================================
+   10. RESPONSIVE DESIGN (MEDIA QUERIES)
+   ============================================================================ */
+
+/* Large Desktop (1200px and up) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+    
+    h1 { font-size: 2.75rem; }
+    h2 { font-size: 2.25rem; }
+}
+
+/* Tablet Landscape (992px to 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+    
+    .pkp_structure_sidebar {
+        padding-left: var(--spacing-sm);
+    }
+}
+
+/* Tablet Portrait (768px to 991px) */
+@media (max-width: 991px) and (min-width: 768px) {
+    body {
+        padding-top: 70px;
+    }
+    
+    .container {
+        max-width: 720px;
+    }
+    
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    
+    .navbar-brand,
+    .pkp_site_name a {
+        font-size: 1.5rem;
+    }
+    
+    .hero-section .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    /* Sidebar menjadi full width */
+    .pkp_structure_sidebar {
+        width: 100%;
+        padding-left: 0;
+        margin-top: var(--spacing-lg);
+    }
+    
+    .pkp_structure_sidebar .pkp_block {
+        animation: fadeInUp 0.6s ease;
+    }
+}
+
+/* Mobile (max 767px) */
+@media (max-width: 767px) {
+    /* Adjust body padding untuk header yang lebih kecil */
+    body {
+        padding-top: 60px;
+        font-size: 14px;
+    }
+    
+    /* Container padding lebih kecil */
+    .container,
+    .pkp_structure_main {
+        padding: var(--spacing-sm);
+    }
+    
+    /* Typography lebih kecil */
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+    h4 { font-size: 1.1rem; }
+    h5 { font-size: 1rem; }
+    h6 { font-size: 0.95rem; }
+    
+    /* Navbar */
+    .navbar-brand,
+    .pkp_site_name a {
+        font-size: 1.25rem;
+        padding: 0.5rem;
+    }
+    
+    .navbar-nav > li > a {
+        padding: 0.75rem 1rem !important;
+    }
+    
+    /* Hero section */
+    .hero-section {
+        min-height: 250px;
+    }
+    
+    .hero-section .hero-content h1 {
+        font-size: 1.75rem;
+    }
+    
+    .hero-section .hero-content p {
+        font-size: 1rem;
+    }
+    
+    /* Sidebar stack di bawah */
+    .pkp_structure_sidebar {
+        width: 100%;
+        padding-left: 0;
+        margin-top: var(--spacing-md);
+    }
+    
+    .pkp_block,
+    .sidebar-block {
+        margin-bottom: var(--spacing-sm);
+        padding: var(--spacing-sm);
+    }
+    
+    /* Footer columns stack */
+    .pkp_structure_footer .col-md-4,
+    footer .footer-column {
+        flex: 1 1 100%;
+        padding: 0;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .pkp_structure_footer {
+        padding: var(--spacing-md) 0;
+    }
+    
+    /* Buttons lebih kecil */
+    .btn,
+    button {
+        padding: 0.6rem 1.25rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Article summaries */
+    .obj_article_summary,
+    .obj_issue_summary {
+        padding: var(--spacing-sm);
+    }
+    
+    /* Disable hover transforms di mobile untuk performa */
+    .obj_article_summary:hover,
+    .obj_issue_summary:hover,
+    .pkp_block:hover,
+    .btn:hover {
+        transform: none;
+    }
+}
+
+/* Extra small mobile (max 480px) */
+@media (max-width: 480px) {
+    body {
+        font-size: 13px;
+    }
+    
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.25rem; }
+    
+    .navbar-brand,
+    .pkp_site_name a {
+        font-size: 1.1rem;
+    }
+    
+    .container,
+    .pkp_structure_main {
+        padding: 0.75rem;
+    }
+    
+    .btn,
+    button {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+
+/* ============================================================================
+   UTILITY CLASSES - Untuk kemudahan customisasi tambahan
+   ============================================================================ */
+
+/* Spacing utilities */
+.mt-0 { margin-top: 0 !important; }
+.mt-1 { margin-top: var(--spacing-xs) !important; }
+.mt-2 { margin-top: var(--spacing-sm) !important; }
+.mt-3 { margin-top: var(--spacing-md) !important; }
+.mt-4 { margin-top: var(--spacing-lg) !important; }
+.mt-5 { margin-top: var(--spacing-xl) !important; }
+
+.mb-0 { margin-bottom: 0 !important; }
+.mb-1 { margin-bottom: var(--spacing-xs) !important; }
+.mb-2 { margin-bottom: var(--spacing-sm) !important; }
+.mb-3 { margin-bottom: var(--spacing-md) !important; }
+.mb-4 { margin-bottom: var(--spacing-lg) !important; }
+.mb-5 { margin-bottom: var(--spacing-xl) !important; }
+
+.pt-0 { padding-top: 0 !important; }
+.pt-1 { padding-top: var(--spacing-xs) !important; }
+.pt-2 { padding-top: var(--spacing-sm) !important; }
+.pt-3 { padding-top: var(--spacing-md) !important; }
+.pt-4 { padding-top: var(--spacing-lg) !important; }
+.pt-5 { padding-top: var(--spacing-xl) !important; }
+
+.pb-0 { padding-bottom: 0 !important; }
+.pb-1 { padding-bottom: var(--spacing-xs) !important; }
+.pb-2 { padding-bottom: var(--spacing-sm) !important; }
+.pb-3 { padding-bottom: var(--spacing-md) !important; }
+.pb-4 { padding-bottom: var(--spacing-lg) !important; }
+.pb-5 { padding-bottom: var(--spacing-xl) !important; }
+
+/* Text utilities */
+.text-center { text-align: center !important; }
+.text-left { text-align: left !important; }
+.text-right { text-align: right !important; }
+
+.text-primary { color: var(--primary-green) !important; }
+.text-accent { color: var(--accent-maroon) !important; }
+.text-muted { color: var(--text-light) !important; }
+
+/* Background utilities */
+.bg-primary { background-color: var(--primary-green) !important; }
+.bg-accent { background-color: var(--accent-maroon) !important; }
+.bg-light { background-color: var(--light-gray) !important; }
+.bg-white { background-color: var(--white) !important; }
+
+/* Display utilities */
+.d-none { display: none !important; }
+.d-block { display: block !important; }
+.d-inline { display: inline !important; }
+.d-inline-block { display: inline-block !important; }
+.d-flex { display: flex !important; }
+
+/* Flex utilities */
+.flex-row { flex-direction: row !important; }
+.flex-column { flex-direction: column !important; }
+.justify-center { justify-content: center !important; }
+.justify-between { justify-content: space-between !important; }
+.align-center { align-items: center !important; }
+
+/* Shadow utilities */
+.shadow-sm { box-shadow: var(--shadow-light) !important; }
+.shadow { box-shadow: var(--shadow-medium) !important; }
+.shadow-lg { box-shadow: var(--shadow-heavy) !important; }
+.shadow-none { box-shadow: none !important; }
+
+/* Border radius utilities */
+.rounded-sm { border-radius: var(--radius-sm) !important; }
+.rounded { border-radius: var(--radius-md) !important; }
+.rounded-lg { border-radius: var(--radius-lg) !important; }
+.rounded-none { border-radius: 0 !important; }
+
+/* ============================================================================
+   END OF CUSTOM MODERN THEME
+   ============================================================================
+   
+   CARA MENGGUNAKAN:
+   1. Copy file ini ke folder themes/bootstrap3/styles/
+   2. Include di template theme atau config theme
+   3. Refresh cache OJS (Clear Template Cache dan Clear Data Cache)
+   4. Sesuaikan warna di CSS Variables (baris 31-83) sesuai kebutuhan
+   5. Edit spacing, font size, atau animasi sesuai selera
+   
+   TIPS CUSTOMISASI:
+   - Ubah --primary-green dan --accent-maroon untuk ganti skema warna
+   - Adjust --spacing-* untuk mengatur jarak antar elemen
+   - Modify --transition-* untuk kecepatan animasi
+   - Gunakan utility classes di bagian bawah untuk styling cepat
+   
+   ============================================================================ */

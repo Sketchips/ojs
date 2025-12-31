@@ -104,12 +104,12 @@ class LoginHandler extends Handler
     public function _redirectAfterLogin($request)
     {
         $context = $this->getTargetContext($request);
-        // If there's a context, send them to the dashboard after login.
+        // If there's a context, send them to the main dashboard after login.
         if ($context && $request->getUserVar('source') == '' && array_intersect(
             [Role::ROLE_ID_SITE_ADMIN, Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, Role::ROLE_ID_AUTHOR, Role::ROLE_ID_REVIEWER, Role::ROLE_ID_ASSISTANT],
             (array) $this->getAuthorizedContextObject(Application::ASSOC_TYPE_USER_ROLES)
         )) {
-            return $request->redirect($context->getPath(), 'dashboard');
+            return $request->redirect($context->getPath(), 'main');
         }
 
         $request->getRouter()->redirectHome($request);
@@ -193,7 +193,8 @@ class LoginHandler extends Handler
             Validation::logout();
         }
 
-        $source = str_replace('@', '', $request->getUserVar('source'));
+        $source = $request->getUserVar('source');
+        $source = !empty($source) ? str_replace('@', '', $source) : '';
         if (isset($source) && !empty($source)) {
             $request->redirectUrl($request->getProtocol() . '://' . $request->getServerHost() . '/' . $source, false);
         } else {
@@ -492,7 +493,7 @@ class LoginHandler extends Handler
     protected function sendHome($request)
     {
         if ($request->getContext()) {
-            $request->redirect(null, 'submissions');
+            $request->redirect(null, 'main');
         } else {
             $request->redirect(null, 'user');
         }

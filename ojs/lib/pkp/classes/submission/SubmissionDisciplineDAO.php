@@ -110,10 +110,10 @@ class SubmissionDisciplineDAO extends ControlledVocabDAO
         $currentDisciplines = $this->build($publicationId, $assocType);
 
         if ($deleteFirst) {
-            $existingEntries = $disciplineDao->enumerate($currentDisciplines->getId(), self::CONTROLLED_VOCAB_SUBMISSION_DISCIPLINE);
+            $existingEntries = $disciplineDao->enumerate($currentDisciplines->getId(), SubmissionDisciplineDAO::CONTROLLED_VOCAB_SUBMISSION_DISCIPLINE);
 
             foreach ($existingEntries as $id => $entry) {
-                $entry = trim($entry);
+                $entry = trim($entry ?? '');
                 $submissionDisciplineEntryDao->deleteObjectById($id);
             }
         }

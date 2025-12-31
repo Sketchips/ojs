@@ -1,0 +1,469 @@
+/* ============================================================================
+   MODERN OJS THEME - RESPONSIVE ENHANCEMENT v1.3
+   Tambahkan file ini SETELAH modern-ojs-theme.css
+   ============================================================================ */
+
+/* Override responsive yang ada dengan yang lebih comprehensive */
+
+/* ============================================================================
+   LARGE DESKTOP (1920px+)
+   ============================================================================ */
+@media (min-width: 1920px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 550px !important;
+    }
+    
+    .container {
+        max-width: 1600px !important;
+    }
+    
+    .pkp_navigation_primary a {
+        font-size: 1rem !important;
+        padding: 1rem 1.4rem !important;
+    }
+}
+
+/* ============================================================================
+   DESKTOP (1200px - 1919px)
+   ============================================================================ */
+@media (min-width: 1200px) and (max-width: 1919px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 480px !important;
+    }
+}
+
+/* ============================================================================
+   LAPTOP (992px - 1199px)
+   ============================================================================ */
+@media (max-width: 1199px) and (min-width: 992px) {
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 420px !important;
+    }
+    
+    .pkp_navigation_primary_row,
+    .pkp_navigation_primary {
+        left: 180px !important;
+    }
+    
+    .navbar-form,
+    .search_form {
+        right: 110px !important;
+    }
+    
+    .navbar-form .form-control,
+    .search_form input {
+        width: 180px !important;
+    }
+}
+
+/* ============================================================================
+   TABLET LANDSCAPE / SMALL LAPTOP (768px - 991px)
+   ============================================================================ */
+@media (max-width: 991px) and (min-width: 768px) {
+    /* Header adjustments */
+    .navbar,
+    .pkp_structure_head {
+        height: auto !important;
+        min-height: 65px !important;
+        padding: 0.5rem 0 !important;
+    }
+    
+    /* Logo smaller */
+    .pkp_site_name img {
+        max-height: 36px !important;
+    }
+    
+    .navbar-brand,
+    .pkp_site_name a {
+        font-size: 0.9rem !important;
+    }
+    
+    /* Navigation - stay in header but compact */
+    .pkp_navigation_primary_row,
+    .pkp_navigation_primary {
+        left: 160px !important;
+        height: 65px !important;
+    }
+    
+    .navbar-nav > li > a,
+    .pkp_navigation_primary a {
+        font-size: 0.85rem !important;
+        padding: 0.5rem 0.8rem !important;
+    }
+    
+    /* Search bar compact */
+    .navbar-form,
+    .search_form {
+        right: 90px !important;
+    }
+    
+    .navbar-form .form-control,
+    .search_form input {
+        width: 140px !important;
+        font-size: 0.85rem !important;
+        height: 34px !important;
+    }
+    
+    .navbar-form button,
+    .search_form button {
+        width: 26px !important;
+        height: 26px !important;
+    }
+    
+    .navbar-form button .glyphicon {
+        font-size: 11px !important;
+    }
+    
+    /* Account button compact */
+    .navbar-right > li > a,
+    .pkp_navigation_user a {
+        font-size: 0.8rem !important;
+        padding: 0.45rem 1rem !important;
+    }
+    
+    /* Carousel */
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 380px !important;
+    }
+}
+
+/* ============================================================================
+   TABLET PORTRAIT (576px - 767px)
+   ============================================================================ */
+@media (max-width: 767px) and (min-width: 576px) {
+    /* Header - allow wrapping */
+    .navbar,
+    .pkp_structure_head {
+        height: auto !important;
+        min-height: 55px !important;
+        flex-wrap: wrap !important;
+    }
+    
+    /* Logo */
+    .pkp_site_name img {
+        max-height: 32px !important;
+    }
+    
+    .navbar-brand,
+    .pkp_site_name a {
+        font-size: 0.85rem !important;
+    }
+    
+    /* Navigation - wrap below on tablet portrait */
+    .pkp_navigation_primary_row,
+    .pkp_navigation_primary {
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 0.5rem 0 !important;
+        justify-content: center !important;
+        order: 3 !important;
+    }
+    
+    .pkp_navigation_primary ul {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        height: auto !important;
+    }
+    
+    .navbar-nav > li > a,
+    .pkp_navigation_primary a {
+        font-size: 0.8rem !important;
+        padding: 0.4rem 0.7rem !important;
+        height: auto !important;
+        line-height: 1.2 !important;
+    }
+    
+    /* Search and Account stay in top bar */
+    .navbar-form,
+    .search_form {
+        right: 70px !important;
+        top: 12px !important;
+        order: 2 !important;
+    }
+    
+    .navbar-form .form-control,
+    .search_form input {
+        width: 120px !important;
+        font-size: 0.75rem !important;
+        height: 30px !important;
+    }
+    
+    .navbar-form button,
+    .search_form button {
+        width: 22px !important;
+        height: 22px !important;
+    }
+    
+    .navbar-right {
+        right: 8px !important;
+        top: 12px !important;
+        order: 1 !important;
+    }
+    
+    .navbar-right > li > a,
+    .pkp_navigation_user a {
+        font-size: 0.7rem !important;
+        padding: 0.35rem 0.75rem !important;
+    }
+    
+    /* Carousel */
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 300px !important;
+    }
+    
+    .carousel-caption h1,
+    .carousel-caption h2 {
+        font-size: 1.2rem !important;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.85rem !important;
+    }
+    
+    /* Body padding for wrapped header */
+    body {
+        padding-top: 100px !important;
+    }
+}
+
+/* ============================================================================
+   MOBILE (320px - 575px)
+   ============================================================================ */
+@media (max-width: 575px) {
+    /* Very compact header */
+    .navbar,
+    .pkp_structure_head {
+        min-height: 50px !important;
+        padding: 0.5rem 0 !important;
+        flex-wrap: wrap !important;
+    }
+    
+    /* Tiny logo */
+    .pkp_site_name img {
+        max-height: 28px !important;
+    }
+    
+    .navbar-brand,
+    .pkp_site_name a {
+        font-size: 0.8rem !important;
+        padding: 0.3rem 0.5rem !important;
+    }
+    
+    /* Navigation - full width */
+    .pkp_navigation_primary_row,
+    .pkp_navigation_primary {
+        width: 100% !important;
+        position: relative !important;
+        padding: 0.4rem 0 !important;
+        order: 3 !important;
+    }
+    
+    .navbar-nav > li > a,
+    .pkp_navigation_primary a {
+        font-size: 0.75rem !important;
+        padding: 0.35rem 0.6rem !important;
+        margin: 0 0.1rem !important;
+        height: auto !important;
+        line-height: 1.2 !important;
+    }
+    
+    /* Search very compact */
+    .navbar-form,
+    .search_form {
+        right: 60px !important;
+        top: 10px !important;
+    }
+    
+    .navbar-form .form-control,
+    .search_form input {
+        width: 100px !important;
+        font-size: 0.7rem !important;
+        height: 28px !important;
+        padding: 0.3rem 0.5rem !important;
+    }
+    
+    .navbar-form button,
+    .search_form button {
+        width: 20px !important;
+        height: 20px !important;
+        right: 3px !important;
+    }
+    
+    .navbar-form button .glyphicon {
+        font-size: 9px !important;
+    }
+    
+    /* Account very compact */
+    .navbar-right {
+        right: 6px !important;
+        top: 10px !important;
+    }
+    
+    .navbar-right > li > a,
+    .pkp_navigation_user a {
+        font-size: 0.65rem !important;
+        padding: 0.3rem 0.6rem !important;
+    }
+    
+    /* Carousel - small mobile */
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 250px !important;
+    }
+    
+    .carousel-caption {
+        bottom: 15px !important;
+        padding: 10px !important;
+    }
+    
+    .carousel-caption h1,
+    .carousel-caption h2 {
+        font-size: 1rem !important;
+    }
+    
+    .carousel-caption p {
+        display: none !important;
+    }
+    
+    /* Carousel controls */
+    .carousel-control {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 18px !important;
+    }
+    
+    /* Content */
+    .container {
+        padding: 0 10px !important;
+    }
+    
+    body {
+        padding-top: 90px !important;
+    }
+    
+    /* Buttons full width on mobile */
+    .btn:not(.navbar-form button):not(.search_form button),
+    button:not(.navbar-form button):not(.search_form button):not(.carousel-control) {
+        width: 100% !important;
+        padding: 0.6rem 1rem !important;
+        font-size: 0.85rem !important;
+    }
+}
+
+/* ============================================================================
+   EXTRA SMALL (320px and below - iPhone SE, old phones)
+   ============================================================================ */
+@media (max-width: 374px) {
+    .pkp_site_name img {
+        max-height: 24px !important;
+    }
+    
+    .navbar-brand,
+    .pkp_site_name a {
+        font-size: 0.75rem !important;
+    }
+    
+    .navbar-nav > li > a,
+    .pkp_navigation_primary a {
+        font-size: 0.7rem !important;
+        padding: 0.3rem 0.5rem !important;
+    }
+    
+    .navbar-form .form-control {
+        width: 80px !important;
+        font-size: 0.65rem !important;
+    }
+    
+    .navbar-right > li > a {
+        font-size: 0.6rem !important;
+        padding: 0.25rem 0.5rem !important;
+    }
+    
+    .carousel,
+    .carousel-inner,
+    .carousel .item,
+    .carousel img {
+        height: 220px !important;
+    }
+    
+    body {
+        padding-top: 85px !important;
+    }
+}
+
+/* ============================================================================
+   FORCE IMAGE CONSISTENCY - FIX ZOOM/DISTORTION ISSUE
+   ============================================================================ */
+@media (min-width: 320px) {
+    /* Force all carousel images to same sizing - prevent zoom out */
+    .carousel img,
+    .carousel-item img,
+    .carousel-inner img,
+    .carousel .item img,
+    .carousel-inner .item img,
+    .homepage-image img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        max-height: 100% !important;
+        min-height: 100% !important;
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* Force item container consistency */
+    .carousel .item,
+    .carousel-inner .item,
+    .carousel-item {
+        width: 100% !important;
+        height: 100% !important;
+        overflow: hidden !important;
+        position: relative !important;
+    }
+}
+
+/* ============================================================================
+   PRINT STYLES
+   ============================================================================ */
+@media print {
+    .navbar,
+    .pkp_structure_head,
+    .carousel,
+    .navbar-form,
+    .navbar-right,
+    .pkp_navigation_primary {
+        display: none !important;
+    }
+    
+    body {
+        padding-top: 0 !important;
+    }
+    
+    .container {
+        max-width: 100% !important;
+    }
+}

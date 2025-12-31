@@ -659,6 +659,10 @@ class ReviewAssignment extends \PKP\core\DataObject
 
         if (!$this->getDateCompleted()) {
             $dueTimes = array_map(function ($dateTime) {
+                // Handle null values for PHP 8.1+ compatibility
+                if ($dateTime === null) {
+                    return null;
+                }
                 // If no due time, set it to the end of the day
                 if (substr($dateTime, 11) === '00:00:00') {
                     $dateTime = substr($dateTime, 0, 11) . '23:59:59';
@@ -668,15 +672,15 @@ class ReviewAssignment extends \PKP\core\DataObject
             $responseDueTime = $dueTimes[0];
             $reviewDueTime = $dueTimes[1];
             if (!$this->getDateConfirmed()) { // no response
-                if ($responseDueTime < time()) { // response overdue
+                if ($responseDueTime !== null && $responseDueTime < time()) { // response overdue
                     return self::REVIEW_ASSIGNMENT_STATUS_RESPONSE_OVERDUE;
-                } elseif ($reviewDueTime < strtotime('tomorrow')) { // review overdue but not response
+                } elseif ($reviewDueTime !== null && $reviewDueTime < strtotime('tomorrow')) { // review overdue but not response
                     return self::REVIEW_ASSIGNMENT_STATUS_REVIEW_OVERDUE;
                 } else { // response not due yet
                     return self::REVIEW_ASSIGNMENT_STATUS_AWAITING_RESPONSE;
                 }
             } else { // response given
-                if ($reviewDueTime < strtotime('tomorrow')) { // review due
+                if ($reviewDueTime !== null && $reviewDueTime < strtotime('tomorrow')) { // review due
                     return self::REVIEW_ASSIGNMENT_STATUS_REVIEW_OVERDUE;
                 } else {
                     return self::REVIEW_ASSIGNMENT_STATUS_ACCEPTED;

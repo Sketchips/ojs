@@ -19,6 +19,11 @@
 
 switch ($op) {
     case 'subscriptions':
+    case 'authorGuidelines':
+    case 'peerReview':
+    case 'focusAndScope':
+    case 'sectionPolicies':
+    case 'editorialPolicies':  // Alias for editorialTeam
         return new APP\pages\about\AboutHandler();
     default:
         // Fall back on pkp-lib implementation
