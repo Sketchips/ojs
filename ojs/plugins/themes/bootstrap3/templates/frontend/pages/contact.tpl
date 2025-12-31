@@ -67,16 +67,34 @@
 				E-mail: <a style="color: #009245;" href="mailto:riptek@semarangkota.go.id">riptek@semarangkota.go.id</a>
 			</p>
 			
+			{* Principal Contact - ambil dari admin jika ada, jika tidak pakai default hardcode *}
 			<h3 style="color: #009245; margin-top: 25px; font-size: 20px;">Principal Contact</h3>
 			<p style="margin: 0; font-size: 15px;">
-				Wahyudi, S.STP, MM<br>
-				Email: <a style="color: #009245;" href="mailto:brida@semarangkota.go.id">brida@semarangkota.go.id</a>
+				{if $contactName}
+					{$contactName|escape}
+					{if $contactTitle}<br>{$contactTitle|escape}{/if}
+					{if $contactAffiliation}<br>{$contactAffiliation|strip_unsafe_html}{/if}
+					{if $contactPhone}<br>Phone: {$contactPhone|escape}{/if}
+					{if $contactEmail}<br>Email: <a style="color: #009245;" href="mailto:{$contactEmail|escape}">{$contactEmail|escape}</a>{/if}
+				{else}
+					{* Default hardcode jika belum diisi di admin *}
+					Wahyudi, S.STP, MM<br>
+					Email: <a style="color: #009245;" href="mailto:brida@semarangkota.go.id">brida@semarangkota.go.id</a>
+				{/if}
 			</p>
 			
+			{* Support Contact - ambil dari admin jika ada, jika tidak pakai default hardcode *}
 			<h3 style="color: #009245; margin-top: 20px; font-size: 20px;">Support Contact</h3>
 			<p style="margin: 0; font-size: 15px;">
-				Nanik Setyowati<br>
-				Email: <a style="color: #009245;" href="mailto:brida@semarangkota.go.id">brida@semarangkota.go.id</a>
+				{if $supportName}
+					{$supportName|escape}
+					{if $supportPhone}<br>Phone: {$supportPhone|escape}{/if}
+					{if $supportEmail}<br>Email: <a style="color: #009245;" href="mailto:{$supportEmail|escape}">{$supportEmail|escape}</a>{/if}
+				{else}
+					{* Default hardcode jika belum diisi di admin *}
+					Nanik Setyowati<br>
+					Email: <a style="color: #009245;" href="mailto:brida@semarangkota.go.id">brida@semarangkota.go.id</a>
+				{/if}
 			</p>
 		</div>
 		
