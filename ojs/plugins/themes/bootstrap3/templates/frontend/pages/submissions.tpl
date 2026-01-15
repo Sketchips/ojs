@@ -53,19 +53,11 @@
 	</div>
 </div>
 
-{* v11.5: SUBMISSIONS PAGE - Upload Button (center aligned) *}
-<div class="submissions-page-container">
+{* v11.7: SUBMISSIONS PAGE - Use same structure as authorGuidelines *}
+<div class="content-wrapper">
 	
-	{* Upload Your Article Button - Large centered button *}
-	<div class="upload-button-wrapper">
-		<a href="{url page="submission" op="wizard"}" class="btn-upload-article">
-			<span class="upload-icon">↑</span>
-			Upload Your Article
-		</a>
-	</div>
-	
-	{* SIDEBAR MENU *}
-	<aside class="sidebar-menu sidebar-menu-submissions">
+	{* SIDEBAR MENU - Left Column *}
+	<aside class="sidebar-menu">
 		<ul class="sidebar-menu-list">
 			<li class="sidebar-menu-item">
 				<a href="{url page="about" op="editorialTeam"}" class="sidebar-menu-link">
@@ -82,32 +74,84 @@
 					Focus and Scope
 				</a>
 			</li>
-		<li class="sidebar-menu-item">
-			<a href="{url page="about" op="sectionPolicies"}" class="sidebar-menu-link">
-				Section Policies
-			</a>
-		</li>
-		<li class="sidebar-menu-item">
-			<a href="{url page="about" op="authorGuidelines"}" class="sidebar-menu-link">
-				Author Guidelines
-			</a>
-		</li>
-	</ul>
-	
-	<!-- Separator Line -->
-	<hr style="margin: 20px 0; border: 0; border-top: 1px solid #e0e0e0;">
-	
-	<!-- INDEX BY -->
-	<div class="sidebar-index-title" style="text-align: center; margin-bottom: 15px;">
-		<h4 style="margin: 0; font-size: 14px; font-weight: 600; color: #555;">INDEX BY</h4>
-	</div>
-	
-	{* SINTA Badge *}
-	<div class="sidebar-sinta-badge" style="padding: 0 20px 20px 20px; text-align: center;">
-		<img src="{$publicFilesDir}/sinta-logo.png" onerror="this.onerror=null; this.src='https://sinta.kemdikbud.go.id/assets/img/site/logo.png';" alt="SINTA" style="max-width: 100%; height: auto; transition: transform 0.3s ease, filter 0.3s ease; cursor: default;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)';" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)';">
-	</div>
+			<li class="sidebar-menu-item">
+				<a href="{url page="about" op="sectionPolicies"}" class="sidebar-menu-link">
+					Section Policies
+				</a>
+			</li>
+			<li class="sidebar-menu-item">
+				<a href="{url page="about" op="authorGuidelines"}" class="sidebar-menu-link">
+					Author Guidelines
+				</a>
+			</li>
+		</ul>
+		
+		<!-- Separator Line -->
+		<hr style="margin: 20px 0; border: 0; border-top: 1px solid #e0e0e0;">
+		
+		<!-- INDEX BY -->
+		<div class="sidebar-index-title" style="text-align: center; margin-bottom: 15px;">
+			<h4 style="margin: 0; font-size: 14px; font-weight: 600; color: #555;">INDEX BY</h4>
+		</div>
+		
+		{* SINTA Badge *}
+		<div class="sidebar-sinta-badge" style="padding: 0 20px 20px 20px; text-align: center;">
+			<img src="{$publicFilesDir}/sinta-logo.png" onerror="this.onerror=null; this.src='https://sinta.kemdikbud.go.id/assets/img/site/logo.png';" alt="SINTA" style="max-width: 100%; height: auto; transition: transform 0.3s ease, filter 0.3s ease; cursor: default;" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.1)';" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)';">
+		</div>
 	</aside>
 	
-</div>
+	{* MAIN CONTENT - Center Column *}
+	<div class="main-content-area">
+		
+		{* Copyright Notice Section *}
+		{if $currentContext->getLocalizedData('copyrightNotice')}
+		<section class="info-section copyright-notice-section">
+			<h2 class="section-title">
+				{translate key="about.copyrightNotice"}
+			</h2>
+			<div class="section-content">
+				{$currentContext->getLocalizedData('copyrightNotice')}
+			</div>
+		</section>
+		{/if}
+		
+		{* Privacy Statement Section *}
+		{if $currentContext->getLocalizedData('privacyStatement')}
+		<section class="info-section privacy-statement-section">
+			<h2 class="section-title">
+				{translate key="about.privacyStatement"}
+			</h2>
+			<div class="section-content">
+				{$currentContext->getLocalizedData('privacyStatement')}
+			</div>
+		</section>
+		{/if}
+		
+		{* Submissions Content Section *}
+		<section class="info-section submissions-info-section">
+			<h2 class="section-title">Submit Your Manuscript</h2>
+			<div class="section-content">
+				<p style="text-align: justify;">
+					Welcome to Jurnal Riptek submission system. We invite researchers, academics, and practitioners to contribute their original research articles, reviews, and case studies. Please ensure your manuscript follows our <a href="{url page="about" op="authorGuidelines"}" style="color: #27ae60; font-weight: 600; text-decoration: underline;">Author Guidelines</a> 
+					before submission.
+				</p>
+				<div class="submission-note-box">
+					<p style="margin: 0;"><strong>Note:</strong> You need to <a href="{url page="user" op="register"}" style="color: #27ae60; font-weight: 600; text-decoration: underline;">register</a> 
+					or <a href="{url page="login"}" style="color: #27ae60; font-weight: 600; text-decoration: underline;">login</a> to submit your article.</p>
+				</div>
+				
+				{* Upload Your Article Button *}
+				<div class="upload-button-wrapper">
+					<a href="{url page="submission" op="wizard"}" class="btn-upload-article">
+						<span class="upload-icon">↑</span>
+						Upload Your Article
+					</a>
+				</div>
+			</div>
+		</section>
+		
+	</div>
+	
+</div><!-- .content-wrapper -->
 
 {include file="common/frontend/footer.tpl"}
