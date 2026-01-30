@@ -21,7 +21,17 @@
 	{assign var="showAuthor" value=true}
 {/if}
 
-<div class="article-summary article-text-only">
+{* Check if article has PDF galley *}
+{assign var="hasPDF" value=false}
+{assign var="articleGalleys" value=$publication->getData('galleys')}
+{if !$articleGalleys}
+	{assign var="articleGalleys" value=$article->getGalleys()}
+{/if}
+{if $articleGalleys|@count > 0}
+	{assign var="hasPDF" value=true}
+{/if}
+
+<div class="article-summary article-text-only{if $hasPDF} has-pdf{/if}">
 	
 	<div class="article-content-wrapper">
 		<div class="article-text-info">
@@ -43,14 +53,14 @@
 					{$article->getPages()|escape}
 				</div>
 			{/if}
+		</div><!-- .article-text-info -->
 			
 		{* Action Buttons *}
-		<div class="article-action-buttons" style="margin-top: 15px;">
+		<div class="article-action-buttons">
 			{* View Article Button *}
 			<a href="{if $journal}{url journal=$journal->getPath() page="article" op="view" path=$articlePath}{else}{url page="article" op="view" path=$articlePath}{/if}" 
-			   class="btn btn-sm btn-success" 
-			   style="background-color: #2ecc71; border-color: #2ecc71; color: white; padding: 8px 20px; font-size: 14px; font-weight: 500; margin-right: 10px;">
-				<i class="fa fa-file-text-o" style="margin-right: 5px;"></i>
+			   class="btn btn-sm btn-success">
+				<i class="fa fa-file-text-o"></i>
 				View Article
 			</a>
 			
@@ -67,10 +77,9 @@
 					{if $smarty.foreach.galleyLoop.first}
 						{assign var="viewPath" value=$articlePath|to_array:$galley->getBestGalleyId()}
 						<a href="{if $journal}{url journal=$journal->getPath() page="article" op="view" path=$viewPath}{else}{url page="article" op="view" path=$viewPath}{/if}" 
-						   class="btn btn-sm btn-primary" 
-						   style="background-color: #3498db; border-color: #3498db; color: white; padding: 8px 20px; font-size: 14px; font-weight: 500;"
+						   class="btn btn-sm btn-primary"
 						   target="_blank">
-							<i class="fa fa-file-pdf-o" style="margin-right: 5px;"></i>
+							<i class="fa fa-file-pdf-o"></i>
 							View PDF
 						</a>
 						{break}
@@ -79,26 +88,4 @@
 			{/if}
 		</div>
 	</div>
-
-	{if !$hideGalleys && $article->getGalleys()}
-		<div class="article-galleys">
-				{foreach from=$article->getGalleys() item=galley}
-					{if $primaryGenreIds}
-						{assign var="file" value=$galley->getFile()}
-						{if !$galley->getRemoteUrl() && !($file && in_array($file->getGenreId(), $primaryGenreIds))}
-							{continue}
-						{/if}
-					{/if}
-					{assign var=publication value=$article->getCurrentPublication()}
-					{assign var="hasArticleAccess" value=$hasAccess}
-					{if $currentContext->getSetting('publishingMode') == \APP\journal\Journal::PUBLISHING_MODE_OPEN || $publication->getData('accessStatus') == \APP\submission\Submission::ARTICLE_ACCESS_OPEN}
-						{assign var="hasArticleAccess" value=1}
-					{/if}
-					{include file="frontend/objects/galley_link.tpl" parent=$article hasAccess=$hasArticleAccess}
-				{/foreach}
-			</div>
-		{/if}
-	</div>
-
-	{call_hook name="Templates::Issue::Issue::Article"}
 </div><!-- .article-summary -->

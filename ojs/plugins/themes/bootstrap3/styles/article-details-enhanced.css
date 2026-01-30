@@ -1,0 +1,391 @@
+/**
+ * Article Details Page Enhanced Styling
+ * Clean academic journal look with modern card-style layout
+ * CSS-only styling - no structural changes
+ */
+
+/* ============================================================================
+   MAIN ARTICLE CONTAINER
+   ============================================================================ */
+
+/* Article wrapper - main container for entire article view */
+.article-details {
+    background: transparent;
+    padding: 40px 0;
+    margin-bottom: 40px;
+}
+
+/* ============================================================================
+   ARTICLE HEADER & TITLE
+   ============================================================================ */
+
+/* Article title - primary heading */
+.article-details header .page-header {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e8ecef;
+}
+
+/* Subtitle styling */
+.article-details header .page-header small {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #7f8c8d;
+    margin-top: 12px;
+    line-height: 1.5;
+}
+
+/* ============================================================================
+   ARTICLE SIDEBAR (Metadata, Cover Image, Downloads)
+   ============================================================================ */
+
+/* Sidebar container - contains article meta information */
+.article-details .article-sidebar {
+    padding-right: 30px;
+}
+
+/* Cover image wrapper */
+.article-details .cover-image {
+    margin-bottom: 24px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.article-details .cover-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Metadata list group - contains Published date, DOI, Issue, Section, etc. */
+.article-details .list-group {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 24px;
+}
+
+/* Individual metadata items */
+.article-details .list-group-item {
+    padding: 16px 20px;
+    border-left: none;
+    border-right: none;
+    background: #f8f9fa;
+    border-color: #e9ecef;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.article-details .list-group-item:first-child {
+    border-top: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.article-details .list-group-item:last-child {
+    border-bottom: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Strong labels in metadata */
+.article-details .list-group-item strong {
+    color: #34495e;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* Links in metadata (DOI, etc.) */
+.article-details .list-group-item a {
+    color: #3498db;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.article-details .list-group-item a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* Keywords styling */
+.article-details .list-group-item.keywords .value {
+    color: #555;
+}
+
+/* ============================================================================
+   DOWNLOAD/ACTION BUTTONS SECTION
+   ============================================================================ */
+
+/* Download section wrapper */
+.article-details .download {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.article-details .download h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+/* Download buttons */
+.article-details .download .btn {
+    margin-bottom: 8px;
+    margin-right: 8px;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.article-details .download .btn-primary {
+    background: #3498db;
+    border-color: #3498db;
+}
+
+.article-details .download .btn-primary:hover {
+    background: #2980b9;
+    border-color: #2980b9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+/* ============================================================================
+   MAIN CONTENT AREA (Abstract, Authors, References)
+   ============================================================================ */
+
+/* Main content column */
+.article-details .article-main {
+    padding-left: 30px;
+}
+
+/* Section headings within article content */
+.article-details .article-main h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-top: 32px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e8ecef;
+}
+
+.article-details .article-main h2:first-child {
+    margin-top: 0;
+}
+
+/* Subsection headings */
+.article-details .article-main h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #34495e;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+/* Abstract section */
+.article-details .article-main .abstract {
+    background: #f8f9fa;
+    padding: 24px;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+    margin-bottom: 32px;
+    line-height: 1.8;
+}
+
+.article-details .article-main .abstract h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.article-details .article-main .abstract p {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 0;
+}
+
+/* Author information */
+.article-details .article-main .authors {
+    margin-bottom: 24px;
+}
+
+.article-details .article-main .authors .author {
+    margin-bottom: 12px;
+    padding: 12px 16px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border-left: 3px solid #28a745;
+}
+
+.article-details .article-main .authors .author .name {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1rem;
+}
+
+.article-details .article-main .authors .author .affiliation {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+/* General paragraphs in article content */
+.article-details .article-main p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 16px;
+}
+
+/* ============================================================================
+   REFERENCES & CITATIONS SECTION
+   ============================================================================ */
+
+/* References list */
+.article-details .references {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 2px solid #e8ecef;
+}
+
+.article-details .references h2 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.article-details .references ol,
+.article-details .references ul {
+    padding-left: 24px;
+}
+
+.article-details .references li {
+    margin-bottom: 12px;
+    line-height: 1.7;
+    color: #555;
+}
+
+/* Citation tools section */
+.article-details .citation_display {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 24px;
+    border-left: 4px solid #6c757d;
+}
+
+.article-details .citation_display h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: #2c3e50;
+}
+
+/* Citation format buttons */
+.article-details .citation_display .btn {
+    margin-right: 8px;
+    margin-bottom: 8px;
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    border-radius: 6px;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+
+/* Tablet and below */
+@media (max-width: 991px) {
+    .article-details {
+        padding: 30px 24px;
+    }
+    
+    .article-details .article-sidebar {
+        padding-right: 15px;
+        margin-bottom: 30px;
+    }
+    
+    .article-details .article-main {
+        padding-left: 15px;
+    }
+    
+    .article-details header .page-header {
+        font-size: 1.75rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .article-details {
+        padding: 20px 16px;
+        border-radius: 0;
+    }
+    
+    .article-details header .page-header {
+        font-size: 1.5rem;
+        padding-bottom: 16px;
+    }
+    
+    .article-details header .page-header small {
+        font-size: 1.1rem;
+    }
+    
+    .article-details .article-sidebar,
+    .article-details .article-main {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    /* Reduce cover image size on mobile */
+    .article-details .cover-image {
+        max-width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .article-details .download {
+        padding: 16px;
+    }
+    
+    .article-details .article-main .abstract {
+        padding: 20px 16px;
+    }
+    
+    /* Stack buttons vertically on mobile */
+    .article-details .download .btn,
+    .article-details .citation_display .btn {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
+/* ============================================================================
+   PRINT STYLES
+   ============================================================================ */
+
+@media print {
+    .article-details {
+        box-shadow: none;
+        padding: 0;
+    }
+    
+    .article-details .download,
+    .article-details .btn {
+        display: none;
+    }
+}

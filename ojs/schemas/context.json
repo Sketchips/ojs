@@ -366,6 +366,110 @@
 				"nullable"
 			]
 		},
+		"downloadFile1": {
+			"type": "object",
+			"validation": ["nullable"],
+			"properties": {
+				"temporaryFileId": { "type": "integer", "writeOnly": true },
+				"name": { "type": "string" },
+				"uploadName": { "type": "string" },
+				"dateUploaded": { "type": "string" }
+			}
+		},
+		"downloadFile1Name": { "type": "string", "validation": ["nullable"] },
+		"downloadFile1Color": { "type": "string", "validation": ["nullable"] },
+		"downloadFile2": {
+			"type": "object",
+			"validation": ["nullable"],
+			"properties": {
+				"temporaryFileId": { "type": "integer", "writeOnly": true },
+				"name": { "type": "string" },
+				"uploadName": { "type": "string" },
+				"dateUploaded": { "type": "string" }
+			}
+		},
+		"downloadFile2Name": { "type": "string", "validation": ["nullable"] },
+		"downloadFile2Color": { "type": "string", "validation": ["nullable"] },
+		"downloadFile3": {
+			"type": "object",
+			"validation": ["nullable"],
+			"properties": {
+				"temporaryFileId": { "type": "integer", "writeOnly": true },
+				"name": { "type": "string" },
+				"uploadName": { "type": "string" },
+				"dateUploaded": { "type": "string" }
+			}
+		},
+		"downloadFile3Name": { "type": "string", "validation": ["nullable"] },
+		"downloadFile3Color": { "type": "string", "validation": ["nullable"] },
+		"downloadFile4": {
+			"type": "object",
+			"validation": ["nullable"],
+			"properties": {
+				"temporaryFileId": { "type": "integer", "writeOnly": true },
+				"name": { "type": "string" },
+				"uploadName": { "type": "string" },
+				"dateUploaded": { "type": "string" }
+			}
+		},
+		"downloadFile4Name": { "type": "string", "validation": ["nullable"] },
+		"downloadFile4Color": { "type": "string", "validation": ["nullable"] },
+		"downloadFile5": {
+			"type": "object",
+			"validation": ["nullable"],
+			"properties": {
+				"temporaryFileId": { "type": "integer", "writeOnly": true },
+				"name": { "type": "string" },
+				"uploadName": { "type": "string" },
+				"dateUploaded": { "type": "string" }
+			}
+		},
+		"downloadFile5Name": { "type": "string", "validation": ["nullable"] },
+		"downloadFile5Color": { "type": "string", "validation": ["nullable"] },
+		"downloadFile6": {
+			"type": "object",
+			"validation": ["nullable"],
+			"properties": {
+				"temporaryFileId": { "type": "integer", "writeOnly": true },
+				"name": { "type": "string" },
+				"uploadName": { "type": "string" },
+				"dateUploaded": { "type": "string" }
+			}
+		},
+		"downloadFile6Name": { "type": "string", "validation": ["nullable"] },
+		"downloadFile6Color": { "type": "string", "validation": ["nullable"] },
+		"downloadableFiles": {
+			"type": "array",
+			"validation": [
+				"nullable"
+			],
+			"items": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"file": {
+						"type": "object",
+						"properties": {
+							"temporaryFileId": {
+								"type": "integer",
+								"writeOnly": true
+							},
+							"name": {
+								"type": "string"
+							},
+							"uploadName": {
+								"type": "string"
+							},
+							"dateUploaded": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		},
 		"doiVersioning": {
 		  	"type": "boolean",
 		  	"default": false,

@@ -281,107 +281,6 @@
     
     
     // ========================================================================
-    // 6B. MOBILE SIDEBAR NAVIGATION FIX (v10.4)
-    // ========================================================================
-    
-    /**
-     * Fix mobile sidebar: make navbar-toggle clickable when sidebar is open
-     * Add backdrop and click-outside-to-close functionality
-     * v10.4: Navbar-toggle moves with sidebar animation
-     */
-    function enhanceMobileSidebar() {
-        const $navToggle = $('.navbar-toggle');
-        const $sidebar = $('.sidebar-menu');
-        const $body = $('body');
-        
-        // Only run on mobile
-        if ($(window).width() >= 768) {
-            return;
-        }
-        
-        // Create sidebar backdrop if it doesn't exist
-        if ($('.sidebar-backdrop').length === 0) {
-            $body.append('<div class="sidebar-backdrop"></div>');
-        }
-        const $sidebarBackdrop = $('.sidebar-backdrop');
-        
-        // Track sidebar state
-        let sidebarOpen = false;
-        
-        // Toggle sidebar when navbar-toggle is clicked
-        $navToggle.on('click', function(e) {
-            e.stopPropagation();
-            e.preventDefault();
-            
-            sidebarOpen = !sidebarOpen;
-            
-            if (sidebarOpen) {
-                openSidebar();
-            } else {
-                closeSidebar();
-            }
-        });
-        
-        // Close sidebar when clicking backdrop
-        $sidebarBackdrop.on('click', function() {
-            closeSidebar();
-        });
-        
-        // Close sidebar when clicking outside
-        $(document).on('click', function(e) {
-            if (sidebarOpen && 
-                !$(e.target).closest('.sidebar-menu').length && 
-                !$(e.target).closest('.navbar-toggle').length) {
-                closeSidebar();
-            }
-        });
-        
-        // Close sidebar when clicking a link inside
-        $sidebar.find('a').on('click', function() {
-            if (sidebarOpen) {
-                closeSidebar();
-            }
-        });
-        
-        // Helper functions
-        function openSidebar() {
-            sidebarOpen = true;
-            $sidebar.addClass('sidebar-open');
-            $sidebarBackdrop.addClass('show');
-            $body.addClass('sidebar-menu-open');
-            $navToggle.addClass('active');
-            
-            // Animate toggle button to the right
-            $navToggle.css({
-                'left': '295px',           // 280px sidebar + 15px gap
-                'transition': 'left 0.3s ease'
-            });
-        }
-        
-        function closeSidebar() {
-            sidebarOpen = false;
-            $sidebar.removeClass('sidebar-open');
-            $sidebarBackdrop.removeClass('show');
-            $body.removeClass('sidebar-menu-open');
-            $navToggle.removeClass('active');
-            
-            // Animate toggle button back to left
-            $navToggle.css({
-                'left': '15px',
-                'transition': 'left 0.3s ease'
-            });
-        }
-        
-        // Re-initialize on window resize
-        $(window).on('resize', function() {
-            if ($(window).width() >= 768) {
-                closeSidebar();
-            }
-        });
-    }
-    
-    
-    // ========================================================================
     // 7. LOADING ANIMATIONS
     // ========================================================================
     
@@ -606,7 +505,6 @@
         enhanceCarousel();
         animateArticleCards();
         enhanceMobileMenu();
-        enhanceMobileSidebar();           // NEW: Fix mobile sidebar bug
         initLoadingAnimation();
         initTooltipsPopovers();
         initLazyLoading();
@@ -614,11 +512,179 @@
         enhanceFormValidation();
         initKeyboardShortcuts();
         
+        // Initialize genre button styling
+        initGenreButtonStyling();
+        
         // Performance monitoring (optional - comment out in production)
         // monitorPerformance();
         
         console.log('✅ Modern OJS Theme - Ready!');
     });
+    
+    
+    // ========================================================================
+    // GENRE BUTTON STYLING - OVERRIDE VUE.JS INLINE STYLES
+    // ========================================================================
+    
+    /**
+     * Force styling pada genre selection buttons
+     * Menggunakan MutationObserver untuk detect Vue.js rendering
+     */
+    function initGenreButtonStyling() {
+        console.log('🎨 Genre Button Styling - Starting...');
+        
+        // FORCE inject CSS directly to <head> - highest priority
+        const styleTag = document.createElement('style');
+        styleTag.id = 'genre-button-override';
+        styleTag.innerHTML = `
+            /* FORCE OVERRIDE - Genre Selection Buttons */
+            button.-linkButton.listPanel--submissionFiles__setGenreButton,
+            .-linkButton.listPanel--submissionFiles__setGenreButton,
+            .listPanel--submissionFiles__setGenre button.-linkButton,
+            button[class*="linkButton"][class*="setGenreButton"] {
+                background: transparent !important;
+                background-color: transparent !important;
+                border: 2px solid #8685ef !important;
+                border-radius: 0.5em !important;
+                padding: 0.75em 1.5em !important;
+                margin: 0.25em !important;
+                display: inline-block !important;
+                color: #8685ef !important;
+                text-decoration: none !important;
+                font-weight: 600 !important;
+                font-size: 14px !important;
+                cursor: pointer !important;
+                transition: all 0.3s ease !important;
+                box-shadow: none !important;
+                -webkit-box-shadow: none !important;
+            }
+            
+            button.-linkButton.listPanel--submissionFiles__setGenreButton:hover,
+            .-linkButton.listPanel--submissionFiles__setGenreButton:hover {
+                background-color: #8685ef !important;
+                background: #8685ef !important;
+                color: white !important;
+                transform: scale(1.05) !important;
+            }
+            
+            button.-linkButton.listPanel--submissionFiles__setGenreButton:active {
+                transform: scale(0.98) !important;
+            }
+            
+            /* Last button (Other) - Orange */
+            button.-linkButton.listPanel--submissionFiles__setGenreButton:last-of-type {
+                border-color: #ff6b6b !important;
+                color: #ff6b6b !important;
+            }
+            
+            button.-linkButton.listPanel--submissionFiles__setGenreButton:last-of-type:hover {
+                background-color: #ff6b6b !important;
+                background: #ff6b6b !important;
+                color: white !important;
+            }
+        `;
+        
+        // Remove existing style tag if any
+        const existingStyle = document.getElementById('genre-button-override');
+        if (existingStyle) {
+            existingStyle.remove();
+        }
+        
+        // Inject to head
+        document.head.appendChild(styleTag);
+        console.log('✅ Genre button CSS injected to <head>');
+        
+        // Also force inline styles as backup
+        function applyInlineStyles() {
+            const genreButtons = document.querySelectorAll('.-linkButton.listPanel--submissionFiles__setGenreButton');
+            
+            console.log(`🔍 Found ${genreButtons.length} genre buttons`);
+            
+            if (genreButtons.length === 0) {
+                console.log('⚠️ No genre buttons found yet...');
+                return false;
+            }
+            
+            genreButtons.forEach((button, index) => {
+                const buttonText = button.textContent.trim();
+                console.log(`✅ Styling button ${index + 1}: "${buttonText}"`);
+                
+                const isLastButton = index === genreButtons.length - 1;
+                const borderColor = isLastButton ? '#ff6b6b' : '#8685ef';
+                
+                // FORCE inline style
+                button.style.cssText = `
+                    background: transparent !important;
+                    background-color: transparent !important;
+                    border: 2px solid ${borderColor} !important;
+                    border-radius: 0.5em !important;
+                    padding: 0.75em 1.5em !important;
+                    margin: 0.25em !important;
+                    color: ${borderColor} !important;
+                    text-decoration: none !important;
+                    font-weight: 600 !important;
+                    font-size: 14px !important;
+                `;
+            });
+            
+            console.log('✨ Genre buttons styled with inline styles!');
+            return true;
+        }
+        
+        // Apply inline styles with retry mechanism
+        let retryCount = 0;
+        const maxRetries = 20;
+        
+        function retryApply() {
+            const success = applyInlineStyles();
+            retryCount++;
+            
+            if (!success && retryCount < maxRetries) {
+                console.log(`🔄 Retry ${retryCount}/${maxRetries}...`);
+                setTimeout(retryApply, 500);
+            } else if (success) {
+                console.log('✅ Genre buttons found and styled!');
+            } else {
+                console.log('❌ Max retries reached, buttons not found');
+            }
+        }
+        
+        // Start retrying
+        setTimeout(retryApply, 100);
+        
+        // Watch for Vue.js dynamic rendering
+        const observer = new MutationObserver(function(mutations) {
+            let shouldReapply = false;
+            
+            mutations.forEach(function(mutation) {
+                if (mutation.addedNodes.length) {
+                    mutation.addedNodes.forEach(function(node) {
+                        if (node.nodeType === 1) {
+                            if (node.classList && 
+                                node.classList.contains('listPanel--submissionFiles__setGenreButton')) {
+                                shouldReapply = true;
+                            } else if (node.querySelector && 
+                                       node.querySelector('.-linkButton.listPanel--submissionFiles__setGenreButton')) {
+                                shouldReapply = true;
+                            }
+                        }
+                    });
+                }
+            });
+            
+            if (shouldReapply) {
+                console.log('🔄 Genre buttons re-rendered by Vue.js, re-applying...');
+                setTimeout(applyInlineStyles, 100);
+            }
+        });
+        
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+        
+        console.log('👀 MutationObserver active, watching for changes...');
+    }
     
     
     // ========================================================================
@@ -700,6 +766,7 @@ console.log(`
 ║   ✓ Smart Search Bar                                         ║
 ║   ✓ Touch Support                                            ║
 ║   ✓ Keyboard Shortcuts                                       ║
+║   ✓ Genre Button Styling                                     ║
 ║                                                               ║
 ║   Keyboard Shortcuts:                                         ║
 ║   • Ctrl/Cmd + K  →  Focus Search                            ║

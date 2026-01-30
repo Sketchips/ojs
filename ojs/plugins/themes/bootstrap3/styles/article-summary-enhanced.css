@@ -1,0 +1,272 @@
+/**
+ * Enhanced Article Summary Styling v2.2
+ * Modern card-based design for article listings
+ */
+
+/* Parent container overrides */
+.article-sections,
+.article-section,
+section.article-section {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+/* Article list container */
+.media-list.articles-list {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Article card container */
+.article-summary.article-text-only {
+    background: white !important;
+    border: 2px solid #e0e0e0 !important;
+    border-radius: 12px !important;
+    padding: 24px !important;
+    margin-bottom: 35px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    overflow: visible !important;
+    isolation: isolate !important;
+    display: block !important;
+    z-index: 1 !important;
+}
+
+/* Space for PDF badge */
+.article-summary.article-text-only.has-pdf {
+    padding-top: 50px !important;
+}
+
+.article-summary.article-text-only:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+    transform: translateY(-2px) !important;
+    border-color: #d0d0d0 !important;
+    z-index: 1 !important;
+}
+
+/* Article Content Wrapper */
+.article-summary.article-text-only .article-content-wrapper {
+    position: relative !important;
+    z-index: 1 !important;
+    width: 100% !important;
+    display: block !important;
+    flex-direction: column !important;
+}
+
+/* Article Title */
+.article-summary.article-text-only .article-title {
+    margin: 0 0 12px 0 !important;
+    padding-right: 140px !important;
+    font-size: 1.4rem !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+}
+
+/* Remove padding-right if no PDF */
+.article-summary.article-text-only:not(.has-pdf) .article-title {
+    padding-right: 0 !important;
+}
+
+.article-summary.article-text-only .article-title a {
+    color: #2c3e50 !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease !important;
+}
+
+.article-summary.article-text-only .article-title a:hover {
+    color: #3498db !important;
+}
+
+/* Authors */
+.article-summary.article-text-only .article-authors {
+    color: #6c757d !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 8px !important;
+    font-weight: 500 !important;
+}
+
+/* Page Numbers */
+.article-summary.article-text-only .article-pages {
+    color: #95a5a6 !important;
+    font-size: 0.875rem !important;
+    margin-bottom: 16px !important;
+    font-weight: 400 !important;
+}
+
+.article-summary.article-text-only .article-pages::before {
+    content: "Pages: " !important;
+    font-weight: 600 !important;
+    color: #7f8c8d !important;
+}
+
+/* Action Buttons Container */
+.article-summary.article-text-only .article-action-buttons {
+    margin-top: 20px !important;
+    padding-top: 16px !important;
+    border-top: 1px solid #f0f0f0 !important;
+    display: flex !important;
+    gap: 12px !important;
+    flex-wrap: wrap !important;
+}
+
+/* Enhanced Button Styling */
+.article-summary.article-text-only .article-action-buttons .btn {
+    padding: 10px 24px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+    text-transform: none !important;
+    letter-spacing: 0.3px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    color: white !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    border: none !important;
+}
+
+/* View Article Button */
+.article-summary.article-text-only .article-action-buttons .btn-success {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%) !important;
+    border-color: #2ecc71 !important;
+}
+
+.article-summary.article-text-only .article-action-buttons .btn-success:hover {
+    background: linear-gradient(135deg, #27ae60 0%, #229954 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3) !important;
+}
+
+/* View PDF Button */
+.article-summary.article-text-only .article-action-buttons .btn-primary {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%) !important;
+    border-color: #3498db !important;
+}
+
+.article-summary.article-text-only .article-action-buttons .btn-primary:hover {
+    background: linear-gradient(135deg, #2980b9 0%, #21618c 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3) !important;
+}
+
+/* Button Icons */
+.article-summary.article-text-only .article-action-buttons .btn i {
+    margin-right: 6px !important;
+    font-size: 15px !important;
+}
+
+/* Status Badge (if article has PDF) */
+.article-summary.article-text-only.has-pdf::before {
+    content: "PDF Available";
+    position: absolute !important;
+    top: 18px !important;
+    right: 18px !important;
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%) !important;
+    color: white !important;
+    padding: 7px 15px !important;
+    border-radius: 16px !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.3px !important;
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3) !important;
+    z-index: 10 !important; /* REDUCED: Stay within card stacking context */
+    white-space: nowrap !important;
+    pointer-events: none !important;
+    display: block !important;
+    transform: translateZ(0) !important; /* ADDED: Create own stacking context */
+}
+
+/* Make sure badge doesn't exist on non-PDF articles */
+.article-summary.article-text-only:not(.has-pdf)::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .article-summary {
+        padding: 18px;
+    }
+    
+    .article-summary .article-title {
+        font-size: 1.2rem;
+    }
+    
+    .article-summary .article-action-buttons {
+        flex-direction: column;
+    }
+    
+    .article-summary .article-action-buttons .btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .article-summary.has-pdf::before {
+        position: static;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+}
+
+/* Article List Container - NUCLEAR OVERRIDE to remove all parent card styling */
+.media-list.articles-list {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    clear: both !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Ensure each article card is properly separated */
+.media-list.articles-list > .article-summary {
+    display: block !important;
+    float: none !important;
+    clear: both !important;
+    position: relative !important;
+}
+
+/* Empty State (if no articles) */
+.articles-list:empty::after {
+    content: "No articles published yet";
+    display: block;
+    text-align: center;
+    padding: 60px 20px;
+    color: #95a5a6;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Loading Animation (optional) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.article-summary {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Add stagger effect for multiple articles */
+.article-summary:nth-child(1) { animation-delay: 0s; }
+.article-summary:nth-child(2) { animation-delay: 0.1s; }
+.article-summary:nth-child(3) { animation-delay: 0.15s; }
+.article-summary:nth-child(4) { animation-delay: 0.2s; }
+.article-summary:nth-child(5) { animation-delay: 0.25s; }

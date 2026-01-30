@@ -163,6 +163,15 @@ class BootstrapThreeThemePlugin extends ThemePlugin {
 
 		// Add custom Riptek archive styles
 		$this->addStyle('riptek-archive-custom', 'styles/riptek-archive-custom.css');
+		
+		// Add genre button styling for backend
+		$this->addStyle('genre-buttons', 'styles/genre-buttons.css', ['contexts' => ['backend', 'frontend']]);
+		
+		// Add enhanced article summary styling - MUST load after riptek-archive-custom!
+		$this->addStyle('article-summary-enhanced', 'styles/article-summary-enhanced.css?v=2.2', ['contexts' => ['frontend']]);
+		
+		// Add enhanced article details page styling
+		$this->addStyle('article-details-enhanced', 'styles/article-details-enhanced.css', ['contexts' => ['frontend']]);
 
 		// Add navigation menu areas for this theme
 		$this->addMenuArea(array('primary', 'user'));

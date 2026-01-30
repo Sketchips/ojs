@@ -74,6 +74,12 @@ class OJSv3_3_0UpgradeMigration extends \PKP\migration\upgrade\PKPv3_3_0UpgradeM
                 'supportedSubmissionLocales',
                 'enablePublisherId',
                 'journalThumbnail',
+                'downloadFile1',
+                'downloadFile2',
+                'downloadFile3',
+                'downloadFile4',
+                'downloadFile5',
+                'downloadFile6',
             ],
             'publication_settings' => [
                 'categoryIds',
