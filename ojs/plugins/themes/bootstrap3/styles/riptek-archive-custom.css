@@ -364,91 +364,10 @@
     font-weight: 700;
 }
 
-.articles-list {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-}
-
 /* Articles Section Heading */
 .article-section .section-header h2 small {
     font-size: 18px;
     color: #28a745;
-}
-
-/* Article Items - Text Only Layout */
-.article-text-only {
-    padding: 18px 0;
-    border-bottom: 1px solid #e9ecef;
-    display: block;
-}
-
-.article-text-only:last-child {
-    border-bottom: none;
-}
-
-.article-text-only .article-content-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-}
-
-.article-text-only .article-text-info {
-    flex: 1;
-}
-
-.article-text-only .article-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 6px;
-    margin-top: 0;
-    line-height: 1.5;
-}
-
-.article-text-only .article-title a {
-    color: #333;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.article-text-only .article-title a:hover {
-    color: #28a745;
-}
-
-.article-text-only .article-authors {
-    font-size: 14px;
-    color: #28a745;
-    margin-bottom: 4px;
-    font-weight: 500;
-}
-
-.article-text-only .article-pages {
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 0;
-}
-
-.article-text-only .article-galleys {
-    flex-shrink: 0;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-}
-
-.article-text-only .article-galleys .btn {
-    padding: 6px 14px;
-    font-size: 12px;
-    font-weight: 600;
-    margin: 0;
-    white-space: nowrap;
-}
-
-.article-text-only .article-galleys .btn-success {
-    background-color: #28a745;
-    border-color: #28a745;
 }
 
 /* Old media layout - hide if exists */

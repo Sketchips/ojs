@@ -1,0 +1,116 @@
+/* Genre Selection Button Styling - 3D Effect */
+
+/* Add helper text before buttons */
+.listPanel--submissionFiles__setGenre::before {
+    content: 'Choose file type: ' !important;
+    display: block !important;
+    margin-bottom: 8px !important;
+    color: #333 !important;
+    font-weight: 600 !important;
+    font-size: 0.875rem !important;
+}
+
+button.-linkButton.listPanel--submissionFiles__setGenreButton {
+    position: relative !important;
+    border: none !important;
+    background: hsl(255deg 100% 47%) !important;
+    padding: 6px 16px !important;
+    cursor: pointer !important;
+    outline-offset: 4px !important;
+    transition: filter 250ms, transform 600ms cubic-bezier(.3, .7, .4, 1) !important;
+    user-select: none !important;
+    touch-action: manipulation !important;
+    margin: 4px !important;
+    display: inline-block !important;
+    text-decoration: none !important;
+    border-radius: 8px !important;
+    font-size: 0.75rem !important;
+    color: white !important;
+    font-weight: 600 !important;
+    will-change: transform !important;
+    transform: translateY(-3px) !important;
+    z-index: 1 !important;
+}
+
+/* Shadow effect using ::before */
+button.-linkButton.listPanel--submissionFiles__setGenreButton::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 8px !important;
+    background: hsl(0deg 0% 0% / 0.25) !important;
+    will-change: transform !important;
+    transform: translateY(2px) !important;
+    transition: transform 600ms cubic-bezier(.3, .7, .4, 1) !important;
+    z-index: -2 !important;
+}
+
+/* Edge effect using ::after */
+button.-linkButton.listPanel--submissionFiles__setGenreButton::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 8px !important;
+    background: linear-gradient(
+        to left,
+        hsl(250deg 100% 16%) 0%,
+        hsl(250deg 100% 32%) 8%,
+        hsl(250deg 100% 32%) 92%,
+        hsl(250deg 100% 16%) 100%
+    ) !important;
+    z-index: -1 !important;
+}
+
+/* Hover state */
+button.-linkButton.listPanel--submissionFiles__setGenreButton:hover {
+    filter: brightness(110%) !important;
+    transform: translateY(-5px) !important;
+    transition: filter 250ms, transform 250ms cubic-bezier(.3, .7, .4, 1.5) !important;
+}
+
+button.-linkButton.listPanel--submissionFiles__setGenreButton:hover::before {
+    transform: translateY(3px) !important;
+    transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5) !important;
+}
+
+/* Active state */
+button.-linkButton.listPanel--submissionFiles__setGenreButton:active {
+    transform: translateY(-1px) !important;
+    transition: transform 34ms !important;
+}
+
+button.-linkButton.listPanel--submissionFiles__setGenreButton:active::before {
+    transform: translateY(1px) !important;
+    transition: transform 34ms !important;
+}
+
+/* Focus state */
+button.-linkButton.listPanel--submissionFiles__setGenreButton:focus:not(:focus-visible) {
+    outline: none !important;
+}
+
+button.-linkButton.listPanel--submissionFiles__setGenreButton:focus-visible {
+    outline: 3px solid rgba(134, 133, 239, 0.5) !important;
+    outline-offset: 4px !important;
+}
+
+/* Last button (Other) - Orange variant */
+button.-linkButton.listPanel--submissionFiles__setGenreButton:last-of-type {
+    background: hsl(345deg 100% 47%) !important;
+}
+
+button.-linkButton.listPanel--submissionFiles__setGenreButton:last-of-type::after {
+    background: linear-gradient(
+        to left,
+        hsl(340deg 100% 16%) 0%,
+        hsl(340deg 100% 32%) 8%,
+        hsl(340deg 100% 32%) 92%,
+        hsl(340deg 100% 16%) 100%
+    ) !important;
+}

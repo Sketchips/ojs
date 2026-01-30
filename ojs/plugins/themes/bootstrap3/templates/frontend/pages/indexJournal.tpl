@@ -99,6 +99,47 @@
 				</li>
 			</ul>
 			
+			<!-- Downloadable Files - Auto Layout 2 per Row -->
+			{* Collect all downloadable files *}
+			{assign var="downloadFiles" value=[]}
+			
+			{* Downloadable files (up to 6) *}
+			{foreach from=[1,2,3,4,5,6] item=i}
+				{assign var="fileField" value="downloadFile{$i}"}
+				{assign var="nameField" value="downloadFile{$i}Name"}
+				{assign var="colorField" value="downloadFile{$i}Color"}
+				{assign var="fileData" value=$currentJournal->getData($fileField)}
+				{assign var="fileName" value=$currentJournal->getData($nameField)}
+				{assign var="fileColor" value=$currentJournal->getData($colorField)|default:"#27AE60"}
+				{if $fileData.uploadName && $fileName}
+					{$downloadFiles[] = ['name' => $fileName, 'file' => $fileData, 'color' => $fileColor]}
+				{/if}
+			{/foreach}
+			
+			{* Display files in 2-column layout *}
+			{if $downloadFiles|@count > 0}
+			{assign var="totalFiles" value=$downloadFiles|@count}
+			{assign var="isOdd" value=$totalFiles%2}
+			<div class="sidebar-download-section" style="padding: 20px;">
+				<div class="download-files-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+					{foreach from=$downloadFiles item=downloadFile name=fileLoop}
+					{assign var="btnColor" value=$downloadFile.color|escape}
+					{assign var="hoverColor" value=$downloadFile.color|escape}
+					{assign var="isLast" value=$smarty.foreach.fileLoop.last}
+					{assign var="spanFull" value=$isLast && $isOdd}
+					<a href="{$publicFilesDir}/{$downloadFile.file.uploadName|escape:"url"}" 
+					   target="_blank" 
+					   class="download-file-button" 
+					   style="background-color: {$btnColor}; color: white; padding: 12px 8px; text-align: center; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; transition: background-color 0.3s; display: flex; align-items: center; justify-content: center;{if $spanFull} grid-column: span 2;{/if}"
+					   onmouseover="this.style.backgroundColor='{$hoverColor}'; this.style.opacity='0.85'" 
+					   onmouseout="this.style.backgroundColor='{$btnColor}'; this.style.opacity='1'">
+						{$downloadFile.name|escape}
+					</a>
+					{/foreach}
+				</div>
+			</div>
+			{/if}
+			
 			<!-- Separator Line -->
 <hr style="margin: 20px 0; border: 0; border-top: 1px solid #e0e0e0;">
 
