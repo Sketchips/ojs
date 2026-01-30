@@ -80,7 +80,7 @@
 				{/if}
 				*}
 				{* Jurnal Riptek Text - Poppins 32px Bold Black *}
-				<a href="{$homeUrl}" class="navbar-brand">Jurnal Riptek</a>
+				<a href="{$homeUrl}" class="navbar-brand">{$currentJournal->getLocalizedName()|escape}</a>
 				{if $requestedOp == 'index'}
 					</h1>
 				{else}

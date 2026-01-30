@@ -41,7 +41,7 @@
 	</div>
 	
 	<div class="hero-content">
-		<h1>Jurnal Riptek</h1>
+		<h1>{$currentJournal->getLocalizedName()|escape}</h1>
 		<p class="subtitle">Badan Riset dan Inovasi Daerah Kota Semarang</p>
 	</div>
 	<div class="hero-image">
