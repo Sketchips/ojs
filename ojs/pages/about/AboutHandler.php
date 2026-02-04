@@ -55,4 +55,113 @@ class AboutHandler extends \PKP\pages\about\AboutContextHandler
         ]);
         $templateMgr->display('frontend/pages/subscriptions.tpl');
     }
+
+    /**
+     * Display author guidelines page.
+     *
+     * @param array $args
+     * @param \APP\core\Request $request
+     */
+    public function authorGuidelines($args, $request)
+    {
+        $templateMgr = TemplateManager::getManager($request);
+        $this->setupTemplate($request);
+        $context = $request->getJournal();
+        
+        // Get author guidelines from journal settings
+        if ($context) {
+            $templateMgr->assign([
+                'authorGuidelines' => $context->getLocalizedData('authorGuidelines'),
+                'submissionChecklist' => $context->getLocalizedData('submissionChecklist'),
+                'copyrightNotice' => $context->getLocalizedData('copyrightNotice'),
+                'homepageImage' => $context->getLocalizedData('homepageImage'),
+                'homepageImageAltText' => $context->getLocalizedData('homepageImageAltText'),
+            ]);
+        }
+        
+        $templateMgr->display('frontend/pages/authorGuidelines.tpl');
+    }
+
+    /**
+     * Display peer review process page.
+     *
+     * @param array $args
+     * @param \APP\core\Request $request
+     */
+    public function peerReview($args, $request)
+    {
+        $templateMgr = TemplateManager::getManager($request);
+        $this->setupTemplate($request);
+        $context = $request->getJournal();
+        
+        if ($context) {
+            $templateMgr->assign([
+                'reviewPolicy' => $context->getLocalizedData('reviewPolicy'),
+                'reviewGuidelines' => $context->getLocalizedData('reviewGuidelines'),
+                'homepageImage' => $context->getLocalizedData('homepageImage'),
+                'homepageImageAltText' => $context->getLocalizedData('homepageImageAltText'),
+            ]);
+        }
+        
+        $templateMgr->display('frontend/pages/peerReview.tpl');
+    }
+
+    /**
+     * Display focus and scope page.
+     *
+     * @param array $args
+     * @param \APP\core\Request $request
+     */
+    public function focusAndScope($args, $request)
+    {
+        $templateMgr = TemplateManager::getManager($request);
+        $this->setupTemplate($request);
+        $context = $request->getJournal();
+        
+        if ($context) {
+            $templateMgr->assign([
+                'focusScopeDesc' => $context->getLocalizedData('focusScopeDesc'),
+                'homepageImage' => $context->getLocalizedData('homepageImage'),
+                'homepageImageAltText' => $context->getLocalizedData('homepageImageAltText'),
+            ]);
+        }
+        
+        $templateMgr->display('frontend/pages/focusAndScope.tpl');
+    }
+
+    /**
+     * Display section policies page.
+     *
+     * @param array $args
+     * @param \APP\core\Request $request
+     */
+    public function sectionPolicies($args, $request)
+    {
+        $templateMgr = TemplateManager::getManager($request);
+        $this->setupTemplate($request);
+        $context = $request->getJournal();
+        
+        // Assign homepage image for hero section
+        if ($context) {
+            $templateMgr->assign([
+                'homepageImage' => $context->getLocalizedData('homepageImage'),
+                'homepageImageAltText' => $context->getLocalizedData('homepageImageAltText'),
+            ]);
+        }
+        
+        $templateMgr->display('frontend/pages/sectionPolicies.tpl');
+    }
+
+    /**
+     * Display editorial policies page (alias for editorialTeam).
+     * This method redirects to editorialTeam for backwards compatibility.
+     *
+     * @param array $args
+     * @param \APP\core\Request $request
+     */
+    public function editorialPolicies($args, $request)
+    {
+        // Redirect to editorialTeam to maintain proper URL structure
+        $request->redirect(null, 'about', 'editorialTeam');
+    }
 }

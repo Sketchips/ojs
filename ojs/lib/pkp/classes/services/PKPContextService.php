@@ -348,9 +348,10 @@ abstract class PKPContextService implements EntityPropertyInterface, EntityReadI
         // If a new file has been uploaded, check that the temporary file exists and
         // the current user owns it
         $user = Application::get()->getRequest()->getUser();
+        $downloadableFileFields = ['downloadFile1', 'downloadFile2', 'downloadFile3', 'downloadFile4', 'downloadFile5', 'downloadFile6'];
         ValidatorFactory::temporaryFilesExist(
             $validator,
-            ['favicon', 'homepageImage', 'pageHeaderLogoImage', 'styleSheet'],
+            array_merge(['favicon', 'homepageImage', 'pageHeaderLogoImage', 'styleSheet'], $downloadableFileFields),
             ['favicon', 'homepageImage', 'pageHeaderLogoImage'],
             $props,
             $allowedLocales,
@@ -578,6 +579,14 @@ abstract class PKPContextService implements EntityPropertyInterface, EntityReadI
         }
         if (array_key_exists('styleSheet', $params)) {
             $params['styleSheet'] = $this->_saveFileParam($context, $params['styleSheet'], 'styleSheet', $userId);
+        }
+        
+        // Process downloadable files (up to 6 files)
+        for ($i = 1; $i <= 6; $i++) {
+            $fieldName = 'downloadFile' . $i;
+            if (array_key_exists($fieldName, $params)) {
+                $params[$fieldName] = $this->_saveFileParam($context, $params[$fieldName], $fieldName, $userId);
+            }
         }
 
         $newContext = $contextDao->newDataObject();

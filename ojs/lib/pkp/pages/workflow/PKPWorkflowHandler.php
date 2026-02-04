@@ -73,10 +73,24 @@ abstract class PKPWorkflowHandler extends Handler
             // Authorize requested submission.
             $this->addPolicy(new SubmissionRequiredPolicy($request, $args, 'submissionId'));
 
-            // This policy will deny access if user has no accessible workflow stage.
-            // Otherwise it will build an authorized object with all accessible
-            // workflow stages and authorize user operation access.
-            $this->addPolicy(new UserAccessibleWorkflowStageRequiredPolicy($request, PKPApplication::WORKFLOW_TYPE_EDITORIAL));
+            // Check if user has reviewer role - reviewers don't have stage assignments,
+            // only review assignments, so they should bypass the stage access policy
+            $user = $request->getUser();
+            $context = $request->getContext();
+            $hasReviewerRole = false;
+            
+            if ($user && $context) {
+                $hasReviewerRole = $user->hasRole([Role::ROLE_ID_REVIEWER], $context->getId());
+            }
+
+            // Only add workflow stage policy for non-reviewers
+            // Reviewers will be authorized via review assignment check in access() method
+            if (!$hasReviewerRole) {
+                // This policy will deny access if user has no accessible workflow stage.
+                // Otherwise it will build an authorized object with all accessible
+                // workflow stages and authorize user operation access.
+                $this->addPolicy(new UserAccessibleWorkflowStageRequiredPolicy($request, PKPApplication::WORKFLOW_TYPE_EDITORIAL));
+            }
 
             $this->markRoleAssignmentsChecked();
         } else {
@@ -101,9 +115,53 @@ abstract class PKPWorkflowHandler extends Handler
     public function access($args, $request)
     {
         $submission = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
+        $user = $request->getUser();
+        $router = $request->getRouter();
+        $context = $request->getContext();
 
         $currentStageId = $submission->getStageId();
         $accessibleWorkflowStages = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_ACCESSIBLE_WORKFLOW_STAGES);
+        
+        // Check if user is a REVIEWER - reviewers bypass stage access policy
+        // so we need to check review assignments directly
+        if ($user && $context && $user->hasRole([Role::ROLE_ID_REVIEWER], $context->getId())) {
+            $reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
+            $reviewAssignments = $reviewAssignmentDao->getBySubmissionId($submission->getId());
+            
+            foreach ($reviewAssignments as $reviewAssignment) {
+                if ($reviewAssignment->getReviewerId() == $user->getId() && 
+                    !$reviewAssignment->getCancelled() && 
+                    !$reviewAssignment->getDeclined()) {
+                    // Redirect to reviewer submission page
+                    $request->redirectUrl($router->url($request, null, 'reviewer', 'submission', null, ['submissionId' => $submission->getId()]));
+                    return;
+                }
+            }
+            
+            // Reviewer has no active assignment for this submission - deny access
+            $request->redirectUrl($router->url($request, null, 'user', 'authorizationDenied', null, ['message' => 'user.authorization.accessibleWorkflowStage']));
+            return;
+        }
+        
+        // Check if user has stage-based access (editors, assistants, etc)
+        if (!empty($accessibleWorkflowStages)) {
+            foreach ($accessibleWorkflowStages as $stageId => $roles) {
+                if (in_array(Role::ROLE_ID_REVIEWER, $roles)) {
+                    // Redirect reviewer to their review page
+                    $reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
+                    $reviewAssignments = $reviewAssignmentDao->getBySubmissionId($submission->getId());
+                    
+                    foreach ($reviewAssignments as $reviewAssignment) {
+                        if ($reviewAssignment->getReviewerId() == $user->getId()) {
+                            // Redirect to reviewer submission page
+                            $request->redirectUrl($router->url($request, null, 'reviewer', 'submission', null, ['submissionId' => $submission->getId()]));
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
         $workflowRoles = Application::getWorkflowTypeRoles();
         $editorialWorkflowRoles = $workflowRoles[PKPApplication::WORKFLOW_TYPE_EDITORIAL];
 
@@ -127,7 +185,6 @@ abstract class PKPWorkflowHandler extends Handler
 
         assert(isset($workingStageId));
 
-        $router = $request->getRouter();
         $request->redirectUrl($router->url($request, null, 'workflow', 'index', [$submission->getId(), $workingStageId]));
     }
 

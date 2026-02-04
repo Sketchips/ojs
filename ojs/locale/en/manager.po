@@ -783,6 +783,24 @@ msgstr "Focus, peer review, sections, privacy, security, and additional about it
 msgid "manager.setup.printIssn"
 msgstr "Print ISSN"
 
+msgid "manager.setup.peerReviewProcess"
+msgstr "Peer Review Process"
+
+msgid "manager.setup.peerReviewProcess.description"
+msgstr "Describe the peer review process used by this journal, including review types, criteria, and timelines. This information will be displayed on the journal's Peer Review Process page."
+
+msgid "manager.setup.focusAndScope"
+msgstr "Focus and Scope"
+
+msgid "manager.setup.focusAndScope.description"
+msgstr "Describe the focus areas and scope of research that this journal covers. This helps potential authors understand if their work fits the journal's mandate."
+
+msgid "manager.setup.sectionPolicies"
+msgstr "Section Policies"
+
+msgid "manager.setup.sectionPolicies.description"
+msgstr "Describe the policies for journal sections, including open access policy, copyright and licensing terms, publication ethics, and other editorial policies."
+
 msgid "manager.setup.proofingInstructions"
 msgstr "Proofing Instructions"
 

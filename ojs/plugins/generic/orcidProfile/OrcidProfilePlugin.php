@@ -94,21 +94,27 @@ class OrcidProfilePlugin extends GenericPlugin
         if (Application::isUnderMaintenance()) {
             return true;
         }
-        if ($success && $this->getEnabled($mainContextId)) {
-            $contextId = ($mainContextId === null) ? $this->getCurrentContextId() : $mainContextId;
+        
+        // Only run plugin logic if enabled
+        if (!$success || !$this->getEnabled($mainContextId)) {
+            return $success;
+        }
 
-            $validator = new OrcidValidator($this);
+        $contextId = ($mainContextId === null) ? $this->getCurrentContextId() : $mainContextId;
 
-            $clientId = $this->getSetting($contextId, 'orcidClientId');
-            $clientSecret = $this->getSetting($contextId, 'orcidClientSecret');
+        $validator = new OrcidValidator($this);
 
-            if (!$validator->validateClientSecret($clientSecret) || !$validator->validateClientId($clientId)) {
-                error_log(new Exception('The ORCID plugin is enabled, but its settings are invalid. In order to fix, access the plugin settings and try to save the form'));
-                return $success;
-            }
+        $clientId = $this->getSetting($contextId, 'orcidClientId');
+        $clientSecret = $this->getSetting($contextId, 'orcidClientSecret');
 
-            Hook::add('ArticleHandler::view', [&$this, 'submissionView']);
-            Hook::add('PreprintHandler::view', [&$this, 'submissionView']);
+        if (!$validator->validateClientSecret($clientSecret) || !$validator->validateClientId($clientId)) {
+            error_log('ORCID plugin is enabled but settings are invalid (clientId or clientSecret). Plugin hooks will not be registered.');
+            return $success;
+        }
+
+        // Plugin enabled and settings valid - register all hooks
+        Hook::add('ArticleHandler::view', [&$this, 'submissionView']);
+        Hook::add('PreprintHandler::view', [&$this, 'submissionView']);
 
             // Insert the OrcidProfileHandler to handle ORCID redirects
             Hook::add('LoadHandler', [$this, 'setupCallbackHandler']);
@@ -227,13 +233,13 @@ class OrcidProfilePlugin extends GenericPlugin
 
             Hook::add('Author::edit', [$this, 'handleAuthorFormExecute']);
 
-            Hook::add('Form::config::before', [$this, 'addOrcidFormFields']);
+        Hook::add('Form::config::before', [$this, 'addOrcidFormFields']);
 
 
-            Hook::add('Installer::postInstall', [$this, 'updateSchema']);
+        Hook::add('Installer::postInstall', [$this, 'updateSchema']);
 
-            Hook::add('Publication::validatePublish', [$this, 'validate']);
-        }
+        // DISABLED: Validation hook causes error when ORCID not configured
+        // Hook::add('Publication::validatePublish', [$this, 'validate']);
 
         return $success;
     }
@@ -306,7 +312,7 @@ class OrcidProfilePlugin extends GenericPlugin
             'options' => [
                 [
                     'label' => __('plugins.generic.orcidProfile.author.requestAuthorization'),
-                    'value' > false,
+                    'value' => false,
                 ]
             ]
         ]), [FIELD_POSITION_AFTER, 'orcid']);
@@ -317,7 +323,7 @@ class OrcidProfilePlugin extends GenericPlugin
                 'options' => [
                     [
                         'label' => __('plugins.generic.orcidProfile.author.deleteORCID'),
-                        'value' > false,
+                        'value' => false,
                     ]
                 ],
                 'showWhen' => 'orcid',

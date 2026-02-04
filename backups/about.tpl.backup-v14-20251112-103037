@@ -1,0 +1,39 @@
+{**
+ * templates/frontend/pages/about.tpl
+ *
+ * Copyright (c) 2014-2024 Simon Fraser University
+ * Copyright (c) 2003-2024 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+ *
+ * @brief Display the About page - Focus and Scope only
+ *}
+{include file="frontend/components/header.tpl" pageTitle="About"}
+
+{* Hero Section *}
+{include file="frontend/components/aboutHero.tpl"}
+
+{* Content Wrapper with Sidebar *}
+<div class="content-wrapper">
+	
+	{* Sidebar Menu *}
+	{include file="frontend/components/aboutSidebar.tpl" activePage="focusAndScope"}
+
+	{* Main Content Area *}
+	<div class="main-content-area">
+		
+		<section class="info-section about-section">
+			<h2 class="section-title">About Journal</h2>
+			<div class="section-content">
+				{if $currentContext->getLocalizedData('about')}
+					{$currentContext->getLocalizedData('about')}
+				{else}
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non ipsum facilisis, tincidunt ex eu, iaculis ex turpis.</p>
+				{/if}
+			</div>
+		</section>
+
+	</div>
+	
+</div><!-- .content-wrapper -->
+
+{include file="common/frontend/footer.tpl"}

@@ -274,6 +274,27 @@
 				"nullable"
 			]
 		},
+		"peerReviewProcess": {
+			"type": "string",
+			"multilingual": true,
+			"validation": [
+				"nullable"
+			]
+		},
+		"focusAndScope": {
+			"type": "string",
+			"multilingual": true,
+			"validation": [
+				"nullable"
+			]
+		},
+		"sectionPolicies": {
+			"type": "string",
+			"multilingual": true,
+			"validation": [
+				"nullable"
+			]
+		},
 		"copySubmissionAckPrimaryContact": {
 			"type": "boolean",
 			"default": false,

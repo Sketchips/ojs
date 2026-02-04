@@ -146,7 +146,7 @@ class SubmissionKeywordDAO extends ControlledVocabDAO
 
         $existingEntries = $keywordDao->enumerate($currentKeywords->getId(), self::CONTROLLED_VOCAB_SUBMISSION_KEYWORD);
         foreach ($existingEntries as $id => $entry) {
-            $entry = trim($entry);
+            $entry = trim($entry ?? '');
             $entryObj = $submissionKeywordEntryDao->getById($id);
             $submissionKeywordEntryDao->deleteObjectById($id);
         }

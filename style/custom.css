@@ -1,0 +1,47 @@
+/* HEADER */
+.pkp_site_name {
+    text-align: center;
+}
+.pkp_site_name img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; /* biar agak smooth */
+}
+
+/* NAVBAR */
+.pkp_navigation_primary {
+    background-color: #0d47a1; /* biru elegan */
+    border-radius: 8px;
+}
+.pkp_navigation_primary li a {
+    color: #fff !important;
+    font-weight: 500;
+    padding: 10px 15px;
+}
+.pkp_navigation_primary li a:hover {
+    background-color: #1976d2;
+    border-radius: 5px;
+}
+
+/* FOOTER */
+.pkp_structure_footer {
+    background: #0d47a1;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+.pkp_structure_footer a {
+    color: #ffeb3b;
+    text-decoration: none;
+}
+.pkp_structure_footer a:hover {
+    text-decoration: underline;
+}
+
+/* BODY */
+body {
+    font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+    line-height: 1.6;
+}

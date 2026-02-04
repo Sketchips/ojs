@@ -1,0 +1,362 @@
+/**
+ * ============================================================================
+ * ESSENTIAL FIXES ONLY - v1.9 CLEAN
+ * ============================================================================
+ * Clean implementation tanpa duplicate
+ * Fix hanya yang essential dan tested
+ * ============================================================================
+ */
+
+/* ============================================================================
+   1. NAVIGATION SPACING - GESER KE KANAN
+   ============================================================================ */
+
+/* NAVIGATION POSITION - Adjust left untuk spacing dari logo */
+.pkp_navigation_primary_row,
+.pkp_navigation_primary {
+    position: absolute !important;
+    left: 280px !important; /* INCREASE: Lebih ke kanan (was 220px) */
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    height: auto !important;
+}
+
+/* ============================================================================
+   2. CAROUSEL - BREAK OUT GRID & ABOVE SIDEBAR
+   ============================================================================ */
+
+/* CAROUSEL FULL-WIDTH - Break out dari Bootstrap grid */
+.pkp_page_index .carousel,
+.pkp_page_index .homepage-image,
+body.pkp_page_index .carousel {
+    width: 100vw !important; /* Full viewport width */
+    max-width: none !important;
+    position: relative !important;
+    left: 50% !important; /* Start dari center */
+    right: 50% !important;
+    margin-left: -50vw !important; /* Pull left to edge */
+    margin-right: -50vw !important; /* Pull right to edge */
+    margin-bottom: 3rem !important;
+    z-index: 100 !important; /* ABOVE sidebar */
+}
+
+/* CAROUSEL CONTAINER */
+.pkp_page_index .carousel-inner,
+body.pkp_page_index .carousel-inner {
+    width: 100% !important;
+}
+
+/* ============================================================================
+   3. CAROUSEL CONTROLS - VISIBLE ARROWS
+   ============================================================================ */
+
+/* CAROUSEL BUTTONS - Enlarged dengan visible arrows */
+.carousel-control {
+    width: 60px !important; /* BUTTON SIZE */
+    height: 60px !important;
+    background: rgba(0, 0, 0, 0.7) !important; /* BUTTON BACKGROUND */
+    border: 2px solid rgba(255, 255, 255, 0.4) !important; /* BUTTON BORDER */
+    border-radius: 50% !important;
+    opacity: 0.9 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 110 !important; /* ABOVE carousel */
+}
+
+.carousel-control.left {
+    left: 30px !important; /* LEFT BUTTON POSITION */
+}
+
+.carousel-control.right {
+    right: 30px !important; /* RIGHT BUTTON POSITION */
+}
+
+.carousel-control:hover {
+    opacity: 1 !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+    border-color: rgba(255, 255, 255, 0.7) !important;
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+/* ARROW ICONS - Force display dengan Unicode */
+.carousel-control .glyphicon,
+.carousel-control .icon-prev,
+.carousel-control .icon-next {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    font-size: 3rem !important; /* ARROW SIZE */
+    color: #ffffff !important; /* ARROW COLOR */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
+    font-weight: bold !important;
+    line-height: 1 !important;
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+/* Force Unicode arrows if glyphicons not working */
+.carousel-control.left::before {
+    content: "‹" !important; /* LEFT ARROW */
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    font-size: 4rem !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+    line-height: 1 !important;
+    z-index: 1 !important;
+}
+
+.carousel-control.right::before {
+    content: "›" !important; /* RIGHT ARROW */
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    font-size: 4rem !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+    line-height: 1 !important;
+    z-index: 1 !important;
+}
+
+/* ============================================================================
+   4. CAROUSEL INDICATORS - RESTORE DOTS
+   ============================================================================ */
+
+/* CAROUSEL INDICATORS - Position & style */
+.carousel-indicators {
+    position: absolute !important;
+    bottom: 20px !important; /* INDICATORS POSITION */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 15 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+    display: flex !important;
+    gap: 10px !important;
+}
+
+/* INDICATOR DOTS */
+.carousel-indicators li {
+    width: 12px !important; /* DOT SIZE */
+    height: 12px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.5) !important; /* DOT COLOR */
+    border: 2px solid rgba(255, 255, 255, 0.8) !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    margin: 0 !important;
+}
+
+/* ACTIVE INDICATOR */
+.carousel-indicators .active {
+    background: #ffffff !important; /* ACTIVE DOT COLOR */
+    transform: scale(1.3) !important;
+}
+
+.carousel-indicators li:hover {
+    background: rgba(255, 255, 255, 0.8) !important;
+    transform: scale(1.2) !important;
+}
+
+/* ============================================================================
+   5. DROPDOWN BACKGROUND FIX - PURE WHITE
+   ============================================================================ */
+
+/* DROPDOWN MENU - Force white background */
+.pkp_navigation_primary ul li ul,
+.navbar-nav li ul,
+.dropdown-menu {
+    background: #ffffff !important; /* WHITE BACKGROUND */
+    border: 1px solid #d1d5db !important;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    padding: 0.5rem 0 !important;
+    margin-top: 0.5rem !important;
+}
+
+/* REMOVE BLACK PSEUDO-ELEMENTS */
+.pkp_navigation_primary ul li ul::before,
+.pkp_navigation_primary ul li ul::after,
+.dropdown-menu::before,
+.dropdown-menu::after {
+    display: none !important;
+    content: none !important;
+    background: none !important;
+}
+
+/* DROPDOWN ITEMS */
+.pkp_navigation_primary ul li ul li {
+    background: #ffffff !important; /* WHITE ITEM BACKGROUND */
+    border-bottom: 1px solid #f3f4f6 !important;
+}
+
+.pkp_navigation_primary ul li ul li:last-child {
+    border-bottom: none !important;
+}
+
+/* DROPDOWN LINKS */
+.pkp_navigation_primary ul li ul li a {
+    padding: 0.75rem 1.2rem !important;
+    color: #374151 !important;
+    background: #ffffff !important;
+}
+
+.pkp_navigation_primary ul li ul li a:hover {
+    background: #f0fdfa !important; /* HOVER: Light teal */
+    color: #0d9488 !important;
+}
+
+/* ============================================================================
+   6. SIDEBAR - ONLY ON HOMEPAGE
+   ============================================================================ */
+
+/* HIDE SIDEBAR on non-homepage pages */
+body:not(.pkp_page_index) .pkp_sidebar,
+body:not(.pkp_page_index) aside.pkp_sidebar,
+body:not(.pkp_page_index) aside {
+    display: none !important;
+}
+
+/* SIDEBAR STYLING - Only on homepage */
+body.pkp_page_index .pkp_sidebar,
+body.pkp_page_index aside.pkp_sidebar {
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
+    padding: 1.5rem !important;
+    margin-bottom: 2rem !important;
+    border: 1px solid #e5e7eb !important;
+}
+
+/* SIDEBAR HEADINGS */
+body.pkp_page_index .pkp_sidebar h2,
+body.pkp_page_index .pkp_sidebar h3 {
+    color: #111827 !important;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 0.75rem !important;
+    border-bottom: 3px solid #0d9488 !important; /* TEAL ACCENT */
+}
+
+/* SIDEBAR LINKS */
+body.pkp_page_index .pkp_sidebar a {
+    display: block !important;
+    padding: 0.75rem 1rem !important;
+    color: #4b5563 !important;
+    background: #f9fafb !important;
+    border-radius: 8px !important;
+    margin-bottom: 0.5rem !important;
+    transition: all 0.25s ease !important;
+}
+
+body.pkp_page_index .pkp_sidebar a:hover {
+    background: #f0fdfa !important; /* HOVER: Light teal */
+    color: #0d9488 !important;
+    padding-left: 1.25rem !important; /* SLIDE RIGHT */
+}
+
+/* SIDEBAR BUTTONS */
+body.pkp_page_index .pkp_sidebar button,
+body.pkp_page_index .pkp_sidebar .btn {
+    width: 100% !important;
+    padding: 0.875rem 1.5rem !important;
+    background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3) !important;
+}
+
+body.pkp_page_index .pkp_sidebar button:hover,
+body.pkp_page_index .pkp_sidebar .btn:hover {
+    background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* ============================================================================
+   7. LOGO POSITION - NAIK KE ATAS
+   ============================================================================ */
+
+/* LOGO VERTICAL POSITION */
+.navbar-brand,
+.pkp_site_name,
+.pkp_site_name a {
+    position: absolute !important;
+    left: 15px !important;
+    top: 6px !important; /* LOGO TOP POSITION - Lower = higher */
+    z-index: 150 !important;
+}
+
+/* LOGO SIZE */
+.navbar-brand img,
+.pkp_site_name img {
+    max-height: 42px !important; /* LOGO HEIGHT */
+}
+
+/* ============================================================================
+   8. RESPONSIVE ADJUSTMENTS
+   ============================================================================ */
+
+/* TABLET */
+@media (max-width: 991px) {
+    .pkp_navigation_primary_row,
+    .pkp_navigation_primary {
+        left: 220px !important; /* Reduce spacing on tablet */
+    }
+    
+    .carousel-control {
+        width: 50px !important;
+        height: 50px !important;
+    }
+    
+    .carousel-control.left {
+        left: 20px !important;
+    }
+    
+    .carousel-control.right {
+        right: 20px !important;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .pkp_navigation_primary_row,
+    .pkp_navigation_primary {
+        left: 180px !important;
+    }
+    
+    .carousel-control {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    
+    .carousel-control.left {
+        left: 15px !important;
+    }
+    
+    .carousel-control.right {
+        right: 15px !important;
+    }
+    
+    .carousel-indicators li {
+        width: 10px !important;
+        height: 10px !important;
+    }
+    
+    .navbar-brand,
+    .pkp_site_name {
+        top: 10px !important; /* Center on mobile */
+    }
+}
+
+/* ============================================================================
+   END OF ESSENTIAL FIXES v1.9
+   ============================================================================ */

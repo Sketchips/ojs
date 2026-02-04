@@ -113,26 +113,25 @@ class RegistrationHandler extends UserHandler
         if ($reason !== null) {
             $this->setupTemplate($request);
             $templateMgr = TemplateManager::getManager($request);
-            $templateMgr->assign([
-                'pageTitle' => 'user.login',
-                'errorMsg' => $reason == '' ? 'user.login.accountDisabled' : 'user.login.accountDisabledWithReason',
-                'errorParams' => ['reason' => $reason],
-                'backLink' => $request->url(null, 'login'),
-                'backLinkLabel' => 'user.login',
-            ]);
-            return $templateMgr->display('frontend/pages/error.tpl');
-        }
-
-        $source = str_replace('@', '', $request->getUserVar('source'));
-        if (preg_match('#^/\w#', $source) === 1) {
-            return $request->redirectUrl($source);
-        } else {
-            // Make a new request to update cookie details after login
-            $request->redirect(null, 'user', 'register');
-        }
+        $templateMgr->assign([
+            'pageTitle' => 'user.login',
+            'errorMsg' => $reason == '' ? 'user.login.accountDisabled' : 'user.login.accountDisabledWithReason',
+            'errorParams' => ['reason' => $reason],
+            'backLink' => $request->url(null, 'login'),
+            'backLinkLabel' => 'user.login',
+        ]);
+        return $templateMgr->display('frontend/pages/error.tpl');
     }
 
-    /**
+    $source = $request->getUserVar('source');
+    $source = $source ? str_replace('@', '', $source) : '';
+    if (preg_match('#^/\w#', $source) === 1) {
+        return $request->redirectUrl($source);
+    } else {
+        // Make a new request to update cookie details after login
+        $request->redirect(null, 'user', 'register');
+    }
+}    /**
      * Re-route request to the register method.
      * Backwards-compatible with third-party themes that submit the registration
      * form to the registerUser method.

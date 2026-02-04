@@ -12,7 +12,6 @@
 {include file="frontend/components/header.tpl" pageTitle="manager.setup.privacyStatement"}
 
 <div class="page page_privacy">
-	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="manager.setup.privacyStatement"}
 	<h1>
 		{translate key="manager.setup.privacyStatement"}
 	</h1>
